@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/css" href="style.css"?>
+<information>
+<PID>24581</PID>
+<name>less</name>
+<files>
+<count>1</count>
+<maxfds>256</maxfds>
+<maxfdset>1024</maxfdset>
+<nextfd>5</nextfd>
+<file>
+<fd>0</fd>
+<fullpath>/dev/pts/0</fullpath>
+<count>14</count>
+<flags>2</flags>
+<mode>3</mode>
+<error>0</error>
+<position>0 </position>
+<UID>1000</UID>
+<GID>1000</GID>
+<maxcount>2147483647</maxcount>
+<vinode>e46f2c04</vinode>
+<pinode>e6070610</pinode>
+</file>
+<file>
+<fd>1</fd>
+<fullpath>/dev/pts/0</fullpath>
+<count>14</count>
+<flags>2</flags>
+<mode>3</mode>
+<error>0</error>
+<position>0 </position>
+<UID>1000</UID>
+<GID>1000</GID>
+<maxcount>2147483647</maxcount>
+<vinode>e46f2c04</vinode>
+<pinode>e6070610</pinode>
+</file>
+<file>
+<fd>2</fd>
+<fullpath>/dev/pts/0</fullpath>
+<count>14</count>
+<flags>2</flags>
+<mode>3</mode>
+<error>0</error>
+<position>0 </position>
+<UID>1000</UID>
+<GID>1000</GID>
+<maxcount>2147483647</maxcount>
+<vinode>e46f2c04</vinode>
+<pinode>e6070610</pinode>
+</file>
+<file>
+<fd>3</fd>
+<fullpath>/dev/tty</fullpath>
+<count>1</count>
+<flags>32768</flags>
+<mode>1</mode>
+<error>0</error>
+<position>0 </position>
+<UID>0</UID>
+<GID>0</GID>
+<maxcount>2147483647</maxcount>
+<vinode>f70810dc</vinode>
+<pinode>f6bd3b40</pinode>
+</file>
+<file>
+<fd>4</fd>
+<fullpath>/etc/updatedb.conf</fullpath>
+<count>1</count>
+<flags>32768</flags>
+<mode>13</mode>
+<error>0</error>
+<position>777 </position>
+<UID>0</UID>
+<GID>0</GID>
+<maxcount>2147483647</maxcount>
+<vinode>f28d3af4</vinode>
+<pinode>cdc10560</pinode>
+</file>
+</files>
+</information>

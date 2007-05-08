@@ -1,9 +1,11 @@
+###########################################################################
 #
 # Makefile
 # 
 #	Project:
 #	Desarrollo de herramientas de monitorización interna para Linux
-
+#
+###########################################################################
 #
 # Autor:
 #	Enrique Garcia Alvarez (kikeenrique@users.sourceforge.net)
@@ -12,14 +14,30 @@
 #
 # More documentacion at:
 # http://tldp.org/LDP/lkmpg/2.6/html/lkmpg.html
+#
+###########################################################################
 
 
-obj-m += modulo.o
+# If you are not actually running the kernel that you are building for,
+# you can supply a KERNELDIR= option on the command line, set the KERNELDIR
+# environment variable, or rewrite the line that sets KERNELDIR in the 
+# makefile.
 
-all:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
+# If KERNELRELEASE is defined, we've been invoked from the
+# kernel build system and can use its language.
+ifneq ($(KERNELRELEASE),)
+	obj-m := modulo.o
 
+# Otherwise we were called directly from the command
+# line; invoke the kernel build system.
+else
+	KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+	PWD := $(shell pwd)
+endif
+
+default:
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
+	$(PROG)
 clean:
-	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
-
+	$(MAKE) -C $(KERNELDIR) M=$(PWD) clean
 

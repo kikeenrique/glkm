@@ -1,0 +1,20 @@
+http://live.gnome.org/LSR/MaintainerGuide/TranslationGuide
+
+Translations live in the po directory in .po files. These text files are compiled into binary .mo or .gmo files at compile time. LSR developers have little to do to enable this process except maintain two files in the po folder:
+
+POTFILES.in
+    Lists file names relative to the project root containing strings to be translated 
+POTFILES.skip
+    Lists file names relative to the project root that should never be translated, even if the contain strings marked for translation 
+
+To generate a list of source files containing strings marked for translation but missing from POTFILES.in:
+
+intltool-update --maintain
+
+To generate the .pot file template for translators:
+
+intltool-update --pot
+
+To generate a report of the current translations:
+
+intltool-update --report

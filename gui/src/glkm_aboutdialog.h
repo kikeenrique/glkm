@@ -1,9 +1,9 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
- * main.cc
+ * glkm_aboutdialog.h
  * Copyright (C) Enrique García Álvarez 2007 <kike@eldemonionegro.com>
  * 
- * main.cc is free software.
+ * glkm_aboutdialog.h is free software.
  * 
  * You may redistribute it and/or modify it under the terms of the
  * GNU General Public License, as published by the Free Software
@@ -22,26 +22,27 @@
  * 	Boston, MA  02110-1301, USA.
  */
 
-#include <gtkmm/main.h>
-#include <glkm_mainwindow.h>
+#ifndef GLKM_ABOUTDIALOG_H
+#define GLKM_ABOUTDIALOG_H
 
-#ifdef ENABLE_NLS
-#  include <libintl.h>
-        bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
-        bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
-        textdomain (GETTEXT_PACKAGE);
-#endif
- 
-int 
-main (int argc, 
-	  	  char *argv[])
+#include <gtkmm.h>
+#include <libglademm.h>
+
+class GlkmAboutDialog : public Gtk::Dialog
 {
-	Gtk::Main kit(argc, argv);
+public:
+  GlkmAboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+  virtual ~GlkmAboutDialog();
 
-	GlkmMainWindow main_window;
+protected:
+  //Signal handlers:
+  virtual void on_button_clicked();
+  virtual void on_button_quit();
 
-	  //Shows the window and returns when it is closed.
-		kit.run(main_window);
+	Glib::RefPtr<Gnome::Glade::Xml> m_refGlademmXml;
 
-	return 0;
-}
+  //Child widgets:
+  Gtk::Button* m_pButton;
+};
+
+#endif //GLKM_ABOUTDIALOG_H

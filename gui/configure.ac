@@ -30,14 +30,13 @@ dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.61])
 
-BUG_REPORT_ADDRESS=http://eldemonionegro.com/glkm/newticket
-AC_SUBST(BUG_REPORT_ADDRESS)
-
+#  AC_DEFUN([PACKAGE_NAME], [glkm])
 AC_DEFUN([glkm_major_version], [0])
 AC_DEFUN([glkm_minor_version], [2])
 AC_DEFUN([glkm_micro_version], [3])
 AC_DEFUN([glkm_version], [glkm_major_version.glkm_minor_version.glkm_micro_version])
 
+AC_DEFUN([BUG_REPORT_ADDRESS], [http://eldemonionegro.com/glkm/newticket])
 
 AC_INIT([glkm], [glkm_version], [BUG_REPORT_ADDRESS])
 
@@ -45,43 +44,47 @@ AC_CONFIG_AUX_DIR([config-aux])
 
 GTKMM_REQUIRED=2.8 
 LIBGLADEMM_REQUIRED=2.6
-AC_SUBST(GTKMM_REQUIRED)
-AC_SUBST(LIBGLADEMM_REQUIRED)
+LIBGNOME_REQUIRED=2.14
+AC_SUBST([GTKMM_REQUIRED])
+AC_SUBST([LIBGLADEMM_REQUIRED])
+AC_SUBST([LIBGNOME_REQUIRED])
 
 ################################################################################
 #		Checks for programs.
 ################################################################################
 
-AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
-AM_INIT_AUTOMAKE([-Wall -Werror])
+#  DEPRECATED since autoconf 2.50 AM_INIT_AUTOMAKE([AC_PACKAGE_NAME], [AC_PACKAGE_VERSION])
+AM_INIT_AUTOMAKE([gnu dist-bzip2 -Wall -Werror])
 
 # Unknown effects #AC_ISC_POSIX
 
 AC_PROG_CXX
+#should look for g++ compiler and log a message if not present
 AM_PROG_CC_STDC
 
-AC_PATH_PROG(PKGCONFIG_CONFIG, pkg-config,no)
+AC_PATH_PROG([PKGCONFIG_CONFIG], [pkg-config],[no])
 if test x$PKGCONFIG_CONFIG = xno; then
-  AC_MSG_ERROR(Please install the pkg-config package from http://www.freedesktop.org/software/pkgconfig/)
+	AC_MSG_ERROR([Please install the pkg-config package from http://www.freedesktop.org/software/pkgconfig/])
 fi
 
-#dnl  Future use maybe?
-#dnl we need gconftool-2 in order to install the schema
-#AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
+#  dnl  Future use maybe?
+#  dnl we need gconftool-2 in order to install the schema
+#  AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
 #
-#if test "x$GCONFTOOL" = "xno"; then
-# AC_MSG_ERROR([gconftool-2 executable not found in your path - should be installed with GConf])
-#fi
+#  if test "x$GCONFTOOL" = "xno"; then
+#   AC_MSG_ERROR([gconftool-2 executable not found in your path - should be installed with GConf])
+#  fi
 #
-#AM_GCONF_SOURCE_2
+#  AM_GCONF_SOURCE_2
 
-dnl ***************************************************************************
-dnl Internatinalization
 
+################################################################################
+#		Checks for Internatinalization.
+################################################################################
 IT_PROG_INTLTOOL([0.35.0])
 AM_PO_SUBDIRS
 
-GETTEXT_PACKAGE=glkm
+GETTEXT_PACKAGE=[PACKAGE]
 AC_SUBST([GETTEXT_PACKAGE])
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [GETTEXT package name])
 AM_GLIB_GNU_GETTEXT
@@ -89,14 +92,30 @@ AM_GLIB_GNU_GETTEXT
 PROGRAMNAME_LOCALEDIR=[${datadir}/locale]
 AC_SUBST([PROGRAMNAME_LOCALEDIR])
 
+
 ################################################################################
 #		Checks for libraries.
 ################################################################################
 
-PKG_CHECK_MODULES(GLKM, [gtkmm-2.4 >= $GTKMM_REQUIRED libglademm-2.4 >= $LIBGLADEMM_REQUIRED])
-AC_SUBST(GLKM_CFLAGS)
-AC_SUBST(GLKM_LIBS)
+PKG_CHECK_MODULES([GLKM], [gtkmm-2.4 >= $GTKMM_REQUIRED libglademm-2.4 >= $LIBGLADEMM_REQUIRED])
+AC_SUBST([GLKM_CFLAGS])
+AC_SUBST([GLKM_LIBS])
 
+# Determine whether to compile with support for GNOME libraries (i.e libgnome and libgnomeui)
+AC_ARG_ENABLE([gnome],
+				    [AC_HELP_STRING([--disable-gnome], [build with libgnome support])], 
+				    [enable_gnome=no],
+				    [enable_gnome=yes])
+ AC_MSG_CHECKING(whether to compile with support for GNOME libraries)
+if test "x$enable_gnome" = "xyes"; then
+	AC_MSG_RESULT(yes)
+	PKG_CHECK_MODULES(LIBGNOME, [libgnome-2.0 >= $LIBGNOME_REQUIRED])
+	AC_SUBST([LIBGNOME_CFLAGS])
+	AC_SUBST([LIBGNOME_LIBS])
+	AC_DEFINE([HAVE_LIBGNOME], [1], [Compile with libgnome support])
+else
+	AC_MSG_RESULT(no)
+fi
 
 ################################################################################
 #		Checks for header files.
@@ -108,30 +127,39 @@ AC_HEADER_STDC
 #		Checks for typedefs, structures, and compiler characteristics.
 ################################################################################
 
-AM_CONFIG_HEADER([config.h])
+AC_CONFIG_HEADERS([config.h])
+
 AM_MAINTAINER_MODE
 AM_PROG_LIBTOOL
 
-#GNOME_COMPILE_WARNINGS(maximum)
+#  GNOME_COMPILE_WARNINGS(maximum)
 
-dnl Enable debugging mode
-AC_ARG_ENABLE(debug,
-  [  --enable-debug           Enable debug messages],
-  AM_CFLAGS="$AM_CFLAGS -DDEBUG"
-  AM_CXXFLAGS="$AM_CXXFLAGS -DDEBUG")
-AC_SUBST(AM_CFLAGS)
-AC_SUBST(AM_CXXFLAGS)
+# Determine whether to compile with debug settings.  Essentially this just disables compiler optimizations for now.
+AC_ARG_ENABLE([debug-mode], 
+					[AC_HELP_STRING([--enable-debug-mode], [build with debug settings (no optimization, test coverage)] )], 
+					[],
+					[AM_CFLAGS="$AM_CFLAGS -DDEBUG" AM_CPPFLAGS="$AM_CPPFLAGS -DDEBUG" enable_debug=no])
+AC_MSG_CHECKING(whether to compile with DEBUG settings)
+if test "x$enable_debug" = "xyes"; then
+	AC_MSG_RESULT(yes)
+	# remove optimization settings from CFLAGS
+	CXXFLAGS=[`echo "$CXXFLAGS" | $SED -e 's/-O[0-9]*//g'`]
+	CFLAGS=[`echo "$CFLAGS" | $SED -e 's/-O[0-9]*//g'`]
+	AC_SUBST([AM_CFLAGS])
+	AC_SUBST([AM_CXXFLAGS])
+else
+	AC_MSG_RESULT(no)
+fi
 
 #dnl Setup Plugin directories
-#glkm_plugin_dir='$(libdir)/glkm'
 #glkm_data_dir='$(datadir)/glkm'
 #glkm_ui_dir='$(datadir)/glkm/ui'
-#glkm_glade_dir='$(datadir)/glkm/glade'
+glkm_glade_dir='$(datadir)/glkm/glade'
 #glkm_image_dir='$(datadir)/pixmaps/glkm'
 #AC_SUBST(glkm_plugin_dir)
 #AC_SUBST(glkm_data_dir)
 #AC_SUBST(glkm_ui_dir)
-#AC_SUBST(glkm_glade_dir)
+AC_SUBST(glkm_glade_dir)
 #AC_SUBST(glkm_image_dir)
 
 ################################################################################
@@ -152,4 +180,53 @@ glkm.desktop
 
 AC_OUTPUT
 
+################################################################################
+#		Developer info
+################################################################################
+
+echo ""
+echo "======================================================================"
+echo ""
+echo "<$PACKAGE_NAME> configuration:"
+echo " C compiler			: $CC"
+echo " C++ compiler			: $CXX"
+echo " Prefix				: $prefix"
+#echo " AM_CFLAGS		: $AM_CFLAGS"
+#echo " AM_CPPFLAGS	: $AM_CPPFLAGS"
+echo " CFLAGS				: $CFLAGS"
+echo " CPPFLAGS			: $CPPFLAGS"
+echo " CXXFLAGS			: $CXXFLAGS"
+#echo " AM_CXXFLAGS	: $AM_CXXFLAGS"
+echo " CXXCOMPILE			: $CXXCOMPILE"
+echo " CXXLINK			: $CXXLINK"
+echo ""
+echo " DEFS				: $DEFS"
+echo " LDFLAGS			: $LDFLAGS"
+echo " LIBS				: $LIBS"
+echo ""
+echo " LIBINTL			: $LIBINTL"
+echo ""
+echo "<$PACKAGE_NAME> will be compiled with the following features:"
+echo "  GNOME library support   : $enable_gnome"
+echo "  DEBUG mode   : $enable_debug"
+echo ""
+echo "The following options will be passed to the compiler:"
+echo "  GTKMM_REQUIRED: $GTKMM_REQUIRED"
+echo "  LIBGLADEMM_REQUIRED: $LIBGLADEMM_REQUIRED"
+echo "  LIBGNOME_REQUIRED: $LIBGNOME_REQUIRED"
+echo ""
+echo "  GETTEXT_PACKAGE: $GETTEXT_PACKAGE"
+echo "  PROGRAMNAME_LOCALEDIR: $PROGRAMNAME_LOCALEDIR"
+echo ""
+echo "  GLKM_CFLAGS: $GLKM_CFLAGS"
+echo "  GLKM_CPPLAGS: $GLKM_CPPLAGS"
+echo "  GLKM_LIBS: $GLKM_LIBS"
+echo ""
+echo "  HAVE_GNOME: $HAVE_GNOME"
+echo "  LIBGNOME_CFLAGS: $LIBGNOME_CFLAGS"
+echo "  LIBGNOME_LIBS: $LIBGNOME_LIBS"
+echo ""
+echo ""
+echo "======================================================================"
+echo ""
 

@@ -17,8 +17,7 @@ INTLTOOL_FILES = \
 	intltool-merge.in \
 	intltool-update.in
 	
-EXTRA_DIST = 	 \
-	glkm.desktop.in \
+EXTRA_DIST = \
 	autogen.sh \
 	$(INTLTOOL_FILES) \
 	$(glkmdoc_DATA)
@@ -30,17 +29,17 @@ gnomemenu_DATA = $(gnomemenu_premerge_file:.desktop.in=.desktop)
 DISTCHECK_CONFIGURE_FLAGS =
 
 # Copy all the spec files. Of cource, only one is actually used.
-dist-hook:
-	for specfile in *.spec; do \
-		if test -f $$specfile; then \
-			cp -p $$specfile $(distdir); \
-		fi \
-	done
+#dist-hook:
+#	for specfile in *.spec; do \
+#		if test -f $$specfile; then \
+#			cp -p $$specfile $(distdir); \
+#		fi \
+#	done
 	
-CLEANFILES = $(gnomemenu_DATA)
+CLEANFILES = \
+	$(gnomemenu_DATA)
 
 DISTCLEANFILES =  \
-	configure\
 	intltool-extract \
 	intltool-merge \
 	intltool-update \

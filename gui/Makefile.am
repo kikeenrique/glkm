@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = src po 
+SUBDIRS = src po data
 
 glkmdocdir = ${prefix}/doc/glkm
 glkmdoc_DATA = \
@@ -19,12 +19,7 @@ INTLTOOL_FILES = \
 	
 EXTRA_DIST = \
 	autogen.sh \
-	$(INTLTOOL_FILES) \
-	$(glkmdoc_DATA)
-
-gnomemenudir = $(datadir)/applications
-gnomemenu_premerge_file = glkm.desktop.in
-gnomemenu_DATA = $(gnomemenu_premerge_file:.desktop.in=.desktop)
+	$(INTLTOOL_FILES)
 
 DISTCHECK_CONFIGURE_FLAGS =
 
@@ -36,12 +31,9 @@ DISTCHECK_CONFIGURE_FLAGS =
 #		fi \
 #	done
 	
-CLEANFILES = \
-	$(gnomemenu_DATA)
 
 DISTCLEANFILES =  \
 	intltool-extract \
 	intltool-merge \
 	intltool-update \
-	po/.intltool-merge-cache \
-	$(gnomemenu_DATA)
+	po/.intltool-merge-cache

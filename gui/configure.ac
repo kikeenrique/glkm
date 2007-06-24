@@ -38,7 +38,7 @@ AC_DEFUN([glkm_version], [glkm_major_version.glkm_minor_version.glkm_micro_versi
 
 AC_DEFUN([BUG_REPORT_ADDRESS], [http://eldemonionegro.com/glkm/newticket])
 
-AC_INIT([glkm], [glkm_version], [BUG_REPORT_ADDRESS])
+AC_INIT([GNOME LINUX Kernel Monitor], [glkm_version], [BUG_REPORT_ADDRESS], [glkm])
 
 AC_CONFIG_AUX_DIR([config-aux])
 
@@ -56,11 +56,9 @@ AC_SUBST([LIBGNOME_REQUIRED])
 #  DEPRECATED since autoconf 2.50 AM_INIT_AUTOMAKE([AC_PACKAGE_NAME], [AC_PACKAGE_VERSION])
 AM_INIT_AUTOMAKE([gnu dist-bzip2 -Wall -Werror])
 
-# Unknown effects #AC_ISC_POSIX
-
 AC_PROG_CXX
-#should look for g++ compiler and log a message if not present
 AM_PROG_CC_STDC
+# AC_LANG(C++)
 
 AC_PATH_PROG([PKGCONFIG_CONFIG], [pkg-config],[no])
 if test x$PKGCONFIG_CONFIG = xno; then
@@ -84,7 +82,7 @@ fi
 IT_PROG_INTLTOOL([0.35.0])
 AM_PO_SUBDIRS
 
-GETTEXT_PACKAGE=[PACKAGE]
+GETTEXT_PACKAGE=[$PACKAGE]
 AC_SUBST([GETTEXT_PACKAGE])
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [GETTEXT package name])
 AM_GLIB_GNU_GETTEXT
@@ -151,6 +149,16 @@ else
 	AC_MSG_RESULT(no)
 fi
 
+################################################################################
+#		Checks for library functions.
+################################################################################
+
+
+################################################################################
+#		Output files
+################################################################################
+
+
 #dnl Setup Plugin directories
 #glkm_data_dir='$(datadir)/glkm'
 #glkm_ui_dir='$(datadir)/glkm/ui'
@@ -162,20 +170,13 @@ glkm_glade_dir='$(datadir)/glkm/glade'
 AC_SUBST(glkm_glade_dir)
 #AC_SUBST(glkm_image_dir)
 
-################################################################################
-#		Checks for library functions.
-################################################################################
-
-
-################################################################################
-#		Output files
-################################################################################
 
 AC_CONFIG_FILES([
 Makefile
-src/Makefile
+data/Makefile
+data/glkm.desktop
 po/Makefile.in
-glkm.desktop
+src/Makefile
 ])
 
 AC_OUTPUT

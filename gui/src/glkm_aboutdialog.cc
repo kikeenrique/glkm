@@ -10,7 +10,7 @@
  * Foundation; either version 2 of the License, or (at your option)
  * any later version.
  * 
- * main.cc is distributed in the hope that it will be useful,
+ * glkm_aboutdialog.cc is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -23,39 +23,84 @@
  */
 
 #include "glkm_aboutdialog.h"
+#include <gtkmm/dialog.h>
+
+#ifdef HAVE_LIBGNOME
+#include <libgnome/gnome-url.h>
+#endif // HAVE_LIBGNOME
+
+#ifdef DEBUG
+#include "debug.h"
+#endif // DEBUG
 
 
 GlkmAboutDialog::GlkmAboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
-: Gtk::Dialog(cobject),
-  m_refGlademmXml(refGlade),
-  m_pButton(0)
+	:Gtk::AboutDialog(cobject),
+	m_refGlademmXml(refGlade)
 {
-  //Get the Glade-instantiated Button, and connect a signal handler:
-//  m_refGlademmXml->get_widget("quit_button", m_pButton);
-  if(m_pButton)
-  {
-    m_pButton->signal_clicked().connect( sigc::mem_fun(*this, &GlkmAboutDialog::on_button_quit) ); 
-  }
-	//gnome_url_show_on_screen();
-	//	m_refGlademmXml->get_widget("glkm_aboutdialog", pGlkm_AboutDialog);
-//	if(pGlkm_AboutDialog){
-//		std::cout << "hola" << std::endl;
-//		pGlkm_AboutDialog->show();
-//	pMenuItem->signal_activate().connect( sigc::mem_fun(&GlkmMainWindow::on_menu_item_activated) );
-//	}
+	//Actioning close button doesn't work by itself, needs a gobernant signal to http://mail.gnome.org/archives/gtkmm-list/2007-January/msg00305.html
+	signal_response().connect( sigc::mem_fun(*this, &GlkmAboutDialog::on_button_quit) ); 
 
+	set_url_hook(sigc::mem_fun(*this, &GlkmAboutDialog::on_activate_link_url) );
+	set_email_hook(sigc::mem_fun(*this, &GlkmAboutDialog::on_activate_email_url) );
 }
 
 GlkmAboutDialog::~GlkmAboutDialog()
 {
 }
 
+/*
 void GlkmAboutDialog::on_button_clicked()
 {
 }
+*/
 
-void GlkmAboutDialog::on_button_quit()
+void GlkmAboutDialog::on_button_quit(int response_id)
 {
-	hide(); //hide() will cause main::run() to end.
+	switch(response_id) {
+//		case Gtk::RESPONSE_DELETE_EVENT  :
+		case Gtk::RESPONSE_CANCEL : 
+			#ifdef DEBUG
+			std::cout << "DELETE_EVENT/CANCEL"  << std::endl;
+			#endif // DEBUG
+			hide();
+			break;
+		default:
+			;
+			#ifdef DEBUG
+			std::cout << "unattended event" << response_id << std::endl;
+			#endif // DEBUG
+	} 
 }
 
+void GlkmAboutDialog::on_activate_link_url(AboutDialog& about_dialog, const Glib::ustring& link)
+{
+	#ifdef DEBUG
+	std::cout << "link url" << std::endl;
+	#endif // DEBUG
+#ifdef HAVE_LIBGNOME
+	gnome_url_show(link.c_str(), 0);
+#endif // HAVE_LIBGNOME
+}
+
+void GlkmAboutDialog::on_activate_email_url(AboutDialog& about_dialog, const Glib::ustring& email)
+{
+	#ifdef DEBUG
+	Glib::ustring link="mailto:"+email;
+	#endif // DEBUG
+#ifdef HAVE_LIBGNOME
+	Gerror error;
+#endif // HAVE_LIBGNOME
+
+	#ifdef DEBUG
+	std::cout << "email url" << std::endl;
+	#endif // DEBUG
+
+#ifdef HAVE_LIBGNOME
+	if (gnome_url_show(link.c_str(), error)){
+			std::cout << "good" << std::endl;			
+	}else{
+			std::cout << "wrong" << std::endl;			
+	}		
+#endif // HAVE_LIBGNOME
+}

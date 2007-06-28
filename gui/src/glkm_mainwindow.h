@@ -10,7 +10,7 @@
  * Foundation; either version 2 of the License, or (at your option)
  * any later version.
  * 
- * main.cc is distributed in the hope that it will be useful,
+ * glkm_mainwindow.h is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -28,12 +28,11 @@
 #include <gtkmm.h>
 #include <libglademm/xml.h>
 // Future mapping #include <libglademm/variablesmap.h>
-
 #include "glkm_aboutdialog.h"
 
 /* For testing propose use the local (not installed) glade file */
-//#define GLADE_FILE PACKAGE_DATA_DIR"/glkm/glade/glkm.glade" 
-#define GLADE_FILE "../glade/glkm.glade"
+//#define GLADE_FILE  PACKAGE_DATA_DIR "/glkm/glade/glkm.glade" 
+#define GLADE_FILE  "/home/enrgar/svn/pfc/trunk/gui/data/glkm.glade" 
 
 class GlkmMainWindow : public Gtk::Window
 {
@@ -55,7 +54,6 @@ protected:
 	/* Child widgets:
 			Menu
 	*/
-	// Menu 
 	Gtk::MenuItem* pMenuItem;
 	
 	Gtk::MenuItem* pMenuQuit;
@@ -65,7 +63,7 @@ protected:
 	/* Child widgets:
 			SubWindows
 	*/
-	GlkmAboutDialog* Glkm_AboutDialog;
+	GlkmAboutDialog* pGlkmAboutDialog;
 };
 
 #endif //GLKM_MAINWINDOW_H

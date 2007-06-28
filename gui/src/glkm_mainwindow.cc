@@ -10,7 +10,7 @@
  * Foundation; either version 2 of the License, or (at your option)
  * any later version.
  * 
- * main.cc is distributed in the hope that it will be useful,
+ * glkm_aboutdialog.cc is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -30,29 +30,32 @@
 
 GlkmMainWindow::GlkmMainWindow()
 {
-	//Load the Glade file and instiate its widgets:
+	//Load the Glade file 
 	try
 	{
-		m_refGlademmXml = Gnome::Glade::Xml::create(GLADE_FILE);
+		m_refGlademmXml = Gnome::Glade::Xml::create( GLADE_FILE);
 	}
-	catch(const Gnome::Glade::XmlError& ex)
+	catch(const Gnome::Glade::XmlError& exception)
     {
-		std::cerr << ex.what() << std::endl;
-//LANZAR ERROR
-//		return 1; 
+		std::cerr << exception.what() << std::endl;
+		throw; 
 	}	
-//	m_refGlademmXml->get_widget("vbox1");
+	//Instiate glade widgets for main window
 	m_refGlademmXml->reparent_widget("vbox1", *this);
 
-	m_refGlademmXml->get_widget_derived("glkm_aboutdialog", Glkm_AboutDialog);
+	m_refGlademmXml->get_widget_derived("glkm_aboutdialog", pGlkmAboutDialog);
 
-	//Connect signal handlers for the menu items:
+		if(pGlkmAboutDialog){
+		} else{
+			std::cout << "cagada" << std::endl;
+		}
+
+	//Connect signal handlers for the main window menu items:
 		pMenuQuit = 0;
 		m_refGlademmXml->get_widget("menu_quit", pMenuQuit);
 		if(pMenuQuit){
 			pMenuQuit->signal_activate().connect( sigc::mem_fun( *this, &GlkmMainWindow::on_menu_quit_activated) ); 
 		}
-
 		pMenuAbout = 0;
 		m_refGlademmXml->get_widget("menu_about", pMenuAbout);
 		if(pMenuAbout){
@@ -69,7 +72,7 @@ GlkmMainWindow::~GlkmMainWindow()
 
 void GlkmMainWindow::on_button_clicked()
 {
-		//TODO
+	//TODO
 }
 
 
@@ -83,6 +86,9 @@ void GlkmMainWindow::on_menu_quit_activated()
 void GlkmMainWindow::on_menu_about_activated()
 {
 	std::cout << "menu about activated" << std::endl;
-	Glkm_AboutDialog->show();
+	pGlkmAboutDialog->show();
+	  //Bring it to the front, in case it was already shown:
+	pGlkmAboutDialog->present();
+
 }
 

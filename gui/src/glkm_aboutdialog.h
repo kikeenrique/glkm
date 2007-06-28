@@ -10,7 +10,7 @@
  * Foundation; either version 2 of the License, or (at your option)
  * any later version.
  * 
- * main.cc is distributed in the hope that it will be useful,
+ * glkm_aboutdialog.h is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
@@ -25,24 +25,27 @@
 #ifndef GLKM_ABOUTDIALOG_H
 #define GLKM_ABOUTDIALOG_H
 
-#include <gtkmm.h>
+#include <gtkmm/aboutdialog.h>
 #include <libglademm.h>
 
-class GlkmAboutDialog : public Gtk::Dialog
+class GlkmAboutDialog : public Gtk::AboutDialog
 {
 public:
-  GlkmAboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
-  virtual ~GlkmAboutDialog();
+
+	GlkmAboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	virtual ~GlkmAboutDialog();
 
 protected:
-  //Signal handlers:
-  virtual void on_button_clicked();
-  virtual void on_button_quit();
-
+	//Signal handlers:
+	/*
+	virtual void on_button_clicked();
+	*/
+	virtual void on_button_quit(int response_id);
+		
 	Glib::RefPtr<Gnome::Glade::Xml> m_refGlademmXml;
 
-  //Child widgets:
-  Gtk::Button* m_pButton;
+	void on_activate_link_url(AboutDialog& about_dialog, const Glib::ustring& link);
+	void on_activate_email_url(AboutDialog& about_dialog, const Glib::ustring& email);
 };
 
 #endif //GLKM_ABOUTDIALOG_H

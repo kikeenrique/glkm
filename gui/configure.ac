@@ -110,7 +110,7 @@ if test "x$enable_gnome" = "xyes"; then
 	PKG_CHECK_MODULES(LIBGNOME, [libgnome-2.0 >= $LIBGNOME_REQUIRED])
 	AC_SUBST([LIBGNOME_CFLAGS])
 	AC_SUBST([LIBGNOME_LIBS])
-	AC_DEFINE([HAVE_LIBGNOME], [1], [Compile with libgnome support])
+	AC_DEFINE([HAVE_LIBGNOME], [], [Compile with libgnome support])
 else
 	AC_MSG_RESULT(no)
 fi
@@ -223,7 +223,7 @@ echo "  GLKM_CFLAGS: $GLKM_CFLAGS"
 echo "  GLKM_CPPLAGS: $GLKM_CPPLAGS"
 echo "  GLKM_LIBS: $GLKM_LIBS"
 echo ""
-echo "  HAVE_GNOME: $HAVE_GNOME"
+echo "  HAVE_LIBGNOME: $HAVE_LIBGNOME"
 echo "  LIBGNOME_CFLAGS: $LIBGNOME_CFLAGS"
 echo "  LIBGNOME_LIBS: $LIBGNOME_LIBS"
 echo ""

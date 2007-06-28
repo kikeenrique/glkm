@@ -23,19 +23,24 @@
  */
 
 #include <gtkmm/main.h>
-#include <glkm_mainwindow.h>
+#include "glkm_mainwindow.h"
+
+#include "config.h"
 
 #ifdef ENABLE_NLS
-#  include <libintl.h>
-        bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
-        bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
-        textdomain (GETTEXT_PACKAGE);
+#include <libintl.h>
 #endif
  
 int 
 main (int argc, 
 	  	  char *argv[])
 {
+#ifdef ENABLE_NLS
+//      bindtextdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
+    //  bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+        //domain(GETTEXT_PACKAGE);
+#endif
+
 	Gtk::Main kit(argc, argv);
 
 	GlkmMainWindow main_window;

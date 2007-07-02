@@ -101,7 +101,7 @@ AC_SUBST([GLKM_LIBS])
 
 # Determine whether to compile with support for GNOME libraries (i.e libgnome and libgnomeui)
 AC_ARG_ENABLE([gnome],
-				    [AC_HELP_STRING([--disable-gnome], [build with libgnome support])], 
+				    [AC_HELP_STRING([--disable-gnome], [build with GNOME support (default=enabled)])], 
 				    [enable_gnome=no],
 				    [enable_gnome=yes])
  AC_MSG_CHECKING(whether to compile with support for GNOME libraries)
@@ -134,9 +134,9 @@ AM_PROG_LIBTOOL
 
 # Determine whether to compile with debug settings.  Essentially this just disables compiler optimizations for now.
 AC_ARG_ENABLE([debug-mode], 
-					[AC_HELP_STRING([--enable-debug-mode], [build with debug settings (no optimization, test coverage)] )], 
-					[],
-					[AM_CFLAGS="$AM_CFLAGS -DDEBUG" AM_CPPFLAGS="$AM_CPPFLAGS -DDEBUG" enable_debug=no])
+				    [AC_HELP_STRING([--enable-debug-mode], [build with debug settings (no optimization, test coverage)] )], 
+				    [AM_CFLAGS="$AM_CFLAGS -DDEBUG" AM_CPPFLAGS="$AM_CPPFLAGS -DDEBUG"  enable_debug=yes],
+				    [enable_debug=no])
 AC_MSG_CHECKING(whether to compile with DEBUG settings)
 if test "x$enable_debug" = "xyes"; then
 	AC_MSG_RESULT(yes)
@@ -145,6 +145,7 @@ if test "x$enable_debug" = "xyes"; then
 	CFLAGS=[`echo "$CFLAGS" | $SED -e 's/-O[0-9]*//g'`]
 	AC_SUBST([AM_CFLAGS])
 	AC_SUBST([AM_CXXFLAGS])
+	AC_DEFINE([DEBUG], [], [Compile with debug support])
 else
 	AC_MSG_RESULT(no)
 fi

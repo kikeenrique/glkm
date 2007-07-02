@@ -25,6 +25,7 @@
 #ifndef GLKM_ABOUTDIALOG_H
 #define GLKM_ABOUTDIALOG_H
 
+#include <config.h>
 #include <gtkmm/aboutdialog.h>
 #include <libglademm.h>
 

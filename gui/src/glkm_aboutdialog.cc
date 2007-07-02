@@ -89,7 +89,7 @@ void GlkmAboutDialog::on_activate_email_url(AboutDialog& about_dialog, const Gli
 	Glib::ustring link="mailto:"+email;
 	#endif // DEBUG
 #ifdef HAVE_LIBGNOME
-	Gerror error;
+	GError *error = NULL;
 #endif // HAVE_LIBGNOME
 
 	#ifdef DEBUG
@@ -97,10 +97,15 @@ void GlkmAboutDialog::on_activate_email_url(AboutDialog& about_dialog, const Gli
 	#endif // DEBUG
 
 #ifdef HAVE_LIBGNOME
-	if (gnome_url_show(link.c_str(), error)){
+	if (gnome_url_show(link.c_str(), &error)){
 			std::cout << "good" << std::endl;			
 	}else{
 			std::cout << "wrong" << std::endl;			
-	}		
+	}
+	
+	if (error != NULL){
+		g_warning (error->message);
+		g_error_free (error);
+	}
 #endif // HAVE_LIBGNOME
 }

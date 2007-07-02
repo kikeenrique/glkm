@@ -26,6 +26,7 @@
 #define GLKM_DEBUG_H
 
 #include <iostream>
+#include <config.h>
 
 /*
 	P(A)

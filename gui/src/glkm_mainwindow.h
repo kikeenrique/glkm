@@ -25,6 +25,7 @@
 #ifndef GLKM_MAINWINDOW_H
 #define GLKM_MAINWINDOW_H
 
+#include <config.h>
 #include <gtkmm.h>
 #include <libglademm/xml.h>
 // Future mapping #include <libglademm/variablesmap.h>

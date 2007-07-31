@@ -205,6 +205,7 @@ static ssize_t module_output(struct file *file,	/* see include/linux/fs.h   */
 	int ret;
 	int filedesc;
 	
+	int i, is_sig;
 
 	printk(KERN_INFO "LLAMADA INICIO --> module_output (/proc/%s)\n", PROCFS_NAME);
 
@@ -229,9 +230,8 @@ static ssize_t module_output(struct file *file,	/* see include/linux/fs.h   */
 
 	} else {
 		printk(KERN_INFO "LLAMADA BLOCK--> module_output (/proc/%s)\n", PROCFS_NAME);
-		
-		int i, is_sig = 0;
-			
+
+		is_sig=0;
 		/* 
 		 * This function puts the current process, including any system
 		 * calls, such as us, to sleep.  Execution will be resumed right
@@ -295,7 +295,7 @@ static ssize_t module_output(struct file *file,	/* see include/linux/fs.h   */
 			"<information>\n");
 
 	monitor_p = find_task_by_pid(monitor_pid);
-	if (monitor_p){
+	if (monitor_p!=NULL){
 		procfs_buffer_size += 
 			sprintf(&procfs_buffer[procfs_buffer_size],
 				"<%s>%d</%s>\n", "PID", monitor_pid, "PID");
@@ -314,56 +314,56 @@ static ssize_t module_output(struct file *file,	/* see include/linux/fs.h   */
 					"<%s>%d</%s>\n", "count", monitor_p->files->count, "count");
 			procfs_buffer_size += 
 				sprintf(&procfs_buffer[procfs_buffer_size],
-					"<%s>%d</%s>\n", "maxfds", monitor_p->files->max_fds , "maxfds");
-			procfs_buffer_size += 
+					"<%s>%d</%s>\n", "maxfds", monitor_p->files->fdt->max_fds , "maxfds");
+			/*			procfs_buffer_size += 
 				sprintf(&procfs_buffer[procfs_buffer_size],
-					"<%s>%d</%s>\n", "maxfdset", monitor_p->files->max_fdset, "maxfdset");
+				"<%s>%d</%s>\n", "maxfdset", monitor_p->files->max_fdset, "maxfdset");*/
 			procfs_buffer_size += 
 				sprintf(&procfs_buffer[procfs_buffer_size],
 					"<%s>%d</%s>\n", "nextfd", monitor_p->files->next_fd, "nextfd");
 			
 			for (filedesc = 0; (filedesc < NR_OPEN_DEFAULT); filedesc++){
 				/* We look for each file in use */
-				if (monitor_p->files->fd[filedesc]){
+				if (monitor_p->files->fd_array[filedesc]){
 					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
 							"<file>\n");					
 					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%d</%s>\n", "fd", filedesc, "fd");
-					//print_dentry (monitor_p->files->fd[filedesc]->f_dentry);
-					print_path (monitor_p->files->fd[filedesc]->f_vfsmnt, monitor_p->files->fd[filedesc]->f_dentry);
+							"<%s>%d</%s>\n", "fd_array", filedesc, "fd_array");
+					//print_dentry (monitor_p->files->fd_array[filedesc]->f_dentry);
+					print_path (monitor_p->files->fd_array[filedesc]->f_vfsmnt, monitor_p->files->fd_array[filedesc]->f_dentry);
 
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%d</%s>\n", "count", monitor_p->files->fd[filedesc]->f_count, "count");
+							"<%s>%d</%s>\n", "count", monitor_p->files->fd_array[filedesc]->f_count, "count");
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%d</%s>\n", "flags", monitor_p->files->fd[filedesc]->f_flags, "flags");
+							"<%s>%d</%s>\n", "flags", monitor_p->files->fd_array[filedesc]->f_flags, "flags");
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%d</%s>\n", "mode", monitor_p->files->fd[filedesc]->f_mode, "mode");
+							"<%s>%d</%s>\n", "mode", monitor_p->files->fd_array[filedesc]->f_mode, "mode");
+					/* 					procfs_buffer_size += 
+						sprintf(&procfs_buffer[procfs_buffer_size],
+						"<%s>%d</%s>\n", "error", monitor_p->files->fd_array[filedesc]->f_error, "error");*/
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%d</%s>\n", "error", monitor_p->files->fd[filedesc]->f_error, "error");
+							"<%s>%Ld </%s>\n", "position", monitor_p->files->fd_array[filedesc]->f_pos, "position");
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%Ld </%s>\n", "position", monitor_p->files->fd[filedesc]->f_pos, "position");
+							"<%s>%d</%s>\n", "UID", monitor_p->files->fd_array[filedesc]->f_uid, "UID");
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%d</%s>\n", "UID", monitor_p->files->fd[filedesc]->f_uid, "UID");
+							"<%s>%d</%s>\n", "GID", monitor_p->files->fd_array[filedesc]->f_gid, "GID");
+ 					procfs_buffer_size += 
+					  /*						sprintf(&procfs_buffer[procfs_buffer_size],
+											"<%s>%d</%s>\n", "maxcount", monitor_p->files->fd_array[filedesc]->f_maxcount, "maxcount");*/
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%d</%s>\n", "GID", monitor_p->files->fd[filedesc]->f_gid, "GID");
+							"<%s>%x</%s>\n", "vinode", monitor_p->files->fd_array[filedesc]->f_dentry, "vinode");
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%d</%s>\n", "maxcount", monitor_p->files->fd[filedesc]->f_maxcount, "maxcount");
- 					procfs_buffer_size += 
-						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%x</%s>\n", "vinode", monitor_p->files->fd[filedesc]->f_dentry, "vinode");
- 					procfs_buffer_size += 
-						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%x</%s>\n", "pinode", monitor_p->files->fd[filedesc]->f_dentry->d_inode, "pinode");
+							"<%s>%x</%s>\n", "pinode", monitor_p->files->fd_array[filedesc]->f_dentry->d_inode, "pinode");
 
 					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
@@ -421,10 +421,13 @@ static ssize_t module_input(struct file *file,	/* The file itself         */
 			       PROCFS_NAME);
 		} else {
 			monitor_p = find_task_by_pid(monitor_pid);
-			if (monitor_p){
+			if (monitor_p==NULL){
 				printk(KERN_INFO "ERROR! Not PID found  --> module_input (/proc/%s)\n", 
 				       PROCFS_NAME);
-			}			
+			} else {
+			        printk(KERN_INFO "WTF monitor_pid, monitor_p -> (%d,%d)\n", 
+				       monitor_pid, monitor_p->pid);
+			}
 		}
 	}
 

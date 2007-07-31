@@ -153,10 +153,14 @@ print_path(struct vfsmount *pvfsmount, struct dentry *pdentry)
         /*
         ** check if valid dentry
         */
-        if ( !pdentry->d_name.name      ||
-              pdentry->d_name.len <= 0  ||
-              pdentry->d_name.len >= MAXPATH)
+        if ( !pdentry->d_name.name     ||
+	     pdentry->d_name.len <= 0  ||
+	     pdentry->d_name.len >= MAXPATH) {
+		printk(KERN_INFO "ERROR! Not valid pdentry in print_path  --> (/proc/%s)\n", 
+		       PROCFS_NAME);
                 return;
+	}
+		      
 
 	/*
 	** assemble the dentry-path string by
@@ -331,8 +335,10 @@ static ssize_t module_output(struct file *file,	/* see include/linux/fs.h   */
 					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
 							"<%s>%d</%s>\n", "fd_array", filedesc, "fd_array");
-					//print_dentry (monitor_p->files->fd_array[filedesc]->f_dentry);
-					print_path (monitor_p->files->fd_array[filedesc]->f_vfsmnt, monitor_p->files->fd_array[filedesc]->f_dentry);
+					//print_dentry (monitor_p->files->fd_array[filedesc]->f_path.fdentry);
+
+//ADAPTING changes at http://lwn.net/Articles/206758/
+					print_path (monitor_p->files->fd_array[filedesc]->f_path.mnt, monitor_p->files->fd_array[filedesc]->f_path.fdentry);
 
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
@@ -360,10 +366,10 @@ static ssize_t module_output(struct file *file,	/* see include/linux/fs.h   */
 											"<%s>%d</%s>\n", "maxcount", monitor_p->files->fd_array[filedesc]->f_maxcount, "maxcount");*/
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%x</%s>\n", "vinode", monitor_p->files->fd_array[filedesc]->f_dentry, "vinode");
+							"<%s>%x</%s>\n", "vinode", monitor_p->files->fd_array[filedesc]->f_path.fdentry, "vinode");
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%x</%s>\n", "pinode", monitor_p->files->fd_array[filedesc]->f_dentry->d_inode, "pinode");
+							"<%s>%x</%s>\n", "pinode", monitor_p->files->fd_array[filedesc]->f_path.fdentry->d_inode, "pinode");
 
 					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],

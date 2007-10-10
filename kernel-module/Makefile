@@ -23,21 +23,57 @@
 # environment variable, or rewrite the line that sets KERNELDIR in the 
 # makefile.
 
+SHELL = /bin/sh
+INSTALL = /usr/bin/install
+mkdir_p = mkdir -p
+EXTRA_CFLAGS = -DPROCMON_VERSION=\"$(VERSION)\"
+
 # If KERNELRELEASE is defined, we've been invoked from the
 # kernel build system and can use its language.
-ifneq ($(KERNELRELEASE),)
-	obj-m := modulo.o
-
 # Otherwise we were called directly from the command
 # line; invoke the kernel build system.
+ifneq ($(KERNELRELEASE),)
+#	obj-m := procmondev.o modulo.o
+	obj-m := procmondev.o
+	procmon-objs := 
 else
-	KERNELDIR ?= /lib/modules/$(shell uname -r)/build
+	KERNELSRC ?= /lib/modules/$(shell uname -r)/build
 	PWD := $(shell pwd)
 endif
 
-default:
-	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
-	$(PROG)
-clean:
-	$(MAKE) -C $(KERNELDIR) M=$(PWD) clean
+VERSION = 0.2.0
+ENABLE_PROCMON_MODULE=y
 
+PROCMONDMODULEDIR = $(KERNELSRC)/drivers/misc/procmondev
+PROCMONDMODULE := procmondev.ko
+
+all: all-$(ENABLE_PROCMON_MODULE)
+install: install-$(ENABLE_PROCMON_MODULE)
+uninstall: uninstall-$(ENABLE_PROCMON_MODULE)
+
+all-n:
+install-n:
+uninstall-n:
+
+all-y: all-spec
+
+install-y: all
+	$(mkdir_p) $(DESTDIR)$(PROCMONDMODULEDIR)
+	$(INSTALL) -m 644 $(PROCMONDMODULE) $(DESTDIR)$(PROCMONDMODULEDIR)/$(PROCMONDMODULE)
+	-/sbin/depmod -a
+
+uninstall-y:
+	rm -f $(DESTDIR)$(PROCMONDMODULEDIR)/$(PROCMONDMODULE)
+	-/sbin/depmod -a
+
+all-spec:
+	$(MAKE) -C $(KERNELSRC) M=$(PWD) modules
+
+clean:
+	$(MAKE) -C $(KERNELSRC) M=$(PWD) clean
+	rm -f $(PROCMONDMODULE) *.o .*.cmd *.mod.c *.ko *.s */*.o
+
+distclean: clean
+	rm -rf .tmp_versions
+
+maintainer-clean: distclean

@@ -1,0 +1,176 @@
+http://uw713doc.sco.com/cgi-bin/info2html?(autoconf.info)Particular%2520Headers&lang=en
+http://www.gnu.org/software/autoconf/manual/autoconf-2.57/html_chapter/autoconf_12.html
+
+All predefined macros should be found under /usr/share/aclocal* directory.
+With a simple grep MACRO /usr/share/aclocal*/* you should locate any macro avaliable in your development machine.
+
+################################################################################
+#		Appendix A: What does each AUTOCONF MACRO do?
+################################################################################
+
+########	Prelude.														########
+
+** AC_INIT(PACKAGE, VERSION, BUG-REPORT-ADDRESS): 
+			initializes autoconf. Specify package’s name, version number, and bug-report address.
+** AC_PREREQ(VERSION):
+			require a minimum autoconf version
+** AC_CONFIG_SRCDIR(FILE)
+			A safety check. FILE should be a distributed source file, and this makes sure that ‘configure’ is not run from outer
+			 space. 
+				AC CONFIG SRCDIR([src/main.c]).
+** AC_CONFIG_AUX_DIR(DIRECTORY):
+			Auxiliary scripts such as install-sh and depcomp should be in DIRECTORY. This keeps the root directory cleaner.
+
+########		Checks for programs.										########
+
+** AC_PROG_CC, AC_PROG_CXX, AC_PROG_F77, ...
+			Compiler checks. (Handle search cross-compilers if needed.)
+** AC_PROG_SED, AC_PROG_YACC, AC_PROG_LEX, ...
+			Find good implementations and set $SED, $YACC, $LEX, etc.
+** AC_CHECK_PROGS(VAR, PROGS, [VAL-IF-NOT-FOUND])
+			Define VAR to the first PROGS found, or to VAL-IF-NOT-FOUND otherwise.
+** AC_HEADER_STDC
+			Define `STDC_HEADERS' if the system has ANSI C header files.
+			Specifically, this macro checks for `stdlib.h', `stdarg.h', `string.h', and `float.h'; if the system has those, it probably
+			has the rest of the ANSI C header files.  This macro also checks whether `string.h' declares `memchr' (and thus
+			 presumably the other `mem' functions), whether `stdlib.h' declare `free' (and thus presumably `malloc' and other
+			 related functions), and whether the `ctype.h' macros work on characters with the high bit set, as ANSI C requires.
+ 
+			Use `STDC_HEADERS' instead of `__STDC__' to determine whether the system has ANSI-compliant 
+			header files (and probably C library functions) because many systems that have GCC do not have ANSI C header files.
+ 
+			On systems without ANSI C headers, there is so much variation that it is probably easier to declare the functions you
+			 use than to figure out exactly what the system header files declare.  Some systems contain a mix of functions ANSI
+			 and BSD; some are mostly ANSI but lack `memmove'; some define the BSD functions as macros in `string.h' or
+			 `strings.h'; some have only the BSD functions but `string.h'; some declare the memory functions in `memory.h',
+			 some in `string.h'; etc.  It is probably sufficient to check for one string function and one memory function; if the library
+			 has the ANSI versions of those then it probably has most of the others.
+			If you put the following in `configure.in':
+				AC_HEADER_STDC
+				AC_CHECK_FUNCS(strchr memcpy)
+			then, in your code, you can put declarations like this:
+ 
+				#if STDC_HEADERS
+				# include <string.h>
+				#else
+				# ifndef HAVE_STRCHR
+				#  define strchr index
+				#  define strrchr rindex
+				# endif
+				char *strchr (), *strrchr ();
+				# ifndef HAVE_MEMCPY
+				#  define memcpy(d, s, n) bcopy ((s), (d), (n))
+				#  define memmove(d, s, n) bcopy ((s), (d), (n))
+				# endif
+				#endif
+			If you use a function like `memchr', `memset', `strtok', or `strspn', which have no BSD equivalent, 
+			then macros won't suffice; you must provide an implementation of each function.  An easy way to incorporate
+			 your implementations only when needed (since the ones in system C libraries may be hand optimized) is to, 
+			taking `memchr' for example, put it in `memchr.c' and use
+				`AC_REPLACE_FUNCS(memchr)'.
+
+########		Checks for libraries.											########
+
+** AC_CHECK_LIB(LIBRARY, FUNCT, [ACT-IF-FOUND], [ACT-IF-NOT])
+			Check whether LIBRARY exists and contains FUNCT.
+			Execute ACT-IF-FOUND if it does, ACT-IF-NOT otherwise.
+				AC_CHECK_LIB([efence], [malloc], [EFENCELIB=-lefence])
+				AC_SUBST([EFENCELIB])
+			... we would later use $(EFENCELIB) in the link rule.
+			If ACT-IF-FOUND is not set and the library is found, AC CHECK LIB
+			will do LIBS="-lLIBRARY $LIBS" and #define HAVE LIBLIBRARY.
+			(Automake uses $LIBS for linking everything.)
+
+** PKG_CHECK_MODULES(VARIABLE-PREFIX, MODULES, [ACTION-IF-FOUND], [ACTION-IF-NOT-FOUND])
+		Note that if there is a possibility the first call to PKG_CHECK_MODULES might not happen, you should 
+		be sure to include an explicit call to PKG_PROG_PKG_CONFIG in your configure.ac
+
+########		Checks for header files.										########
+
+** AC_CHECK_HEADERS(HEADERS...)
+			Check for HEADERS and #define HAVE HEADER H for each header found.
+				AC_CHECK_HEADERS([sys/param.h unistd.h])
+				AC_CHECK_HEADERS([wchar.h])
+			Might #define HAVE SYS PARAM H, HAVE UNISTD H, and HAVE WCHAR H.
+				#if HAVE_UNISTD_H
+				# include <unistd.h>
+				#endif
+** AC_CHECK_HEADER(HEADER, [ACT-IF-FOUND], [ACT-IF-NOT])
+			Check only one header.
+
+########		Checks for typedefs, structures, and compiler characteristics.			########
+
+** AC_ISC_POSIX
+			For INTERACTIVE UNIX (ISC), add `-lcposix' to output variable LIBS if necessary for POSIX facilities. 
+			Call this after AC_PROG_CC and before any other macros that use POSIX interfaces. INTERACTIVE UNIX 
+			is no longer sold, and Sun says that they will drop support for it on 2006-07-23, so this macro is becoming 
+			obsolescent.
+
+########		Checks for library functions.									########
+
+
+########		Output files												########
+
+** AC_CONFIG_HEADERS(HEADERS...)
+			Create HEADER for all HEADER.in. Use only one such header unless you know 
+			what you are doing (‘autoheader’ creates HEADER.in only for the first HEADER).
+				HEADERS contain definitions made with AC DEFINE.
+				AC_CONFIG_HEADERS([config.h:config.hin])
+			Will create config.h from config.hin (DJGPP supports only 1 dot).
+			(If you are not using automake, use `AC_CONFIG_HEADER' rather than `AM_CONFIG_HEADER'). 
+** AC_CONFIG_FILES(FILES...)
+			Create FILE for all FILE.in.
+			FILES contain definitions made with AC SUBST.
+				AC_CONFIG_FILES([Makefile sub/Makefile script.sh:script.in])
+			*Automake* creates FILE.in for each FILE that has a FILE.am. 
+			It’s legitimate to process non-Makefiles too.
+
+				script.in						script.sh
+				#!/bin/sh					#!/bin/sh
+				SED=’@SED@’				SED=’/usr/xpg4/bin/sed’
+				TAR=’@TAR@’				TAR=’/usr/bin/tar’
+				d=$1; shift; mkdir "$d"			d=$1; shift; mkdir "$d"
+				for f; do						for f; do
+				  "$SED" ’s/#.*//’ "$f" \		"$SED" ’s/#.*//’ "$f" \
+				     >"$d/$f"					>"$d/$f"
+				done						done
+				"$TAR" cf "$d.tar" "$d"		"$TAR" cf "$d.tar" "$d"
+			
+			.in files are templates where @XYZ@ are placeholders for
+			AC_SUBST([XYZ]) definitions. ‘config.status’ substitutes them.
+			Makefile.ins also use @XYZ@ as placeholders but Automake makes all
+			XYZ=@XYZ@ definitions and you may simply use $(XYZ) as needed.
+
+
+########		Useful Macros												########
+** AC_MSG_ERROR(ERROR-DESCRIPTION, [EXIT-STATUS])
+			Print ERROR-DESCRIPTION (also to config.log ) and abort ‘configure’.
+** AC_MSG_WARN(ERROR-DESCRIPTION)
+			Likewise, but don’t abort.
+** AC_DEFINE(VARIABLE, VALUE, DESCRIPTION)
+			Output the following to config.h.
+				/* DESCRIPTION */
+				#define VARIABLE VALUE
+** AC_DEFINE_UNQUOTED (VARIABLE, VALUE, DESCRIPTION) 
+			Like AC_DEFINE, but three shell expansions are performed--once--on variable and value: variable expansion (`$'),
+			 command substitution (``'), and backslash escaping (`\'). Single and double quote characters in the value have no
+			 special meaning. Use this macro instead of AC_DEFINE when variable or value is a shell variable.
+** AC_SUBST(VARIABLE, [VALUE])
+			Define $(VARIABLE) as VALUE in Makefile.
+				a)						b)							c) 
+				FOO=foo				AC_SUBST([FOO], [foo])		AC_SUBST([FOO]) 
+				AC_SUBST([FOO])									FOO=foo
+			All equivalent (a=b=c).
+** AC_DEFUN(macro-name, macro-body)
+			Autoconf macros are defined using the AC_DEFUN macro, which is similar to the M4 builtin m4_define macro. In
+			 addition to defining a macro, AC_DEFUN adds to it some code that is used to constrain the order 
+			in which macros are called.
+** AC_ARG_ENABLE (feature, help-string, [action-if-given], [action-if-not-given])
+			If the user gave configure the option `--enable-feature' or `--disable-feature', run shell commands action-if-given. 
+			If neither option was given, run shell commands action-if-not-given. 
+			The option's argument is available to the shell commands action-if-given in the shell variable enableval, 
+			which is actually just the value of the shell variable enable_feature, with any `-' characters changed into `_'. 
+			You may use that variable instead, if you wish. The help-string argument is like that of AC_ARG_WITH (see section Working With External Software).
+** AC_HELP_STRING (left-hand-side, right-hand-side)
+			Expands into an help string that looks pretty when the user executes `configure --help'.
+

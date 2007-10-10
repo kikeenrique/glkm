@@ -1,0 +1,49 @@
+http://www.gnu.org/software/automake/manual/html_node/Public-macros.html
+
+All predefined macros should be found under /usr/share/aclocal* directory.
+With a simple grep MACRO /usr/share/aclocal*/* you should locate any macro avaliable in your development machine.
+
+################################################################################
+#		Appendix B: What does each AUTOMAKE MACRO do?
+################################################################################
+
+** AM_INIT_AUTOMAKE([OPTIONS...])
+			Initialize Automake. 
+			Check for tools needed by ‘automake’-generated Makefiles.
+			Useful options:
+				-Wall		Turn all warnings on.
+				-Werror		Report warnings as errors.
+				foreign		Relax some GNU standard requirements.
+				1.9.6		Require a minimum version of ‘automake’.
+				dist-bzip2	Also create tar.bz2 archives during ‘make dist’ and ‘make distcheck’.
+				tar-ustar		Create tar archives using the ustar format.
+				more on http://www.gnu.org/software/automake/manual/html_node/Options.html#Options
+** AM_CONFIG_HEADER(config.h) 
+ 	DEPRECATED for AC_CONFIG_HEADERS 
+	see  -> http://www.gnu.org/software/automake/manual/html_node/Optional.html#Optional
+	-		Header file which will hold the preprocessor macro definitions at run time.
+	-		Your sources would then use `#include "config.h"' to include it.
+	-		This macro may optionally name the input file for that header file; by default, this is `config.h.in', but that file name
+ 	-		works poorly on DOS filesystems. Therefore, it is often better to name it explicitly as `config.in'. This is what you
+	-		 should normally put in `configure.in':
+	-			AM_CONFIG_HEADER(config.h:config.in)
+	-		(If you are not using automake, use `AC_CONFIG_HEADER' rather than `AM_CONFIG_HEADER'). 
+
+** AM_MAINTAINER_MODE
+			`--enable-maintainer-mode' option is required to enable automatic rebuilding of generated files used 
+			by the configure system. This of course requires that developers be aware of, and use, that option. 
+			If this macro is not used, then the generated files will always be rebuilt automatically. 
+			This will cause problems if the wrong versions of autoconf, automake, or others are in the builder's `PATH'. 
+
+** AM_PROG_LIBTOOL
+			If you want to build libraries, and you want to permit them to be shared, or you want to link against 
+			libraries which were built using libtool, then you will need this macro. This macro is required in order to use libtool.
+			By default, this will cause all libraries to be built as shared libraries. 
+			To prevent this use `AM_DISABLE_SHARED' before `AM_PROG_LIBTOOL'. 
+			The configure options `--enable-shared' and `--disable-shared' may be used to override the default at build time.
+
+** AM_GNU_GETTEXT
+			This macro is required for packages which use GNU gettext (see gettext). It is distributed with gettext. 
+			If Automake sees this macro it ensures that the package meets some of gettext's requirements. 
+
+

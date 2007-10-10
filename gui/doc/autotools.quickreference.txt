@@ -1,0 +1,388 @@
+
+Based on: 
+http://www-src.lip6.fr/homepages/Alexandre.Duret-Lutz/autotools.html
+http://www.airs.com/ian/configure/configure_2.html#SEC7
+
+***************************************
+		Core packages
+***************************************
+GNU Autoconf
+
+‘autoconf’	Creates configure from configure.ac.
+‘autoheader’	Creates config.h.in from configure.ac.
+‘autoreconf’	Run all tools in the right order.
+‘autoscan’	Scan sources for common portability problems, and related macros missing from configure.ac.
+‘autoupdate’	Update obsolete macros in configure.ac.
+‘ifnames’		Gather identifiers from all #if/#ifdef/... directives.
+‘autom4te’	The heart of Autoconf. It drives M4 and implements the features used by most of the above tools. Useful for
+			creating more than just configure files.
+			Scans configure.ac for uses of third-party macros, and gather definitions in aclocal.m4 .
+
+GNU Automake
+
+‘automake’	Create Makefile.ins from Makefile.ams and configure.ac.
+‘aclocal’		Scans configure.ac for uses of third-party macros, and gather definitions in aclocal.m4 .
+
+
+***************************************
+		Standard Makefile Targets
+***************************************
+‘make all’ 		Build programs, libraries, documentation, etc. (Same as ‘make’.)
+‘make install’ 		Install what needs to be installed.
+‘make install-strip’ 	Same as ‘make install’, then strip debugging symbols.
+‘make uninstall’ 	The opposite of ‘make install’.
+‘make clean’ 		Erase what has been built (the opposite of ‘make all’).
+‘make distclean’ 	Additionally erase anything ‘./configure’ created.
+‘make check’ 		Run the test suite, if any.
+‘make installcheck’ 	Check the installed programs or libraries, if supported.
+‘make dist’ 		Create PACKAGE-VERSION.tar.gz.
+‘make distcheck’ 	Likewise "dist", with many sanity checks. Prefer this one!
+				* Test VPATH.
+				* ensures ’make clean’, ’make distclean’, ’make uninstall’ do not omit files.
+				* It checks that DESTDIR installations work.
+				* It runs the test suite (both ‘make check’ and ‘make installcheck’).
+
+
+‘make install’ =   ‘make install-exec’ install platform-dependent files 
+			+ ‘make install-data’ install platform-independent files (can be shared among multiple machines)
+
+***************************************
+		Standard File System Hierarchy
+***************************************
+ --prefix=PREFIX         install architecture-independent files in PREFIX [/usr/local]
+  --exec-prefix=EPREFIX   install architecture-dependent files in EPREFIX [PREFIX]
+
+  --bindir=DIR           user executables [EPREFIX/bin]
+  --sbindir=DIR          system admin executables [EPREFIX/sbin]
+  --libexecdir=DIR       program executables [EPREFIX/libexec]
+  --libdir=DIR           object code libraries [EPREFIX/lib]
+  --program-prefix=PREFIX            prepend PREFIX to installed program names
+  --program-suffix=SUFFIX            append SUFFIX to installed program names
+TODO  --program-transform-name=PROGRAM   run sed PROGRAM on installed program names
+
+  --sysconfdir=DIR       read-only single-machine data [PREFIX/etc]
+  --sharedstatedir=DIR   modifiable architecture-independent data [PREFIX/com]
+  --localstatedir=DIR    modifiable single-machine data [PREFIX/var]
+  --includedir=DIR       C header files [PREFIX/include]
+  --oldincludedir=DIR    C header files for non-gcc [/usr/include]
+  --datarootdir=DIR      read-only arch.-independent data root [PREFIX/share]
+
+  --datadir=DIR          read-only architecture-independent data [DATAROOTDIR]
+  --infodir=DIR          info documentation [DATAROOTDIR/info]
+  --localedir=DIR        locale-dependent data [DATAROOTDIR/locale]
+  --mandir=DIR           man documentation [DATAROOTDIR/man]
+  --docdir=DIR           documentation root [DATAROOTDIR/doc/program]
+
+  --htmldir=DIR          html documentation [DOCDIR]
+  --dvidir=DIR           dvi documentation [DOCDIR]
+  --pdfdir=DIR           pdf documentation [DOCDIR]
+  --psdir=DIR            ps documentation [DOCDIR]
+
+Directory variable			Default value							Final default value
+---------------------			----------------
+
+$oldincludedir			/usr/include								/usr/include
+$prefix               		/usr/local								/usr/local
+	|_ $sysconfdir		prefix/etc							/usr/local/etc
+	|_ $sharedstatedir		prefix/com							/usr/local/com
+	|_ $localstatedir		prefix/var							/usr/local/var
+	|_ $includedir		prefix/include							/usr/local/include
+	|_ $exec-prefix		prefix								- (none)
+		|								 	/ program-prefix	/usr/local/bin/pprefixprogram-name
+		|_ $bindir 			exec-prefix/bin/	-   				/usr/local/bin/program-name 
+		|									\ program-suffix	/usr/local/bin/program-name-psuffix
+		|_ $sbindir			exec-prefix/sbin					/usr/local/sbin
+		|_ $libexecdir			exec-prefix/libexec					/usr/local/libexec
+		|_ $libdir			exec-prefix/lib					/usr/local/lib
+	|_ $datarootdir		prefix/share							/usr/local/share
+		|_ $datadir			datarootdir						/usr/local/share
+		|_ $infodir			datarootdir/info					/usr/local/share/info
+		|_ $localedir			datarootdir/locale					/usr/local/share/locale
+		|_ $mandir			datarootdir/man					/usr/local/share/man
+		|_ $docdir			datarootdir/program-name			/usr/local/share/program-name
+			|_ $htmldir			docdir						/usr/local/share/program-name
+			|_ $dvidir			docdir						/usr/local/share/program-name
+			|_ $pdfdir			docdir						/usr/local/share/program-name
+			|_ $psdir			docdir						/usr/local/share/program-name
+
+
+***************************************
+		Standard Configuration Variables
+***************************************
+
+‘./configure’ automatically detects many settings.
+You can force some of them using configuration variables.
+CC 			C compiler command
+CFLAGS 	C compiler flags
+CXX 		C++ compiler command
+CXXFLAGS 	C++ compiler flags
+LDFLAGS 	linker flags
+CPPFLAGS 	C/C++ preprocessor flags
+... See ‘./configure --help’ for a full list.
+
+***************************************
+		Parallel Build Trees (a.k.a. VPATH Builds)
+***************************************
+
+~/example-1.0 % mkdir build && cd build
+~/example-1.0/build % ../configure
+~/example-1.0/build % make
+
+Remember VPATH builds: a source file is not necessary in the current directory.
+There are two twin trees: the build tree, and the source tree.
+      Makefile and objects files are in the build tree.
+      Makefile.in, Makefile.am, and source files are in the source tree.
+      If ‘./configure’ is run in the current directory, the two trees are one.
+In each Makefile, ‘config.status’ will define $(srcdir): the path to the matching source directory.
+When referring to sources files or targets in Automake variables, you do not have to worry about source vs. build, because ‘make’ will
+check both directories.
+You may need $(srcdir) when specifying flags for tools, or writing custom commands. E.g., to tell the compiler to include headers from
+dir/ , you should write -I$(srcdir)/dir, not -Idir. (-Idir would fetch headers from the build tree.)
+
+
+***************************************
+		Cross-Compilation configure options
+***************************************
+(Of course you need a cross-compiler installed first.)
+‘--build=BUILD’ The system on which the package is built.
+‘--host=HOST’ The system where built programs & libraries will run.
+‘--target=TARGET’ Only when building compiler tools: the system for which the tools will create output.
+
+For simple cross-compilation, only ‘--host=HOST’ is needed.
+
+~/example-1.0% ./configure --prefix /usr
+~/example-1.0% make
+~/example-1.0% make DESTDIR=$HOME/inst install
+~/example-1.0% cd ~/inst
+~/inst % tar zcvf ~/example-1.0-i686.tar.gz .
+ ./
+ ./usr/
+ ./usr/bin/
+ ./usr/bin/hello
+
+
+################################################################################
+#		where PRIMARY Convention for Declaring Targets
+################################################################################
+
+			Makefile.am
+			option_where_PRIMARY = targets ...
+
+	targets should be installed in...			targets should be built as...	
+	bin $(bindir)							_PROGRAMS
+	lib $(libdir)							_LIBRARIES
+	...									_LTLIBRARIES (Libtool libraries)
+	custom	$(customdir )					_HEADERS
+			You define customdir.			_SCRIPTS
+	noinst	Not installed.					_DATA
+	check	Built by ‘make check’.
+Optionally:
+	dist		Distribute targets (if not the default)
+	nodist	Don’t.
+
+			Makefile.am
+			bin_PROGRAMS = foo run-me
+			foo_SOURCES = foo.c foo.h print.c print.h
+			run_me_SOURCES = run.c run.h print.c
+	These programs will be installed in $(bindir).
+	The sources of each program go into programs SOURCES.
+	Non-alphanumeric characters are mapped to ‘ ’.
+	Automake automatically computes the list of objects to build and link from these files.
+	Header files are not compiled. We list them only so they get distributed (AM does not distribute files it does not know about).
+	It’s OK to use the same source for two programs.
+	Compiler and linker are inferred from the extensions.
+
+################################################################################
+#		(Static) Libraries
+################################################################################
+
+	Add AC PROG RANLIB to configure.ac.
+		Makefile.am
+		lib_LIBRARIES = libfoo.a libbar.a
+		libfoo_a_SOURCES = foo.c privfoo.h
+		libbar_a_SOURCES = bar.c privbar.h
+		include_HEADERS = foo.h bar.h
+	These libraries will be installed in $(libdir).
+	Library names must match lib*.a.
+	Public headers will be installed in $(includedir).
+	Private headers are not installed, like ordinary sources files.
+
+################################################################################
+#		Convenience Libraries
+################################################################################
+
+		lib/Makefile.am
+		noinst_LIBRARIES = libcompat.a
+		libcompat_a_SOURCES = xalloc.c xalloc.h
+	This is a convenience library, used only when building the package.
+		src/ Makefile.am
+		bin_PROGRAMS = foo run-me
+		foo_SOURCES = foo.c foo.h print.c print.h
+		run_me_SOURCES = run.c run.h print.c
+		run_me_LDADD = ../lib/libcompat.a
+		run_me_CPPFLAGS = -I$(srcdir)/../lib
+	LDADD is added when linking all programs.
+	AM_CPPFLAGS contains additional preprocessor flags.
+	You can use per-target variables: they apply to a single program. 
+	(run_me_LDADD is specific to run_me, LDADD is common to all programs)
+
+################################################################################
+#		Per-Target Flags
+################################################################################
+
+	Assuming foo is a program or library:
+   		foo CFLAGS Additional C compiler flags
+		foo CPPFLAGS Additional preprocessor flags (-Is and -Ds)
+		foo LDADD Additional link objects, -ls and -Ls (if foo is a program)
+		foo LIBADD Additional link objects, -ls and -Ls (if foo is a library)
+		foo LDFLAGS Additional linker flags
+	The default value for foo XXXFLAGS is $(AM XXXFLAGS).
+	Use plain file names to refer to libraries inside your package (keep -ls and -Ls for external libraries only).
+
+	Execute ACT-IF-FOUND if it does, ACT-IF-NOT otherwise.
+		AC_CHECK_LIB([efence], [malloc], [EFENCELIB=-lefence])
+		AC_SUBST([EFENCELIB])
+	 ... we would later use $(EFENCELIB) in the link rule.
+		src/Makefile.am
+		bin_PROGRAMS = foo run-me
+		foo_SOURCES = foo.c foo.h print.c print.h
+		run_me_SOURCES = run.c run.h print.c
+		run_me_CPPFLAGS = -I$(srcdir)/../lib
+		run_me_LDADD = ../lib/libcompat.a $(EFENCELIB)
+
+################################################################################
+#		aclocal.m4 and Third-Party Macros
+################################################################################
+
+	‘autoconf’ knows only the macros it provides. 
+		(m4 *, AS *, AH *, AC *, AT *).
+	‘autoconf’ knows nothing about macro supplied by third-party tools
+		(e.g., Automake’s AM * macros).
+	‘autoconf’ reads aclocal.m4 in addition to configure.ac.
+	aclocal.m4 should define the extra macros required by configure.ac.
+	‘aclocal’ automates the construction of aclocal.m4 from various sources.
+	‘aclocal’ searches macros in 
+		directories specified with -I options
+		a system-wide directory (usually /usr/ share/ aclocal/ ) where third-party packages may install their macros
+		automake’s own private macro directory
+
+################################################################################
+#		Setting Up Libtool: Roadmap
+################################################################################
+
+	Call AC PROG LIBTOOL in configure.ac.
+	Use LTLIBRARIES to declare libtool archives in Makefile.am
+	Use LDADD to link against local libtool archives.
+		Makefile.am
+		lib_LTLIBRARIES = libfoo.la
+		libfoo_la_SOURCES = foo.c foo.h etc.c
+
+		bin_PROGRAMS = runme
+		runme_SOURCES = main.c
+		runme_LDADD = libfoo.la
+
+################################################################################
+#		Building Shared or Static Libraries
+################################################################################
+
+	By default, both static and shared libraries are built.
+	This default can be changed in a package using two macros:
+		AC DISABLE SHARED do not build shared libraries by default
+		AC DISABLE STATIC do not build static libraries by default
+	The installer can override these settings using configure options.
+		--enable-shared build shared libraries
+		--disable-shared don’t
+		--enable-static build static libraries
+		--disable-static don’t
+	    At least one flavor is built, always.
+	    Some systems don’t leave any choice.
+
+################################################################################
+#		Versioning Libtool Libraries: Interfaces
+################################################################################
+
+	Versioning libraries allow several versions to coexist.
+	It ensures programs use the library that implements the interface they require.
+		Interface = public variables and functions, I/O, formats, protocols, ...
+	A program remembers the interface numbers of the libraries it was linked against.
+	A library can implement several interfaces.
+		E.g., adding new functions changes the interface, but does not break old interfaces.
+	Hence libtool’s versioning format encodes a range of supported  interfaces.
+	CURRENT The latest interface implemented.
+	REVISION The implementation number of CURRENT (read: number of bugs fixed...)
+	AGE The number of interfaces implemented, minus one. 
+         The library supports all interfaces between CURRENT − AGE and CURRENT.
+		lib/Makefile.am
+		lib_LTLIBRARIES = libhello.la
+		libhello_la_SOURCES = say.c say.h
+		libhello_la_LDFLAGS = -version-info CURRENT:REVISION:AGE
+
+	Remember to bump library versions before a release.
+	Suppose the old version was CURRENT:REVISION:AGE.
+	If you have...				Bump the version to...
+	not changed the interface	CURRENT : REVISION+1 : AGE
+	(bug fixes)
+	augmented the interface		CURRENT+1 : 0 : AGE+1
+	(new functions)
+	broken old interface		CURRENT+1 : 0 : 0
+	(e.g. removed functions)
+
+################################################################################
+#		Internationalizing a Package, Start to Finish
+################################################################################
+
+	Invoke AM GNU GETTEXT from configure.ac
+	Run ‘gettextize’ to provide the basic infrastructure.
+	Fill in the configuration files left by ‘gettextize’.
+	Update src/ Makefile.am to link hello with the necessary library.
+	Update the code:
+	Initialize Gettext in main()
+	Mark translatable strings.
+	Generate messages catalogs automatically.
+
+		configure.ac
+		AC_INIT([amhello], [3.0], [bug-report@address])
+		AC_CONFIG_AUX_DIR([build-aux])
+		AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+		*AM_GNU_GETTEXT_VERSION([0.14.5])
+		*AM_GNU_GETTEXT([external])
+		AC_PROG_CC
+		AC_CONFIG_HEADERS([config.h])
+		AC_CONFIG_FILES([Makefile src/Makefile  po/Makefile.in])
+		AC_OUTPUT
+	AM_GNU_GETTEXT_VERSION([exactly which Gettext version to use])
+	AM_GNU_GETTEXT([external])
+	the GNU libc or an external (= not distributed) Gettext library will be used if found
+	NLS (Native Language System) will be disabled otherwise
+
+		po/ POTFILES.in
+		src/main.c
+		src/hello.c
+		
+		src/Makefile.am
+		AM_CPPFLAGS = -DLOCALEDIR=\"$(localedir)\"
+		bin_PROGRAMS = hello
+		hello_SOURCES = main.c hello.c hello.h gettext.h
+		LDADD = $(LIBINTL)
+	$(LIBINTL) lists the libraries any internationalized program should be linked against.
+	We can strip the leading hello and use the global LDADD instead.
+	Mention gettext.h (we will use it shortly) so it is distributed.
+	$(LOCALEDIR) is the place where message catalogs are installed.
+	This is needed during initialization.
+
+################################################################################
+#		Nested Packages
+################################################################################
+	A sub-package should appear as an ordinary directory.
+	In Makefile.am, this directory must appear in SUBDIRS so ‘make’ recurses into it.
+	configure.ac should also declare this directory
+		AC_CONFIG_SUBDIRS([subdir])
+	so ‘configure’ calls subdir/ configure recursively.
+		arm’s configure.ac							arm’s Makefile.am
+		AC_INIT([arm], [1.0])						SUBDIRS = hand src
+		AM_INIT_AUTOMAKE                         
+		AC_PROG_CC
+		AC_CONFIG_FILES([Makefile src/Makefile])
+		AC_CONFIG_SUBDIRS([hand])
+		AC_OUTPUT
+

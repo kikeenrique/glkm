@@ -1,0 +1,44 @@
+http://www.gnu.org/software/automake/manual/html_node/Programs.html#Programs
+
+################################################################################
+#		Appendix C: What does each Makefile.am rule do?
+################################################################################
+
+Variables used when building a program
+
+Occasionally it is useful to know which Makefile variables Automake uses for compilations; for instance you might need to do your own compilation in some special cases.
+Some variables are inherited from Autoconf; these are CC, CFLAGS, CPPFLAGS, DEFS, LDFLAGS, and LIBS.
+There are some additional variables which Automake itself defines:
+
+** AM_CPPFLAGS
+		The contents of this variable are passed to every compilation which invokes the C preprocessor; it is a list of arguments to the
+		 preprocessor. For instance, -I and -D options should be listed here.
+		Automake already provides some -I options automatically. In particular it generates -I$(srcdir), -I., and a -I pointing to 
+		the directory holding config.h (if you've used AC_CONFIG_HEADERS or AM_CONFIG_HEADER). You can disable 
+		the default -I options using the nostdinc option.
+		AM_CPPFLAGS is ignored in preference to a per-executable (or per-library) _CPPFLAGS variable if it is defined.
+** INCLUDES
+		This does the same job as AM_CPPFLAGS. It is an older name for the same functionality. This variable is deprecated; 
+		we suggest using AM_CPPFLAGS instead.
+** AM_CFLAGS
+		This is the variable which the Makefile.am author can use to pass in additional C compiler flags. It is more fully documented
+		 elsewhere. In some situations, this is not used, in preference to the per-executable (or per-library) _CFLAGS.
+** COMPILE
+		This is the command used to actually compile a C source file. The filename is appended to form the complete command line.
+** AM_LDFLAGS
+		This is the variable which the Makefile.am author can use to pass in additional linker flags. In some situations, 
+		this is not used, in preference to the per-executable (or per-library) _LDFLAGS.
+** LINK
+		This is the command used to actually link a C program. It already includes -o $@ and the usual variable references 
+		(for instance, CFLAGS); it takes as "arguments" the names of the object files and libraries to link in. 
+
+CXX
+    The name of the C++ compiler.
+CXXFLAGS
+    Any flags to pass to the C++ compiler.
+AM_CXXFLAGS
+    The maintainer's variant of CXXFLAGS.
+CXXCOMPILE
+    The command used to actually compile a C++ source file. The file name is appended to form the complete command line.
+CXXLINK
+    The command used to actually link a C++ program.

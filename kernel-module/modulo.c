@@ -36,7 +36,7 @@
 #include <linux/mount.h>	        /* For exporting file information. PATH file information*/
 #include <asm/uaccess.h>	/* for get_user and put_user */
 
-#include <linux/list.h>
+#include <linux/list.h>         /* We use kernel lists */
 
 /* 
  * module information stuff
@@ -44,10 +44,12 @@
 
 #define DRIVER_AUTHOR "Enrique Garcia Alvarez <kikeenrique@users.sourceforge.net>"
 #define DRIVER_DESC   "A module for monitoring proccess"
+#define DRIVER_VERSION      "0.3"
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
+MODULE_VERSION(DRIVER_VERSION);
 
 
 #define PROCFS_MAX_SIZE		8092
@@ -85,7 +87,7 @@ static struct proc_dir_entry *notifica_Proc_File;
 static int flag = 0;
 
 /* 
- * Queue of processes who want reading information
+ * Queue of processes who want read information
  */
 DECLARE_WAIT_QUEUE_HEAD(WaitQ);
 

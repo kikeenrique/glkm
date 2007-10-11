@@ -25,25 +25,25 @@
 # blocked proccess(es).
 ###########################################################################*/
 
-#include <linux/fs.h>
-#include <linux/init.h>
-#include <linux/miscdevice.h>
-#include <linux/module.h>
+#include <linux/fs.h>           
+#include <linux/init.h>         
+#include <linux/miscdevice.h>   /* We work as a misc device */
+#include <linux/module.h>       /* We work as a module */
 
-#include <asm/uaccess.h>
+#include <asm/uaccess.h>        /* get_user and put_user */
 
 /* 
  * module information stuff
  */
 
-#define DRIVER_AUTHOR       "Enrique Garcia Alvarez <kikeenrique@users.sourceforge.net>"
-#define DRIVER_DESCRIPTION  "A module for monitoring proccess"
-#define DRIVER_VERSION      "0.2-alpha"
+#define PROCMON_AUTHOR       "Enrique Garcia Alvarez <kikeenrique@users.sourceforge.net>"
+#define PROCMON_DESCRIPTION  "A module for monitoring proccess"
+#define PROCMON_VERSION      "0.2-alpha"
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR(DRIVER_AUTHOR);
-MODULE_DESCRIPTION(DRIVER_DESCRIPTION);
-MODULE_VERSION(DRIVER_VERSION);
+MODULE_AUTHOR(PROCMON_AUTHOR);
+MODULE_DESCRIPTION(PROCMON_DESCRIPTION);
+MODULE_VERSION(PROCMON_VERSION);
 
 
 /*

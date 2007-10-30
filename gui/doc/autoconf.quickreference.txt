@@ -148,7 +148,7 @@ With a simple grep MACRO /usr/share/aclocal*/* you should locate any macro avali
 ** AC_MSG_WARN(ERROR-DESCRIPTION)
 			Likewise, but don’t abort.
 ** AC_DEFINE(VARIABLE, VALUE, DESCRIPTION)
-			Output the following to config.h.
+			Outputs the following to config.h.
 				/* DESCRIPTION */
 				#define VARIABLE VALUE
 ** AC_DEFINE_UNQUOTED (VARIABLE, VALUE, DESCRIPTION) 

@@ -17,9 +17,11 @@ bin_PROGRAMS = \
 	glkm
 
 glkm_SOURCES = \
-	main.cc \
-	glkm_mainwindow.h glkm_mainwindow.cc \
-	glkm_aboutdialog.h glkm_aboutdialog.cc
+	main.cpp \
+	glkm_mainwindow.hpp glkm_mainwindow.cpp \
+	glkm_aboutdialog.hpp glkm_aboutdialog.cpp \
+	glkm_procces.cpp \
+	glkm_procces.hpp
 
 #glkm_CFLAGS= \
 #	$(GLKM_CFLAGS) 	$(AM_CFLAGS)	$(LIBGNOME_CFLAGS)

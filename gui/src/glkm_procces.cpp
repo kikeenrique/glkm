@@ -17,31 +17,44 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm/main.h>
-#include "glkm_mainwindow.hpp"
+#include "glkm_procces.hpp"
 
-#include "config.h"
+#ifdef DEBUG
+#include "debug.hpp"
+#include <iostream>
+#endif // DEBUG
 
-#ifdef ENABLE_NLS
-#include <libintl.h>
-#endif
- 
-int 
-main (int argc, 
-	  	  char *argv[])
+
+Procces::Procces()
 {
+	#ifdef DEBUG
+	std::cout << "hola" <<	std::endl;
+	#endif // DEBUG
+}
 
-#ifdef ENABLE_NLS
-/*bindtextdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
-bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
-domain(GETTEXT_PACKAGE);*/
-#endif
+Procces::~Procces()
+{
+	//Null
+}
 
-	Gtk::Main kit(argc, argv);
-	GlkmMainWindow main_window;
+int Procces::set_name(std::string nm)
+{
+	name = nm;
 
-	  //Shows the window and returns when it is closed.
-	kit.run(main_window);
+	#ifdef DEBUG
+	std::cout << "name:" << name << std::endl;
+	#endif // DEBUG
+
+	return 0;
+}
+
+int Procces::set_ppid(int pid)
+{
+	ppid = pid;
+
+	#ifdef DEBUG
+	std::cout << "ppid:" << ppid <<	std::endl;
+	#endif // DEBUG
 
 	return 0;
 }

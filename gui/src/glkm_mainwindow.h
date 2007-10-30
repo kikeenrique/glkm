@@ -1,25 +1,20 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
- * glkm_mainwindow.h
- * Copyright (C) Enrique García Álvarez 2007 <kike @ eldemonionegro.com>
+ * gui
+ * Copyright (C) Enrique García Álvarez 2007 <kike+glkm@eldemonionegro.com>
  * 
- * glkm_mainwindow.h is free software.
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  * 
- * You may redistribute it and/or modify it under the terms of the
- * GNU General Public License, as published by the Free Software
- * Foundation; either version 2 of the License, or (at your option)
- * any later version.
- * 
- * glkm_mainwindow.h is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  * 
- * You should have received a copy of the GNU General Public License
- * along with main.cc.  If not, write to:
- * 	The Free Software Foundation, Inc.,
- * 	51 Franklin Street, Fifth Floor
- * 	Boston, MA  02110-1301, USA.
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef GLKM_MAINWINDOW_H
@@ -29,7 +24,7 @@
 #include <gtkmm.h>
 #include <libglademm/xml.h>
 // Future mapping #include <libglademm/variablesmap.h>
-#include "glkm_aboutdialog.h"
+#include "glkm_aboutdialog.hpp"
 
 /* For testing propose use the local (not installed) glade file */
 //#define GLADE_FILE  PACKAGE_DATA_DIR "/glkm/glade/glkm.glade" 
@@ -45,26 +40,58 @@ protected:
 	Glib::RefPtr<Gnome::Glade::Xml> m_refGlademmXml;	
 //	Gnome::Glade::VariablesMap* m_pVariablesMap;
 
-	/* Signal handlers:
-			Menu
-	*/
-	virtual void on_button_clicked();
-	virtual void on_menu_quit_activated();
-	virtual void on_menu_about_activated();
 
-	/* Child widgets:
-			Menu
+	/*   *** Signal handlers ***
+			Menu File
 	*/
-	Gtk::MenuItem* pMenuItem;
-	
-	Gtk::MenuItem* pMenuQuit;
+	virtual void on_menuitem_quit_activated();
 
-	Gtk::MenuItem* pMenuAbout;
+	/* 
+			Menu Edit
+	*/
+
+	/* 
+			Menu View
+	*/
+	virtual void on_menuitem_viewtoolbar_toggled();
 	
-	/* Child widgets:
+	/* 
+			Menu Help
+	*/
+	virtual void on_menuitem_about_activated();
+
+
+	/*   *** Child widgets ***
+			Menu File
+	*/
+	Gtk::ImageMenuItem* pMenuItemQuit;
+	
+	/* 
+			Menu Edit
+	*/
+	Gtk::ImageMenuItem* pMenuItemCopy;
+	Gtk::ImageMenuItem* pMenuItemCut;
+	Gtk::ImageMenuItem* pMenuItemDelete;
+
+	/* 
+			Menu View
+	*/
+	Gtk::CheckMenuItem* pMenuItemViewToolbar;
+	
+	/* 
+			Menu Help
+	*/
+	Gtk::ImageMenuItem* pMenuItemAbout;
+
+	
+	/*   *** Child widgets ***
 			SubWindows
 	*/
+	virtual void on_button_clicked();
 	GlkmAboutDialog* pGlkmAboutDialog;
+	
+private:
+		
 };
 
 #endif //GLKM_MAINWINDOW_H

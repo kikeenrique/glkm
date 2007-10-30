@@ -22,15 +22,16 @@
  * 	Boston, MA  02110-1301, USA.
  */
 
-#include "glkm_aboutdialog.h"
+#include "glkm_aboutdialog.hpp"
 #include <gtkmm/dialog.h>
+#include <iostream>
 
 #ifdef HAVE_LIBGNOME
 #include <libgnome/gnome-url.h>
 #endif // HAVE_LIBGNOME
 
 #ifdef DEBUG
-#include "debug.h"
+#include "debug.hpp"
 #endif // DEBUG
 
 

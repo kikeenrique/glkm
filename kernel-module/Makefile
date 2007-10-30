@@ -19,7 +19,7 @@
 ###########################################################################
 
 
-PROCMON_VERSION = 0.2.0
+PROCMON_VERSION = 0.2.0alpha
 PROCMON_MODULE = procmon_dev
 ENABLE_PROCMON_MODULE=y
 
@@ -41,8 +41,8 @@ endif
 # Otherwise we were called directly from the command
 # line; invoke the kernel build system.
 ifneq ($(KERNELRELEASE),)
-#	obj-m := procmondev.o modulo.o
-	obj-m := $(PROCMON_MODULE).o
+	obj-m := $(PROCMON_MODULE).o modulo.o
+#	obj-m := $(PROCMON_MODULE).o
 	procmon-objs := 
 else
 	KERNELSRC ?= /lib/modules/$(shell uname -r)/build

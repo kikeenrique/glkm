@@ -51,30 +51,32 @@ MODULE_AUTHOR(DRIVER_AUTHOR);
 MODULE_DESCRIPTION(DRIVER_DESC);
 MODULE_VERSION(DRIVER_VERSION);
 
+/* 
+ * some constant definitions
+ */
 
 #define PROCFS_MAX_SIZE		8092
 #define PROCFS_NAME	"monitor"
 #define PROCFS_NOTIFICA	"notifica"
 
-/**
- * The procces being monitorized and it's pid;
- * 
- */
-static struct task_struct *monitor_p;
 
-static int monitor_pid = 1;
-
-
-/**
+/*
  * The buffer used to store character for this module and it's size
  *
  */
 static char procfs_buffer[PROCFS_MAX_SIZE];
-
 static unsigned long procfs_buffer_size = 0;
 
 
-/**
+/*
+ * The procces being monitorized and it's pid;
+ * 
+ */
+static struct task_struct *p_proccesmonitorized;
+static int monitor_pid = 1;
+
+
+/*
  * This structures hold information about the /proc files
  *
  */
@@ -197,7 +199,7 @@ print_path(struct vfsmount *pvfsmount, struct dentry *pdentry)
 
 }
 
-/**
+/*
  * This function writes output to the user when the user reads the /proc file.
  *
  */
@@ -211,7 +213,7 @@ static ssize_t module_output(struct file *file,	/* see include/linux/fs.h   */
 	int ret;
 	int filedesc;
 	
-	int i, is_sig;
+	int i, is_signal;
 
 	printk(KERN_INFO "LLAMADA INICIO --> module_output (/proc/%s)\n", PROCFS_NAME);
 
@@ -237,7 +239,7 @@ static ssize_t module_output(struct file *file,	/* see include/linux/fs.h   */
 	} else {
 		printk(KERN_INFO "LLAMADA BLOCK--> module_output (/proc/%s)\n", PROCFS_NAME);
 
-		is_sig=0;
+		is_signal=0;
 		/* 
 		 * This function puts the current process, including any system
 		 * calls, such as us, to sleep.  Execution will be resumed right
@@ -254,12 +256,12 @@ static ssize_t module_output(struct file *file,	/* see include/linux/fs.h   */
 		 * to be killed or stopped.
 		 */
 		
-		for (i = 0; i < _NSIG_WORDS && !is_sig; i++)
-			is_sig =
+		for (i = 0; i < _NSIG_WORDS && !is_signal; i++)
+			is_signal =
 				current->pending.signal.sig[i] & ~current->
 				blocked.sig[i];
 		
-		if (is_sig) {
+		if (is_signal) {
 			/* 
 			 * It's important to put module_put(THIS_MODULE) here,
 			 * because for processes where the open is interrupted
@@ -300,16 +302,16 @@ static ssize_t module_output(struct file *file,	/* see include/linux/fs.h   */
 		sprintf(&procfs_buffer[procfs_buffer_size],
 			"<information>\n");
 
-	monitor_p = find_task_by_pid(monitor_pid);
-	if (monitor_p!=NULL){
+	p_proccesmonitorized = find_task_by_pid(monitor_pid);
+	if (p_proccesmonitorized!=NULL){
 		procfs_buffer_size += 
 			sprintf(&procfs_buffer[procfs_buffer_size],
 				"<%s>%d</%s>\n", "PID", monitor_pid, "PID");
 		
 		procfs_buffer_size += 
 			sprintf(&procfs_buffer[procfs_buffer_size],
-				"<%s>%s</%s>\n", "name", monitor_p->comm, "name");
-		if (monitor_p->files){
+				"<%s>%s</%s>\n", "name", p_proccesmonitorized->comm, "name");
+		if (p_proccesmonitorized->files){
 			/* We want to look for proccess files */
 			procfs_buffer_size += 
 				sprintf(&procfs_buffer[procfs_buffer_size],
@@ -317,61 +319,61 @@ static ssize_t module_output(struct file *file,	/* see include/linux/fs.h   */
 
 			procfs_buffer_size += 
 				sprintf(&procfs_buffer[procfs_buffer_size],
-					"<%s>%d</%s>\n", "count", monitor_p->files->count, "count");
+					"<%s>%d</%s>\n", "count", p_proccesmonitorized->files->count, "count");
 			procfs_buffer_size += 
 				sprintf(&procfs_buffer[procfs_buffer_size],
-					"<%s>%d</%s>\n", "maxfds", monitor_p->files->fdt->max_fds , "maxfds");
+					"<%s>%d</%s>\n", "maxfds", p_proccesmonitorized->files->fdt->max_fds , "maxfds");
 			/*			procfs_buffer_size += 
 				sprintf(&procfs_buffer[procfs_buffer_size],
-				"<%s>%d</%s>\n", "maxfdset", monitor_p->files->max_fdset, "maxfdset");*/
+				"<%s>%d</%s>\n", "maxfdset", p_proccesmonitorized->files->max_fdset, "maxfdset");*/
 			procfs_buffer_size += 
 				sprintf(&procfs_buffer[procfs_buffer_size],
-					"<%s>%d</%s>\n", "nextfd", monitor_p->files->next_fd, "nextfd");
+					"<%s>%d</%s>\n", "nextfd", p_proccesmonitorized->files->next_fd, "nextfd");
 			
 			for (filedesc = 0; (filedesc < NR_OPEN_DEFAULT); filedesc++){
 				/* We look for each file in use */
-				if (monitor_p->files->fd_array[filedesc]){
+				if (p_proccesmonitorized->files->fd_array[filedesc]){
 					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
 							"<file>\n");					
 					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
 							"<%s>%d</%s>\n", "fd_array", filedesc, "fd_array");
-					//print_dentry (monitor_p->files->fd_array[filedesc]->f_path.fdentry);
+					//print_dentry (p_proccesmonitorized->files->fd_array[filedesc]->f_path.fdentry);
 
 //ADAPTING changes at http://lwn.net/Articles/206758/
-					print_path (monitor_p->files->fd_array[filedesc]->f_path.mnt, monitor_p->files->fd_array[filedesc]->f_path.fdentry);
+//TODO fdentry error			print_path (p_proccesmonitorized->files->fd_array[filedesc]->f_path.mnt, p_proccesmonitorized->files->fd_array[filedesc]->f_path.fdentry);
 
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%d</%s>\n", "count", monitor_p->files->fd_array[filedesc]->f_count, "count");
+							"<%s>%d</%s>\n", "count", p_proccesmonitorized->files->fd_array[filedesc]->f_count, "count");
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%d</%s>\n", "flags", monitor_p->files->fd_array[filedesc]->f_flags, "flags");
+							"<%s>%d</%s>\n", "flags", p_proccesmonitorized->files->fd_array[filedesc]->f_flags, "flags");
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%d</%s>\n", "mode", monitor_p->files->fd_array[filedesc]->f_mode, "mode");
+							"<%s>%d</%s>\n", "mode", p_proccesmonitorized->files->fd_array[filedesc]->f_mode, "mode");
 					/* 					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-						"<%s>%d</%s>\n", "error", monitor_p->files->fd_array[filedesc]->f_error, "error");*/
+						"<%s>%d</%s>\n", "error", p_proccesmonitorized->files->fd_array[filedesc]->f_error, "error");*/
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%Ld </%s>\n", "position", monitor_p->files->fd_array[filedesc]->f_pos, "position");
+							"<%s>%Ld </%s>\n", "position", p_proccesmonitorized->files->fd_array[filedesc]->f_pos, "position");
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%d</%s>\n", "UID", monitor_p->files->fd_array[filedesc]->f_uid, "UID");
+							"<%s>%d</%s>\n", "UID", p_proccesmonitorized->files->fd_array[filedesc]->f_uid, "UID");
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%d</%s>\n", "GID", monitor_p->files->fd_array[filedesc]->f_gid, "GID");
+							"<%s>%d</%s>\n", "GID", p_proccesmonitorized->files->fd_array[filedesc]->f_gid, "GID");
  					procfs_buffer_size += 
 					  /*						sprintf(&procfs_buffer[procfs_buffer_size],
-											"<%s>%d</%s>\n", "maxcount", monitor_p->files->fd_array[filedesc]->f_maxcount, "maxcount");*/
+											"<%s>%d</%s>\n", "maxcount", p_proccesmonitorized->files->fd_array[filedesc]->f_maxcount, "maxcount");*/
+/*TODO fdentry error			procfs_buffer_size += 
+						sprintf(&procfs_buffer[procfs_buffer_size],
+						"<%s>%x</%s>\n", "vinode", p_proccesmonitorized->files->fd_array[filedesc]->f_path.fdentry, "vinode");
  					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%x</%s>\n", "vinode", monitor_p->files->fd_array[filedesc]->f_path.fdentry, "vinode");
- 					procfs_buffer_size += 
-						sprintf(&procfs_buffer[procfs_buffer_size],
-							"<%s>%x</%s>\n", "pinode", monitor_p->files->fd_array[filedesc]->f_path.fdentry->d_inode, "pinode");
+							"<%s>%x</%s>\n", "pinode", p_proccesmonitorized->files->fd_array[filedesc]->f_path.fdentry->d_inode, "pinode");*/
 
 					procfs_buffer_size += 
 						sprintf(&procfs_buffer[procfs_buffer_size],
@@ -428,13 +430,13 @@ static ssize_t module_input(struct file *file,	/* The file itself         */
 			printk(KERN_INFO "ERROR!!!! Not valid PID input  --> module_input (/proc/%s)\n", 
 			       PROCFS_NAME);
 		} else {
-			monitor_p = find_task_by_pid(monitor_pid);
-			if (monitor_p==NULL){
+			p_proccesmonitorized = find_task_by_pid(monitor_pid);
+			if (p_proccesmonitorized==NULL){
 				printk(KERN_INFO "ERROR! Not PID found  --> module_input (/proc/%s)\n", 
 				       PROCFS_NAME);
 			} else {
-			        printk(KERN_INFO "WTF monitor_pid, monitor_p -> (%d,%d)\n", 
-				       monitor_pid, monitor_p->pid);
+			        printk(KERN_INFO "WTF monitor_pid, p_proccesmonitorized -> (%d,%d)\n", 
+				       monitor_pid, p_proccesmonitorized->pid);
 			}
 		}
 	}

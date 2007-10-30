@@ -42,9 +42,9 @@ AC_INIT([GNOME LINUX Kernel Monitor], [glkm_version], [BUG_REPORT_ADDRESS], [glk
 
 AC_CONFIG_AUX_DIR([config-aux])
 
-GTKMM_REQUIRED=2.8 
+GTKMM_REQUIRED=2.10
 LIBGLADEMM_REQUIRED=2.6
-LIBGNOME_REQUIRED=2.14
+LIBGNOME_REQUIRED=2.20
 AC_SUBST([GTKMM_REQUIRED])
 AC_SUBST([LIBGLADEMM_REQUIRED])
 AC_SUBST([LIBGNOME_REQUIRED])
@@ -145,7 +145,7 @@ if test "x$enable_debug" = "xyes"; then
 	CFLAGS=[`echo "$CFLAGS" | $SED -e 's/-O[0-9]*//g'`]
 	AC_SUBST([AM_CFLAGS])
 	AC_SUBST([AM_CXXFLAGS])
-	AC_DEFINE([DEBUG], [], [Compile with debug support])
+	AC_DEFINE([DEBUG], [], [build with debug settings (no optimization, test coverage)])
 else
 	AC_MSG_RESULT(no)
 fi

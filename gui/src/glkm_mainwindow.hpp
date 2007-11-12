@@ -25,6 +25,8 @@
 #include <libglademm/xml.h>
 // Future mapping #include <libglademm/variablesmap.h>
 #include "glkm_aboutdialog.hpp"
+#include "glkm_treeview_process.hpp"
+#include "glkm_statusbar.hpp"
 
 /* For testing propose use the local (not installed) glade file */
 //#define GLADE_FILE  PACKAGE_DATA_DIR "/glkm/glade/glkm.glade" 
@@ -60,7 +62,12 @@ protected:
 	*/
 	virtual void on_menuitem_about_activated();
 
+	/* 
+			Toolbar
+	*/
 
+	void on_clicked_toolbar_connect();
+		
 	/*   *** Child widgets ***
 			Menu File
 	*/
@@ -83,11 +90,18 @@ protected:
 	*/
 	Gtk::ImageMenuItem* pMenuItemAbout;
 
+
+	/*		Main Window UI
+	*/
+	TreeViewProcess*		pGlkmTreeViewProcess;
+	GlkmStatusBar*		pGlkmStatusBar;
+	unsigned int			m_ContextId;
+	Gtk::ToolButton* 		mp_button_connect;
+	Gtk::Toolbar*			mp_toolbar_mainwindow;
 	
-	/*   *** Child widgets ***
+	/*
 			SubWindows
 	*/
-	virtual void on_button_clicked();
 	GlkmAboutDialog* pGlkmAboutDialog;
 	
 private:

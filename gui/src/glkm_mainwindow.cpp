@@ -25,7 +25,8 @@
 
 GlkmMainWindow::GlkmMainWindow()
 {
-	//Load the Glade file 
+		//Load the Glade file 
+#ifdef GLIBMM_EXCEPTIONS_ENABLED
 	try
 	{
 		m_refGlademmXml = Gnome::Glade::Xml::create(GLADE_FILE);
@@ -35,53 +36,87 @@ GlkmMainWindow::GlkmMainWindow()
 		std::cerr << exception.what() << std::endl;
 		throw; 
 	}	
+#else
+	std::auto_ptr<Gnome::Glade::XmlError> error;
+	m_refGlademmXml = Gnome::Glade::Xml::create(GLADE_FILE, "", "", error);
+	if (error.get())
+	{
+		std::cerr << error->what() << std::endl;
+		return 1;
+	}
+#endif
 
 	//Initiate glade widgets for main window
 	m_refGlademmXml->reparent_widget("vbox_mainwindow", *this);
-
-	//About Dialog  		
-	m_refGlademmXml->get_widget_derived("glkm_aboutdialog", pGlkmAboutDialog);
-	if(pGlkmAboutDialog){
-	} else{
-		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
-	}
 
 
 	//Connect signal handlers for the main window "menu file" items:
 	pMenuItemQuit = NULL;
 	m_refGlademmXml->get_widget("menuitem_quit", pMenuItemQuit);
-	if(pMenuItemQuit){
-		pMenuItemQuit->signal_activate().connect( sigc::mem_fun( *this, &GlkmMainWindow::on_menuitem_quit_activated) );
+	if (pMenuItemQuit){
+		pMenuItemQuit->signal_activate().connect( sigc::mem_fun( *this, 
+																									&GlkmMainWindow::on_menuitem_quit_activated) );
 	}
 	//Connect signal handlers for the main window "menu edit" items:
-
+	//TODO
+	
 	//Connect signal handlers for the main window "menu view" items:
 	pMenuItemViewToolbar = NULL;
 	m_refGlademmXml->get_widget("menuitem_viewtoolbar", pMenuItemViewToolbar);
-	if(pMenuItemViewToolbar){ 
-		pMenuItemViewToolbar->signal_toggled().connect( sigc::mem_fun( *this, &GlkmMainWindow::on_menuitem_viewtoolbar_toggled) );
+	if (pMenuItemViewToolbar){ 
+		pMenuItemViewToolbar->signal_toggled().connect( sigc::mem_fun( *this, 
+																	  											&GlkmMainWindow::on_menuitem_viewtoolbar_toggled) );
 	}
 	//Connect signal handlers for the main window "menu help" items:
 	pMenuItemAbout = NULL;
 	m_refGlademmXml->get_widget("menuitem_about", pMenuItemAbout);
-	if(pMenuItemAbout){
-		pMenuItemAbout->signal_activate().connect( sigc::mem_fun( *this, &GlkmMainWindow::on_menuitem_about_activated) ); 
+	if (pMenuItemAbout){
+		pMenuItemAbout->signal_activate().connect( sigc::mem_fun( *this, 
+																 										&GlkmMainWindow::on_menuitem_about_activated) );
 	}
-	
-}
 
+
+	//Main Window -> Toolbar
+	m_refGlademmXml->get_widget("toolbar_mainwindow", mp_toolbar_mainwindow);
+	if (mp_toolbar_mainwindow){
+	} else{
+		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
+	}	
+	m_refGlademmXml->get_widget("button_connect", mp_button_connect);
+	if (mp_button_connect){
+		mp_button_connect->signal_clicked().connect( sigc::mem_fun( *this, 
+																  											&GlkmMainWindow::on_clicked_toolbar_connect) );
+	} else{
+		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
+	}	
+	//Main Window -> Tree View
+	m_refGlademmXml->get_widget_derived("treeview_process", pGlkmTreeViewProcess);
+	if (pGlkmTreeViewProcess){
+	} else{
+		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
+	}
+	//Main Window -> Status Bar
+	m_refGlademmXml->get_widget_derived("statusbar_mainwindow", pGlkmStatusBar);
+	if (pGlkmStatusBar){
+	} else{
+		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
+	}
+	m_ContextId = pGlkmStatusBar->get_context_id("glkm app");
+
+
+	//About Dialog
+	m_refGlademmXml->get_widget_derived("glkm_aboutdialog", pGlkmAboutDialog);
+	if (pGlkmAboutDialog){
+	} else{
+		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
+	}
+
+}
 
 GlkmMainWindow::~GlkmMainWindow()
 {
 	//Null
 }
-
-
-void GlkmMainWindow::on_button_clicked()
-{
-	//TODO
-}
-
 
 void GlkmMainWindow::on_menuitem_quit_activated()
 {
@@ -91,7 +126,13 @@ void GlkmMainWindow::on_menuitem_quit_activated()
 
 void GlkmMainWindow::on_menuitem_viewtoolbar_toggled()
 {
-	std::cout << "menu viewtoolbar toggled" << std::endl;
+	if (pMenuItemViewToolbar->get_active()){
+		mp_toolbar_mainwindow->show();		
+		std::cout << "menu viewtoolbar activated" << std::endl;
+	} else {
+		mp_toolbar_mainwindow->hide();
+		std::cout << "menu viewtoolbar deactivated" << std::endl;
+	}
 }
 
 void GlkmMainWindow::on_menuitem_about_activated()
@@ -100,6 +141,10 @@ void GlkmMainWindow::on_menuitem_about_activated()
 	pGlkmAboutDialog->show();
 	  //Bring it to the front, in case it was already shown:
 	pGlkmAboutDialog->present();
-
 }
 
+void GlkmMainWindow::on_clicked_toolbar_connect()
+{
+	pGlkmStatusBar->pop_item(m_ContextId);
+	pGlkmStatusBar->push_item(m_ContextId);
+}

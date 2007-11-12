@@ -21,7 +21,11 @@ glkm_SOURCES = \
 	glkm_mainwindow.hpp glkm_mainwindow.cpp \
 	glkm_aboutdialog.hpp glkm_aboutdialog.cpp \
 	glkm_procces.cpp \
-	glkm_procces.hpp
+	glkm_procces.hpp \
+	glkm_treeview_process.cpp \
+	glkm_treeview_process.hpp \
+	glkm_statusbar.hpp \
+	glkm_statusbar.cpp
 
 #glkm_CFLAGS= \
 #	$(GLKM_CFLAGS) 	$(AM_CFLAGS)	$(LIBGNOME_CFLAGS)

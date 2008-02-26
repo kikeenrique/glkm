@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
- * debug.h
+ * debug.hpp
  * Copyright (C) Enrique García Álvarez 2007 <kike @ eldemonionegro.com>
  * 
  * debug.h is free software.
@@ -22,14 +22,18 @@
  * 	Boston, MA  02110-1301, USA.
  */
 
-#ifndef GLKM_DEBUG_H
-#define GLKM_DEBUG_H
+#ifndef GLKM_DEBUG_HPP
+#define GLKM_DEBUG_HPP
+
+#include <config.h>
+#include <gtkmm/textview.h>
+#include <gtkmm/textbuffer.h>
+#include <libglademm/xml.h>
 
 #include <iostream>
-#include <config.h>
 
 /*
-	P(A)
+	PRINT(A)
 	Macro for printing the values of variables during debugging
 	Example: 
 			int a = 1, b = 2, c = 3;
@@ -37,7 +41,7 @@
 			P(a + b);
 			P((c - a)/b);
 */
-#define P(A) cout << #A << ": " << (A) << endl;
+#define PRINT(A) std::cout << #A << ": " << (A) << std::endl;
 
 /*
 	std::assert();
@@ -51,4 +55,30 @@
 */
 #include <assert.h>
 
-#endif //GLKM_DEBUG_H
+
+
+/*
+ * We are using a singleton
+ */
+class TextViewDebug : public Gtk::TextView
+{
+public:
+	TextViewDebug(BaseObjectType* cobject, 
+				  const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	virtual ~TextViewDebug();
+	void debug_print(const Glib::ustring& text);
+	void debug_print(const char* text);
+protected:
+
+	Glib::RefPtr<Gnome::Glade::Xml> m_refGlademmXml;
+
+	//Text model buffer:
+	virtual void fill_buffers();  
+	Glib::RefPtr<Gtk::TextBuffer> m_refTextBuffer;
+
+};
+
+
+
+#endif //GLKM_DEBUG_HPP
+

@@ -34,10 +34,11 @@ GlkmAboutDialog::GlkmAboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gno
 	:Gtk::AboutDialog(cobject),
 	m_refGlademmXml(refGlade)
 {
-	//Actioning close button doesn't work by itself, needs a gobernant signal to http://mail.gnome.org/archives/gtkmm-list/2007-January/msg00305.html
+	/* Actioning close button doesn't work by itself, needs a gobernant signal 
+	 to http://mail.gnome.org/archives/gtkmm-list/2007-January/msg00305.html */
 	signal_response().connect( sigc::mem_fun(*this, &GlkmAboutDialog::on_button_quit) ); 
 
-	set_url_hook(sigc::mem_fun(*this, &GlkmAboutDialog::on_activate_link_url) );
+//	set_url_hook(sigc::mem_fun(*this, &GlkmAboutDialog::on_activate_link_url) );
 	set_email_hook(sigc::mem_fun(*this, &GlkmAboutDialog::on_activate_email_url) );
 }
 
@@ -51,16 +52,18 @@ void GlkmAboutDialog::on_button_quit(int response_id)
 	switch(response_id) {
 //		case Gtk::RESPONSE_DELETE_EVENT  :
 		case Gtk::RESPONSE_CANCEL : 
-			#ifdef DEBUG
-			std::cout << "DELETE_EVENT/CANCEL"  << std::endl;
-			#endif // DEBUG
+#ifdef DEBUG
+				extern TextViewDebug*	pDebug;
+				pDebug->debug_print("DELETE EVENT CANCEL");
+#endif // DEBUG	
 			hide();
 			break;
 		default:
 			;
-			#ifdef DEBUG
-			std::cout << "unattended event" << response_id << std::endl;
-			#endif // DEBUG
+#ifdef DEBUG
+			extern TextViewDebug*	pDebug;
+			pDebug->debug_print("unattended event" + response_id );
+#endif // DEBUG	
 	} 
 }
 
@@ -71,14 +74,14 @@ void GlkmAboutDialog::on_activate_link_url(AboutDialog& about_dialog, const Glib
 #endif // HAVE_LIBGNOME
 
 #ifdef DEBUG
-	std::cout << "link url" << std::endl;
+//	pDebug->debug_print("link url");
 #endif // DEBUG
 
 #ifdef HAVE_LIBGNOME
 	if (gnome_url_show(link.c_str(), &error)){
-			std::cout << "good" << std::endl;			
+//			pDebug->debug_print("good");
 	}else{
-			std::cout << "wrong" << std::endl;			
+//			pDebug->debug_print("wrong");
 	}
 	
 	if (error != NULL){
@@ -90,27 +93,31 @@ void GlkmAboutDialog::on_activate_link_url(AboutDialog& about_dialog, const Glib
 
 void GlkmAboutDialog::on_activate_email_url(AboutDialog& about_dialog, const Glib::ustring& email)
 {
-#ifdef DEBUG
+
 	Glib::ustring link="mailto:"+email;
-#endif // DEBUG
+
 #ifdef HAVE_LIBGNOME
 	GError *error = NULL;
 #endif // HAVE_LIBGNOME
 
 #ifdef DEBUG
-	std::cout << "email url" << std::endl;
+//	pDebug->debug_print("email url");
 #endif // DEBUG
-
+	
 #ifdef HAVE_LIBGNOME
 	if (gnome_url_show(link.c_str(), &error)){
-			std::cout << "good" << std::endl;			
+#ifdef DEBUG
+//		pDebug->debug_print("good");
+#endif // DEBUG		
 	}else{
-			std::cout << "wrong" << std::endl;			
-	}
-	
+#ifdef DEBUG
+//		pDebug->debug_print("wrong");
+#endif // DEBUG		
+	}	
 	if (error != NULL){
 		g_warning (error->message);
 		g_error_free (error);
 	}
 #endif // HAVE_LIBGNOME
+
 }

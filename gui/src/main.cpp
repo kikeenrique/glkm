@@ -1,6 +1,6 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
- * gui
+ * main.cpp
  * Copyright (C) Enrique García Álvarez 2007 <kike+glkm@eldemonionegro.com>
  * 
  * gui is free software: you can redistribute it and/or modify it
@@ -25,22 +25,28 @@
 #ifdef ENABLE_NLS
 #include <libintl.h>
 #endif
- 
+
+#ifdef DEBUG
+#include "debug.hpp"
+TextViewDebug*	pDebug;
+#endif // DEBUG
 int 
-main (int argc, 
-	  	  char *argv[])
+main (int	argc, 
+	  char	*argv[])
 {
 
-#ifdef ENABLE_NLS
-/*bindtextdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
-bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
-domain(GETTEXT_PACKAGE);*/
+#ifdef ENABLE_NLS	
+/*
+TODO
+	bindtextdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
+	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+	domain(GETTEXT_PACKAGE);
+	*/
 #endif
 
 	Gtk::Main kit(argc, argv);
 	GlkmMainWindow main_window;
 
-	  //Shows the window and returns when it is closed.
 	kit.run(main_window);
 
 	return 0;

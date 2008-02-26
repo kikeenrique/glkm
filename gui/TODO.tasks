@@ -1,6 +1,14 @@
 <?xml version="1.0"?>
 <gtodo>
-  <category title="Personal" place="0"/>
+  <category title="Personal" place="0">
+    <item>
+      <attribute id="1203439632" priority="2" done="1" start_date="733091" completed_date="733098" enddate="733098" notify="1" endtime="-60" last_edited="1204056659"/>
+      <summary>Add a quick debug system</summary>
+      <comment>
+It includes output debug messages through a notebook page placed in the main window.
+Debug messages should be printed easily (as in programing) and only when a DEBUG flag is active.</comment>
+    </item>
+  </category>
   <category title="Business" place="1"/>
   <category title="Unfiled" place="2"/>
 </gtodo>

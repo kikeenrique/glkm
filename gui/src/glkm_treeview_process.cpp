@@ -28,8 +28,9 @@
 #include "debug.hpp"
 #endif // DEBUG
 
-
-TreeViewProcess::TreeViewProcess(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+ 
+TreeViewProcess::TreeViewProcess(BaseObjectType* cobject, 
+								 const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 	:Gtk::TreeView(cobject),
 	m_refGlademmXml(refGlade)
 {
@@ -45,12 +46,14 @@ TreeViewProcess::TreeViewProcess(BaseObjectType* cobject, const Glib::RefPtr<Gno
 //	m_refTreeSelection->set_mode(Gtk::SELECTION_MULTIPLE);
 	m_refTreeSelection->set_mode(Gtk::SELECTION_SINGLE);
 
-	m_refTreeSelection->selected_foreach_iter(sigc::mem_fun(*this,
-																						        &TreeViewProcess::on_selected_row_callback) );
+	m_refTreeSelection->selected_foreach_iter(
+								sigc::mem_fun(*this,
+							    &TreeViewProcess::on_selected_row_callback) );
 
 	//Connect signal handlers for the treeview "menu popup treeview process" :
 	pm_Menu_Popup_TreeView_Process = NULL;
-	m_refGlademmXml->get_widget("menu_popup_treeview_process", pm_Menu_Popup_TreeView_Process);
+	m_refGlademmXml->get_widget("menu_popup_treeview_process",
+								pm_Menu_Popup_TreeView_Process);
 	if (pm_Menu_Popup_TreeView_Process){
 //TODO		pm_Menu_Popup_TreeView_Process->signal_activate().connect( sigc::mem_fun( *this, &GlkmMainWindow::on_menuitem_quit_activated) );
 	}
@@ -58,7 +61,9 @@ TreeViewProcess::TreeViewProcess(BaseObjectType* cobject, const Glib::RefPtr<Gno
 	pm_Menuitem_Update = NULL;
 	m_refGlademmXml->get_widget("menuitem_update", pm_Menuitem_Update);
 	if (pm_Menuitem_Update){
-		pm_Menuitem_Update->signal_activate().connect( sigc::mem_fun( *this, &TreeViewProcess::on_menu_file_popup_generic) );
+		pm_Menuitem_Update->signal_activate().connect( sigc::mem_fun(
+								*this,
+								&TreeViewProcess::on_menu_file_popup_generic) );
 	}
 
 	//Fill the TreeView's model
@@ -90,11 +95,12 @@ TreeViewProcess::TreeViewProcess(BaseObjectType* cobject, const Glib::RefPtr<Gno
 	//Add the TreeView's view columns:
 //	append_column_editable("PID", m_Columns.m_col_id);
 	append_column("PID", m_Columns.m_col_id);
-	append_column("PName", m_Columns.m_col_name);
+	append_column("Name", m_Columns.m_col_name);
 	
 	//Connect signal:
-	signal_row_activated().connect(sigc::mem_fun(*this,
-																		    &TreeViewProcess::on_treeview_row_activated) );
+	signal_row_activated().connect(sigc::mem_fun(
+								*this,
+							    &TreeViewProcess::on_treeview_row_activated) );
 
 	//Expand all children
 	expand_all();
@@ -106,8 +112,9 @@ TreeViewProcess::~TreeViewProcess()
 	//Null
 }
 
-void TreeViewProcess::on_treeview_row_activated (const Gtk::TreeModel::Path& path,	    /* */
-																				Gtk::TreeViewColumn*	 						/* Column */ )
+void TreeViewProcess::on_treeview_row_activated (
+								const Gtk::TreeModel::Path& path,	/* */
+								Gtk::TreeViewColumn*			/* Column */ )
 {
 	Gtk::TreeModel::iterator iter = m_refTreeModel->get_iter(path);
 	if (iter) {
@@ -118,7 +125,8 @@ void TreeViewProcess::on_treeview_row_activated (const Gtk::TreeModel::Path& pat
 	}
 }
 
-void TreeViewProcess::on_selected_row_callback(const Gtk::TreeModel::iterator& iter)
+void TreeViewProcess::on_selected_row_callback(
+										const Gtk::TreeModel::iterator& iter)
 {
 	Gtk::TreeModel::Row row = *iter;
 	//Do something with the row.

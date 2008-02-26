@@ -21,14 +21,13 @@
 
 #ifdef DEBUG
 #include "debug.hpp"
-#include <iostream>
 #endif // DEBUG
 
 
 Procces::Procces()
 {
 	#ifdef DEBUG
-	std::cout << "hola" <<	std::endl;
+	//pDebug->debug_print("Constructor procces");
 	#endif // DEBUG
 }
 
@@ -37,23 +36,23 @@ Procces::~Procces()
 	//Null
 }
 
-int Procces::set_name(std::string nm)
+int Procces::set_name(const Glib::ustring& name)
 {
-	name = nm;
+	m_name = name;
 
 	#ifdef DEBUG
-	std::cout << "name:" << name << std::endl;
+//	pDebug->debug_print("name:" + m_name);
 	#endif // DEBUG
 
 	return 0;
 }
 
-int Procces::set_ppid(int pid)
+int Procces::set_pid(int pid)
 {
-	ppid = pid;
+	m_pid = pid;
 
 	#ifdef DEBUG
-	std::cout << "ppid:" << ppid <<	std::endl;
+//	pDebug->debug_print("pid:" + m_pid);
 	#endif // DEBUG
 
 	return 0;

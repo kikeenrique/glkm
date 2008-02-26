@@ -17,26 +17,26 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GLKM_PROCCES_HPP_
-#define GLKM_PROCCES_HPP_
+#ifndef GLKM_PROCCES_HPP
+#define GLKM_PROCCES_HPP
 
 #include "config.h"
-#include <string>
+#include <gtkmm.h>
 
 class Procces
 {
 public:
 	Procces();
 	~Procces();
-	int set_name(std::string name);
-	int set_ppid(int ppid);
+	int set_name(const Glib::ustring& name);
+	int set_pid(int pid);
 	
 protected:
 
 private:
-	std::string name;
-	int ppid;
+	Glib::ustring m_name;
+	int m_pid;
 	
 };
 
-#endif // GLKM_PROCCES_HPP_
+#endif // GLKM_PROCCES_HPP

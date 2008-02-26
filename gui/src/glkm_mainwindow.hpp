@@ -17,8 +17,8 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GLKM_MAINWINDOW_H
-#define GLKM_MAINWINDOW_H
+#ifndef GLKM_MAINWINDOW_HPP
+#define GLKM_MAINWINDOW_HPP
 
 #include <config.h>
 #include <gtkmm.h>
@@ -27,6 +27,7 @@
 #include "glkm_aboutdialog.hpp"
 #include "glkm_treeview_process.hpp"
 #include "glkm_statusbar.hpp"
+
 
 /* For testing propose use the local (not installed) glade file */
 //#define GLADE_FILE  PACKAGE_DATA_DIR "/glkm/glade/glkm.glade" 
@@ -94,7 +95,7 @@ protected:
 	/*		Main Window UI
 	*/
 	TreeViewProcess*		pGlkmTreeViewProcess;
-	GlkmStatusBar*		pGlkmStatusBar;
+	GlkmStatusBar*			pGlkmStatusBar;
 	unsigned int			m_ContextId;
 	Gtk::ToolButton* 		mp_button_connect;
 	Gtk::Toolbar*			mp_toolbar_mainwindow;
@@ -108,4 +109,4 @@ private:
 		
 };
 
-#endif //GLKM_MAINWINDOW_H
+#endif //GLKM_MAINWINDOW_HPP

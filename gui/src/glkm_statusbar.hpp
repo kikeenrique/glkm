@@ -17,11 +17,10 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _GLKM_STATUSBAR_HPP_
-#define _GLKM_STATUSBAR_HPP_
+#ifndef GLKM_STATUSBAR_HPP
+#define GLKM_STATUSBAR_HPP
 #include <config.h>
 
-//#include <gtkmm.h>
 #include <libglademm/xml.h>
 #include <gtkmm/statusbar.h>
 
@@ -44,4 +43,4 @@ private:
 
 };
 
-#endif // _GLKM_STATUSBAR_HPP_
+#endif // GLKM_STATUSBAR_HPP

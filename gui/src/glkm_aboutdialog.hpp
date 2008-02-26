@@ -17,8 +17,8 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GLKM_ABOUTDIALOG_H
-#define GLKM_ABOUTDIALOG_H
+#ifndef GLKM_ABOUTDIALOG_HPP
+#define GLKM_ABOUTDIALOG_HPP
 
 #include <config.h>
 #include <gtkmm/aboutdialog.h>
@@ -41,4 +41,4 @@ protected:
 	void on_activate_email_url(AboutDialog& about_dialog, const Glib::ustring& email);
 };
 
-#endif //GLKM_ABOUTDIALOG_H
+#endif //GLKM_ABOUTDIALOG_HPP

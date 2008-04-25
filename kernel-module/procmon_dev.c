@@ -3,12 +3,12 @@
 #  procmon_dev.c
 # 
 #	Project:
-#	Desarrollo de herramientas de monitorización interna para Linux
+#	Desarrollo de herramientas de monitorizaciÃ³n interna para Linux
 #
 ###########################################################################
 #
 # Autor:
-#	Enrique Garcia Alvarez (kikeenrique@users.sourceforge.net)
+#	Enrique Garcia Alvarez (kike+gklm@eldemonionegro.com)
 # License:
 # 	GNU General Public License (http://www.gnu.org/copyleft/gpl.html)
 #
@@ -82,6 +82,7 @@ static int flag = 0;
  */
 DECLARE_WAIT_QUEUE_HEAD(WaitQ_readers);
 
+static char b_task_list[4096]="";
 
 /*
  * Attributes
@@ -102,28 +103,53 @@ DEVICE_ATTR(_name, _mode, _show, _store);
 
  */
 
-static char v_prueba[250]="pruebame";
+static ssize_t show_task_list(struct device * dev, struct device_attribute *attr, char * buf);
+static ssize_t store_task_list(struct device * dev, struct device_attribute *attr, const char * buf, size_t count);
 
-static ssize_t show_prueba(struct device * dev, struct device_attribute *attr, char * buf);
-static ssize_t store_prueba(struct device * dev, struct device_attribute *attr, const char * buf, size_t count);
+static DEVICE_ATTR(task_list, S_IWUSR | S_IRUGO, show_task_list, store_task_list);
 
-static DEVICE_ATTR(prueba, S_IWUSR | S_IRUGO, show_prueba, store_prueba);
+/*
+ show_task_list
+ @dev
+ @attr
+ @char
 
-
-static ssize_t show_prueba(struct device * dev, struct device_attribute *attr, char * buf)
+	Outputs all tasks in current host.
+	Format: name [pid] - [parent pid]
+	
+	TODO: It's suggested in kernel code to use get_task_comm, but compiler
+	complains if used, so task->comm is used instead. 
+*/
+static ssize_t show_task_list(struct device * dev, struct device_attribute *attr, char * buf)
 {
-	return snprintf(buf, PAGE_SIZE, "%s\n", v_prueba);
+	struct task_struct *task;
+//	char comm[TASK_COMM_LEN];
+	unsigned long 	buf_size = 0;
+
+	for_each_process(task)
+	{
+//		get_task_comm(comm, task);
+//		printk("%s [%d] - [%d]\n", task->comm, task->pid, task->parent->pid);
+		buf_size +=
+			sprintf(&b_task_list[buf_size],
+				"%s [%d] - [%d]\n", 
+				task->comm, 
+				task->pid, 
+				task->parent->pid);
+	}	
+
+	return snprintf(buf, PAGE_SIZE, "%s\n", &b_task_list[0]);
 }
 
-static ssize_t store_prueba(struct device * dev, struct device_attribute *attr, const char * buf, size_t count)
+static ssize_t store_task_list(struct device * dev, struct device_attribute *attr, const char * buf, size_t count)
 {
-	sscanf(buf, "%20s", v_prueba);
+//	sscanf(buf, "%20s", b_task_list);
 	return strnlen(buf, PAGE_SIZE);
 }
 
 /*TODO 
 static struct attribute *procmon_sysfs_entries[] = {
-	&dev_attr_prueba.attr,
+	&dev_attr_task_list.attr,
 	NULL,
 };
 
@@ -131,6 +157,7 @@ static struct attribute_group procmon_attribute_group = {
 	.attrs = procmon_sysfs_entries,
 };
 */
+
 
 /*
  * procmon_read is the function called when a process calls read() on
@@ -259,7 +286,7 @@ static ssize_t procmon_read(struct file *file,	/* see include/linux/fs.h   */
 
 
 /*
- * procmon_read is the function called when a process calls write() on
+ * procmon_write is the function called when a process calls write() on
  * /dev/procmon.  
  * It reads from the buffer passed in the write() call.
  *
@@ -312,6 +339,34 @@ static const struct file_operations procmon_fops = {
 	.write          = procmon_write,
 };
 
+/* 
+ * This function receives input from the user when the user writes to the /proc
+ * file.
+ */
+static ssize_t module_writenotifica(struct file *file,	/* The file itself         */
+			    const char *buffer,	/* The buffer with input   */
+			    unsigned long length,	/* The buffer's length     */
+			    void * offset)    /* offset to file - ignore */
+{
+
+  //	printk(KERN_INFO "LLAMADA INICIO --> write_notifica (/proc/%s)\n",  PROCFS_NOTIFICA);
+
+	/* 
+	 * Set flag to 1, so the processes in the WaitQ will be able to 
+	 * unset flag back to zero and to read the file.
+	 */		
+	flag = 1;
+	
+	/* 
+	 * Wake up all the processes in WaitQ, so if anybody is waiting for the
+	 * file, they can have it.
+	 */
+	wake_up(&WaitQ_readers);
+
+	//	printk(KERN_INFO "LLAMADA FIN --> write_notifica (/proc/%s)\n",	       PROCFS_NOTIFICA);
+	
+	return length;
+}
 
 static struct miscdevice procmon_device = {
 	/*
@@ -358,7 +413,7 @@ int init_module()
 	}
 
 	ret = device_create_file(procmon_device.this_device,
-				 &dev_attr_prueba);
+				 &dev_attr_task_list);
 	
 	printk(KERN_INFO "CREADO --> /dev/procmon created\n");	
 

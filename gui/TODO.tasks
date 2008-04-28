@@ -1,6 +1,53 @@
 <?xml version="1.0"?>
 <gtodo>
-  <category title="Personal" place="0">
+  <category title="glkm-hal" place="0">
+    <item>
+      <attribute id="1209060231" priority="2" done="0" start_date="733156" enddate="99999999" notify="0" endtime="-60" last_edited="1209060231"/>
+      <summary>Add processlist property/method to misc namespace/interface</summary>
+      <comment>Add processlist property/method to misc namespace/interface
+
+Key (type)
+---------------
+misc.processlist (strlist: DBus format "as": array of string)
+
+Values
+----------
+example: 'init [1] - [0], hald [214] - [1], bash [1245] - [1456]'
+
+Mandatory
+-----------------
+No
+
+Description
+------------------
+
+A string list of process [pid] - [ppid]
+</comment>
+    </item>
+  </category>
+  <category title="glkm-gui" place="1">
+    <item>
+      <attribute id="1209050536" priority="1" done="0" start_date="733156" enddate="99999999" notify="0" endtime="-60" last_edited="1209050536"/>
+      <summary>Add kernel module load/unload</summary>
+      <comment>Using libsysfs we can add a mechanism to load and unload our linux kernel module.
+See libsysfs documentation for more info about implementation.
+Mechanism could be a button (or a dialog?).</comment>
+    </item>
+  </category>
+  <item>
+    <attribute id="1204215454" priority="2" done="1" start_date="733100" completed_date="733143" enddate="733101" notify="0" endtime="-60" last_edited="1207940324"/>
+    <summary/>
+    <comment/>
+  </item>
+  <category title="glkm-kernel-module" place="2">
+    <item>
+      <attribute id="1209050649" priority="1" done="0" start_date="733156" enddate="99999999" notify="0" endtime="-60" last_edited="1209050649"/>
+      <summary>Add timestamp to output info</summary>
+      <comment>Add a timestamp on each debug output.
+</comment>
+    </item>
+  </category>
+  <category title="glkm-utils" place="3">
     <item>
       <attribute id="1203439632" priority="2" done="1" start_date="733091" completed_date="733098" enddate="733098" notify="1" endtime="-60" last_edited="1204056659"/>
       <summary>Add a quick debug system</summary>
@@ -8,7 +55,23 @@
 It includes output debug messages through a notebook page placed in the main window.
 Debug messages should be printed easily (as in programing) and only when a DEBUG flag is active.</comment>
     </item>
+    <item>
+      <attribute id="1207589226" priority="0" done="0" start_date="733139" enddate="99999999" notify="0" endtime="-60" last_edited="1208799019"/>
+      <summary>create changelog from subversion log</summary>
+      <comment>As seen in BASE/Makefile.am into package HAL, it would be nice to have a rule to autobuild Changelog from subversion logs.</comment>
+    </item>
+    <item>
+      <attribute id="1209050365" priority="0" done="0" start_date="733156" enddate="99999999" notify="0" endtime="-60" last_edited="1209050365"/>
+      <summary>debug trace macros</summary>
+      <comment>It may be useful to have macros like:
+TRACE MACROS
+TRACE FILE
+TRACE_ON
+TRACE_OFF
+MEM_ON
+MEM_OFF
+as documented in Thinking in C++ by Bruce Ekel
+</comment>
+    </item>
   </category>
-  <category title="Business" place="1"/>
-  <category title="Unfiled" place="2"/>
 </gtodo>

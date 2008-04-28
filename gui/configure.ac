@@ -1,7 +1,7 @@
 dnl   
 dnl	configure.ac
 dnl   
-dnl	Copyright (C) Enrique García Álvarez 2007 <kike @ eldemonionegro.com>
+dnl	Copyright (C) Enrique García Álvarez 2007 <kike + glkm @ eldemonionegro.com>
 dnl
 dnl	configure.ac is free software
 dnl   
@@ -16,7 +16,7 @@ dnl	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 dnl	See the GNU General Public License for more details.
 dnl
 dnl	You should have received a copy of the GNU General Public License
-dnl	along with main.cc.  If not, write to:
+dnl	along with configure.ac.  If not, write to:
 dnl		The Free Software Foundation, Inc.,
 dnl		51 Franklin Street, Fifth Floor
 dnl		Boston, MA  02110-1301, USA.
@@ -45,15 +45,18 @@ AC_CONFIG_AUX_DIR([config-aux])
 GTKMM_REQUIRED=2.12
 LIBGLADEMM_REQUIRED=2.6
 LIBGNOME_REQUIRED=2.20
+LIBDBUSMM_REQUIRED=0.5.0
 AC_SUBST([GTKMM_REQUIRED])
 AC_SUBST([LIBGLADEMM_REQUIRED])
 AC_SUBST([LIBGNOME_REQUIRED])
+AC_SUBST([LIBDBUSMM_REQUIRED])
 
 ################################################################################
 #		Checks for programs.
 ################################################################################
 
-#  DEPRECATED since autoconf 2.50 AM_INIT_AUTOMAKE([AC_PACKAGE_NAME], [AC_PACKAGE_VERSION])
+# DEPRECATED since autoconf 2.50 
+# AM_INIT_AUTOMAKE([AC_PACKAGE_NAME], [AC_PACKAGE_VERSION])
 AM_INIT_AUTOMAKE([gnu dist-bzip2 -Wall -Werror])
 
 AC_PROG_CXX
@@ -62,15 +65,17 @@ AM_PROG_CC_STDC
 
 AC_PATH_PROG([PKGCONFIG_CONFIG], [pkg-config],[no])
 if test x$PKGCONFIG_CONFIG = xno; then
-	AC_MSG_ERROR([Please install the pkg-config package from http://www.freedesktop.org/software/pkgconfig/])
+	AC_MSG_ERROR([Please install the pkg-config package from \ 
+	              http://www.freedesktop.org/software/pkgconfig/])
 fi
 
-#  dnl  Future use maybe?
+# TODO - Future use maybe?
 #  dnl we need gconftool-2 in order to install the schema
 #  AC_PATH_PROG(GCONFTOOL, gconftool-2, no)
 #
 #  if test "x$GCONFTOOL" = "xno"; then
-#   AC_MSG_ERROR([gconftool-2 executable not found in your path - should be installed with GConf])
+#   AC_MSG_ERROR([gconftool-2 executable not found in your path \
+#                 - should be installed with GConf])
 #  fi
 #
 #  AM_GCONF_SOURCE_2
@@ -95,16 +100,25 @@ AC_SUBST([PROGRAMNAME_LOCALEDIR])
 #		Checks for libraries.
 ################################################################################
 
+# gtkmm
+# libglademm
 PKG_CHECK_MODULES([GLKM], [gtkmm-2.4 >= $GTKMM_REQUIRED libglademm-2.4 >= $LIBGLADEMM_REQUIRED])
 AC_SUBST([GLKM_CFLAGS])
 AC_SUBST([GLKM_LIBS])
 
-# Determine whether to compile with support for GNOME libraries (i.e libgnome and libgnomeui)
+# libdbusmm
+PKG_CHECK_MODULES([LIBDBUSMM], [dbusmm-1.0 >= $LIBDBUSMM_REQUIRED])
+AC_SUBST([LIBDBUSMM_CFLAGS])
+AC_SUBST([LIBDBUSMM_LIBS])
+
+# Determine whether to compile or not with support for GNOME libraries 
+#(i.e libgnome and libgnomeui)
 AC_ARG_ENABLE([gnome],
-				    [AC_HELP_STRING([--disable-gnome], [build with GNOME support (default=enabled)])], 
-				    [enable_gnome=no],
-				    [enable_gnome=yes])
- AC_MSG_CHECKING(whether to compile with support for GNOME libraries)
+	      [AC_HELP_STRING([--disable-gnome],
+			      [build with GNOME support (default=enabled)])], 
+	      [enable_gnome=no],
+	      [enable_gnome=yes])
+AC_MSG_CHECKING(whether to compile with support for GNOME libraries)
 if test "x$enable_gnome" = "xyes"; then
 	AC_MSG_RESULT(yes)
 	PKG_CHECK_MODULES(LIBGNOME, [libgnome-2.0 >= $LIBGNOME_REQUIRED])
@@ -130,14 +144,16 @@ AC_CONFIG_HEADERS([config.h])
 AM_MAINTAINER_MODE
 AM_PROG_LIBTOOL
 
-#  GNOME_COMPILE_WARNINGS(maximum)
+# GNOME_COMPILE_WARNINGS(maximum)
 
-# Determine whether to compile with debug settings.  Essentially this just disables compiler optimizations for now.
+# Determine whether to compile or not with debug settings. 
+# Essentially this just disables compiler optimizations.
 AC_ARG_ENABLE([debug-mode], 
-				    [AC_HELP_STRING([--enable-debug-mode], [build with debug settings (no optimization, test coverage)] )], 
-				    [AM_CFLAGS="$AM_CFLAGS -DDEBUG" AM_CPPFLAGS="$AM_CPPFLAGS -DDEBUG"  enable_debug=yes],
-				    [enable_debug=no])
-AC_MSG_CHECKING(whether to compile with DEBUG settings)
+	      [AC_HELP_STRING([--enable-debug-mode],
+			      [build with debug settings (no optimization, test coverage)] )],
+	      [AM_CFLAGS="$AM_CFLAGS -DDEBUG" AM_CPPFLAGS="$AM_CPPFLAGS -DDEBUG" enable_debug=yes],
+	      [enable_debug=no])
+AC_MSG_CHECKING(whether to compile or not with DEBUG settings)
 if test "x$enable_debug" = "xyes"; then
 	AC_MSG_RESULT(yes)
 	# remove optimization settings from CFLAGS
@@ -145,7 +161,9 @@ if test "x$enable_debug" = "xyes"; then
 	CFLAGS=[`echo "$CFLAGS" | $SED -e 's/-O[0-9]*//g'`]
 	AC_SUBST([AM_CFLAGS])
 	AC_SUBST([AM_CXXFLAGS])
-	AC_DEFINE([DEBUG], [], [build with debug settings (no optimization, test coverage)])
+	AC_DEFINE([DEBUG], 
+		  [],
+		  [build with debug settings (no optimization, test coverage)])
 else
 	AC_MSG_RESULT(no)
 fi
@@ -215,6 +233,7 @@ echo ""
 echo "The following options will be passed to the compiler:"
 echo "  GTKMM_REQUIRED: $GTKMM_REQUIRED"
 echo "  LIBGLADEMM_REQUIRED: $LIBGLADEMM_REQUIRED"
+echo "  LIBDBUSMM_REQUIRED: $LIBDBUSMM_REQUIRED"
 echo "  LIBGNOME_REQUIRED: $LIBGNOME_REQUIRED"
 echo ""
 echo "  GETTEXT_PACKAGE: $GETTEXT_PACKAGE"
@@ -223,6 +242,9 @@ echo ""
 echo "  GLKM_CFLAGS: $GLKM_CFLAGS"
 echo "  GLKM_CPPLAGS: $GLKM_CPPLAGS"
 echo "  GLKM_LIBS: $GLKM_LIBS"
+echo ""
+echo "  LIBDBUSMM_CFLAGS: $LIBDBUSMM_CFLAGS"
+echo "  LIBDBUSMM_LIBS: $LIBDBUSMM_LIBS"
 echo ""
 echo "  HAVE_LIBGNOME: $HAVE_LIBGNOME"
 echo "  LIBGNOME_CFLAGS: $LIBGNOME_CFLAGS"

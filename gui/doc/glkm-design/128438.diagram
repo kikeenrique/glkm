@@ -1,0 +1,9 @@
+format 32
+
+deploymentnodecanvas 128054 deploymentnode_ref 128182 // sistema monitorizado
+  color blue xyzwh 72 58 2000 224 155
+deploymentnodecanvas 128182 deploymentnode_ref 128310 // sistema monitor
+  xyzwh 448 65 2000 182 144
+line 128310 ----
+  from ref 128054 z 1999 to ref 128182
+end

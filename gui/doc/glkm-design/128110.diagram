@@ -1,0 +1,9 @@
+format 32
+
+classcanvas 128110 class_ref 128182 // developer
+  xyz 100 67 3005 label_xy 96 107
+usecasecanvas 128238 usecase_ref 128110 // buscar proceso
+  xyzwh 309 72 3005 64 32 label_xy 303 104
+line 128366 --->
+  from ref 128110 z 3004 to ref 128238
+end

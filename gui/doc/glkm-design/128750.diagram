@@ -1,0 +1,6 @@
+format 32
+
+componentcanvas 128110 component_ref 128110 // prueba
+  draw_component_as_icon default show_component_req_prov default show_component_rea default
+  xyzwh 142 100 2000 272 161
+end

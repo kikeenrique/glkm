@@ -1,0 +1,9 @@
+format 32
+
+usecasecanvas 128110 usecase_ref 128238 // Leer informacion proceso
+  xyzwh 369 198 3005 64 32 label_xy 339 230
+classcanvas 128238 class_ref 128182 // developer
+  xyz 110 193 3005 label_xy 106 233
+line 128366 --->
+  from ref 128238 z 3004 to ref 128110
+end

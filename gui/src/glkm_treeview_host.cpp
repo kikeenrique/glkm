@@ -17,20 +17,18 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "glkm_treeview_process.hpp"
 #include <iostream>
 
 #ifdef HAVE_LIBGNOME
 #include <libgnome/gnome-url.h>
 #endif // HAVE_LIBGNOME
 
-#ifdef DEBUG
+#include "glkm_treeview_host.hpp"
 #include "debug.hpp"
-#endif // DEBUG
 
  
-TreeViewProcess::TreeViewProcess(BaseObjectType* cobject, 
-								 const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+TreeViewHost::TreeViewHost(BaseObjectType* cobject, 
+						   const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 	:Gtk::TreeView(cobject),
 	m_refGlademmXml(refGlade)
 {
@@ -48,25 +46,48 @@ TreeViewProcess::TreeViewProcess(BaseObjectType* cobject,
 
 	m_refTreeSelection->selected_foreach_iter(
 								sigc::mem_fun(*this,
-							    &TreeViewProcess::on_selected_row_callback) );
+							    &TreeViewHost::on_selected_row_callback) );
 
-	//Connect signal handlers for the treeview "menu popup treeview process" :
-	pm_Menu_Popup_TreeView_Process = NULL;
-	m_refGlademmXml->get_widget("menu_popup_treeview_process",
-								pm_Menu_Popup_TreeView_Process);
-	if (pm_Menu_Popup_TreeView_Process){
-//TODO		pm_Menu_Popup_TreeView_Process->signal_activate().connect( sigc::mem_fun( *this, &GlkmMainWindow::on_menuitem_quit_activated) );
+	//Connect signal handlers for the treeview "menu popup treeview host" :
+	pm_Menu_Popup_TreeView_Host = NULL;
+	m_refGlademmXml->get_widget("menu_popup_treeview_host",
+								pm_Menu_Popup_TreeView_Host);
+	if (pm_Menu_Popup_TreeView_Host){
+//TODO		pm_Menu_Popup_TreeView_Host->signal_activate().connect( sigc::mem_fun( *this, &GlkmMainWindow::on_menuitem_quit_activated) );
 	}
-
 	pm_Menuitem_Update = NULL;
 	m_refGlademmXml->get_widget("menuitem_update", pm_Menuitem_Update);
 	if (pm_Menuitem_Update){
-		pm_Menuitem_Update->signal_activate().connect( sigc::mem_fun(
-								*this,
-								&TreeViewProcess::on_menu_file_popup_generic) );
+		pm_Menuitem_Update->signal_activate().connect(
+								sigc::mem_fun(*this,
+								&TreeViewHost::on_menu_file_popup_generic) );
 	}
 
 	//Fill the TreeView's model
+	myfill();
+	
+	//Add the TreeView's view columns:
+//	append_column_editable("PID", m_Columns.m_col_id);
+	append_column("PID", m_Columns.m_col_id);
+	append_column("Name", m_Columns.m_col_name);
+	
+	//Connect signal:
+	signal_row_activated().connect(sigc::mem_fun(
+								*this,
+							    &TreeViewHost::on_treeview_row_activated) );
+
+	//Expand all children
+	expand_all();
+	show_all_children();
+}
+
+TreeViewHost::~TreeViewHost()
+{
+	//Null
+}
+
+void TreeViewHost::myfill()
+{	
 	Gtk::TreeModel::Row row = *(m_refTreeModel->append());
 	row[m_Columns.m_col_id] = 1;
   	row[m_Columns.m_col_name] = "Billy Bob";
@@ -90,50 +111,30 @@ TreeViewProcess::TreeViewProcess(BaseObjectType* cobject,
 	childrow = *(m_refTreeModel->append(row.children()));
 	childrow[m_Columns.m_col_id] = 31;
 	childrow[m_Columns.m_col_name] = "Xavier McRoberts";
-
-	
-	//Add the TreeView's view columns:
-//	append_column_editable("PID", m_Columns.m_col_id);
-	append_column("PID", m_Columns.m_col_id);
-	append_column("Name", m_Columns.m_col_name);
-	
-	//Connect signal:
-	signal_row_activated().connect(sigc::mem_fun(
-								*this,
-							    &TreeViewProcess::on_treeview_row_activated) );
-
-	//Expand all children
-	expand_all();
-	show_all_children();
 }
 
-TreeViewProcess::~TreeViewProcess()
-{
-	//Null
-}
-
-void TreeViewProcess::on_treeview_row_activated (
-								const Gtk::TreeModel::Path& path,	/* */
-								Gtk::TreeViewColumn*			/* Column */ )
+/*
+ *
+ */
+void TreeViewHost::on_treeview_row_activated (const Gtk::TreeModel::Path& path,
+											  Gtk::TreeViewColumn*)
 {
 	Gtk::TreeModel::iterator iter = m_refTreeModel->get_iter(path);
 	if (iter) {
 		Gtk::TreeModel::Row row = *iter;
-		std::cout << "Row activated: ID=" << row[m_Columns.m_col_id] 
-					<< ", Name=" << row[m_Columns.m_col_name]
-					<< std::endl;
+		PRINTD("Row activated: ID=" + row[m_Columns.m_col_id] 
+			   + std::string(", Name=") + row[m_Columns.m_col_name] );
 	}
 }
 
-void TreeViewProcess::on_selected_row_callback(
-										const Gtk::TreeModel::iterator& iter)
+void TreeViewHost::on_selected_row_callback(const Gtk::TreeModel::iterator& iter)
 {
 	Gtk::TreeModel::Row row = *iter;
 	//Do something with the row.
 	//TODO
 }
 
-bool TreeViewProcess::on_button_press_event(GdkEventButton* event)
+bool TreeViewHost::on_button_press_event(GdkEventButton* event)
 {
 	//Call base class, to allow normal handling,
 	//such as allowing the row to be selected by the right-click:
@@ -141,14 +142,14 @@ bool TreeViewProcess::on_button_press_event(GdkEventButton* event)
 	//Then do our custom stuff:
 	if ( (event->type == GDK_BUTTON_PRESS) && (event->button == 3) )
 	{
-		pm_Menu_Popup_TreeView_Process->popup(event->button, event->time);
+		pm_Menu_Popup_TreeView_Host->popup(event->button, event->time);
 	}
 	return return_value;
 }
 
-void TreeViewProcess::on_menu_file_popup_generic()
+void TreeViewHost::on_menu_file_popup_generic()
 {
-	std::cout << "A popup menu item was selected." << std::endl;
+	PRINTD("A popup menu item was selected.");
 	m_refTreeSelection = get_selection();
 	if (m_refTreeSelection)
 	{
@@ -156,7 +157,7 @@ void TreeViewProcess::on_menu_file_popup_generic()
 		if (iter)
 		{
 			int id = (*iter)[m_Columns.m_col_id];
-			std::cout << "Selected ID=" << id << std::endl;
+			PRINTD("Selected ID=" + id );
 		}
 	}
 }

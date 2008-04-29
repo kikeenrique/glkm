@@ -17,25 +17,26 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GLKM_TREEVIEWPROCESS_HPP
-#define GLKM_TREEVIEWPROCESS_HPP
+#ifndef GLKM_TREEVIEWHOST_HPP
+#define GLKM_TREEVIEWHOST_HPP
 
 #include <config.h>
 #include <gtkmm/treeview.h>
 #include <gtkmm/treestore.h>
 #include <libglademm/xml.h>
 
-class TreeViewProcess : public Gtk::TreeView
+
+class TreeViewHost : public Gtk::TreeView
 {
 public:
-	TreeViewProcess(BaseObjectType* cobject, 
-					const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
-	virtual ~TreeViewProcess();
+	TreeViewHost(BaseObjectType* cobject, 
+		     const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	virtual ~TreeViewHost();
 
 protected:
 	//Signal handlers:
 	virtual void on_treeview_row_activated(const Gtk::TreeModel::Path& path, 
-										   Gtk::TreeViewColumn* column);
+			  		       Gtk::TreeViewColumn* column);
 	void on_selected_row_callback(const Gtk::TreeModel::iterator& iter);
 	// Override Signal handler:
 	// Alternatively, use signal_button_press_event().connect_notify()
@@ -44,6 +45,8 @@ protected:
 	//Signal handler for popup menu items:
 	virtual void on_menu_file_popup_generic();
 
+	//
+	void myfill();
 	
 	Glib::RefPtr<Gnome::Glade::Xml> m_refGlademmXml;
 	
@@ -60,13 +63,13 @@ protected:
 			Gtk::TreeModelColumn<Glib::ustring> m_col_name;
 	};
 
-	ModelColumns						m_Columns;
+	ModelColumns				m_Columns;
 	Glib::RefPtr<Gtk::TreeStore>		m_refTreeModel;
 	Glib::RefPtr<Gtk::TreeSelection>	m_refTreeSelection;
 
-	Gtk::Menu*							pm_Menu_Popup_TreeView_Process;
-	Gtk::MenuItem*						pm_Menuitem_Update;
+	Gtk::Menu*				pm_Menu_Popup_TreeView_Host;
+	Gtk::MenuItem*				pm_Menuitem_Update;
 	
 };
 
-#endif //GLKM_TREEVIEWPROCESS_HPP
+#endif //GLKM_TREEVIEWHOST_HPP

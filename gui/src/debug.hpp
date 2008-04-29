@@ -1,4 +1,3 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
  * debug.hpp
  * Copyright (C) Enrique García Álvarez 2007 <kike @ eldemonionegro.com>
@@ -33,7 +32,7 @@
 #include <iostream>
 
 /*
-	PRINT(A)
+	PRINT_EXP(A)
 	Macro for printing the values of variables during debugging
 	Example: 
 			int a = 1, b = 2, c = 3;
@@ -41,7 +40,30 @@
 			P(a + b);
 			P((c - a)/b);
 */
-#define PRINT(A) std::cout << #A << ": " << (A) << std::endl;
+#define PRINT_EXP(A) std::cout << #A << ": " << (A) << std::endl;
+
+/*
+	PRINTD(A)
+	Macro for printing text messages to a notebook page (into main window).
+	A should be of type char * or Glib::ustring.
+	When using two or more const char * you should use std::string
+	Example:
+		* One const char *:
+			PRINTD("ID=" + row[id]);
+	
+		* Two or more const char *:
+			PRINTD("ID=" + row[id] 
+			       + std::string(", Name=") + row[name] );
+
+*/
+#ifdef DEBUG
+#define PRINTD(A) {					\
+			extern TextViewDebug*	pDebug; \
+			pDebug->debug_print(A);		\
+		}
+#else
+#define PRINTD(A) {}
+#endif // DEBUG	
 
 /*
 	std::assert();
@@ -58,7 +80,7 @@
 
 
 /*
- * We are using a singleton
+ *
  */
 class TextViewDebug : public Gtk::TextView
 {
@@ -73,12 +95,10 @@ protected:
 	Glib::RefPtr<Gnome::Glade::Xml> m_refGlademmXml;
 
 	//Text model buffer:
-	virtual void fill_buffers();  
+	virtual void fill_buffer();  
 	Glib::RefPtr<Gtk::TextBuffer> m_refTextBuffer;
 
 };
-
-
 
 #endif //GLKM_DEBUG_HPP
 

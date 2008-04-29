@@ -1,4 +1,3 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
  * gui
  * Copyright (C) Enrique García Álvarez 2007 <kike+glkm@eldemonionegro.com>
@@ -25,10 +24,7 @@
 #include <libgnome/gnome-url.h>
 #endif // HAVE_LIBGNOME
 
-#ifdef DEBUG
 #include "debug.hpp"
-#endif // DEBUG
-
 
 GlkmAboutDialog::GlkmAboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 	:Gtk::AboutDialog(cobject),
@@ -36,15 +32,15 @@ GlkmAboutDialog::GlkmAboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gno
 {
 	/* Actioning close button doesn't work by itself, needs a gobernant signal 
 	 to http://mail.gnome.org/archives/gtkmm-list/2007-January/msg00305.html */
-	signal_response().connect( sigc::mem_fun(*this, &GlkmAboutDialog::on_button_quit) ); 
+	signal_response().connect( sigc::mem_fun(*this, &GlkmAboutDialog::on_button_quit)); 
 
-//	set_url_hook(sigc::mem_fun(*this, &GlkmAboutDialog::on_activate_link_url) );
-	set_email_hook(sigc::mem_fun(*this, &GlkmAboutDialog::on_activate_email_url) );
+	set_url_hook(sigc::mem_fun(*this, &GlkmAboutDialog::on_activate_link_url));
+	set_email_hook(sigc::mem_fun(*this, &GlkmAboutDialog::on_activate_email_url));
 }
 
 GlkmAboutDialog::~GlkmAboutDialog()
 {
-	//Null
+	PRINTD("~GlkmAboutDialog");
 }
 
 void GlkmAboutDialog::on_button_quit(int response_id)
@@ -52,18 +48,12 @@ void GlkmAboutDialog::on_button_quit(int response_id)
 	switch(response_id) {
 //		case Gtk::RESPONSE_DELETE_EVENT  :
 		case Gtk::RESPONSE_CANCEL : 
-#ifdef DEBUG
-				extern TextViewDebug*	pDebug;
-				pDebug->debug_print("DELETE EVENT CANCEL");
-#endif // DEBUG	
+			PRINTD("DELETE EVENT CANCEL");
 			hide();
 			break;
 		default:
+			PRINTD("unattended event" + response_id);
 			;
-#ifdef DEBUG
-			extern TextViewDebug*	pDebug;
-			pDebug->debug_print("unattended event" + response_id );
-#endif // DEBUG	
 	} 
 }
 
@@ -73,17 +63,15 @@ void GlkmAboutDialog::on_activate_link_url(AboutDialog& about_dialog, const Glib
 	GError *error = NULL;
 #endif // HAVE_LIBGNOME
 
-#ifdef DEBUG
-//	pDebug->debug_print("link url");
-#endif // DEBUG
+	PRINTD("on_activate_link_url");
 
 #ifdef HAVE_LIBGNOME
 	if (gnome_url_show(link.c_str(), &error)){
-//			pDebug->debug_print("good");
+		PRINTD("activate_link ok");
 	}else{
-//			pDebug->debug_print("wrong");
+		PRINTD("activate_link BAD");
 	}
-	
+
 	if (error != NULL){
 		g_warning (error->message);
 		g_error_free (error);
@@ -95,24 +83,17 @@ void GlkmAboutDialog::on_activate_email_url(AboutDialog& about_dialog, const Gli
 {
 
 	Glib::ustring link="mailto:"+email;
-
 #ifdef HAVE_LIBGNOME
 	GError *error = NULL;
 #endif // HAVE_LIBGNOME
 
-#ifdef DEBUG
-//	pDebug->debug_print("email url");
-#endif // DEBUG
+	PRINTD("on_activate_email_url");
 	
 #ifdef HAVE_LIBGNOME
 	if (gnome_url_show(link.c_str(), &error)){
-#ifdef DEBUG
-//		pDebug->debug_print("good");
-#endif // DEBUG		
+		PRINTD("activate_email ok");
 	}else{
-#ifdef DEBUG
-//		pDebug->debug_print("wrong");
-#endif // DEBUG		
+		PRINTD("activate_email BAD");
 	}	
 	if (error != NULL){
 		g_warning (error->message);

@@ -26,10 +26,12 @@
 #include <libintl.h>
 #endif
 
-#ifdef DEBUG
+
 #include "debug.hpp"
+#ifdef DEBUG
 TextViewDebug*	pDebug;
 #endif // DEBUG
+
 int 
 main (int	argc, 
 	  char	*argv[])

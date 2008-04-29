@@ -20,9 +20,8 @@
 #include "glkm_mainwindow.hpp"
 #include <iostream>
 
-#ifdef DEBUG
 #include "debug.hpp"
-#endif // DEBUG	
+
 
 GlkmMainWindow::GlkmMainWindow()
 {
@@ -90,8 +89,8 @@ GlkmMainWindow::GlkmMainWindow()
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}	
 	//Main Window -> Tree View
-	m_refGlademmXml->get_widget_derived("treeview_process", pGlkmTreeViewProcess);
-	if (pGlkmTreeViewProcess){
+	m_refGlademmXml->get_widget_derived("treeview_host", pGlkmTreeViewHost);
+	if (pGlkmTreeViewHost){
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}
@@ -129,10 +128,7 @@ GlkmMainWindow::~GlkmMainWindow()
 
 void GlkmMainWindow::on_menuitem_quit_activated()
 {
-#ifdef DEBUG
-	extern TextViewDebug*	pDebug;
-	pDebug->debug_print("menu quit activated");
-#endif // DEBUG	
+	PRINTD("menu quit activated");
 	hide();
 }
 
@@ -140,26 +136,16 @@ void GlkmMainWindow::on_menuitem_viewtoolbar_toggled()
 {
 	if (pMenuItemViewToolbar->get_active()){
 		mp_toolbar_mainwindow->show();
-#ifdef DEBUG
-		extern TextViewDebug*	pDebug;
-		pDebug->debug_print("menu viewtoolbar activated");
-#endif // DEBUG	
+		PRINTD("menu viewtoolbar activated");
 	} else {
 		mp_toolbar_mainwindow->hide();
-#ifdef DEBUG
-		extern TextViewDebug*	pDebug;
-		pDebug->debug_print("menu viewtoolbar deactivated");
-#endif // DEBUG	
+		PRINTD("menu viewtoolbar deactivated");
 	}
 }
 
 void GlkmMainWindow::on_menuitem_about_activated()
 {
-#ifdef DEBUG
-	extern TextViewDebug*	pDebug;
-	pDebug->debug_print("menu about activated");
-#endif // DEBUG		
-	
+	PRINTD("menu about activated");
 	pGlkmAboutDialog->show();
 	  //Bring it to the front, in case it was already shown:
 	pGlkmAboutDialog->present();

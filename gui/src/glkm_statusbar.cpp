@@ -19,9 +19,7 @@
 
 #include "glkm_statusbar.hpp"
 
-#ifdef DEBUG
 #include "debug.hpp"
-#endif // DEBUG
 
 #include <iostream>
 #include <sstream>

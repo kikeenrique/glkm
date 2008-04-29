@@ -25,7 +25,7 @@
 #include <libglademm/xml.h>
 // Future mapping #include <libglademm/variablesmap.h>
 #include "glkm_aboutdialog.hpp"
-#include "glkm_treeview_process.hpp"
+#include "glkm_treeview_host.hpp"
 #include "glkm_statusbar.hpp"
 
 
@@ -94,7 +94,7 @@ protected:
 
 	/*		Main Window UI
 	*/
-	TreeViewProcess*		pGlkmTreeViewProcess;
+	TreeViewHost*			pGlkmTreeViewHost;
 	GlkmStatusBar*			pGlkmStatusBar;
 	unsigned int			m_ContextId;
 	Gtk::ToolButton* 		mp_button_connect;

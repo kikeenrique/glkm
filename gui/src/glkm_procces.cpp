@@ -19,9 +19,7 @@
 
 #include "glkm_procces.hpp"
 
-#ifdef DEBUG
 #include "debug.hpp"
-#endif // DEBUG
 
 
 Procces::Procces()

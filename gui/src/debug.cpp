@@ -17,9 +17,9 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with main.cc.  If not, write to:
- * 	The Free Software Foundation, Inc.,
- * 	51 Franklin Street, Fifth Floor
- * 	Boston, MA  02110-1301, USA.
+ * 		The Free Software Foundation, Inc.,
+ * 		51 Franklin Street, Fifth Floor
+ *		Boston, MA  02110-1301, USA.
  */
 
 #include "debug.hpp"
@@ -29,11 +29,9 @@ TextViewDebug::TextViewDebug (BaseObjectType* cobject,
 	:Gtk::TextView(cobject),
 	 m_refGlademmXml(refGlade)
 {
-
-	//Create the Text buffer
-	fill_buffers();
+	//Create the text buffer
+	fill_buffer();
 	
-	//Expand all children
 	show_all_children();
 }
 
@@ -42,27 +40,22 @@ TextViewDebug::~TextViewDebug()
 	//Null
 }
 
-void TextViewDebug::fill_buffers()
+void TextViewDebug::fill_buffer()
 {
 	m_refTextBuffer = get_buffer();
-	m_refTextBuffer->set_text("BEGIN");
+	m_refTextBuffer->set_text("BEGIN\n");
 }
 
 void TextViewDebug::debug_print(const Glib::ustring& text)
 {
-	//m_refTextBuffer->insert_at_cursor(text);
+	m_refTextBuffer->insert_at_cursor(text+"\n");
 }
 
+/*
+ */
 void TextViewDebug::debug_print(const char* text)
 {
-	std::cout << text << std::endl;	
 	Glib::ustring tmp(text);
-	std::cout << tmp << std::endl;
-	m_refTextBuffer->insert_at_cursor(tmp);
-	PRINT(m_refTextBuffer);
-	if (m_refTextBuffer){
-		//m_refTextBuffer->insert_at_cursor(tmp);
-	} else {
-		std::cout << "caca" << std::endl;
-	}
+	m_refTextBuffer->insert_at_cursor(tmp+"\n");
+
 }

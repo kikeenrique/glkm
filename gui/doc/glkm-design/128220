@@ -1,7 +1,7 @@
 format 55
 "view manager" // view manager
-  revision 1
-  modified_by 92 "enrgar"
+  revision 2
+  modified_by 85 "enrgar"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -26,8 +26,8 @@ format 55
   package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
   show_infonote default drawing_language default
   
-  cpp_h_dir "/mnt/extra/home/enrgar/svn/pfc/trunk/gui/doc/glkm-design/src-design/"
-  cpp_src_dir "/mnt/extra/home/enrgar/svn/pfc/trunk/gui/doc/glkm-design/src-design/"
+  cpp_h_dir "src-design/"
+  cpp_src_dir "src-design/"
   classview 128092 "view clases"
     //class diagram settings
     draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default

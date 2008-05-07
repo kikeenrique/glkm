@@ -1,6 +1,7 @@
 
   cpp_default_defs 
   cpp_h_extension "hpp" cpp_src_extension "cpp" java_extension "java" php_extension "php" python_extension "py" idl_extension "idl"
+  cpp_force_namespace_gen
 
   type_forms 15 // uml cpp java idl cpp_in cpp_out cpp_inout cpp_return
     "void" "void" "void" "void" "${type}" "${type} &" "${type}" "${type}"
@@ -19,11 +20,12 @@
     "double" "double" "double" "double" "${type}" "${type} &" "${type} &" "${type}"
     "string" "string" "String" "string" "${type}" "${type} &" "${type} &" "${type}"
   
-  relations_stereotypes 4 // uml cpp java pythonidl
+  relations_stereotypes 5 // uml cpp java pythonidl
     "sequence" "vector" "Vector" "list" "sequence"
     "vector" "vector" "Vector" "list" "sequence"
     "list" "list" "Vector" "list" "sequence"
     "set" "set" "Vector" "set" "sequence"
+    "map" "map" "" "" ""
   
   classes_stereotypes 13 // uml cpp java php python idl
     "class" "class" "class" "class" "class" "valuetype"
@@ -65,7 +67,7 @@ ${members}};
 ${inlines}
 "
   cpp_default_external_class_decl "${name}
-#include <${name}.h>
+#include <${name}.hpp>
 "
   cpp_default_struct_decl "${comment}${template}struct ${name}${inherit} {
 ${members}};

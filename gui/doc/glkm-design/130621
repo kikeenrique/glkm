@@ -1,7 +1,7 @@
-format 55
+format 56
 "public" // dbusmm::public
-  revision 1
-  modified_by 61 "enrgar"
+  revision 3
+  modified_by 105 "enrgar"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -44,7 +44,7 @@ format 55
     show_infonote default drawing_language default
     associated_deployment_view deploymentview_ref 129213 // dbus
     classdiagram 128061 "class diagram"
-      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
       size A4
     end
 
@@ -63,8 +63,21 @@ ${inlines}
     end
 
     class 129341 "DBus::String"
+      visibility package stereotype "typedef" explicit_base_type "string"
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}typedef ${type} ${name};
+"
+      explicit_switch_type ""
+      
+    end
+
+    class 128317 "DBus::Connection"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
+      cpp_external cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
 ${inlines}
 "
@@ -74,6 +87,7 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
+      associated_diagram classdiagram_ref 128061 // class diagram
     end
 
     class 129469 "DBus::Variant"
@@ -91,6 +105,561 @@ ${inlines}
     end
 
     class 129597 "DBus::RefPtr"
+      visibility package stereotype "metaclass"
+      nformals 1
+      formal name "" type "class" explicit_default_value ""
+        explicit_extends ""
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 129349 "DBus::Object"
+      visibility public 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 128233 "path"
+	public explicit_return_type "const DBus::Path &"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128361 "Object"
+	protected explicit_return_type ""
+	nparams 3
+	  param in name "conn" type class_ref 128317 // DBus::Connection
+	  param in name "path" type class_ref 129213 // DBus::Path
+	  param in name "service" explicit_type "char"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} * ${p2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, ${t2} ${p2}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129001 "service"
+	const cpp_inline public explicit_return_type "const std::string &"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129129 "conn"
+	cpp_inline public explicit_return_type "DBus::Connection&   [dbusmm::public]"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129257 "~Object"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 129981 "DBus::ObjectProxy"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128581 // <generalisation>
+	relation 128581 ---|>
+	  a public
+	    cpp virtual default "${type}"
+	    classrelation_ref 128581 // <generalisation>
+	  b parent class_ref 128069 // DBus::ProxyBase
+      end
+
+      classrelation 130245 // <generalisation>
+	relation 130245 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130245 // <generalisation>
+	  b parent class_ref 129349 // DBus::Object
+      end
+
+      operation 128745 "ObjectProxy"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "conn" type class_ref 128317 // DBus::Connection
+	  param in name "path" type class_ref 129213 // DBus::Path
+	  param in name "service" explicit_type "const char *"
+	    defaultvalue "\"\""
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129385 "object"
+	const public explicit_return_type "const ObjectProxy *"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 130153 "~ObjectProxy"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 128069 "DBus::ProxyBase"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 129513 "object"
+	const cpp_virtual public explicit_return_type "const ObjectProxy *"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129641 "find_interface"
+	protected explicit_return_type "InterfaceProxy  *"
+	nparams 1
+	  param inout name "name" explicit_type "string"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129769 "~ProxyBase"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129897 "_invoke_method"
+	cpp_virtual public return_type class_ref 129477 // DBus::Message
+	nparams 1
+	  param inout name "c" explicit_type "DBus::CallMessage [dbusmm::public]"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 128105 "_interfaces"
+	protected type class_ref 128233 // DBus::InterfaceProxyTable
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 128197 "DBus::IntrospectableProxy"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 129221 // <generalisation>
+	relation 129221 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129221 // <generalisation>
+	  b parent class_ref 129853 // DBus::InterfaceProxy
+      end
+    end
+
+    class 128325 "DBus::PropertiesProxy"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 129349 // <generalisation>
+	relation 129349 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129349 // <generalisation>
+	  b parent class_ref 129853 // DBus::InterfaceProxy
+      end
+    end
+
+    class 128581 "DBus::Interface"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 130025 "Interface"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "name" explicit_type "string"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 130281 "name"
+	const public explicit_return_type "const std::string &"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 130409 "~Interface"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 128709 "DBus::InterfaceAdaptor"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 129989 // <generalisation>
+	relation 129989 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129989 // <generalisation>
+	  b parent class_ref 128581 // DBus::Interface
+      end
+
+      classrelation 130117 // <generalisation>
+	relation 130117 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130117 // <generalisation>
+	  b parent class_ref 129093 // DBus::AdaptorBase
+      end
+    end
+
+    class 129853 "DBus::InterfaceProxy"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128453 // <generalisation>
+	relation 128453 ---|>
+	  a public
+	    cpp virtual default "${type}"
+	    classrelation_ref 128453 // <generalisation>
+	  b parent class_ref 128069 // DBus::ProxyBase
+      end
+
+      classrelation 129605 // <generalisation>
+	relation 129605 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129605 // <generalisation>
+	  b parent class_ref 128581 // DBus::Interface
+      end
+
+      operation 130537 "InterfaceProxy"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "name" explicit_type "const string"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 130665 "invoke_method"
+	public return_type class_ref 129477 // DBus::Message
+	nparams 1
+	  param in name "cm" explicit_type "const CallMessage &"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 130793 "dispatch_signal"
+	public explicit_return_type "bool"
+	nparams 1
+	  param in name "sm" type class_ref 129725 // DBus::SignalMessage
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 128233 "_signals"
+	protected type class_ref 128361 // DBus::SignalTable
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 128837 "DBus::IntrospectableAdaptor"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 129861 // <generalisation>
+	relation 129861 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129861 // <generalisation>
+	  b parent class_ref 128709 // DBus::InterfaceAdaptor
+      end
+    end
+
+    class 128965 "DBus::PropertiesAdaptor"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 129733 // <generalisation>
+	relation 129733 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129733 // <generalisation>
+	  b parent class_ref 128709 // DBus::InterfaceAdaptor
+      end
+    end
+
+    class 129093 "DBus::AdaptorBase"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 129221 "DBus::ObjectAdaptor"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130629 // <generalisation>
+	relation 130629 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130629 // <generalisation>
+	  b parent class_ref 129349 // DBus::Object
+      end
+
+      classrelation 130757 // <generalisation>
+	relation 130757 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130757 // <generalisation>
+	  b parent class_ref 129093 // DBus::AdaptorBase
+      end
+    end
+
+    class 129477 "DBus::Message"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
@@ -116,9 +685,79 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
+      classrelation 130885 // <generalisation>
+	relation 130885 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130885 // <generalisation>
+	  b parent class_ref 129477 // DBus::Message
+      end
     end
 
-    class 129853 "DBus::InterfaceProxy"
+    class 129605 "DBus::CallMessage"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131013 // <generalisation>
+	relation 131013 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131013 // <generalisation>
+	  b parent class_ref 129477 // DBus::Message
+      end
+    end
+
+    class 129733 "DBus::ErrorMessage"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131141 // <generalisation>
+	relation 131141 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131141 // <generalisation>
+	  b parent class_ref 129477 // DBus::Message
+      end
+    end
+
+    class 129861 "DBus::ReturnMessage"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131269 // <generalisation>
+	relation 131269 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131269 // <generalisation>
+	  b parent class_ref 129477 // DBus::Message
+      end
+    end
+
+    class 130885 "DBus::MessageIter"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
@@ -132,7 +771,7 @@ ${inlines}
       
     end
 
-    class 129981 "DBus::ObjectProxy"
+    class 130245 "DBus::Dispatcher"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
@@ -142,6 +781,158 @@ ${inlines}
       php_decl ""
       python_2_2 python_decl ""
       idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 130373 "DBus::BusDispatcher"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131653 // <generalisation>
+	relation 131653 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131653 // <generalisation>
+	  b parent class_ref 130501 // DBus::DefaultMainLoop
+      end
+
+      classrelation 131781 // <generalisation>
+	relation 131781 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131781 // <generalisation>
+	  b parent class_ref 130245 // DBus::Dispatcher
+      end
+    end
+
+    class 130629 "DBus::Glib::BusDispatcher"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131909 // <generalisation>
+	relation 131909 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131909 // <generalisation>
+	  b parent class_ref 130245 // DBus::Dispatcher
+      end
+    end
+
+    class 130501 "DBus::DefaultMainLoop"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 128233 "DBus::InterfaceProxyTable"
+      visibility package stereotype "typedef" explicit_base_type "std::map<std::string, DBusmm::InterfaceProxy *>"
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}typedef ${type} ${name};
+"
+      explicit_switch_type ""
+      
+    end
+
+    class 128453 "DBus::Error"
+      visibility package stereotype "exception"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}exception ${name} {
+${members}};
+"
+      explicit_switch_type ""
+      
+    end
+
+    class 129989 "DBus::ErrorInvalidArgs"
+      visibility package stereotype "exception"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}exception ${name} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 131397 // <generalisation>
+	relation 131397 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131397 // <generalisation>
+	  b parent class_ref 128453 // DBus::Error
+      end
+    end
+
+    class 130117 "DBus::ErrorUnknownMethod"
+      visibility package stereotype "exception"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}exception ${name} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      classrelation 131525 // <generalisation>
+	relation 131525 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131525 // <generalisation>
+	  b parent class_ref 128453 // DBus::Error
+      end
+    end
+
+    class 128361 "DBus::SignalTable"
+      visibility package stereotype "typedef" explicit_base_type "std::map< std::string, Slot<void, const DBus::SignalMessage &> >"
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}typedef ${type} ${name};
+"
       explicit_switch_type ""
       
     end
@@ -151,5 +942,477 @@ ${inlines}
     //deployment diagram settings
     package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
     draw_component_as_icon default show_component_req_prov default show_component_rea default
+    deploymentdiagram 128069 "dbus deployment diagram"
+      package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+      draw_component_as_icon default show_component_req_prov default show_component_rea default
+      size A4
+    end
+
+    artifact 128453 "dbusmm"
+      stereotype "library"
+      associated_artifacts
+      end
+      simplerelation 128069
+	-_->
+	  on artifact_ref 128581 // dbusmm_header
+      end
+
+      simplerelation 128105
+	-_->
+	  on artifact_ref 129769 // property
+      end
+
+      simplerelation 128233
+	-_->
+	  on artifact_ref 129641 // introspection
+      end
+
+      simplerelation 128361
+	-_->
+	  on artifact_ref 128105 // object
+      end
+
+      simplerelation 128489
+	-_->
+	  on artifact_ref 129129 // util
+      end
+
+      simplerelation 128617
+	-_->
+	  on artifact_ref 128233 // interface
+      end
+
+      simplerelation 128745
+	-_->
+	  on artifact_ref 129001 // types
+      end
+
+      simplerelation 128873
+	-_->
+	  on artifact_ref 128361 // error
+      end
+
+      simplerelation 129001
+	-_->
+	  on artifact_ref 128489 // dispatcher_private
+      end
+
+      simplerelation 129129
+	-_->
+	  on artifact_ref 128745 // evenloop
+      end
+
+      simplerelation 129257
+	-_->
+	  on artifact_ref 128617 // eventloop-integration
+      end
+
+      simplerelation 129385
+	-_->
+	  on artifact_ref 128873 // glib-integration
+      end
+
+      simplerelation 129513
+	-_->
+	  on artifact_ref 129257 // message
+      end
+
+      simplerelation 129641
+	-_->
+	  on artifact_ref 129513 // message_private
+      end
+
+      simplerelation 129769
+	-_->
+	  on artifact_ref 129385 // connection_private
+      end
+    end
+
+    artifact 128581 "dbusmm_header"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+      end
+    end
+
+    artifact 128105 "object"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 129349 // DBus::Object
+	class_ref 129981 // DBus::ObjectProxy
+	class_ref 129221 // DBus::ObjectAdaptor
+      end
+    end
+
+    artifact 128233 "interface"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 128581 // DBus::Interface
+	class_ref 128069 // DBus::ProxyBase
+	class_ref 129093 // DBus::AdaptorBase
+	class_ref 128709 // DBus::InterfaceAdaptor
+	class_ref 129853 // DBus::InterfaceProxy
+	class_ref 128233 // DBus::InterfaceProxyTable
+	class_ref 128361 // DBus::SignalTable
+      end
+    end
+
+    artifact 128361 "error"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_classes
+	class_ref 128453 // DBus::Error
+	class_ref 129989 // DBus::ErrorInvalidArgs
+	class_ref 130117 // DBus::ErrorUnknownMethod
+      end
+    end
+
+    artifact 128489 "dispatcher_private"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 130245 // DBus::Dispatcher
+      end
+    end
+
+    artifact 128617 "eventloop-integration"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 130373 // DBus::BusDispatcher
+      end
+    end
+
+    artifact 128745 "evenloop"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 130501 // DBus::DefaultMainLoop
+      end
+    end
+
+    artifact 128873 "glib-integration"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 130629 // DBus::Glib::BusDispatcher
+      end
+    end
+
+    artifact 129001 "types"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 129213 // DBus::Path
+	class_ref 129341 // DBus::String
+	class_ref 129469 // DBus::Variant
+      end
+    end
+
+    artifact 129129 "util"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 129597 // DBus::RefPtr
+      end
+    end
+
+    artifact 129257 "message"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 130885 // DBus::MessageIter
+	class_ref 129605 // DBus::CallMessage
+	class_ref 129725 // DBus::SignalMessage
+	class_ref 129733 // DBus::ErrorMessage
+	class_ref 129861 // DBus::ReturnMessage
+      end
+    end
+
+    artifact 129385 "connection_private"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 128317 // DBus::Connection
+      end
+    end
+
+    artifact 129513 "message_private"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 129477 // DBus::Message
+      end
+    end
+
+    artifact 129641 "introspection"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 128837 // DBus::IntrospectableAdaptor
+	class_ref 128197 // DBus::IntrospectableProxy
+      end
+    end
+
+    artifact 129769 "property"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 128965 // DBus::PropertiesAdaptor
+	class_ref 128325 // DBus::PropertiesProxy
+      end
+    end
   end
 end

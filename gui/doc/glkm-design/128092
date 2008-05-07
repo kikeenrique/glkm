@@ -1,7 +1,7 @@
 format 56
 "model manager" // glkm::model manager
-  revision 6
-  modified_by 105 "enrgar"
+  revision 7
+  modified_by 106 "enrgar"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -110,8 +110,10 @@ ${members}};
       associated_diagram classdiagram_ref 128121 // class diagram model
       classrelation 128121 // task_list ()
 	relation 128121 *--> name ""
+	  stereotype "map<A,B>"
 	  a role_name "task_list" multiplicity "1..*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
+	    cpp default "
+    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
 "
 	    classrelation_ref 128121 // task_list ()
 	  b multiplicity "1" parent class_ref 128249 // Process
@@ -156,6 +158,31 @@ ${members}};
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128233 // <aggregation>
+      end
+
+      operation 128490 "get_process"
+	public explicit_return_type "Process   [glkm::model manager] &"
+	nparams 1
+	  param in name "PID" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 128106 "hostname"
+	protected explicit_type "string"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
       end
     end
 
@@ -662,7 +689,7 @@ ${members}};
 "
       explicit_switch_type ""
       
-      operation 128837 "GetProcesses"
+      operation 128837 "update_processes"
 	public explicit_return_type "std::vector <DBus::String>"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
@@ -676,7 +703,7 @@ ${members}};
 	
       end
 
-      operation 128965 "UpdateProcessInfo"
+      operation 128965 "update_process_info"
 	public explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
@@ -703,6 +730,49 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
+      operation 128106 "Log"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128234 "~Log"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128362 "print"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "text" explicit_type "string"
+	  param in name "level" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
     end
   end
 

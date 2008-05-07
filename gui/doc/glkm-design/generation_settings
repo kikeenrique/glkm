@@ -25,7 +25,7 @@
     "vector" "vector" "Vector" "list" "sequence"
     "list" "list" "Vector" "list" "sequence"
     "set" "set" "Vector" "set" "sequence"
-    "map" "map" "" "" ""
+    "map <A, B>" "map <A, B>" "" "" ""
   
   classes_stereotypes 13 // uml cpp java php python idl
     "class" "class" "class" "class" "class" "valuetype"

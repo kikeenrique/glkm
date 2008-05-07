@@ -1,15 +1,15 @@
 
-  package_stereotypes  6 "facade" "framework" "model library" "stub" "toplevel" "profile"
+  package_stereotypes  7 "facade" "framework" "model" "library" "stub" "toplevel" "profile"
     -_-> 2 "access" "import"
   end
   
-  class_stereotypes  19 "actor" "auxiliary" "boundary" "control" "entity" "enum" "enum_pattern" "exception" "focus" "implementation class" "interface" "@interface" "metaclass" "struct" "type" "typedef" "union" "utility" "stereotype"
-    ---- 3 "vector" "list" "set"
-    ---> 3 "vector" "list" "set"
-    o--- 3 "vector" "list" "set"
-    *--- 3 "vector" "list" "set"
-    o--> 3 "vector" "list" "set"
-    *--> 3 "vector" "list" "set"
+  class_stereotypes  20 "actor" "auxiliary" "boundary" "control" "entity" "enum" "enum_pattern" "exception" "focus" "implementation" "class" "interface" "@interface" "metaclass" "struct" "type" "typedef" "union" "utility" "stereotype"
+    ---- 4 "map" "vector" "list" "set"
+    ---> 4 "map" "vector" "list" "set"
+    o--- 4 "map" "vector" "list" "set"
+    *--- 4 "map" "vector" "list" "set"
+    o--> 4 "map" "vector" "list" "set"
+    *--> 4 "map<A,B>" "vector" "list" "set"
     -_-> 1 "friend"
     -_-|> 1 "bind"
   end
@@ -37,7 +37,7 @@
   activityaction_stereotypes  0
   activityobject_stereotypes  2 "datastore" "centralBuffer"
   pin_stereotypes  0
-  component_stereotypes  6 "build component" "entity" "implement" "process" "service" "subsystem"
+  component_stereotypes  7 "build" "component" "entity" "implement" "process" "service" "subsystem"
   deploymentnode_stereotypes  2 "cpu" "device"
   classview_stereotypes  0
   usecaseview_stereotypes  0

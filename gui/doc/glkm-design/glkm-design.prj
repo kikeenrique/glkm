@@ -1,7 +1,7 @@
 format 56
 "glkm-design"
-  revision 12
-  modified_by 106 "enrgar"
+  revision 14
+  modified_by 19 "enrgar"
   cpp_root_dir "./"
   java_root_dir "./"
   php_root_dir "./"
@@ -13,7 +13,7 @@ format 56
   // class settings
   default_attribute_visibility protected default_relation_visibility protected default_operation_visibility public
   //class diagram settings
-  draw_all_relations yes hide_attributes no hide_operations no show_members_full_definition yes show_members_visibility yes show_members_stereotype yes show_members_multiplicity yes show_members_initialization yes member_max_width 127 show_parameter_dir yes show_parameter_name yes package_name_in_tab no class_drawing_mode class drawing_language uml show_context_mode no auto_label_position yes show_infonote no shadow yes
+  draw_all_relations yes hide_attributes no hide_operations no show_members_full_definition yes show_members_visibility yes show_members_stereotype yes show_members_multiplicity yes show_members_initialization yes member_max_width 127 show_parameter_dir yes show_parameter_name yes package_name_in_tab yes class_drawing_mode class drawing_language uml show_context_mode no auto_label_position yes show_infonote no shadow yes
   //use case diagram settings
   package_name_in_tab no show_context no auto_label_position yes draw_all_relations yes class_drawing_mode actor shadow yes
   //sequence diagram settings
@@ -37,13 +37,11 @@ format 56
   
   class_color yellow duration_color transparent continuation_color gray note_color blue fragment_color transparent subject_color transparent usecase_color yellow package_color transparent component_color green artifact_color green deploymentnode_color gray state_color yellow stateaction_color transparent activity_color transparent activityregion_color transparent activityaction_color transparent parameterpin_color white 
   font_size 10
-  diagram_format A4
+  diagram_format A2
 
   mark_for_import
   
   stereotype "toplevel"
-  cpp_h_dir "src-design/"
-  cpp_src_dir "src-design/"
   package_ref 130365 // glkm
 
   package_ref 130493 // dbusmm

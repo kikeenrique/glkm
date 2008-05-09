@@ -1,7 +1,7 @@
-format 55
+format 56
 "view manager" // glkm::view manager
-  revision 3
-  modified_by 61 "enrgar"
+  revision 5
+  modified_by 19 "enrgar"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -26,8 +26,8 @@ format 55
   package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
   show_infonote default drawing_language default
   
-  cpp_h_dir "src-design/"
-  cpp_src_dir "src-design/"
+  cpp_h_dir "src-glkm/"
+  cpp_src_dir "src-glkm/"
   classview 128092 "view classes"
     //class diagram settings
     draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -189,6 +189,30 @@ ${namespace_end}"
       end
     end
 
+    artifact 128476 "aboutdialog"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 128220 // AboutDialog
+      end
+    end
+
     artifact 128220 "statusbar"
       stereotype "source"
       cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
@@ -234,30 +258,6 @@ ${members}
 ${namespace_end}"
       associated_classes
 	class_ref 128476 // TreeViewHost
-      end
-    end
-
-    artifact 128476 "aboutdialog"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif ${NAMESPACE}_${NAME}_HPP
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 128220 // AboutDialog
       end
     end
   end

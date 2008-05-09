@@ -1,7 +1,7 @@
 format 56
 "public" // dbusmm::public
-  revision 3
-  modified_by 105 "enrgar"
+  revision 5
+  modified_by 19 "enrgar"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -26,7 +26,9 @@ format 56
   package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
   show_infonote default drawing_language default
   
-  classview 128317 "dbus"
+  cpp_h_dir "src-dbusmm/"
+  cpp_src_dir "src-dbusmm/"
+  classview 128317 "dbus class view"
     //class diagram settings
     draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
     //collaboration diagram settings
@@ -42,7 +44,7 @@ format 56
     //activity diagram settings
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default
-    associated_deployment_view deploymentview_ref 129213 // dbus
+    associated_deployment_view deploymentview_ref 129213 // dbus deployment view
     classdiagram 128061 "class diagram"
       draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
       size A4
@@ -107,7 +109,7 @@ ${inlines}
     class 129597 "DBus::RefPtr"
       visibility package stereotype "metaclass"
       nformals 1
-      formal name "" type "class" explicit_default_value ""
+      formal name "T" type "class" explicit_default_value ""
         explicit_extends ""
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
@@ -938,7 +940,7 @@ ${members}};
     end
   end
 
-  deploymentview 129213 "dbus"
+  deploymentview 129213 "dbus deployment view"
     //deployment diagram settings
     package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
     draw_component_as_icon default show_component_req_prov default show_component_rea default
@@ -948,15 +950,10 @@ ${members}};
       size A4
     end
 
-    artifact 128453 "dbusmm"
-      stereotype "library"
-      associated_artifacts
+    artifact 128453 "dbusmm_public"
+      stereotype "source"
+      associated_classes
       end
-      simplerelation 128069
-	-_->
-	  on artifact_ref 128581 // dbusmm_header
-      end
-
       simplerelation 128105
 	-_->
 	  on artifact_ref 129769 // property
@@ -1029,25 +1026,12 @@ ${members}};
     end
 
     artifact 128581 "dbusmm_header"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif ${NAMESPACE}_${NAME}_HPP
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
+      stereotype "library"
+      associated_artifacts
+      end
+      simplerelation 130409
+	-_->
+	  on artifact_ref 128453 // dbusmm_public
       end
     end
 

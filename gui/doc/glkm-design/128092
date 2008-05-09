@@ -1,7 +1,7 @@
 format 56
 "model manager" // glkm::model manager
-  revision 7
-  modified_by 106 "enrgar"
+  revision 10
+  modified_by 19 "enrgar"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -26,8 +26,27 @@ format 56
   package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
   show_infonote default drawing_language default
   
-  cpp_h_dir "src-design/"
-  cpp_src_dir "src-design/"
+  cpp_h_dir "src-glkm/"
+  cpp_src_dir "src-glkm/"
+  ncouples 1
+  key "license" value "/*
+ * gui
+ * Copyright (C) Enrique García Álvarez 2007 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+"
   classview 128121 "model clases"
     //class diagram settings
     draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -47,7 +66,7 @@ format 56
     associated_deployment_view deploymentview_ref 128067 // model deployment
     classdiagram 128121 "class diagram model"
       draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-      size A4
+      size A3
     end
 
     class 128604 "main"
@@ -110,13 +129,13 @@ ${members}};
       associated_diagram classdiagram_ref 128121 // class diagram model
       classrelation 128121 // task_list ()
 	relation 128121 *--> name ""
-	  stereotype "map<A,B>"
+	  stereotype "map"
 	  a role_name "task_list" multiplicity "1..*" protected
-	    cpp default "
-    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${association}, RefPtr<${type}> > ${name}${value};
 "
 	    classrelation_ref 128121 // task_list ()
 	  b multiplicity "1" parent class_ref 128249 // Process
+	  association_explicit_type "int"
       end
 
       operation 128067 "Host"
@@ -183,6 +202,15 @@ ${members}};
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+      end
+
+      classrelation 128019 // <unidirectional association>
+	relation 128019 --->
+	  a role_name "" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128019 // <unidirectional association>
+	  b multiplicity "1" parent class_ref 128061 // HalManagerProxy
       end
     end
 
@@ -276,7 +304,7 @@ ${inlines}
       end
     end
 
-    class 128377 "file"
+    class 128377 "File"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
@@ -293,7 +321,7 @@ ${inlines}
 	relation_ref 128377 // <aggregation>
       end
 
-      operation 128707 "file"
+      operation 128707 "File"
 	public explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
@@ -307,7 +335,7 @@ ${inlines}
 	
       end
 
-      operation 128835 "~file"
+      operation 128835 "~File"
 	cpp_virtual public explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
@@ -327,11 +355,11 @@ ${inlines}
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128029 // <unidirectional association>
-	  b multiplicity "*" parent class_ref 128029 // inode
+	  b multiplicity "*" parent class_ref 128029 // Inode
       end
     end
 
-    class 128067 "filesystem"
+    class 128067 "Filesystem"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
@@ -350,10 +378,10 @@ ${inlines}
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	    classrelation_ref 128067 // file_list (<directional composition>)
-	  b multiplicity "1" parent class_ref 128377 // file
+	  b multiplicity "1" parent class_ref 128377 // File
       end
 
-      operation 128963 "filesystem"
+      operation 128963 "Filesystem"
 	public explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
@@ -367,7 +395,7 @@ ${inlines}
 	
       end
 
-      operation 129091 "~filesystem"
+      operation 129091 "~Filesystem"
 	cpp_virtual public explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
@@ -396,7 +424,7 @@ ${inlines}
       end
     end
 
-    class 128029 "inode"
+    class 128029 "Inode"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
@@ -409,7 +437,7 @@ ${inlines}
       explicit_switch_type ""
       
       associated_diagram classdiagram_ref 128121 // class diagram model
-      operation 128573 "inode"
+      operation 128573 "Inode"
 	public explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
@@ -423,7 +451,7 @@ ${inlines}
 	
       end
 
-      operation 128701 "~inode"
+      operation 128701 "~Inode"
 	cpp_virtual public explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
@@ -479,8 +507,8 @@ ${inlines}
 	
       end
 
-      operation 128453 "GetAllDevices"
-	public explicit_return_type "std::vector< DBus::String >"
+      operation 128453 "get_all_devices"
+	public explicit_return_type "vector< DBus::String >"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -493,13 +521,13 @@ ${inlines}
 	
       end
 
-      operation 128581 "OnDeviceAdded"
+      operation 128581 "on_device_added"
 	private explicit_return_type ""
 	nparams 1
-	  param in name "sig" explicit_type "const DBus::SignalMessage"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	  param in name "sig" explicit_type "DBus::SignalMessage"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -508,29 +536,19 @@ ${inlines}
 	
       end
 
-      operation 128709 "OnDeviceRemoved"
+      operation 128709 "on_device_removed"
 	private explicit_return_type ""
 	nparams 1
-	  param in name "sig" explicit_type "const DBus::SignalMessage"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	  param in name "sig" explicit_type "DBus::SignalMessage"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
 	
 	
 	
-      end
-
-      attribute 128069 "devices"
-	protected explicit_type "std::map< DBus::String, DBus::RefPtr< HalDeviceProxy > >"
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
       end
 
       classrelation 128709 // <generalisation>
@@ -547,6 +565,17 @@ ${inlines}
 	    cpp default "${type}"
 	    classrelation_ref 129477 // <generalisation>
 	  b parent class_ref 129853 // DBus::InterfaceProxy
+      end
+
+      classrelation 128275 // _devices (<directional composition>)
+	relation 128147 *-->
+	  stereotype "map"
+	  a role_name "_devices" multiplicity "1..*" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype} <${association}, DBus::RefPtr <${type}> > ${name}${value};
+"
+	    classrelation_ref 128275 // _devices (<directional composition>)
+	  b multiplicity "1" parent class_ref 128189 // HalDeviceProxy
+	  association_explicit_type "string"
       end
     end
 
@@ -567,9 +596,9 @@ ${inlines}
 	nparams 2
 	  param in name "connection" explicit_type "DBus::Connection"
 	  param in name "udi" explicit_type "DBus::Path"
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
 "
 	
@@ -592,10 +621,24 @@ ${inlines}
 	
       end
 
-      operation 128829 "GetProperty"
+      operation 128829 "get_property"
 	public explicit_return_type "DBus::Variant"
 	nparams 1
 	  param in name "key" explicit_type "DBus::String"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128069 "get_all_properties"
+	public explicit_return_type "map<DBus::String, DBus::Variant>"
+	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
@@ -607,28 +650,13 @@ ${inlines}
 	
       end
 
-      operation 128069 "GetAllProperties"
-	public explicit_return_type "std::map<DBus::String, DBus::Variant>"
-	nparams 1
-	  param in name "device" explicit_type "DBus::RefPtr<HalDeviceProxy>"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 128197 "OnPropertyModified"
+      operation 128197 "on_property_modified"
 	private explicit_return_type ""
 	nparams 1
-	  param in name "sig" explicit_type "const DBus::SignalMessage"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	  param in name "sig" explicit_type "DBus::SignalMessage"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -637,13 +665,13 @@ ${inlines}
 	
       end
 
-      operation 128325 "OnCondition"
+      operation 128325 "on_condition"
 	private explicit_return_type ""
 	nparams 1
-	  param in name "sig" explicit_type "const DBus::SignalMessage"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	  param in name "sig" explicit_type "DBus::SignalMessage"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -666,6 +694,16 @@ ${inlines}
 	    cpp default "${type}"
 	    classrelation_ref 128965 // <generalisation>
 	  b parent class_ref 129981 // DBus::ObjectProxy
+      end
+
+      attribute 128361 "_properties"
+	protected explicit_type "map <DBus::String, DBus::Variant>"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
       end
     end
 
@@ -758,7 +796,7 @@ ${inlines}
 	
       end
 
-      operation 128362 "print"
+      operation 128362 "printd"
 	public explicit_return_type ""
 	nparams 2
 	  param in name "text" explicit_type "string"
@@ -838,6 +876,26 @@ ${namespace_end}"
       simplerelation 128988
 	-_->
 	  on artifact_ref 128092 // mainwindow
+      end
+
+      simplerelation 129897
+	-_->
+	  on artifact_ref 130025 // log
+      end
+
+      simplerelation 130025
+	-_->
+	  on artifact_ref 128325 // hal-device-proxy
+      end
+
+      simplerelation 130153
+	-_->
+	  on artifact_ref 128197 // hal-manager-proxy
+      end
+
+      simplerelation 130281
+	-_->
+	  on artifact_ref 129897 // hal-controler
       end
     end
 
@@ -928,7 +986,7 @@ ${namespace_start}
 ${members}
 ${namespace_end}"
       associated_classes
-	class_ref 128377 // file
+	class_ref 128377 // File
       end
     end
 
@@ -951,7 +1009,7 @@ ${namespace_start}
 ${members}
 ${namespace_end}"
       associated_classes
-	class_ref 128067 // filesystem
+	class_ref 128067 // Filesystem
       end
     end
 
@@ -975,7 +1033,7 @@ ${namespace_start}
 ${members}
 ${namespace_end}"
       associated_classes
-	class_ref 128029 // inode
+	class_ref 128029 // Inode
       end
     end
 
@@ -1024,6 +1082,54 @@ ${members}
 ${namespace_end}"
       associated_classes
 	class_ref 128189 // HalDeviceProxy
+      end
+    end
+
+    artifact 129897 "hal-controler"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 130757 // HalControler
+      end
+    end
+
+    artifact 130025 "log"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 128105 // Log
       end
     end
   end

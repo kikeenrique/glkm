@@ -9,7 +9,7 @@
     o--- 4 "map" "vector" "list" "set"
     *--- 4 "map" "vector" "list" "set"
     o--> 4 "map" "vector" "list" "set"
-    *--> 4 "map<A,B>" "vector" "list" "set"
+    *--> 5 "map<A,B>" "map" "vector" "list" "set"
     -_-> 1 "friend"
     -_-|> 1 "bind"
   end

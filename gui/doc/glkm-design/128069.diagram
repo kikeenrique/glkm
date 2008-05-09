@@ -1,12 +1,13 @@
 format 56
 
-artifactcanvas 128069 artifact_ref 128453 // dbusmm
-  color darkblue
-  xyz 317 21 2000
+artifactcanvas 128069 artifact_ref 128453 // dbusmm_public
+  color green
+  xyz 283 145 2000
 artifactcanvas 128105 artifact_ref 128105 // object
   xyz 54 336 2000
 artifactcanvas 128197 artifact_ref 128581 // dbusmm_header
-  xyz 317 171 2000
+  color darkblue
+  xyz 285 36 2000
 artifactcanvas 128233 artifact_ref 128233 // interface
   xyz 55 496 2000
 artifactcanvas 128361 artifact_ref 128361 // error
@@ -33,8 +34,6 @@ artifactcanvas 129641 artifact_ref 129641 // introspection
   xyz 52 257 2000
 artifactcanvas 129769 artifact_ref 129769 // property
   xyz 53 188 2000
-simplerelationcanvas 128325 simplerelation_ref 128069
-  from ref 128069 z 1999 to ref 128197
 simplerelationcanvas 129897 simplerelation_ref 128105
   from ref 128069 z 1999 to ref 129769
 simplerelationcanvas 130025 simplerelation_ref 128233
@@ -63,4 +62,6 @@ simplerelationcanvas 131433 simplerelation_ref 129641
   from ref 128069 z 1999 to ref 129513
 simplerelationcanvas 131561 simplerelation_ref 129769
   from ref 128069 z 1999 to ref 129385
+simplerelationcanvas 132073 simplerelation_ref 130409
+  from ref 128197 z 1999 to ref 128069
 end

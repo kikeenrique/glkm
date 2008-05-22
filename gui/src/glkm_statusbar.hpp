@@ -24,20 +24,20 @@
 #include <libglademm/xml.h>
 #include <gtkmm/statusbar.h>
 
-class GlkmStatusBar: public Gtk::Statusbar 
+class StatusBar: public Gtk::Statusbar 
 {
 public:
-	GlkmStatusBar(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	StatusBar(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
 	void push_item(const Glib::ustring& text, unsigned int context_id);
 	void push_item(unsigned int context_id);
 	void pop_item(unsigned int context_id);
-	virtual ~GlkmStatusBar();
+	virtual ~StatusBar();
 	
 protected:
-	Glib::RefPtr<Gnome::Glade::Xml> m_refGlademmXml;		
+	Glib::RefPtr<Gnome::Glade::Xml> _refGlademmXml;		
 
-	unsigned int	m_context_id;
-	unsigned int	m_count;
+	unsigned int	_context_id;
+	unsigned int	_count;
 
 private:
 

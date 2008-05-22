@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
  * gui
- * Copyright (C) Enrique García Álvarez 2007 <kike+glkm@eldemonionegro.com>
+ * Copyright (C) Enrique García Álvarez 2008 <kike+glkm@eldemonionegro.com>
  * 
  * gui is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -17,27 +17,12 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "glkm_procces.hpp"
 #include "file.hpp"
+#include "process.hpp"
+//#include "inode.hpp"
 
-#include "debug.hpp"
-
-
-Procces::Procces()
-{
-	#ifdef DEBUG
-	//pDebug->debug_print("Constructor procces");
-	#endif // DEBUG
+File::File() {
 }
 
-Procces::~Procces()
-{
-	//Null
-}
-
-void Process::set__PPID(int value) {
-  _PPID = value;
-	#ifdef DEBUG
-//	pDebug->debug_print("PPID:" + value);
-	#endif // DEBUG	
+File::~File() {
 }

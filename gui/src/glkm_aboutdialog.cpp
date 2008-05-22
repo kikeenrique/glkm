@@ -26,24 +26,24 @@
 
 #include "debug.hpp"
 
-GlkmAboutDialog::GlkmAboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+AboutDialog::AboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 	:Gtk::AboutDialog(cobject),
-	m_refGlademmXml(refGlade)
+	_refGlademmXml(refGlade)
 {
 	/* Actioning close button doesn't work by itself, needs a gobernant signal 
 	 to http://mail.gnome.org/archives/gtkmm-list/2007-January/msg00305.html */
-	signal_response().connect( sigc::mem_fun(*this, &GlkmAboutDialog::on_button_quit)); 
+	signal_response().connect( sigc::mem_fun(*this, &AboutDialog::on_button_quit)); 
 
-	set_url_hook(sigc::mem_fun(*this, &GlkmAboutDialog::on_activate_link_url));
-	set_email_hook(sigc::mem_fun(*this, &GlkmAboutDialog::on_activate_email_url));
+	set_url_hook(sigc::mem_fun(*this, &AboutDialog::on_activate_link_url));
+	set_email_hook(sigc::mem_fun(*this, &AboutDialog::on_activate_email_url));
 }
 
-GlkmAboutDialog::~GlkmAboutDialog()
+AboutDialog::~AboutDialog()
 {
-	PRINTD("~GlkmAboutDialog");
+	PRINTD("~AboutDialog");
 }
 
-void GlkmAboutDialog::on_button_quit(int response_id)
+void AboutDialog::on_button_quit(int response_id)
 {
 	switch(response_id) {
 //		case Gtk::RESPONSE_DELETE_EVENT  :
@@ -57,7 +57,7 @@ void GlkmAboutDialog::on_button_quit(int response_id)
 	} 
 }
 
-void GlkmAboutDialog::on_activate_link_url(AboutDialog& about_dialog, const Glib::ustring& link)
+void AboutDialog::on_activate_link_url(Gtk::AboutDialog& about_dialog, const Glib::ustring& link)
 {
 #ifdef HAVE_LIBGNOME
 	GError *error = NULL;
@@ -79,7 +79,7 @@ void GlkmAboutDialog::on_activate_link_url(AboutDialog& about_dialog, const Glib
 #endif // HAVE_LIBGNOME
 }
 
-void GlkmAboutDialog::on_activate_email_url(AboutDialog& about_dialog, const Glib::ustring& email)
+void AboutDialog::on_activate_email_url(Gtk::AboutDialog& about_dialog, const Glib::ustring& email)
 {
 
 	Glib::ustring link="mailto:"+email;

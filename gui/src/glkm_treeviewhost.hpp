@@ -17,23 +17,25 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GLKM_TREEVIEWHOST_HPP
-#define GLKM_TREEVIEWHOST_HPP
+#ifndef _TREEVIEWHOST_HPP
+#define _TREEVIEWHOST_HPP
 
-#include <config.h>
 #include <gtkmm/treeview.h>
-#include <gtkmm/treestore.h>
-#include <libglademm/xml.h>
+//#include <gtkmm/treestore.h>
+#include <gtkmm/treemodel.h>
 
+#include "utils.hpp"
+#include <config.h>
 
-class TreeViewHost : public Gtk::TreeView
-{
-public:
-	TreeViewHost(BaseObjectType* cobject, 
-		     const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+class TreeViewHost : public Gtk::TreeView {
+
+  public:
+	TreeViewHost(BaseObjectType* cobject, const RefPtrGladeXml& refGlade);
 	virtual ~TreeViewHost();
 
-protected:
+  protected:
+	RefPtrGladeXml _refGlademmXml;
+	
 	//Signal handlers:
 	virtual void on_treeview_row_activated(const Gtk::TreeModel::Path& path, 
 			  		       Gtk::TreeViewColumn* column);
@@ -46,30 +48,27 @@ protected:
 	virtual void on_menu_file_popup_generic();
 
 	//
-	void myfill();
-	
-	Glib::RefPtr<Gnome::Glade::Xml> m_refGlademmXml;
-	
+	void fill_model();
+
+
 	//Tree model columns:
-	class ModelColumns : public Gtk::TreeModel::ColumnRecord
-	{
+	class ModelColumns : public Gtk::TreeModel::ColumnRecord {
 	public:
-		ModelColumns()
-		{
-			add(m_col_id);
-			add(m_col_name);
+		ModelColumns() {
+			add(col_id);
+			add(col_name);
 		}
-			Gtk::TreeModelColumn<int> m_col_id;
-			Gtk::TreeModelColumn<Glib::ustring> m_col_name;
+		Gtk::TreeModelColumn<int> col_id;
+		Gtk::TreeModelColumn<Glib::ustring> col_name;
 	};
 
-	ModelColumns				m_Columns;
-	Glib::RefPtr<Gtk::TreeStore>		m_refTreeModel;
-	Glib::RefPtr<Gtk::TreeSelection>	m_refTreeSelection;
+	ModelColumns				_modelColumns;
+	Glib::RefPtr<Gtk::TreeStore>		_refTreeStore;
+	Glib::RefPtr<Gtk::TreeSelection>	_refTreeSelection;
 
-	Gtk::Menu*				pm_Menu_Popup_TreeView_Host;
-	Gtk::MenuItem*				pm_Menuitem_Update;
+	Gtk::Menu*				_pMenu_Popup_TreeView_Host;
+	Gtk::MenuItem*				_pMenuitem_Refresh;
 	
 };
 
-#endif //GLKM_TREEVIEWHOST_HPP
+#endif //_TREEVIEWHOST_HPP

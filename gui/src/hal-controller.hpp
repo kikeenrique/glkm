@@ -32,7 +32,7 @@ class HalController {
 
   protected:
     DBus::Connection _connection;
-    Dbus::Glib::BusDispatcher _dispatcher;
+    DBus::Glib::BusDispatcher _dispatcher;
 
     HalManagerProxy * _hal_manager;
 

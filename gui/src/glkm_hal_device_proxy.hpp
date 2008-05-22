@@ -17,31 +17,42 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _GLKM_HAL_DEVICE_PROXY_HPP_
-#define _GLKM_HAL_DEVICE_PROXY_HPP_
+#ifndef _GLKM_HAL_DEVICE_PROXY_HPP
+#define _GLKM_HAL_DEVICE_PROXY_HPP
 
-#include <dbusmm/dbus.h>
-//#include <dbusmm/glib-integration.h>
+#include <dbusmm/types.h>
+#include <dbusmm/interface.h>
+#include <dbusmm/object.h>
+#include <dbusmm/util.h>
 
-#include "config.h"
+#include "utils.hpp"
 
+
+namespace DBus { class Connection; } 
+namespace DBus { class Path; } 
+namespace DBus { class SignalMessage; } 
 
 class HalDeviceProxy: 
 	public DBus::InterfaceProxy,
 	public DBus::ObjectProxy
 {
-public:
 
-	HalDeviceProxy( DBus::Connection& connection, DBus::Path& udi );
-	DBus::Variant GetProperty(DBus::String key);
-	std::map< DBus::String, DBus::Variant > GetAllProterties (DBus::RefPtr<HalDeviceProxy>);
+public:
+	HalDeviceProxy(DBus::Connection & connection, const DBus::Path & udi );
+	virtual ~HalDeviceProxy();
+
+	DBus::Variant get_property(const DBus::String & key);
+	bool update_all_properties();
+	
+private:
+	void on_property_modified(const DBus::SignalMessage & sig );
+	void on_condition( const DBus::SignalMessage & sig );
 	
 protected:
+	DictVariable _properties;
 
-private:
-
-	void PropertyModifiedCb( const DBus::SignalMessage& sig );
-	void ConditionCb( const DBus::SignalMessage& sig );
 };
 
-#endif // _GLKM_HAL_DEVICE_PROXY_HPP_
+typedef DBus::RefPtr<HalDeviceProxy> HalDeviceProxyRef;
+
+#endif // _GLKM_HAL_DEVICE_PROXY_HPP

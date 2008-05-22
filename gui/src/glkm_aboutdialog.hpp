@@ -24,21 +24,20 @@
 #include <gtkmm/aboutdialog.h>
 #include <libglademm.h>
 
-class GlkmAboutDialog : public Gtk::AboutDialog
-{
+class AboutDialog : public Gtk::AboutDialog {
 public:
 
-	GlkmAboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
-	virtual ~GlkmAboutDialog();
+	AboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+	virtual ~AboutDialog();
 
 protected:
 	//Signal handlers:
-	virtual void on_button_quit(int response_id);
+	void on_button_quit(int response_id);
 		
-	Glib::RefPtr<Gnome::Glade::Xml> m_refGlademmXml;
+	Glib::RefPtr<Gnome::Glade::Xml> _refGlademmXml;
 
-	void on_activate_link_url(AboutDialog& about_dialog, const Glib::ustring& link);
-	void on_activate_email_url(AboutDialog& about_dialog, const Glib::ustring& email);
+	void on_activate_link_url(Gtk::AboutDialog& about_dialog, const Glib::ustring& link);
+	void on_activate_email_url(Gtk::AboutDialog& about_dialog, const Glib::ustring& email);
 };
 
 #endif //GLKM_ABOUTDIALOG_HPP

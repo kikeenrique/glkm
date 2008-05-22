@@ -25,37 +25,37 @@
 #include <sstream>
 
 
-GlkmStatusBar::GlkmStatusBar(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+StatusBar::StatusBar(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 :	
 	Gtk::Statusbar(cobject),
-	m_refGlademmXml(refGlade),
-	m_count(1)
+	_refGlademmXml(refGlade),
+	_count(1)
 {
-	m_context_id = get_context_id("Statusbar example");
+	_context_id = get_context_id("Statusbar example");
 }
 
-GlkmStatusBar::~GlkmStatusBar()
+StatusBar::~StatusBar()
 {
 	//Null
 }
 
-void GlkmStatusBar::push_item(const Glib::ustring& text, unsigned int context_id)
+void StatusBar::push_item(const Glib::ustring& text, unsigned int context_id)
 {
 //TODO	g_snprintf(text, 20, "Item %d", m_count++);
 	push(text, context_id);
 }
 
-void GlkmStatusBar::push_item(unsigned int context_id)
+void StatusBar::push_item(unsigned int context_id)
 {
 	std::stringstream converter;
 
-	converter << "Item " << m_count++;
+	converter << "Item " << _count++;
 	Glib::ustring buff(converter.str());
 //	g_snprintf(buff, 20, "Item %d", m_count++);
 	push(buff, context_id);
 }
 
-void GlkmStatusBar::pop_item(unsigned int context_id)
+void StatusBar::pop_item(unsigned int context_id)
 { 
 	pop(context_id);
 }

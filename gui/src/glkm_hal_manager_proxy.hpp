@@ -19,32 +19,37 @@
 #ifndef GLKM_HAL_MANAGER_PROXY_HPP
 #define GLKM_HAL_MANAGER_PROXY_HPP
 
-#include <dbusmm/dbus.h>
-//#include <dbusmm/glib-integration.h>
-#include <vector>
+#include <dbusmm/interface.h>
+#include <dbusmm/object.h>
+#include <dbusmm/types.h>
+
 #include <map>
 
-#include "config.h"
 #include "glkm_hal_device_proxy.hpp"
+#include "utils.hpp"
 
+namespace DBus { class Connection; } 
+namespace DBus { class SignalMessage; } 
+namespace DBus { class Path; } 
 
 class HalManagerProxy: 
 	public DBus::InterfaceProxy,
 	public DBus::ObjectProxy
 {
+
 public:
-
-	HalManagerProxy( DBus::Connection& connection );
-
-	std::vector< DBus::String > GetAllDevices();
-
+	HalManagerProxy(DBus::Connection& connection );
+	virtual ~HalManagerProxy();
+	
+	VectorString get_all_devices();
 	
 private:
+	void on_device_added(const DBus::SignalMessage& sig );
+	void on_device_removed(const DBus::SignalMessage& sig );
 
-	void DeviceAddedCb( const DBus::SignalMessage& sig );
-	void DeviceRemovedCb( const DBus::SignalMessage& sig );
+protected:
+	std::map<DBus::Path, HalDeviceProxyRef> _devices;
 
-	std::map< DBus::String, DBus::RefPtr< HalDeviceProxy > > _devices;
 };
 
 

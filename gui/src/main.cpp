@@ -20,12 +20,13 @@
 #include <gtkmm/main.h>
 #include "glkm_mainwindow.hpp"
 
+#include <vector>
+
 #include "config.h"
 
 #ifdef ENABLE_NLS
 #include <libintl.h>
 #endif
-
 
 #include "debug.hpp"
 #ifdef DEBUG
@@ -47,7 +48,7 @@ TODO
 #endif
 
 	Gtk::Main kit(argc, argv);
-	GlkmMainWindow main_window;
+	MainWindow main_window;
 
 	kit.run(main_window);
 

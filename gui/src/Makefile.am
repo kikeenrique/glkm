@@ -25,14 +25,19 @@ glkm_SOURCES = \
 	glkm_statusbar.cpp \
 	debug.hpp \
 	debug.cpp \
-	glkm_treeview_host.cpp \
-	glkm_treeview_host.hpp \
 	glkm_hal_device_proxy.hpp \
 	glkm_hal_device_proxy.cpp \
 	glkm_hal_manager_proxy.cpp \
 	glkm_hal_manager_proxy.hpp \
 	glkm_host.cpp \
-	glkm_host.hpp
+	glkm_host.hpp \
+	utils.hpp \
+	hal-controller.hpp \
+	hal-controller.cpp \
+	glkm_treeviewhost.cpp \
+	glkm_treeviewhost.hpp \
+	file.hpp \
+	file.cpp
 
 #glkm_CFLAGS= \
 #	$(GLKM_CFLAGS) 	$(AM_CFLAGS)	$(LIBGNOME_CFLAGS)

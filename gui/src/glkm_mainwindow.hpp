@@ -17,37 +17,41 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GLKM_MAINWINDOW_HPP
-#define GLKM_MAINWINDOW_HPP
+#ifndef _MAINWINDOW_HPP
+#define _MAINWINDOW_HPP
+
+#include <gtkmm/window.h>
+//#include <gtkmm/imagemenuitem.h>
+#include "utils.hpp"
+
+class TreeViewHost;
+class StatusBar;
+class AboutDialog;
+namespace Gtk{
+	class ImageMenuItem;
+	class CheckMenuItem;
+	class ToolButton;
+	class Toolbar;	
+}
 
 #include <config.h>
-#include <gtkmm.h>
-#include <libglademm/xml.h>
-// Future mapping #include <libglademm/variablesmap.h>
-#include "glkm_aboutdialog.hpp"
-#include "glkm_treeview_host.hpp"
-#include "glkm_statusbar.hpp"
 
-
-/* For testing propose use the local (not installed) glade file */
-//#define GLADE_FILE  PACKAGE_DATA_DIR "/glkm/glade/glkm.glade" 
-#define GLADE_FILE  "/home/enrgar/svn/pfc/trunk/gui/data/glkm.glade" 
-
-class GlkmMainWindow : public Gtk::Window
+class MainWindow : public Gtk::Window
 {
 public:
-	GlkmMainWindow();
-	virtual ~GlkmMainWindow();
+	MainWindow();
+	virtual ~MainWindow();
 
 protected:
-	Glib::RefPtr<Gnome::Glade::Xml> m_refGlademmXml;	
+	RefPtrGladeXml _refGlademmXml;
+// Future mapping #include <libglademm/variablesmap.h>
 //	Gnome::Glade::VariablesMap* m_pVariablesMap;
-
+	unsigned int			_ContextId;
 
 	/*   *** Signal handlers ***
 			Menu File
 	*/
-	virtual void on_menuitem_quit_activated();
+	void on_menuitem_quit_activated();
 
 	/* 
 			Menu Edit
@@ -56,57 +60,56 @@ protected:
 	/* 
 			Menu View
 	*/
-	virtual void on_menuitem_viewtoolbar_toggled();
+	void on_menuitem_viewtoolbar_toggled();
 	
 	/* 
 			Menu Help
 	*/
-	virtual void on_menuitem_about_activated();
+	void on_menuitem_about_activated();
 
 	/* 
 			Toolbar
 	*/
 
 	void on_clicked_toolbar_connect();
+	void on_clicked_toolbar_refresh();
 		
 	/*   *** Child widgets ***
 			Menu File
 	*/
-	Gtk::ImageMenuItem* pMenuItemQuit;
+	Gtk::ImageMenuItem * _pMenuItemQuit;
 	
 	/* 
 			Menu Edit
 	*/
-	Gtk::ImageMenuItem* pMenuItemCopy;
-	Gtk::ImageMenuItem* pMenuItemCut;
-	Gtk::ImageMenuItem* pMenuItemDelete;
+	Gtk::ImageMenuItem * _pMenuItemCopy;
+	Gtk::ImageMenuItem * _pMenuItemCut;
+	Gtk::ImageMenuItem * _pMenuItemDelete;
 
 	/* 
 			Menu View
 	*/
-	Gtk::CheckMenuItem* pMenuItemViewToolbar;
+	Gtk::CheckMenuItem * _pMenuItemViewToolbar;
 	
 	/* 
 			Menu Help
 	*/
-	Gtk::ImageMenuItem* pMenuItemAbout;
+	Gtk::ImageMenuItem * _pMenuItemAbout;
 
 
 	/*		Main Window UI
 	*/
-	TreeViewHost*			pGlkmTreeViewHost;
-	GlkmStatusBar*			pGlkmStatusBar;
-	unsigned int			m_ContextId;
-	Gtk::ToolButton* 		mp_button_connect;
-	Gtk::Toolbar*			mp_toolbar_mainwindow;
+	TreeViewHost *			_pTreeViewHost;
+	StatusBar *			_pStatusBar;
+	Gtk::ToolButton * 		_pToolButton_Connect;
+	Gtk::Toolbar *			_pToolbar;
+	Gtk::ToolButton *		_pToolButton_Refresh;	
 	
 	/*
 			SubWindows
 	*/
-	GlkmAboutDialog* pGlkmAboutDialog;
-	
-private:
+	AboutDialog *		_pAboutDialog;
 		
 };
 
-#endif //GLKM_MAINWINDOW_HPP
+#endif //_MAINWINDOW_HPP

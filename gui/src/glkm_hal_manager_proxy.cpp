@@ -16,11 +16,17 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <signal.h>
+
+#include <dbusmm/connection.h>
+#include <dbusmm/message.h>
+#include <dbusmm/types.h>
+
 #include <iostream>
 
-#include "debug.hpp"
 #include "glkm_hal_manager_proxy.hpp"
+#include "debug.hpp"
+#include "config.h"
+
 
 
 #define DBUS_TYPE_STRUCT        ((int) 'r')
@@ -39,16 +45,7 @@
  *
  *  Get a strlist value from a formatted text file.
  *
- *  Example: Given that the file /sys/class/misc/procmon contains
- *  the lines
- *
- *    "init [1] - [0]"
- *    "cron [1654] - [1]"
- *    "hald [5820] - [1782]"
- *
- *  then hal_util_get_strlist_from_file ("/sys/class/misc", "procmon") 
- *  will return a string list with the content of line.
- *
+ *  Example:
  *      
  * 
  * HAL Manager
@@ -64,15 +61,13 @@
 	DeviceRemoved   Objref obj			A device was removed from the global device list (GDL).
  *	 
  */
-
-HalManagerProxy::HalManagerProxy( DBus::Connection& connection )
+HalManagerProxy::HalManagerProxy(DBus::Connection& connection )
 : DBus::InterfaceProxy("org.freedesktop.Hal.Manager"),
-  DBus::ObjectProxy(connection, "/org/freedesktop/Hal/Manager", "org.freedesktop.Hal")
-{
-	connect_signal(HalManagerProxy, DeviceAdded, DeviceAddedCb);
-	connect_signal(HalManagerProxy, DeviceRemoved, DeviceRemovedCb);
+  DBus::ObjectProxy(connection, "/org/freedesktop/Hal/Manager", "org.freedesktop.Hal") {
+	connect_signal(HalManagerProxy, DeviceAdded, on_device_added);
+	connect_signal(HalManagerProxy, DeviceRemoved, on_device_removed);
 
-	std::vector< DBus::String > devices = GetAllDevices();
+	std::vector< DBus::String > devices = get_all_devices();
 	std::vector< DBus::String >::iterator it;
 	for(it = devices.begin(); it != devices.end(); ++it) {
 		DBus::Path udi = *it;
@@ -95,22 +90,59 @@ HalManagerProxy::HalManagerProxy( DBus::Connection& connection )
 	}
 }
 
-std::vector< DBus::String > HalManagerProxy::GetAllDevices()
-{
-	std::vector< DBus::String > udis;
-	DBus::CallMessage call;
 
+/** 
+ *  get_property:
+ *  @key:
+ *
+ *  Returns:
+ *
+ *  Exceptions:			NoSuchProperty
+ *
+ *  Example:
+ *
+ */
+HalManagerProxy::~HalManagerProxy() {
+}
+
+
+/** 
+ *  get_property:
+ *  @key:
+ *
+ *  Returns:
+ *
+ *  Exceptions:			NoSuchProperty
+ *
+ *  Example:
+ *
+ */
+VectorString HalManagerProxy::get_all_devices() {
+
+	DBus::CallMessage call;
 	call.member("GetAllDevices");
 
 	DBus::Message reply = invoke_method(call);
 	DBus::MessageIter it = reply.reader();
 
+	std::vector< DBus::String > udis;
 	it >> udis;
 	return udis;
 }
 
-void HalManagerProxy::DeviceAddedCb( const DBus::SignalMessage& sig )
-{
+
+/** 
+ *  get_property:
+ *  @key:
+ *
+ *  Returns:
+ *
+ *  Exceptions:			NoSuchProperty
+ *
+ *  Example:
+ *
+ */
+void HalManagerProxy::on_device_added(const DBus::SignalMessage & sig) {
 	DBus::MessageIter it = sig.reader();
 	DBus::String devname;
 
@@ -122,8 +154,20 @@ void HalManagerProxy::DeviceAddedCb( const DBus::SignalMessage& sig )
 	std::cout << "added device " << udi << std::endl;
 }
 
-void HalManagerProxy::DeviceRemovedCb( const DBus::SignalMessage& sig )
-{
+
+/** 
+ *  get_property:
+ *  @key:
+ *
+ *  Returns:
+ *
+ *  Exceptions:			NoSuchProperty
+ *
+ *  Example:
+ *
+ */
+void HalManagerProxy::on_device_removed(const DBus::SignalMessage & sig) {
+
 	DBus::MessageIter it = sig.reader();
 	DBus::String devname;
 

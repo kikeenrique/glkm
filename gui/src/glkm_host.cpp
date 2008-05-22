@@ -17,30 +17,16 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <signal.h>
 
 #include "glkm_host.hpp"
 #include "debug.hpp"
 
 
-void Host::niam( int sig )
-{
-		Host::dispatcher.leave();
+Host::Host() {
+	//Null
 }
 
-Host::Host()
-{
-//		signal(SIGTERM, sigc::mem_fun( *this, &Host::niam) );
-//        signal(SIGINT, niam);
-   
-        DBus::default_dispatcher = &dispatcher;
-        DBus::Connection conn = DBus::Connection::SystemBus();
-        HalManagerProxy hal(conn); 
-        dispatcher.enter();
-}
-
-Host::~Host()
-{
+Host::~Host(){
 	//Null
 }
 

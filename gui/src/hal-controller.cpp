@@ -17,18 +17,27 @@
  */
 
 #include "hal-controller.hpp"
-#include <signal.h>
+//#include "hal-manager-proxy.hpp"
+#include "glkm_hal_manager_proxy.hpp"
+//#include <signal.h>
+
+bool HalController::update_processes() {
+}
+
+void HalController::update_process_info() {
+}
 
 void HalController::niam( int sig )
 {
-	_dispatcher.leave();
+//	_dispatcher.leave();
 }
-
-//		signal(SIGTERM, sigc::mem_fun( *this, &Host::niam) );
-//        signal(SIGINT, niam);
+/*
+	  signal(SIGTERM, sigc::mem_fun( *this, &Host::niam) );
+        signal(SIGINT, niam);
    
 	DBus::default_dispatcher = &_dispatcher;
 	dispatcher.attach(NULL);
 	_connection = DBus::Connection::SystemBus();
 	_hal_manager(_connection);
 	_dispatcher.enter();
+*/

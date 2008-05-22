@@ -17,26 +17,41 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GLKM_PROCCES_HPP
-#define GLKM_PROCCES_HPP
+#ifndef _PROCCES_HPP
+#define _PROCCES_HPP
+
+#include <vector>
+#include <glibmm/ustring.h>
 
 #include "config.h"
-#include <gtkmm.h>
+
+class File;
 
 class Procces
 {
-public:
+  public:
 	Procces();
-	~Procces();
-	int set_name(const Glib::ustring& name);
-	int set_pid(int pid);
-	
-protected:
+	virtual ~Process();
+	inline const int get__PID() const;
+	void set__PPID(int value);
+	inline const Glib::ustring get__name() const;
 
-private:
-	Glib::ustring m_name;
-	int m_pid;
+  protected:
+	int _PID;
+	int _PPID;
+	Glib::ustring _name;
+	
+	vector<File *> files_opened;
+	
 	
 };
 
-#endif // GLKM_PROCCES_HPP
+inline const int Process::get__PID() const {
+  return _PID;
+}
+
+inline const Glib::ustring Process::get__name() const {
+  return _name;
+}
+
+#endif // _PROCCES_HPP

@@ -36,11 +36,8 @@ public:
 protected:
 
 private:
-
-	void niam( int sig );
 	
 	Glib::ustring hostname;
-	DBus::BusDispatcher dispatcher;
 //	Glib:: hostip;
 };
 

@@ -17,16 +17,20 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <dbusmm/util.h>
 
 #include "glkm_host.hpp"
+#include "process.hpp"
+#include "filesystem.hpp"
+#include "hal-controler.hpp"
+
 #include "debug.hpp"
 
-
 Host::Host() {
-	//Null
 }
 
-Host::~Host(){
-	//Null
+Host::~Host() {
 }
 
+Process & Host::get_process(const int & PID) {
+}

@@ -17,28 +17,36 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GLKM_HOST_HPP
-#define GLKM_HOST_HPP
 
-#include <gtkmm.h>
+#ifndef _HOST_HPP
+#define _HOST_HPP
 
-#include "config.h"
-#include "glkm_hal_manager_proxy.hpp"
+#include <glibmm/ustring.h>
+#include <map>
+
+class Process;
+class Filesystem;
+namespace DBus { template<class T> class RefPtr; } 
+class HalController;
+
+class Host {
+  public:
+    Host();
+
+    virtual ~Host();
+
+    Process & get_process(const int & PID);
 
 
-class Host
-{
-public:
-	Host();
-	~Host();
-//	Process get_process();
-	
-protected:
+  protected:
+    Glib::ustring hostname;
 
-private:
-	
-	Glib::ustring hostname;
-//	Glib:: hostip;
+    Filesystem * ;
+
+    map<int, RefPtr<Process> > task_list;
+
+    HalController * hal_controler;
+
 };
 
-#endif // GLKM_HOST_HPP
+#endif // _HOST_HPP

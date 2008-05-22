@@ -73,5 +73,10 @@ MEM_OFF
 as documented in Thinking in C++ by Bruce Ekel
 </comment>
     </item>
+    <item>
+      <attribute id="1209428846" priority="0" done="0" start_date="733161" enddate="99999999" notify="0" endtime="-60" last_edited="1209428846"/>
+      <summary>Add doc graphics from SSII topic </summary>
+      <comment>Take a look to old documentation about SSII</comment>
+    </item>
   </category>
 </gtodo>

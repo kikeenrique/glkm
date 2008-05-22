@@ -1,7 +1,7 @@
 format 56
-"view manager" // glkm::view manager
-  revision 5
-  modified_by 19 "enrgar"
+"glkm-view" // glkm::glkm-view
+  revision 15
+  modified_by 8 "enrgar"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -28,7 +28,7 @@ format 56
   
   cpp_h_dir "src-glkm/"
   cpp_src_dir "src-glkm/"
-  classview 128092 "view classes"
+  classview 128092 "glkm-view class view"
     //class diagram settings
     draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
     //collaboration diagram settings
@@ -44,10 +44,55 @@ format 56
     //activity diagram settings
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default
-    associated_deployment_view deploymentview_ref 128092 // view deployment
-    classdiagram 128092 "class diagram view"
+    associated_deployment_view deploymentview_ref 128092 // glkm-view deployment view
+    classdiagram 128092 "glkm-view class diagram"
       draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-      size A4
+      size A3
+    end
+
+    class 133070 "RefPtrGladeXml"
+      visibility protected stereotype "typedef" base_type class_ref 129614 // RefPtr
+      nactuals 1
+      actual class class_ref 129614 // RefPtr
+        rank 0 value class_ref 132942 // Xml
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      associated_diagram classdiagram_ref 128092 // glkm-view class diagram
+      classrelation 128261 // <realization>
+	relation 128261 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128261 // <realization>
+	  b parent class_ref 129614 // RefPtr
+      end
+    end
+
+    class 128005 "RefPtrTextBuffer"
+      visibility package stereotype "typedef" base_type class_ref 129614 // RefPtr
+      nactuals 1
+      actual class class_ref 129614 // RefPtr
+        rank 0 value class_ref 128133 // TextBuffer
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128389 // <realization>
+	relation 128389 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128389 // <realization>
+	  b parent class_ref 129614 // RefPtr
+      end
     end
 
     class 128092 "MainWindow"
@@ -62,32 +107,239 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      classrelation 128476 // <association>
-	relation_ref 128220 // <association>
+      classrelation 128590 // <generalisation>
+	relation 128590 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128590 // <generalisation>
+	  b parent class_ref 128718 // Window
       end
 
-      classrelation 128604 // <dependency>
-	relation 128348 -_->
-	  a default
-	    cpp default "#include in source"
-	    classrelation_ref 128604 // <dependency>
-	  b parent class_ref 128348 // StatusBar
+      operation 128040 "MainWindow"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
       end
 
-      classrelation 128732 // <dependency>
-	relation 128476 -_->
-	  a default
-	    cpp default "#include in source"
-	    classrelation_ref 128732 // <dependency>
-	  b parent class_ref 128476 // TreeViewHost
+      operation 128168 "~MainWindow"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
       end
 
-      classrelation 128860 // <dependency>
-	relation 128604 -_->
-	  a default
-	    cpp default "#include in source"
-	    classrelation_ref 128860 // <dependency>
-	  b parent class_ref 128220 // AboutDialog
+      attribute 128168 "_refGlademmXml"
+	protected type class_ref 133070 // RefPtrGladeXml
+	multiplicity "1"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 128296 "_ContextId"
+	protected explicit_type "uint"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 129102 "on_menuitem_quit_activated"
+	protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129230 "on_menuitem_viewtoolbar_toggled"
+	protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129358 "on_menuitem_about_activated"
+	protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129486 "on_clicked_toolbar_connect"
+	protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128008 "on_clicked_toolbar_refresh"
+	protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      classrelation 128259 // _pMenuItemQuit (<unidirectional association>)
+	relation 128259 --->
+	  a role_name "_pMenuItemQuit" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128259 // _pMenuItemQuit (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 132430 // ImageMenuItem
+      end
+
+      classrelation 128387 // _pMenuItemCopy (<unidirectional association>)
+	relation 128387 --->
+	  a role_name "_pMenuItemCopy" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128387 // _pMenuItemCopy (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 132430 // ImageMenuItem
+      end
+
+      classrelation 128515 // _pMenuItemCut (<unidirectional association>)
+	relation 128515 --->
+	  a role_name "_pMenuItemCut" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128515 // _pMenuItemCut (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 132430 // ImageMenuItem
+      end
+
+      classrelation 129064 // _pMenuItemDelete (<unidirectional association>)
+	relation 129064 --->
+	  a role_name "_pMenuItemDelete" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 129064 // _pMenuItemDelete (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 132430 // ImageMenuItem
+      end
+
+      classrelation 129448 // _pMenuItemViewToolbar (<unidirectional association>)
+	relation 129448 --->
+	  a role_name "_pMenuItemViewToolbar" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 129448 // _pMenuItemViewToolbar (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 128296 // CheckMenuItem
+      end
+
+      classrelation 128643 // _pMenuItemAbout (<unidirectional association>)
+	relation 128643 --->
+	  a role_name "_pMenuItemAbout" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128643 // _pMenuItemAbout (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 132430 // ImageMenuItem
+      end
+
+      classrelation 133710 // _pTreeViewHost (<unidirectional association>)
+	relation 133710 --->
+	  a role_name "_pTreeViewHost" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 133710 // _pTreeViewHost (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 128476 // TreeViewHost
+      end
+
+      classrelation 133582 // _pStatusBar (<unidirectional association>)
+	relation 133582 --->
+	  a role_name "_pStatusBar" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 133582 // _pStatusBar (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 128348 // StatusBar
+      end
+
+      classrelation 128552 // _pToolButton_Connect (<unidirectional association>)
+	relation 128552 --->
+	  a role_name "_pToolButton_Connect" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128552 // _pToolButton_Connect (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 128040 // ToolButton
+      end
+
+      classrelation 128168 // _pToolbar (<unidirectional association>)
+	relation 128168 --->
+	  a role_name "_pToolbar" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128168 // _pToolbar (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 132302 // Toolbar
+      end
+
+      classrelation 133454 // _pAboutDialog (<unidirectional association>)
+	relation 133454 --->
+	  a role_name "_pAboutDialog" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 133454 // _pAboutDialog (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 128220 // AboutDialog
+      end
+
+      classrelation 128136 // _pToolButton_Refresh (<unidirectional association>)
+	relation 128136 --->
+	  a role_name "_pToolButton_Refresh" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128136 // _pToolButton_Refresh (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 128040 // ToolButton
       end
     end
 
@@ -103,6 +355,101 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
+      classrelation 128718 // <generalisation>
+	relation 128718 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128718 // <generalisation>
+	  b parent class_ref 128846 // AboutDialog
+      end
+
+      operation 129614 "AboutDialog"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "cobject" explicit_type "BaseObjectType"
+	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129742 "~AboutDialog"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 130382 "on_button_quit"
+	protected explicit_return_type "void"
+	nparams 1
+	  param in name "response_id" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 130510 "on_activate_link_url"
+	protected explicit_return_type "void"
+	nparams 2
+	  param in name "about_dialog" type class_ref 128846 // AboutDialog
+	  param in name "link" type class_ref 132814 // ustring
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 130766 "on_activate_email_url"
+	protected explicit_return_type "void"
+	nparams 2
+	  param in name "about_dialog" type class_ref 128846 // AboutDialog
+	  param in name "email" type class_ref 132814 // ustring
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 128206 "_refGlademmXml"
+	protected type class_ref 133070 // RefPtrGladeXml
+	multiplicity "1"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
     end
 
     class 128348 "StatusBar"
@@ -117,6 +464,122 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
+      classrelation 128846 // <generalisation>
+	relation 128846 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128846 // <generalisation>
+	  b parent class_ref 128974 // StatusBar
+      end
+
+      operation 130894 "StatusBar"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "cobject" explicit_type "BaseObjectType"
+	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129998 "~StatusBar"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131022 "push_item"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "text" type class_ref 132814 // ustring
+	  param in name "context_id" explicit_type "uint"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131150 "push_item"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "context_id" explicit_type "uint"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131278 "pop_item"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "context_id" explicit_type "uint"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 128334 "_refGlademmXml"
+	protected type class_ref 133070 // RefPtrGladeXml
+	multiplicity "1"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 128462 "_context_id"
+	protected explicit_type "uint"
+	multiplicity "1"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 128590 "_count"
+	protected explicit_type "uint"
+	multiplicity "1"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
     end
 
     class 128476 "TreeViewHost"
@@ -138,14 +601,445 @@ ${inlines}
 	    classrelation_ref 128988 // <dependency>
 	  b parent class_ref 128092 // MainWindow
       end
+
+      classrelation 128974 // <generalisation>
+	relation 128974 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128974 // <generalisation>
+	  b parent class_ref 129102 // TreeView
+      end
+
+      operation 131406 "TreeViewHost"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "cobject" explicit_type "BaseObjectType"
+	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 130254 "~TreeViewHost"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 128718 "_refGlademmXml"
+	protected type class_ref 133070 // RefPtrGladeXml
+	multiplicity "1"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 128296 "on_treeview_row_activated"
+	cpp_virtual protected explicit_return_type "void"
+	nparams 2
+	  param in name "path" type class_ref 128424 // Path
+	  param in name "column" type class_ref 128680 // TreeViewColumn
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131790 "on_selected_row_callback"
+	protected explicit_return_type "void"
+	nparams 1
+	  param in name "iter" type class_ref 133838 // iterator
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131662 "on_button_press_event"
+	cpp_virtual protected explicit_return_type "bool"
+	nparams 1
+	  param in name "ev" explicit_type "GdkEventButton"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131534 "on_menu_file_popup_generic"
+	cpp_virtual protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128424 "fill_model"
+	protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      class 128936 "ModelColumns"
+	visibility protected 
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	classrelation 129704 // <generalisation>
+	  relation 129704 ---|>
+	    a public
+	      cpp default "${type}"
+	      classrelation_ref 129704 // <generalisation>
+	    b parent class_ref 129064 // ColumnRecord
+	end
+
+	operation 128021 "ModelColumns"
+	  public explicit_return_type ""
+	  nparams 0
+	  cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	  cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	  
+	  
+	  
+	  
+	end
+
+	attribute 128021 "col_pid"
+	  public type class_ref 129576 // TreeModelColumnInt
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	end
+
+	attribute 128149 "col_name"
+	  public type class_ref 128021 // TreeModelColumnUstring
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	end
+      end
+
+      attribute 128277 "_modelColumns"
+	protected type class_ref 128936 // ModelColumns
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 128003 "_refTreeStore"
+	protected type class_ref 128003 // RefPtrTreeStore
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 128131 "_refTreeSelection"
+	protected type class_ref 128131 // RefPtrTreeSelection
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 128405 // _pMenu_Popup_TreeView_Host (<unidirectional association>)
+	relation 128405 --->
+	  a role_name "_pMenu_Popup_TreeView_Host" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128405 // _pMenu_Popup_TreeView_Host (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 128149 // Menu
+      end
+
+      classrelation 128533 // _pMenuitem_Refresh (<unidirectional association>)
+	relation 128533 --->
+	  a role_name "_pMenuitem_Refresh" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128533 // _pMenuitem_Refresh (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 132686 // MenuItem
+      end
+    end
+
+    class 128102 "TextViewDebug"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128102 // <generalisation>
+	relation 128102 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128102 // <generalisation>
+	  b parent class_ref 131534 // TextView
+      end
+
+      operation 128261 "TextViewDebug"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "cobject" explicit_type "BaseObjectType"
+	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128133 "~TextViewDebug"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 128005 "_refGlademmXml"
+	protected type class_ref 133070 // RefPtrGladeXml
+	multiplicity "1"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 128102 "debug_print"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "text" type class_ref 132814 // ustring
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128230 "debug_print"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "text" explicit_type "char"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128389 "fill_buffer"
+	cpp_virtual protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 128040 "_refTextBuffer"
+	protected type class_ref 128005 // RefPtrTextBuffer
+	multiplicity "1"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 129576 "TreeModelColumnInt"
+      visibility package stereotype "typedef" base_type class_ref 129320 // TreeModelColumn
+      nactuals 1
+      actual class class_ref 129320 // TreeModelColumn
+        rank 0 explicit_value "int"
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 129960 // <realization>
+	relation 129960 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129960 // <realization>
+	  b parent class_ref 129320 // TreeModelColumn
+      end
+    end
+
+    class 128021 "TreeModelColumnUstring"
+      visibility package stereotype "typedef" base_type class_ref 129320 // TreeModelColumn
+      nactuals 1
+      actual class class_ref 129320 // TreeModelColumn
+        rank 0 value class_ref 132814 // ustring
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128021 // <realization>
+	relation 128021 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128021 // <realization>
+	  b parent class_ref 129320 // TreeModelColumn
+      end
+    end
+
+    class 128003 "RefPtrTreeStore"
+      visibility package stereotype "typedef" base_type class_ref 129614 // RefPtr
+      nactuals 1
+      actual class class_ref 129614 // RefPtr
+        rank 0 value class_ref 129358 // TreeStore
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128003 // <realization>
+	relation 128003 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128003 // <realization>
+	  b parent class_ref 129614 // RefPtr
+      end
+    end
+
+    class 128131 "RefPtrTreeSelection"
+      visibility package stereotype "typedef" base_type class_ref 129614 // RefPtr
+      nactuals 1
+      actual class class_ref 129614 // RefPtr
+        rank 0 value class_ref 129486 // TreeSelection
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128131 // <realization>
+	relation 128131 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128131 // <realization>
+	  b parent class_ref 129614 // RefPtr
+      end
     end
   end
 
-  deploymentview 128092 "view deployment"
+  deploymentview 128092 "glkm-view deployment view"
     //deployment diagram settings
     package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
     draw_component_as_icon default show_component_req_prov default show_component_rea default
-    deploymentdiagram 128220 "view deployment diagram"
+    deploymentdiagram 128220 "glkm-view deployment diagram"
       package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
       draw_component_as_icon default show_component_req_prov default show_component_rea default
       size A4
@@ -153,7 +1047,26 @@ ${inlines}
 
     artifact 128092 "mainwindow"
       stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
 #define ${NAMESPACE}_${NAME}_HPP
 
 ${comment}
@@ -163,9 +1076,28 @@ ${namespace_start}
 ${definition}
 ${namespace_end}
 
-#endif ${NAMESPACE}_${NAME}_HPP
+#endif // ${NAMESPACE}_${NAME}_HPP
 "
-      cpp_src "${comment}
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
 ${includes}
 ${namespace_start}
 ${members}
@@ -191,7 +1123,26 @@ ${namespace_end}"
 
     artifact 128476 "aboutdialog"
       stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
 #define ${NAMESPACE}_${NAME}_HPP
 
 ${comment}
@@ -201,9 +1152,28 @@ ${namespace_start}
 ${definition}
 ${namespace_end}
 
-#endif ${NAMESPACE}_${NAME}_HPP
+#endif // ${NAMESPACE}_${NAME}_HPP
 "
-      cpp_src "${comment}
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
 ${includes}
 ${namespace_start}
 ${members}
@@ -215,7 +1185,26 @@ ${namespace_end}"
 
     artifact 128220 "statusbar"
       stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
 #define ${NAMESPACE}_${NAME}_HPP
 
 ${comment}
@@ -225,9 +1214,28 @@ ${namespace_start}
 ${definition}
 ${namespace_end}
 
-#endif ${NAMESPACE}_${NAME}_HPP
+#endif // ${NAMESPACE}_${NAME}_HPP
 "
-      cpp_src "${comment}
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
 ${includes}
 ${namespace_start}
 ${members}
@@ -239,7 +1247,26 @@ ${namespace_end}"
 
     artifact 128348 "treeviewhost"
       stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
 #define ${NAMESPACE}_${NAME}_HPP
 
 ${comment}
@@ -249,15 +1276,96 @@ ${namespace_start}
 ${definition}
 ${namespace_end}
 
-#endif ${NAMESPACE}_${NAME}_HPP
+#endif // ${NAMESPACE}_${NAME}_HPP
 "
-      cpp_src "${comment}
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
 ${includes}
 ${namespace_start}
 ${members}
 ${namespace_end}"
       associated_classes
 	class_ref 128476 // TreeViewHost
+      end
+    end
+
+    artifact 128040 "textviewdebug"
+      stereotype "source"
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif // ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 128102 // TextViewDebug
       end
     end
   end

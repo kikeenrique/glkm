@@ -1,12 +1,16 @@
 // "a type" "needed cpp_includes"
-"vector" "#include <vector>
+"vector" "std::vector
+#include <vector>
 "
 
-"list" "#include <list>
+"list" "std::list
+#include <list>
 "
 
-"map" "#include <map>
+"map" "std::map
+#include <map>
 "
 
-"string" "#include <string>"
+"string" "std::string
+#include <string>"
 

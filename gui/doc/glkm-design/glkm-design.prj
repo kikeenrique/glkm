@@ -1,7 +1,7 @@
 format 56
 "glkm-design"
-  revision 14
-  modified_by 19 "enrgar"
+  revision 20
+  modified_by 40 "enrgar"
   cpp_root_dir "./"
   java_root_dir "./"
   php_root_dir "./"
@@ -13,7 +13,7 @@ format 56
   // class settings
   default_attribute_visibility protected default_relation_visibility protected default_operation_visibility public
   //class diagram settings
-  draw_all_relations yes hide_attributes no hide_operations no show_members_full_definition yes show_members_visibility yes show_members_stereotype yes show_members_multiplicity yes show_members_initialization yes member_max_width 127 show_parameter_dir yes show_parameter_name yes package_name_in_tab yes class_drawing_mode class drawing_language uml show_context_mode no auto_label_position yes show_infonote no shadow yes
+  draw_all_relations yes hide_attributes no hide_operations no show_members_full_definition yes show_members_visibility yes show_members_stereotype yes show_members_multiplicity yes show_members_initialization yes member_max_width 127 show_parameter_dir yes show_parameter_name yes package_name_in_tab yes class_drawing_mode class drawing_language uml show_context_mode namespace auto_label_position yes show_infonote no shadow yes
   //use case diagram settings
   package_name_in_tab no show_context no auto_label_position yes draw_all_relations yes class_drawing_mode actor shadow yes
   //sequence diagram settings
@@ -45,4 +45,16 @@ format 56
   package_ref 130365 // glkm
 
   package_ref 130493 // dbusmm
+
+  package_ref 128057 // std
+
+  package_ref 128206 // gtkmm
+
+  package_ref 128334 // glibmm
+
+  package_ref 128462 // sigc
+
+  package_ref 128590 // atkmm
+
+  package_ref 128718 // glademm
 end

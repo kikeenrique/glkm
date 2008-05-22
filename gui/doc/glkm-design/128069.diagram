@@ -26,7 +26,7 @@ artifactcanvas 129129 artifact_ref 129129 // util
   xyz 57 418 2005
 artifactcanvas 129257 artifact_ref 129257 // message
   xyz 453 300 2000
-artifactcanvas 129385 artifact_ref 129385 // connection_private
+artifactcanvas 129385 artifact_ref 129385 // connection
   xyz 453 178 2000
 artifactcanvas 129513 artifact_ref 129513 // message_private
   xyz 453 238 2000

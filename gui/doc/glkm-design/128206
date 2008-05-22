@@ -1,0 +1,1106 @@
+format 56
+"gtkmm" // gtkmm
+  revision 8
+  modified_by 8 "enrgar"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default
+  
+  stereotype "library"
+  cpp_namespace "Gtk"
+  classview 128206 "gtkmm class view"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default
+    classdiagram 128334 "gtkmm class diagram"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+      size A2
+    end
+
+    class 130766 "Bin"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130510 // <generalisation>
+	relation 130510 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130510 // <generalisation>
+	  b parent class_ref 130638 // Container
+      end
+    end
+
+    class 128590 "Main"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/main.h>"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 129358 // <generalisation>
+	relation 129358 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129358 // <generalisation>
+	  b parent class_ref 129742 // trackable
+      end
+
+      operation 128136 "Main"
+	public explicit_return_type "Main (int& argc, char**& argv, bool set_locale=true)"
+	nparams 3
+	  param in name "argc" explicit_type "int"
+	  param in name "argv" explicit_type "char **"
+	  param in name "set_locale" explicit_type "bool"
+	    defaultvalue "true"
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} & ${p0}, ${t1} & ${p1}, ${t2} ${p2}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128264 "Main"
+	public explicit_return_type "Main (int& argc, char**& argv, bool set_locale=true)"
+	nparams 3
+	  param in name "argc" explicit_type "int"
+	  param in name "argv" explicit_type "char **"
+	  param in name "set_locale" explicit_type "bool"
+	    defaultvalue "true"
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, ${t1} * ${p1}, ${t2} ${p2}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128392 "Main"
+	public explicit_return_type "Main (int& argc, char**& argv, bool set_locale=true)"
+	nparams 3
+	  param in name "argc" explicit_type "int"
+	  param in name "argv" explicit_type "char *"
+	  param in name "option_context" type class_ref 129160 // OptionContext
+	    defaultvalue "true"
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} & ${p0}, ${t1} *& ${p1}, ${t2} & ${p2}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 128718 "Window"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/window.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130638 // <generalisation>
+	relation 130638 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130638 // <generalisation>
+	  b parent class_ref 130766 // Bin
+      end
+    end
+
+    class 128846 "AboutDialog"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/${name}.h>"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131150 // <generalisation>
+	relation 131150 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131150 // <generalisation>
+	  b parent class_ref 131022 // Dialog
+      end
+    end
+
+    class 128974 "StatusBar"
+      visibility package 
+      cpp_external cpp_decl "${namespace}::${name}
+
+#include <gtkmm/${name}.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131918 // <generalisation>
+	relation 131918 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131918 // <generalisation>
+	  b parent class_ref 131662 // HBox
+      end
+    end
+
+    class 129102 "TreeView"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/treeview.h>"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131534 // <generalisation>
+	relation 131534 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131534 // <generalisation>
+	  b parent class_ref 130638 // Container
+      end
+    end
+
+    class 129230 "TreeModel"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/treemodel.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 132686 // <generalisation>
+	relation 132686 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 132686 // <generalisation>
+	  b parent class_ref 130126 // Interface
+      end
+
+      class 133198 "Children"
+	visibility public stereotype "typedef" explicit_base_type "TreeNodeChildren"
+	cpp_decl "${comment}typedef ${type} ${name};
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl "${comment}typedef ${type} ${name};
+"
+	explicit_switch_type ""
+	
+      end
+
+      class 133838 "iterator"
+	visibility public stereotype "typedef" explicit_base_type "Children::iterator"
+	cpp_decl "${comment}typedef ${type} ${name};
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+      end
+
+      class 128424 "Path"
+	visibility protected stereotype "typedef" base_type class_ref 128552 // TreePath
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+      end
+
+      class 129064 "ColumnRecord"
+	visibility package stereotype "typedef" base_type class_ref 129192 // TreeModelColumnRecord
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+      end
+    end
+
+    class 129358 "TreeStore"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/treestore.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 132302 // <generalisation>
+	relation 132302 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 132302 // <generalisation>
+	  b parent class_ref 129998 // Object
+      end
+
+      classrelation 132430 // <generalisation>
+	relation 132430 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 132430 // <generalisation>
+	  b parent class_ref 132046 // TreeSortable
+      end
+
+      classrelation 130088 // <generalisation>
+	relation 130088 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130088 // <generalisation>
+	  b parent class_ref 129230 // TreeModel
+      end
+
+      classrelation 130472 // <generalisation>
+	relation 130472 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130472 // <generalisation>
+	  b parent class_ref 129832 // TreeDragDest
+      end
+
+      classrelation 130600 // <generalisation>
+	relation 130600 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130600 // <generalisation>
+	  b parent class_ref 129704 // TreeDragSource
+      end
+    end
+
+    class 129486 "TreeSelection"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/treeselection.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 132814 // <generalisation>
+	relation 132814 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 132814 // <generalisation>
+	  b parent class_ref 129998 // Object
+      end
+    end
+
+    class 130382 "Widget"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130126 // <generalisation>
+	relation 130126 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130126 // <generalisation>
+	  b parent class_ref 130510 // Object
+      end
+
+      classrelation 130254 // <generalisation>
+	relation 130254 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130254 // <generalisation>
+	  b parent class_ref 130254 // Implementor
+      end
+    end
+
+    class 130510 "Object"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 129870 // <generalisation>
+	relation 129870 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129870 // <generalisation>
+	  b parent class_ref 129998 // Object
+      end
+    end
+
+    class 130638 "Container"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130382 // <generalisation>
+	relation 130382 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130382 // <generalisation>
+	  b parent class_ref 130382 // Widget
+      end
+    end
+
+    class 130894 "Assistant"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130766 // <generalisation>
+	relation 130766 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130766 // <generalisation>
+	  b parent class_ref 128718 // Window
+      end
+    end
+
+    class 131022 "Dialog"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130894 // <generalisation>
+	relation 130894 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130894 // <generalisation>
+	  b parent class_ref 128718 // Window
+      end
+    end
+
+    class 131150 "Plug"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131022 // <generalisation>
+	relation 131022 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131022 // <generalisation>
+	  b parent class_ref 128718 // Window
+      end
+    end
+
+    class 131278 "FileChooserDialog"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131278 // <generalisation>
+	relation 131278 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131278 // <generalisation>
+	  b parent class_ref 131022 // Dialog
+      end
+    end
+
+    class 131406 "Box"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131406 // <generalisation>
+	relation 131406 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131406 // <generalisation>
+	  b parent class_ref 130638 // Container
+      end
+    end
+
+    class 131534 "TextView"
+      visibility package 
+      cpp_external cpp_decl "${namespace}::${name}
+
+#include <gtkmm/${name}.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131662 // <generalisation>
+	relation 131662 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131662 // <generalisation>
+	  b parent class_ref 130638 // Container
+      end
+    end
+
+    class 131662 "HBox"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131790 // <generalisation>
+	relation 131790 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 131790 // <generalisation>
+	  b parent class_ref 131406 // Box
+      end
+    end
+
+    class 131790 "VBox"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 132046 // <generalisation>
+	relation 132046 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 132046 // <generalisation>
+	  b parent class_ref 131406 // Box
+      end
+    end
+
+    class 131918 "ButtonBox"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 132174 // <generalisation>
+	relation 132174 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 132174 // <generalisation>
+	  b parent class_ref 131406 // Box
+      end
+    end
+
+    class 132046 "TreeSortable"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 132558 // <generalisation>
+	relation 132558 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 132558 // <generalisation>
+	  b parent class_ref 130126 // Interface
+      end
+    end
+
+    class 132174 "Selection"
+      visibility package stereotype "typedef" base_type class_ref 129486 // TreeSelection
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}typedef ${type} ${name};
+"
+      explicit_switch_type ""
+      
+    end
+
+    class 132302 "Toolbar"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/toolbar.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 132942 // <generalisation>
+	relation 132942 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 132942 // <generalisation>
+	  b parent class_ref 130638 // Container
+      end
+    end
+
+    class 132430 "ImageMenuItem"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/imagemenuitem.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 133326 // <generalisation>
+	relation 133326 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 133326 // <generalisation>
+	  b parent class_ref 132686 // MenuItem
+      end
+    end
+
+    class 132558 "Item"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 133070 // <generalisation>
+	relation 133070 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 133070 // <generalisation>
+	  b parent class_ref 130766 // Bin
+      end
+    end
+
+    class 133326 "TreeNodeChildren"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 134094 // <generalisation>
+	relation 134094 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 134094 // <generalisation>
+	  b parent class_ref 133454 // TreeIter
+      end
+
+      class 133710 "iterator"
+	visibility public stereotype "typedef" base_type class_ref 133454 // TreeIter
+	cpp_decl "${comment}typedef ${type} ${name};
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+      end
+    end
+
+    class 133454 "TreeIter"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 134222 // <generalisation>
+	relation 134222 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 134222 // <generalisation>
+	  b parent class_ref 133582 // TreeIterBase
+      end
+    end
+
+    class 133582 "TreeIterBase"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 128133 "TextBuffer"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/textbuffer.h>"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128517 // <generalisation>
+	relation 128517 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128517 // <generalisation>
+	  b parent class_ref 129998 // Object
+      end
+    end
+
+    class 128040 "ToolButton"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/toolbutton.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128424 // <generalisation>
+	relation 128424 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128424 // <generalisation>
+	  b parent class_ref 128168 // ToolItem
+      end
+    end
+
+    class 128168 "ToolItem"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128296 // <generalisation>
+	relation 128296 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128296 // <generalisation>
+	  b parent class_ref 130766 // Bin
+      end
+    end
+
+    class 128296 "CheckMenuItem"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/checkmenuitem.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 129320 // <generalisation>
+	relation 129320 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129320 // <generalisation>
+	  b parent class_ref 132686 // MenuItem
+      end
+    end
+
+    class 128552 "TreePath"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 128680 "TreeViewColumn"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/treeviewcolumn.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 129576 // <generalisation>
+	relation 129576 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129576 // <generalisation>
+	  b parent class_ref 130510 // Object
+      end
+    end
+
+    class 129192 "TreeModelColumnRecord"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 129320 "TreeModelColumn"
+      visibility package 
+      nformals 1
+      formal name "T" type "class" explicit_default_value ""
+        explicit_extends ""
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/treemodelcolumn.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 129832 // <generalisation>
+	relation 129832 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129832 // <generalisation>
+	  b parent class_ref 129448 // TreeModelColumnBase
+      end
+    end
+
+    class 129448 "TreeModelColumnBase"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130728 // <dependency>
+	relation 130728 -_->
+	  stereotype "friend"
+	  a package
+	    cpp default "${type}"
+	    classrelation_ref 130728 // <dependency>
+	  b parent class_ref 129192 // TreeModelColumnRecord
+      end
+    end
+
+    class 129704 "TreeDragSource"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130216 // <generalisation>
+	relation 130216 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130216 // <generalisation>
+	  b parent class_ref 130126 // Interface
+      end
+    end
+
+    class 129832 "TreeDragDest"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130344 // <generalisation>
+	relation 130344 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130344 // <generalisation>
+	  b parent class_ref 130126 // Interface
+      end
+    end
+
+    class 128149 "Menu"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/menu.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128149 // <generalisation>
+	relation 128149 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128149 // <generalisation>
+	  b parent class_ref 128277 // MenuShell
+      end
+    end
+
+    class 132686 "MenuItem"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/menuitem.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 133198 // <generalisation>
+	relation 133198 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 133198 // <generalisation>
+	  b parent class_ref 132558 // Item
+      end
+    end
+
+    class 128277 "MenuShell"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128277 // <generalisation>
+	relation 128277 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128277 // <generalisation>
+	  b parent class_ref 130638 // Container
+      end
+    end
+
+    class 128008 "Notebook"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128008 // <generalisation>
+	relation 128008 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128008 // <generalisation>
+	  b parent class_ref 130638 // Container
+      end
+    end
+  end
+end

@@ -1,7 +1,7 @@
 format 56
-"model manager" // glkm::model manager
-  revision 10
-  modified_by 19 "enrgar"
+"glkm-model" // glkm::glkm-model
+  revision 20
+  modified_by 8 "enrgar"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -29,25 +29,8 @@ format 56
   cpp_h_dir "src-glkm/"
   cpp_src_dir "src-glkm/"
   ncouples 1
-  key "license" value "/*
- * gui
- * Copyright (C) Enrique García Álvarez 2007 <kike+glkm@eldemonionegro.com>
- * 
- * gui is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * gui is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License along
- * with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-"
-  classview 128121 "model clases"
+  key "" value ""
+  classview 128121 "glkm-model class view"
     //class diagram settings
     draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
     //collaboration diagram settings
@@ -63,8 +46,8 @@ format 56
     //activity diagram settings
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default
-    associated_deployment_view deploymentview_ref 128067 // model deployment
-    classdiagram 128121 "class diagram model"
+    associated_deployment_view deploymentview_ref 128067 // glkm-model deployment view
+    classdiagram 128121 "glkm-model class diagram"
       draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
       size A3
     end
@@ -81,28 +64,65 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      classrelation 128092 // <association>
-	relation 128092 ----
-	  a role_name "" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+      classrelation 128348 // main_window (<directional composition>)
+	relation 128220 *-->
+	  a role_name "main_window" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
-	    classrelation_ref 128092 // <association>
-	  b role_name "" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 128220 // <association>
+	    classrelation_ref 128348 // main_window (<directional composition>)
+	  b multiplicity "1" parent class_ref 128092 // MainWindow
       end
 
-      classrelation 128348 // <association>
-	relation 128220 ----
-	  a role_name "" protected
+      classrelation 129288 // hosts (<directional composition>)
+	relation 129288 *-->
+	  stereotype "vector"
+	  a role_name "hosts" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 129288 // hosts (<directional composition>)
+	  b multiplicity "*" parent class_ref 128121 // Host
+      end
+
+      extra_member 128008 "#ifdef"
+	
+	cpp "#ifdef DEBUG
+" "#ifdef DEBUG
+"
+	java ""
+	php ""
+	python ""
+	idl ""
+      end
+
+      classrelation 128040 // pDebug (<unidirectional association>)
+	relation 128040 --->
+	  a role_name "pDebug" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128348 // <association>
-	  b role_name "" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    classrelation_ref 128040 // pDebug (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 128102 // TextViewDebug
+      end
+
+      extra_member 128136 "#endif"
+	
+	cpp "#endif
+" "#endif
 "
-	    classrelation_ref 128476 // <association>
+	java ""
+	php ""
+	python ""
+	idl ""
+      end
+
+      attribute 128008 "kit"
+	protected type class_ref 128590 // Main
+	multiplicity "1"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
       end
     end
 
@@ -126,7 +146,7 @@ ${members}};
 "
       explicit_switch_type ""
       
-      associated_diagram classdiagram_ref 128121 // class diagram model
+      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
       classrelation 128121 // task_list ()
 	relation 128121 *--> name ""
 	  stereotype "map"
@@ -161,10 +181,6 @@ ${members}};
 	
 	
 	
-      end
-
-      classrelation 128220 // <association>
-	relation_ref 128092 // <association>
       end
 
       classrelation 128105 // <aggregation>
@@ -204,13 +220,13 @@ ${members}};
 	idl_decl ""
       end
 
-      classrelation 128019 // <unidirectional association>
-	relation 128019 --->
-	  a role_name "" multiplicity "1" protected
+      classrelation 128060 // hal_controler (<unidirectional association>)
+	relation 128060 --->
+	  a role_name "hal_controler" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128019 // <unidirectional association>
-	  b multiplicity "1" parent class_ref 128061 // HalManagerProxy
+	    classrelation_ref 128060 // hal_controler (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 130757 // HalController
       end
     end
 
@@ -226,7 +242,7 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      associated_diagram classdiagram_ref 128121 // class diagram model
+      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
       classrelation 128633 // files_opened (<aggregation>)
 	relation 128377 o---
 	  stereotype "vector"
@@ -234,10 +250,10 @@ ${inlines}
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
 "
 	    classrelation_ref 128633 // files_opened (<aggregation>)
-	  b role_name "" multiplicity "*" protected
+	  b role_name "process_list" multiplicity "*" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
 "
-	    classrelation_ref 128761 // <aggregation>
+	    classrelation_ref 128761 // process_list (<aggregation>)
       end
 
       operation 128323 "Process"
@@ -268,7 +284,7 @@ ${inlines}
 	
       end
 
-      attribute 128197 "PID"
+      attribute 128197 "_PID"
 	protected explicit_type "int"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -276,9 +292,10 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+	get_oper operation_ref 128520 // get__PID
       end
 
-      attribute 128325 "PPID"
+      attribute 128325 "_PPID"
 	protected explicit_type "int"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -286,21 +303,82 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+	set_oper operation_ref 128776 // set__PPID
       end
 
-      operation 128105 "set_PPID"
-	public explicit_return_type ""
+      attribute 128136 "_name"
+	protected type class_ref 132814 // ustring
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	get_oper operation_ref 128648 // get__name
+      end
+
+      operation 128520 "get__PID"
+	force_body_gen const cpp_inline public explicit_return_type "int"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return _PID;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 128197 // _PID
+      end
+
+      operation 128776 "set__PPID"
+	force_body_gen public explicit_return_type "void"
 	nparams 1
-	  param in name "ppid" explicit_type "int"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	  param in name "value" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  _PPID = ${p0};
+}
 "
+	cpp_name_spec "set_${name}"
 	
+	java_name_spec "set${Name}"
 	
+	php_name_spec "set${Name}"
 	
+	python_name_spec "set${Name}"
 	
+	idl_name_spec "set_${name}"
+	set_of_attribute attribute_ref 128325 // _PPID
+      end
+
+      operation 128648 "get__name"
+	force_body_gen const cpp_inline public return_type class_ref 132814 // ustring
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return _name;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 128136 // _name
       end
     end
 
@@ -316,11 +394,7 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      associated_diagram classdiagram_ref 128121 // class diagram model
-      classrelation 128761 // <aggregation>
-	relation_ref 128377 // <aggregation>
-      end
-
+      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
       operation 128707 "File"
 	public explicit_return_type ""
 	nparams 0
@@ -349,12 +423,16 @@ ${inlines}
 	
       end
 
-      classrelation 128029 // <unidirectional association>
+      classrelation 128761 // process_list (<aggregation>)
+	relation_ref 128377 // <aggregation>
+      end
+
+      classrelation 128029 // inode (<unidirectional association>)
 	relation 128029 --->
-	  a role_name "" multiplicity "1" protected
+	  a role_name "inode" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128029 // <unidirectional association>
+	    classrelation_ref 128029 // inode (<unidirectional association>)
 	  b multiplicity "*" parent class_ref 128029 // Inode
       end
     end
@@ -371,7 +449,7 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      associated_diagram classdiagram_ref 128121 // class diagram model
+      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
       classrelation 128067 // file_list (<directional composition>)
 	relation 128067 *-->
 	  a role_name "file_list" multiplicity "1..*" protected
@@ -436,7 +514,7 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      associated_diagram classdiagram_ref 128121 // class diagram model
+      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
       operation 128573 "Inode"
 	public explicit_return_type ""
 	nparams 0
@@ -478,13 +556,14 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
+      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
       operation 128061 "HalManagerProxy"
 	public explicit_return_type ""
 	nparams 1
-	  param in name "connection" type class_ref 128317 // DBus::Connection
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+	  param in name "connection" type class_ref 128317 // Connection
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} & ${p0}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} & ${p0}${)}${volatile}${throw} {
   ${body}}
 "
 	
@@ -508,7 +587,7 @@ ${inlines}
       end
 
       operation 128453 "get_all_devices"
-	public explicit_return_type "vector< DBus::String >"
+	public return_type class_ref 132165 // VectorString
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -522,9 +601,9 @@ ${inlines}
       end
 
       operation 128581 "on_device_added"
-	private explicit_return_type ""
+	private explicit_return_type "void"
 	nparams 1
-	  param in name "sig" explicit_type "DBus::SignalMessage"
+	  param in name "sig" type class_ref 129725 // SignalMessage
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
@@ -537,9 +616,9 @@ ${inlines}
       end
 
       operation 128709 "on_device_removed"
-	private explicit_return_type ""
+	private explicit_return_type "void"
 	nparams 1
-	  param in name "sig" explicit_type "DBus::SignalMessage"
+	  param in name "sig" type class_ref 129725 // SignalMessage
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
@@ -556,7 +635,7 @@ ${inlines}
 	  a public
 	    cpp default "${type}"
 	    classrelation_ref 128709 // <generalisation>
-	  b parent class_ref 129981 // DBus::ObjectProxy
+	  b parent class_ref 129981 // ObjectProxy
       end
 
       classrelation 129477 // <generalisation>
@@ -564,18 +643,18 @@ ${inlines}
 	  a public
 	    cpp default "${type}"
 	    classrelation_ref 129477 // <generalisation>
-	  b parent class_ref 129853 // DBus::InterfaceProxy
+	  b parent class_ref 129853 // InterfaceProxy
       end
 
-      classrelation 128275 // _devices (<directional composition>)
-	relation 128147 *-->
+      classrelation 133573 // _devices (<directional composition>)
+	relation 133573 *-->
 	  stereotype "map"
 	  a role_name "_devices" multiplicity "1..*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype} <${association}, DBus::RefPtr <${type}> > ${name}${value};
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${association}, ${type}> ${name}${value};
 "
-	    classrelation_ref 128275 // _devices (<directional composition>)
-	  b multiplicity "1" parent class_ref 128189 // HalDeviceProxy
-	  association_explicit_type "string"
+	    classrelation_ref 133573 // _devices (<directional composition>)
+	  b multiplicity "1" parent class_ref 132421 // HalDeviceProxyRef
+	  association_type class_ref 129213 // Path
       end
     end
 
@@ -591,11 +670,12 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
+      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
       operation 128317 "HalDeviceProxy"
 	public explicit_return_type ""
 	nparams 2
-	  param in name "connection" explicit_type "DBus::Connection"
-	  param in name "udi" explicit_type "DBus::Path"
+	  param in name "connection" type class_ref 128317 // Connection
+	  param in name "udi" type class_ref 129213 // Path
 	cpp_decl "    ${comment}${inline}${name}${(}${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
@@ -622,9 +702,9 @@ ${inlines}
       end
 
       operation 128829 "get_property"
-	public explicit_return_type "DBus::Variant"
+	public return_type class_ref 129469 // Variant
 	nparams 1
-	  param in name "key" explicit_type "DBus::String"
+	  param in name "key" type class_ref 129341 // String
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
@@ -636,8 +716,8 @@ ${inlines}
 	
       end
 
-      operation 128069 "get_all_properties"
-	public explicit_return_type "map<DBus::String, DBus::Variant>"
+      operation 128069 "update_all_properties"
+	public explicit_return_type "bool"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -651,9 +731,9 @@ ${inlines}
       end
 
       operation 128197 "on_property_modified"
-	private explicit_return_type ""
+	private explicit_return_type "void"
 	nparams 1
-	  param in name "sig" explicit_type "DBus::SignalMessage"
+	  param in name "sig" type class_ref 129725 // SignalMessage
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
@@ -666,9 +746,9 @@ ${inlines}
       end
 
       operation 128325 "on_condition"
-	private explicit_return_type ""
+	private explicit_return_type "void"
 	nparams 1
-	  param in name "sig" explicit_type "DBus::SignalMessage"
+	  param in name "sig" type class_ref 129725 // SignalMessage
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
@@ -685,7 +765,7 @@ ${inlines}
 	  a public
 	    cpp default "${type}"
 	    classrelation_ref 128837 // <generalisation>
-	  b parent class_ref 129853 // DBus::InterfaceProxy
+	  b parent class_ref 129853 // InterfaceProxy
       end
 
       classrelation 128965 // <generalisation>
@@ -693,11 +773,12 @@ ${inlines}
 	  a public
 	    cpp default "${type}"
 	    classrelation_ref 128965 // <generalisation>
-	  b parent class_ref 129981 // DBus::ObjectProxy
+	  b parent class_ref 129981 // ObjectProxy
       end
 
-      attribute 128361 "_properties"
-	protected explicit_type "map <DBus::String, DBus::Variant>"
+      attribute 128057 "_properties"
+	protected type class_ref 128313 // DictVariable
+	multiplicity "1"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
@@ -707,7 +788,7 @@ ${inlines}
       end
     end
 
-    class 130757 "HalControler"
+    class 130757 "HalController"
       visibility public 
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
@@ -727,8 +808,9 @@ ${members}};
 "
       explicit_switch_type ""
       
+      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
       operation 128837 "update_processes"
-	public explicit_return_type "std::vector <DBus::String>"
+	public explicit_return_type "bool"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -742,7 +824,7 @@ ${members}};
       end
 
       operation 128965 "update_process_info"
-	public explicit_return_type ""
+	public explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -753,6 +835,52 @@ ${members}};
 	
 	
 	
+      end
+
+      attribute 128060 "_dispatcher"
+	protected type class_ref 130629 // BusDispatcher
+	multiplicity "1"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 128060 "niam"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "sig" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 128188 "_connection"
+	protected type class_ref 128317 // Connection
+	multiplicity "1"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 128188 // _hal_manager (<unidirectional association>)
+	relation 128188 --->
+	  a role_name "_hal_manager" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128188 // _hal_manager (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 128061 // HalManagerProxy
       end
     end
 
@@ -768,6 +896,7 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
+      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
       operation 128106 "Log"
 	public explicit_return_type ""
 	nparams 0
@@ -812,13 +941,103 @@ ${inlines}
 	
       end
     end
+
+    class 128313 "DictVariable"
+      visibility package stereotype "typedef" base_type class_ref 128185 // map
+      nactuals 2
+      actual class class_ref 128185 // map
+        rank 0 value class_ref 129341 // String
+      actual class class_ref 128185 // map
+        rank 1 value class_ref 129469 // Variant
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}typedef ${type} ${name};
+"
+      explicit_switch_type ""
+      
+      classrelation 128313 // <realization>
+	relation 128313 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128313 // <realization>
+	  b parent class_ref 128185 // map
+      end
+    end
+
+    class 132165 "VectorString"
+      visibility package stereotype "typedef" base_type class_ref 132037 // vector
+      nactuals 1
+      actual class class_ref 132037 // vector
+        rank 0 value class_ref 129341 // String
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}typedef ${type} ${name};
+"
+      explicit_switch_type ""
+      
+      classrelation 133189 // <realization>
+	relation 133189 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 133189 // <realization>
+	  b parent class_ref 132037 // vector
+      end
+    end
+
+    class 132421 "HalDeviceProxyRef"
+      visibility package stereotype "typedef" base_type class_ref 129597 // RefPtr
+      nactuals 1
+      actual class class_ref 129597 // RefPtr
+        rank 0 value class_ref 128189 // HalDeviceProxy
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}typedef ${type} ${name};
+"
+      explicit_switch_type ""
+      
+      classrelation 133445 // <realization>
+	relation 133445 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 133445 // <realization>
+	  b parent class_ref 129597 // RefPtr
+      end
+    end
   end
 
-  deploymentview 128067 "model deployment"
+  deploymentview 128067 "glkm-model deployment view"
     //deployment diagram settings
     package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
     draw_component_as_icon default show_component_req_prov default show_component_rea default
-    deploymentdiagram 128067 "model deployment diagram"
+    ncouples 1
+    key "license" value "/*
+ * gui
+ * Copyright (C) Enrique García Álvarez 2007 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+"
+    deploymentdiagram 128067 "glkm-model deployment diagram"
       package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations no shadow default
       draw_component_as_icon default show_component_req_prov default show_component_rea default
       size A4
@@ -833,7 +1052,26 @@ ${inlines}
 
     artifact 128451 "main"
       stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
 #define ${NAMESPACE}_${NAME}_HPP
 
 ${comment}
@@ -845,7 +1083,26 @@ ${namespace_end}
 
 #endif ${NAMESPACE}_${NAME}_HPP
 "
-      cpp_src "${comment}
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
 ${includes}
 ${namespace_start}
 ${members}
@@ -897,12 +1154,36 @@ ${namespace_end}"
 	-_->
 	  on artifact_ref 129897 // hal-controler
       end
+
+      simplerelation 128069
+	-_->
+	  on artifact_ref 129733 // utils
+      end
     end
 
     artifact 128195 "host"
       stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
 
 ${comment}
 ${includes}
@@ -910,44 +1191,80 @@ ${declarations}
 ${namespace_start}
 ${definition}
 ${namespace_end}
-#endif
+
+#endif // ${NAMESPACE}_${NAME}_HPP
 "
-      cpp_src "${comment}
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
 ${includes}
 ${namespace_start}
 ${members}
 ${namespace_end}"
-      java_src "${comment}
-${package}
-${imports}
-${definition}"
-      php_src "<?php
-${comment}
-${definition}
-?>
-"
-      python_src "${comment}
-${import}
-${definition}"
-      idl_src "#ifndef ${MODULE}_${NAME}_H
-#define ${MODULE}_${NAME}_H
-
-${comment}
-${includes}
-${module_start}
-${definition}
-${module_end}
-#endif
-"
       associated_classes
 	class_ref 128121 // Host
       end
+      ncouples 1
+      key "license" value "/*
+ * gui
+ * Copyright (C) Enrique García Álvarez 2007 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+"
     end
 
     artifact 128323 "process"
       stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
 
 ${comment}
 ${includes}
@@ -955,9 +1272,29 @@ ${declarations}
 ${namespace_start}
 ${definition}
 ${namespace_end}
-#endif
+
+#endif ${NAMESPACE}_${NAME}_HPP
 "
-      cpp_src "${comment}
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
 ${includes}
 ${namespace_start}
 ${members}
@@ -969,8 +1306,27 @@ ${namespace_end}"
 
     artifact 128579 "file"
       stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
 
 ${comment}
 ${includes}
@@ -978,9 +1334,29 @@ ${declarations}
 ${namespace_start}
 ${definition}
 ${namespace_end}
-#endif
+
+#endif ${NAMESPACE}_${NAME}_HPP
 "
-      cpp_src "${comment}
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
 ${includes}
 ${namespace_start}
 ${members}
@@ -992,8 +1368,27 @@ ${namespace_end}"
 
     artifact 128707 "filesystem"
       stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
-#define ${NAMESPACE}_${NAME}_H
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
 
 ${comment}
 ${includes}
@@ -1001,9 +1396,29 @@ ${declarations}
 ${namespace_start}
 ${definition}
 ${namespace_end}
-#endif
+
+#endif ${NAMESPACE}_${NAME}_HPP
 "
-      cpp_src "${comment}
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
 ${includes}
 ${namespace_start}
 ${members}
@@ -1015,7 +1430,26 @@ ${namespace_end}"
 
     artifact 128069 "inode"
       stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
 #define ${NAMESPACE}_${NAME}_HPP
 
 ${comment}
@@ -1027,7 +1461,26 @@ ${namespace_end}
 
 #endif ${NAMESPACE}_${NAME}_HPP
 "
-      cpp_src "${comment}
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
 ${includes}
 ${namespace_start}
 ${members}
@@ -1039,7 +1492,26 @@ ${namespace_end}"
 
     artifact 128197 "hal-manager-proxy"
       stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
 #define ${NAMESPACE}_${NAME}_HPP
 
 ${comment}
@@ -1049,9 +1521,28 @@ ${namespace_start}
 ${definition}
 ${namespace_end}
 
-#endif ${NAMESPACE}_${NAME}_HPP
+#endif // ${NAMESPACE}_${NAME}_HPP
 "
-      cpp_src "${comment}
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
 ${includes}
 ${namespace_start}
 ${members}
@@ -1063,7 +1554,26 @@ ${namespace_end}"
 
     artifact 128325 "hal-device-proxy"
       stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
 #define ${NAMESPACE}_${NAME}_HPP
 
 ${comment}
@@ -1073,21 +1583,70 @@ ${namespace_start}
 ${definition}
 ${namespace_end}
 
-#endif ${NAMESPACE}_${NAME}_HPP
+#endif // ${NAMESPACE}_${NAME}_HPP
 "
-      cpp_src "${comment}
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
 ${includes}
 ${namespace_start}
 ${members}
 ${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
       associated_classes
 	class_ref 128189 // HalDeviceProxy
+	class_ref 132421 // HalDeviceProxyRef
       end
     end
 
     artifact 129897 "hal-controler"
       stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
 #define ${NAMESPACE}_${NAME}_HPP
 
 ${comment}
@@ -1097,21 +1656,59 @@ ${namespace_start}
 ${definition}
 ${namespace_end}
 
-#endif ${NAMESPACE}_${NAME}_HPP
+#endif // ${NAMESPACE}_${NAME}_HPP
 "
-      cpp_src "${comment}
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
 ${includes}
 ${namespace_start}
 ${members}
 ${namespace_end}"
       associated_classes
-	class_ref 130757 // HalControler
+	class_ref 130757 // HalController
       end
     end
 
     artifact 130025 "log"
       stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
 #define ${NAMESPACE}_${NAME}_HPP
 
 ${comment}
@@ -1123,13 +1720,107 @@ ${namespace_end}
 
 #endif ${NAMESPACE}_${NAME}_HPP
 "
-      cpp_src "${comment}
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
 ${includes}
 ${namespace_start}
 ${members}
 ${namespace_end}"
       associated_classes
 	class_ref 128105 // Log
+      end
+    end
+
+    artifact 129733 "utils"
+      stereotype "source"
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif // ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 132165 // VectorString
+	class_ref 128313 // DictVariable
+	class_ref 133070 // RefPtrGladeXml
+	class_ref 128005 // RefPtrTextBuffer
+	class_ref 128131 // RefPtrTreeSelection
+	class_ref 128003 // RefPtrTreeStore
+	class_ref 129576 // TreeModelColumnInt
+	class_ref 128021 // TreeModelColumnUstring
+      end
+    end
+
+    artifact 128008 "config"
+      stereotype "source"
+      associated_classes
       end
     end
   end

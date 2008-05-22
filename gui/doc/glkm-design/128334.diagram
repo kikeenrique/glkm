@@ -1,0 +1,412 @@
+format 56
+
+classcanvas 128005 class_ref 128133 // TextBuffer
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 995 412 2000
+  end
+note 128008 "Keep an eye on Treemodel::Iterator that its base class it's declared as text."
+  xyzwh 1491 165 2000 154 69
+classcanvas 128021 class_ref 128149 // Menu
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 550 811 2000
+  end
+classcanvas 128040 class_ref 128040 // ToolButton
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 240 906 2000
+  end
+classcanvas 128078 class_ref 128590 // Main
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 384 213 2000
+  end
+classcanvas 128136 class_ref 128008 // Notebook
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1051 701 2000
+  end
+classcanvas 128149 class_ref 128277 // MenuShell
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 538 703 2000
+  end
+classcanvas 128168 class_ref 128168 // ToolItem
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 252 811 2000
+  end
+classcanvas 128206 class_ref 128718 // Window
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 438 811 2000
+  end
+classcanvas 128334 class_ref 128846 // AboutDialog
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 377 1004 2000
+  end
+classcanvas 128462 class_ref 128974 // StatusBar
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 656 906 2000
+  end
+classcanvas 128552 class_ref 128296 // CheckMenuItem
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 49 1004 2000
+  end
+classcanvas 128590 class_ref 129102 // TreeView
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 950 702 2000
+  end
+classcanvas 128718 class_ref 129230 // TreeModel
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1375 314 2000
+  end
+classcanvas 128846 class_ref 129358 // TreeStore
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1150 411 2000
+  end
+classcanvas 128936 class_ref 128424 // Path
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1550 386 2000
+  end
+classcanvas 128974 class_ref 129486 // TreeSelection
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 867 412 2000
+  end
+classcanvas 129102 class_ref 129742 // trackable
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 373 148 2000
+  end
+classcanvas 129192 class_ref 128552 // TreePath
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1338 188 2000
+  end
+classcanvas 129320 class_ref 128680 // TreeViewColumn
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 810 505 2000
+  end
+classcanvas 129486 class_ref 130382 // Widget
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 710 505 2000
+  end
+classcanvas 129576 class_ref 129192 // TreeModelColumnRecord
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1469 551 2000
+  end
+classcanvas 129614 class_ref 130510 // Object
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 784 412 2000
+  end
+classcanvas 129704 class_ref 129064 // ColumnRecord
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1551 465 2004
+  end
+classcanvas 129742 class_ref 129998 // Object
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 897 314 2000
+  end
+classcanvas 129960 class_ref 129320 // TreeModelColumn
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1234 632 2000
+  end
+classcanvas 129998 class_ref 130254 // Implementor
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 650 412 2005
+  end
+classcanvas 130088 class_ref 129448 // TreeModelColumnBase
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1222 548 2000
+  end
+classcanvas 130472 class_ref 129704 // TreeDragSource
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1016 314 2000
+  end
+classcanvas 130510 class_ref 130638 // Container
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 705 583 2005
+  end
+classcanvas 130600 class_ref 129832 // TreeDragDest
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1137 314 2000
+  end
+classcanvas 130766 class_ref 130766 // Bin
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 345 703 2000
+  end
+classcanvas 131150 class_ref 130894 // Assistant
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 339 906 2000
+  end
+classcanvas 131278 class_ref 131022 // Dialog
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 436 906 2000
+  end
+classcanvas 131662 class_ref 131150 // Plug
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 526 906 2000
+  end
+classcanvas 132046 class_ref 131278 // FileChooserDialog
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 493 1004 2000
+  end
+classcanvas 132302 class_ref 131406 // Box
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 764 703 2000
+  end
+classcanvas 132686 class_ref 131534 // TextView
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 858 703 2000
+  end
+classcanvas 132942 class_ref 131662 // HBox
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 668 811 2000
+  end
+classcanvas 133326 class_ref 131790 // VBox
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 740 811 2000
+  end
+classcanvas 133582 class_ref 131918 // ButtonBox
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 819 811 2000
+  end
+classcanvas 133838 class_ref 132046 // TreeSortable
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1252 314 2000
+  end
+classcanvas 134222 class_ref 130126 // Interface
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 938 127 2004
+  end
+classcanvas 134734 class_ref 132174 // Selection
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1018 480 2000
+  end
+classcanvas 134990 class_ref 132302 // Toolbar
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 637 703 2000
+  end
+classcanvas 135246 class_ref 132430 // ImageMenuItem
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 183 1004 2000
+  end
+classcanvas 135374 class_ref 132558 // Item
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 160 811 2000
+  end
+classcanvas 135502 class_ref 132686 // MenuItem
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 139 906 2000
+  end
+classcanvas 136014 class_ref 133326 // TreeNodeChildren
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1275 912 2000
+  end
+classcanvas 136142 class_ref 133454 // TreeIter
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1300 819 2000
+  end
+classcanvas 136270 class_ref 133582 // TreeIterBase
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1288 728 2000
+  end
+classcanvas 136654 class_ref 133198 // Children
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1550 240 2004
+  end
+classcanvas 137166 class_ref 133710 // iterator
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1478 905 2004
+  end
+classcanvas 137422 class_ref 133838 // iterator
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1549 305 2004
+  end
+relationcanvas 128133 relation_ref 128517 // <generalisation>
+  from ref 128005 z 1999 to ref 129742
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 128264 relation_ref 128008 // <generalisation>
+  from ref 128136 z 1999 to ref 130510
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 128277 relation_ref 128149 // <generalisation>
+  from ref 128021 z 1999 to ref 128149
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 128296 relation_ref 128296 // <generalisation>
+  from ref 128168 z 1999 to ref 130766
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 128405 relation_ref 128277 // <generalisation>
+  from ref 128149 z 1999 to ref 130510
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 128424 relation_ref 128424 // <generalisation>
+  from ref 128040 z 1999 to ref 128168
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 128680 relation_ref 129320 // <generalisation>
+  from ref 128552 z 1999 to ref 135502
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+line 129064 ---+
+  from ref 128936 z 1999 to ref 128718
+relationcanvas 129358 relation_ref 129358 // <generalisation>
+  from ref 128078 z 1999 to ref 129102
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 129448 relation_ref 129576 // <generalisation>
+  from ref 129320 z 1999 to ref 129614
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+line 129832 ---+
+  from ref 129704 z 1999 to ref 128718
+relationcanvas 129870 relation_ref 129870 // <generalisation>
+  from ref 129614 z 1999 to ref 129742
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 130216 relation_ref 129832 // <generalisation>
+  from ref 129960 z 1999 to ref 130088
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 130254 relation_ref 130126 // <generalisation>
+  from ref 129486 z 1999 to ref 129614
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 130344 relation_ref 130088 // <generalisation>
+  from ref 128846 z 1999 to ref 128718
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 130382 relation_ref 130254 // <generalisation>
+  from ref 129486 z 1999 to ref 129998
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 130638 relation_ref 130382 // <generalisation>
+  from ref 130510 z 1999 to ref 129486
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 130728 relation_ref 130216 // <generalisation>
+  from ref 130472 z 1999 to ref 134222
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 130856 relation_ref 130344 // <generalisation>
+  from ref 130600 z 1999 to ref 134222
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 130894 relation_ref 130510 // <generalisation>
+  from ref 130766 z 1999 to ref 130510
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 130984 relation_ref 130472 // <generalisation>
+  from ref 128846 z 1999 to ref 130600
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 131022 relation_ref 130638 // <generalisation>
+  from ref 128206 z 1999 to ref 130766
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 131112 relation_ref 130600 // <generalisation>
+  from ref 128846 z 1999 to ref 130472
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 131240 relation_ref 130728 // <dependency>
+  decenter_end 592
+  from ref 130088 z 1999 stereotype "<<friend>>" xyz 1395 568 3000 to ref 129576
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 131406 relation_ref 130766 // <generalisation>
+  from ref 131150 z 1999 to ref 128206
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 131534 relation_ref 130894 // <generalisation>
+  from ref 131278 z 1999 to ref 128206
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 131790 relation_ref 131022 // <generalisation>
+  from ref 131662 z 1999 to ref 128206
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 131918 relation_ref 131150 // <generalisation>
+  from ref 128334 z 1999 to ref 131278
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 132174 relation_ref 131278 // <generalisation>
+  from ref 132046 z 1999 to ref 131278
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 132430 relation_ref 131406 // <generalisation>
+  from ref 132302 z 1999 to ref 130510
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 132558 relation_ref 131534 // <generalisation>
+  from ref 128590 z 1999 to ref 130510
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 132814 relation_ref 131662 // <generalisation>
+  from ref 132686 z 1999 to ref 130510
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 133070 relation_ref 131790 // <generalisation>
+  from ref 132942 z 1999 to ref 132302
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 133198 relation_ref 131918 // <generalisation>
+  from ref 128462 z 1999 to ref 132942
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 133454 relation_ref 132046 // <generalisation>
+  from ref 133326 z 1999 to ref 132302
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 133710 relation_ref 132174 // <generalisation>
+  from ref 133582 z 1999 to ref 132302
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 133966 relation_ref 132302 // <generalisation>
+  from ref 128846 z 1999 to ref 129742
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 134094 relation_ref 132430 // <generalisation>
+  from ref 128846 z 1999 to ref 133838
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 134350 relation_ref 129742 // <generalisation>
+  from ref 129998 z 1999 to ref 134222
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 134478 relation_ref 132558 // <generalisation>
+  from ref 133838 z 1999 to ref 134222
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 134606 relation_ref 132686 // <generalisation>
+  from ref 128718 z 1999 to ref 134222
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 134862 relation_ref 132814 // <generalisation>
+  from ref 128974 z 1999 to ref 129742
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 135118 relation_ref 132942 // <generalisation>
+  from ref 134990 z 1999 to ref 130510
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 135630 relation_ref 133070 // <generalisation>
+  from ref 135374 z 1999 to ref 130766
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 135758 relation_ref 133198 // <generalisation>
+  from ref 135502 z 1999 to ref 135374
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 135886 relation_ref 133326 // <generalisation>
+  from ref 135246 z 1999 to ref 135502
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 136398 relation_ref 134094 // <generalisation>
+  from ref 136014 z 1999 to ref 136142
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 136526 relation_ref 134222 // <generalisation>
+  from ref 136142 z 1999 to ref 136270
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+line 136782 ---+
+  from ref 136654 z 1999 to ref 128718
+line 137294 ---+
+  from ref 137166 z 1999 to ref 136014
+line 137550 ---+
+  from ref 137422 z 1999 to ref 128718
+end

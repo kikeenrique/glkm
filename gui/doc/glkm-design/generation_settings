@@ -1,7 +1,8 @@
 
   cpp_default_defs 
   cpp_h_extension "hpp" cpp_src_extension "cpp" java_extension "java" php_extension "php" python_extension "py" idl_extension "idl"
-  cpp_force_namespace_gen
+  cpp_include_with_path
+  cpp_root_relative_path
 
   type_forms 15 // uml cpp java idl cpp_in cpp_out cpp_inout cpp_return
     "void" "void" "void" "void" "${type}" "${type} &" "${type}" "${type}"
@@ -25,8 +26,8 @@
     "vector" "vector" "Vector" "list" "sequence"
     "list" "list" "Vector" "list" "sequence"
     "set" "set" "Vector" "set" "sequence"
-    "map <A, B>" "map <A, B>" "" "" ""
     "map" "map" "" "" ""
+    "" "" "" "" ""
   
   classes_stereotypes 13 // uml cpp java php python idl
     "class" "class" "class" "class" "class" "valuetype"
@@ -46,7 +47,24 @@
   cpp_enum_default_type_forms "${type}" "${type} &" "${type} &" "${type}" // in out inout return
   other_cpp_types_default_type_forms "const ${type} &" "${type} &" "${type} &" "${type}" // in out inout return
 
-  cpp_default_h_content "${license}
+  cpp_default_h_content "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 
 #ifndef ${NAMESPACE}_${NAME}_HPP
 #define ${NAMESPACE}_${NAME}_HPP
@@ -58,9 +76,26 @@ ${namespace_start}
 ${definition}
 ${namespace_end}
 
-#endif ${NAMESPACE}_${NAME}_HPP
+#endif // ${NAMESPACE}_${NAME}_HPP
 "
-  cpp_default_src_content "${license}
+  cpp_default_src_content "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 
 ${comment}
 ${includes}
@@ -99,14 +134,14 @@ ${items}
   cpp_association_aggregation_declaration
     "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 " // multiplicity 1
-    "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
+    "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${association}${type} *> ${name}${value};
 " // multiplicity * a..b
     "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${multiplicity}${value};
 " // multiplicity [..]
   cpp_aggregation_by_value_declaration
     "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 " // multiplicity 1
-    "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
+    "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${association}${type}> ${name}${value};
 " // multiplicity * a..b
     "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${multiplicity}${value};
 " // multiplicity [..]

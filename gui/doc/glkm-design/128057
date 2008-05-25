@@ -1,6 +1,6 @@
 format 56
 "std" // std
-  revision 4
+  revision 5
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -90,6 +90,37 @@ format 56
       cpp_external cpp_decl "${name}
 
 #include <${name}>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 134408 "type_info"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <typeinfo>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 135688 "auto_ptr"
+      visibility package 
+      nformals 1
+      formal name "T" type "class" explicit_default_value ""
+        explicit_extends ""
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
 "
       java_decl ""
       php_decl ""

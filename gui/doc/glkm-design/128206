@@ -1,6 +1,6 @@
 format 56
 "gtkmm" // gtkmm
-  revision 8
+  revision 11
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -46,7 +46,7 @@ format 56
     show_infonote default drawing_language default
     classdiagram 128334 "gtkmm class diagram"
       draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-      size A2
+      size A1
     end
 
     class 130766 "Bin"
@@ -169,7 +169,7 @@ ${inlines}
       visibility package 
       cpp_external cpp_decl "${name}
 
-#include <gtkmm/${name}.h>"
+#include <gtkmm/aboutdialog.h>"
       java_decl ""
       php_decl ""
       python_2_2 python_decl ""
@@ -187,9 +187,9 @@ ${inlines}
 
     class 128974 "StatusBar"
       visibility package 
-      cpp_external cpp_decl "${namespace}::${name}
+      cpp_external cpp_decl "${name}
 
-#include <gtkmm/${name}.h>
+#include <gtkmm/statusbar.h>
 "
       java_decl ""
       php_decl ""
@@ -405,9 +405,9 @@ ${inlines}
 
     class 130510 "Object"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/object.h>
 "
       java_decl ""
       php_decl ""
@@ -421,6 +421,215 @@ ${inlines}
 	    cpp default "${type}"
 	    classrelation_ref 129870 // <generalisation>
 	  b parent class_ref 129998 // Object
+      end
+
+      operation 156296 "~Object"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      classrelation 135688 // <dependency>
+	relation 135688 -_->
+	  stereotype "friend"
+	  a package
+	    cpp private "friend class ${type};"
+	    classrelation_ref 135688 // <dependency>
+	  b parent class_ref 136456 // Object_Class
+      end
+
+      class 136584 "CppClassType"
+	visibility private stereotype "typedef" base_type class_ref 136456 // Object_Class
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+      end
+
+      operation 156424 "Object"
+	stereotype "copy"
+	private explicit_return_type ""
+	nparams 1
+	  param in name "source" type class_ref 130510 // Object
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 156552 "operator="
+	private return_type class_ref 130510 // Object
+	nparams 1
+	  param in name "source" type class_ref 130510 // Object
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 156680 "Object"
+	protected explicit_return_type ""
+	nparams 1
+	  param in name "construct_params" type class_ref 134664 // ConstructParams
+	cpp_decl "    ${comment} explicit ${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 156808 "Object"
+	protected explicit_return_type ""
+	nparams 1
+	  param out name "castitem" explicit_type "GtkObject"
+	cpp_decl "    ${comment} explicit ${inline}${name}${(}${t0} * ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 156936 "get_type"
+	class_operation public explicit_return_type "GType"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract} G_GNUC_CONST;
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 157064 "get_base_type"
+	class_operation public explicit_return_type "GType"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract} G_GNUC_CONST;
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 157192 "gobj"
+	public explicit_return_type "GtkObject *"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 157320 "gobj"
+	const public explicit_return_type "GtkObject *"
+	nparams 0
+	cpp_decl "    ${comment} const ${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 157448 "set_manage"
+	cpp_virtual public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 129928 "ifdef"
+	
+	cpp " #ifdef GLIBMM_PROPERTIES_ENABLED" " #ifdef GLIBMM_PROPERTIES_ENABLED"
+	java ""
+	php ""
+	python ""
+	idl ""
+      end
+
+      operation 157576 "property_user_data"
+	public return_type class_ref 136712 // PropertyProxy
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "  Glib::PropertyProxy<void*> property_user_data() ;
+"
+      end
+
+      operation 157704 "property_user_data"
+	const public return_type class_ref 136840 // PropertyProxy_ReadOnly
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "  Glib::PropertyProxy_ReadOnly<void*> property_user_data() const;
+"
       end
     end
 
@@ -468,9 +677,9 @@ ${inlines}
 
     class 131022 "Dialog"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/dialog.h>
 "
       java_decl ""
       php_decl ""
@@ -1100,6 +1309,94 @@ ${inlines}
 	    cpp default "${type}"
 	    classrelation_ref 128008 // <generalisation>
 	  b parent class_ref 130638 // Container
+      end
+    end
+
+    class 132616 "IconView"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/iconview.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 133384 // <generalisation>
+	relation 133384 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 133384 // <generalisation>
+	  b parent class_ref 130638 // Container
+      end
+    end
+
+    class 136456 "Object_Class"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 137224 "ListStore"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/liststore.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 136200 // <generalisation>
+	relation 136200 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 136200 // <generalisation>
+	  b parent class_ref 129998 // Object
+      end
+
+      classrelation 136328 // <generalisation>
+	relation 136328 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 136328 // <generalisation>
+	  b parent class_ref 129230 // TreeModel
+      end
+
+      classrelation 136456 // <generalisation>
+	relation 136456 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 136456 // <generalisation>
+	  b parent class_ref 132046 // TreeSortable
+      end
+
+      classrelation 136584 // <generalisation>
+	relation 136584 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 136584 // <generalisation>
+	  b parent class_ref 129704 // TreeDragSource
+      end
+
+      classrelation 136712 // <generalisation>
+	relation 136712 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 136712 // <generalisation>
+	  b parent class_ref 129832 // TreeDragDest
       end
     end
   end

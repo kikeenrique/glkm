@@ -1,6 +1,6 @@
 format 56
 "glkm-view" // glkm::glkm-view
-  revision 15
+  revision 19
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -47,7 +47,7 @@ format 56
     associated_deployment_view deploymentview_ref 128092 // glkm-view deployment view
     classdiagram 128092 "glkm-view class diagram"
       draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-      size A3
+      size A2
     end
 
     class 133070 "RefPtrGladeXml"
@@ -164,7 +164,7 @@ ${inlines}
 	idl_decl ""
       end
 
-      operation 129102 "on_menuitem_quit_activated"
+      operation 129102 "on_imagemenuitem_quit_activated"
 	protected explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
@@ -178,7 +178,7 @@ ${inlines}
 	
       end
 
-      operation 129230 "on_menuitem_viewtoolbar_toggled"
+      operation 157832 "on_imagemenuitem_cut_activated"
 	protected explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
@@ -192,7 +192,63 @@ ${inlines}
 	
       end
 
-      operation 129358 "on_menuitem_about_activated"
+      operation 157960 "on_imagemenuitem_copy_activated"
+	protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 158088 "on_imagemenuitem_paste_activated"
+	protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 158216 "on_imagemenuitem_delete_activated"
+	protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129230 "on_checkmenuitem_viewtoolbar_toggled"
+	protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129358 "on_imagemenuitem_about_activated"
 	protected explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
@@ -234,57 +290,57 @@ ${inlines}
 	
       end
 
-      classrelation 128259 // _pMenuItemQuit (<unidirectional association>)
+      classrelation 128259 // _pImageMenuItemQuit (<unidirectional association>)
 	relation 128259 --->
-	  a role_name "_pMenuItemQuit" multiplicity "1" protected
+	  a role_name "_pImageMenuItemQuit" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128259 // _pMenuItemQuit (<unidirectional association>)
+	    classrelation_ref 128259 // _pImageMenuItemQuit (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 132430 // ImageMenuItem
       end
 
-      classrelation 128387 // _pMenuItemCopy (<unidirectional association>)
+      classrelation 128387 // _pImageMenuItemCopy (<unidirectional association>)
 	relation 128387 --->
-	  a role_name "_pMenuItemCopy" multiplicity "1" protected
+	  a role_name "_pImageMenuItemCopy" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128387 // _pMenuItemCopy (<unidirectional association>)
+	    classrelation_ref 128387 // _pImageMenuItemCopy (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 132430 // ImageMenuItem
       end
 
-      classrelation 128515 // _pMenuItemCut (<unidirectional association>)
+      classrelation 128515 // _pImageMenuItemCut (<unidirectional association>)
 	relation 128515 --->
-	  a role_name "_pMenuItemCut" multiplicity "1" protected
+	  a role_name "_pImageMenuItemCut" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128515 // _pMenuItemCut (<unidirectional association>)
+	    classrelation_ref 128515 // _pImageMenuItemCut (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 132430 // ImageMenuItem
       end
 
-      classrelation 129064 // _pMenuItemDelete (<unidirectional association>)
+      classrelation 129064 // _pImageMenuItemDelete (<unidirectional association>)
 	relation 129064 --->
-	  a role_name "_pMenuItemDelete" multiplicity "1" protected
+	  a role_name "_pImageMenuItemDelete" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 129064 // _pMenuItemDelete (<unidirectional association>)
+	    classrelation_ref 129064 // _pImageMenuItemDelete (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 132430 // ImageMenuItem
       end
 
-      classrelation 129448 // _pMenuItemViewToolbar (<unidirectional association>)
+      classrelation 129448 // _pCheckMenuItemViewToolbar (<unidirectional association>)
 	relation 129448 --->
-	  a role_name "_pMenuItemViewToolbar" multiplicity "1" protected
+	  a role_name "_pCheckMenuItemViewToolbar" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 129448 // _pMenuItemViewToolbar (<unidirectional association>)
+	    classrelation_ref 129448 // _pCheckMenuItemViewToolbar (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 128296 // CheckMenuItem
       end
 
-      classrelation 128643 // _pMenuItemAbout (<unidirectional association>)
+      classrelation 128643 // _pImageMenuItemAbout (<unidirectional association>)
 	relation 128643 --->
-	  a role_name "_pMenuItemAbout" multiplicity "1" protected
+	  a role_name "_pImageMenuItemAbout" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128643 // _pMenuItemAbout (<unidirectional association>)
+	    classrelation_ref 128643 // _pImageMenuItemAbout (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 132430 // ImageMenuItem
       end
 
@@ -306,6 +362,15 @@ ${inlines}
 	  b multiplicity "1" parent class_ref 128348 // StatusBar
       end
 
+      classrelation 128168 // _pToolbar (<unidirectional association>)
+	relation 128168 --->
+	  a role_name "_pToolbar" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128168 // _pToolbar (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 132302 // Toolbar
+      end
+
       classrelation 128552 // _pToolButton_Connect (<unidirectional association>)
 	relation 128552 --->
 	  a role_name "_pToolButton_Connect" multiplicity "1" protected
@@ -315,13 +380,13 @@ ${inlines}
 	  b multiplicity "1" parent class_ref 128040 // ToolButton
       end
 
-      classrelation 128168 // _pToolbar (<unidirectional association>)
-	relation 128168 --->
-	  a role_name "_pToolbar" multiplicity "1" protected
+      classrelation 128136 // _pToolButton_Refresh (<unidirectional association>)
+	relation 128136 --->
+	  a role_name "_pToolButton_Refresh" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128168 // _pToolbar (<unidirectional association>)
-	  b multiplicity "1" parent class_ref 132302 // Toolbar
+	    classrelation_ref 128136 // _pToolButton_Refresh (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 128040 // ToolButton
       end
 
       classrelation 133454 // _pAboutDialog (<unidirectional association>)
@@ -333,13 +398,13 @@ ${inlines}
 	  b multiplicity "1" parent class_ref 128220 // AboutDialog
       end
 
-      classrelation 128136 // _pToolButton_Refresh (<unidirectional association>)
-	relation 128136 --->
-	  a role_name "_pToolButton_Refresh" multiplicity "1" protected
+      classrelation 133896 // _pHostSelectDialog (<unidirectional association>)
+	relation 133896 --->
+	  a role_name "_pHostSelectDialog" multiplicity "1" protected
 	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128136 // _pToolButton_Refresh (<unidirectional association>)
-	  b multiplicity "1" parent class_ref 128040 // ToolButton
+	    classrelation_ref 133896 // _pHostSelectDialog (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 132744 // HostSelectDialog
       end
     end
 
@@ -370,7 +435,7 @@ ${inlines}
 	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
 	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
 "
 	
@@ -399,7 +464,7 @@ ${inlines}
 	  param in name "response_id" explicit_type "int"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -415,7 +480,7 @@ ${inlines}
 	  param in name "link" type class_ref 132814 // ustring
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -431,7 +496,7 @@ ${inlines}
 	  param in name "email" type class_ref 132814 // ustring
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -479,7 +544,7 @@ ${inlines}
 	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
 	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
 "
 	
@@ -524,7 +589,7 @@ ${inlines}
 	  param in name "context_id" explicit_type "uint"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -539,7 +604,7 @@ ${inlines}
 	  param in name "context_id" explicit_type "uint"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -594,14 +659,6 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      classrelation 128988 // <dependency>
-	relation 128732 -_->
-	  a default
-	    cpp default "#include in source"
-	    classrelation_ref 128988 // <dependency>
-	  b parent class_ref 128092 // MainWindow
-      end
-
       classrelation 128974 // <generalisation>
 	relation 128974 ---|>
 	  a public
@@ -617,7 +674,7 @@ ${inlines}
 	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
 	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
 "
 	
@@ -673,7 +730,7 @@ ${inlines}
 	  param in name "iter" type class_ref 133838 // iterator
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -688,7 +745,7 @@ ${inlines}
 	  param in name "ev" explicit_type "GdkEventButton"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -946,6 +1003,154 @@ ${inlines}
       end
     end
 
+    class 132744 "HostSelectDialog"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 133768 // <generalisation>
+	relation 133768 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 133768 // <generalisation>
+	  b parent class_ref 131022 // Dialog
+      end
+
+      operation 138504 "HostSelectDialog"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "cobject" explicit_type "BaseObjectType"
+	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 138632 "~HostSelectDialog"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 139784 "on_button_quit"
+	protected explicit_return_type "void"
+	nparams 1
+	  param in name "response_id" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 131336 "_refGlademmXml"
+	protected type class_ref 133070 // RefPtrGladeXml
+	multiplicity "1"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 134024 // _pIconViewHosts (<unidirectional association>)
+	relation 134024 --->
+	  a role_name "_pIconViewHosts" multiplicity "1" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 134024 // _pIconViewHosts (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 132488 // IconViewHosts
+      end
+    end
+
+    class 132488 "IconViewHosts"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 133512 // <generalisation>
+	relation 133512 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 133512 // <generalisation>
+	  b parent class_ref 132616 // IconView
+      end
+
+      operation 138248 "IconViewHosts"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "cobject" explicit_type "BaseObjectType"
+	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 138376 "~IconViewHosts"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 131464 "_refGlademmXml"
+	protected type class_ref 133070 // RefPtrGladeXml
+	multiplicity "1"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
     class 129576 "TreeModelColumnInt"
       visibility package stereotype "typedef" base_type class_ref 129320 // TreeModelColumn
       nactuals 1
@@ -1033,6 +1238,28 @@ ${inlines}
 	  b parent class_ref 129614 // RefPtr
       end
     end
+
+    class 137096 "RefPtrListStore"
+      visibility package stereotype "typedef" base_type class_ref 129614 // RefPtr
+      nactuals 1
+      actual class class_ref 129614 // RefPtr
+        rank 0 value class_ref 137224 // ListStore
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 136840 // <realization>
+	relation 136840 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 136840 // <realization>
+	  b parent class_ref 129614 // RefPtr
+      end
+    end
   end
 
   deploymentview 128092 "glkm-view deployment view"
@@ -1045,7 +1272,7 @@ ${inlines}
       size A4
     end
 
-    artifact 128092 "mainwindow"
+    artifact 128092 "main-window"
       stereotype "source"
       cpp_h "/*
  * gui
@@ -1107,21 +1334,21 @@ ${namespace_end}"
       end
       simplerelation 128604
 	-_->
-	  on artifact_ref 128476 // aboutdialog
+	  on artifact_ref 128476 // about-dialog
       end
 
       simplerelation 128732
 	-_->
-	  on artifact_ref 128348 // treeviewhost
+	  on artifact_ref 128348 // tree-view-host
       end
 
       simplerelation 128860
 	-_->
-	  on artifact_ref 128220 // statusbar
+	  on artifact_ref 128220 // status-bar
       end
     end
 
-    artifact 128476 "aboutdialog"
+    artifact 128476 "about-dialog"
       stereotype "source"
       cpp_h "/*
  * gui
@@ -1183,7 +1410,7 @@ ${namespace_end}"
       end
     end
 
-    artifact 128220 "statusbar"
+    artifact 128220 "status-bar"
       stereotype "source"
       cpp_h "/*
  * gui
@@ -1245,7 +1472,7 @@ ${namespace_end}"
       end
     end
 
-    artifact 128348 "treeviewhost"
+    artifact 128348 "tree-view-host"
       stereotype "source"
       cpp_h "/*
  * gui
@@ -1307,7 +1534,7 @@ ${namespace_end}"
       end
     end
 
-    artifact 128040 "textviewdebug"
+    artifact 128040 "text-view-debug"
       stereotype "source"
       cpp_h "/*
  * gui
@@ -1366,6 +1593,130 @@ ${members}
 ${namespace_end}"
       associated_classes
 	class_ref 128102 // TextViewDebug
+      end
+    end
+
+    artifact 129160 "icon-view-hosts"
+      stereotype "source"
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif // ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 132488 // IconViewHosts
+      end
+    end
+
+    artifact 129288 "host-select-dialog"
+      stereotype "source"
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif // ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 132744 // HostSelectDialog
       end
     end
   end

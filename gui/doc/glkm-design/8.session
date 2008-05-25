@@ -1,22 +1,22 @@
-window_sizes 1559 994 390 1163 805 112
+window_sizes 1562 994 390 1166 837 80
 diagrams
   classdiagram_ref 128092 // glkm-view class diagram
-    577 783 90 3 240 0
-  active  classdiagram_ref 128121 // glkm-model class diagram
-    1163 805 100 3 180 0
+    1260 814 90 2 0 140
+  classdiagram_ref 128121 // glkm-model class diagram
+    1131 780 100 3 300 0
+  active  classdiagram_ref 128334 // gtkmm class diagram
+    1166 837 100 1 300 975
 end
 show_stereotypes
-selected classrelation_ref 128633 // files_opened (<aggregation>)
+selected class_ref 137096 // RefPtrListStore
 open
-  class_ref 128604 // main
-  attribute_ref 128197 // _PID
-  operation_ref 128520 // get__PID
-  operation_ref 128648 // get__name
-  operation_ref 128707 // File
-  operation_ref 128296 // on_treeview_row_activated
-  operation_ref 131534 // on_menu_file_popup_generic
-  classrelation_ref 128405 // _pMenu_Popup_TreeView_Host (<unidirectional association>)
-  classrelation_ref 128533 // _pMenuitem_Refresh (<unidirectional association>)
-  deploymentview_ref 128092 // glkm-view deployment view
+  class_ref 128061 // HalManagerProxy
+  class_ref 128189 // HalDeviceProxy
+  operation_ref 128060 // niam
+  attribute_ref 128188 // _connection
+  attribute_ref 128060 // _dispatcher
+  operation_ref 138504 // HostSelectDialog
+  class_ref 132488 // IconViewHosts
+  classview_ref 128206 // gtkmm class view
 end
 end

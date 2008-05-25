@@ -1,7 +1,7 @@
 format 56
 "atkmm" // atkmm
-  revision 1
-  modified_by 78 "enrgar"
+  revision 2
+  modified_by 8 "enrgar"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -51,9 +51,9 @@ format 56
 
     class 130254 "Implementor"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <atkmm/implementor.h>
 "
       java_decl ""
       php_decl ""
@@ -68,6 +68,251 @@ ${inlines}
 	    classrelation_ref 129742 // <generalisation>
 	  b parent class_ref 130126 // Interface
       end
+
+      classrelation 135560 // <dependency>
+	relation 135560 -_->
+	  stereotype "friend"
+	  a package
+	    cpp private "friend class ${type};"
+	    classrelation_ref 135560 // <dependency>
+	  b parent class_ref 136200 // Implementor_Class
+      end
+
+      class 136328 "CppClassType"
+	visibility public stereotype "typedef" base_type class_ref 136200 // Implementor_Class
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+      end
+
+      attribute 133640 "implementor_class_"
+	class_attribute private type class_ref 136328 // CppClassType
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 154760 "Implementor"
+	stereotype "copy"
+	private explicit_return_type ""
+	nparams 1
+	  param in name "source" type class_ref 130254 // Implementor
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 154888 "operator="
+	private return_type class_ref 130254 // Implementor
+	nparams 1
+	  param in name "source" type class_ref 130254 // Implementor
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 155016 "Implementor"
+	protected explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 155272 "Implementor"
+	protected explicit_return_type ""
+	nparams 1
+	  param in name "interface_class" type class_ref 134536 // Interface_Class
+	cpp_decl "    ${comment}${inline} explicit ${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 155400 "Implementor"
+	public explicit_return_type ""
+	nparams 1
+	  param out name "castitem" explicit_type "AtkImplementor"
+	cpp_decl "    ${comment}${inline} explicit ${name}${(}${t0} * ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 155144 "~Implementor"
+	cpp_virtual protected explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 155528 "add_interface"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "gtype_implementer" explicit_type "GType"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 155656 "get_type"
+	class_operation public explicit_return_type "GType"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract} G_GNUC_CONST;
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 155784 "get_base_type"
+	class_operation public explicit_return_type "GType"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract} G_GNUC_CONST;
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 155912 "gobj"
+	public explicit_return_type "AtkImplementor *"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 156040 "gobj"
+	const public explicit_return_type "AtkImplementor *"
+	nparams 0
+	cpp_decl "    ${comment} const ${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 129672 "ifdef"
+	
+	cpp "  #ifdef GLIBMM_VFUNCS_ENABLED
+" "  #ifdef GLIBMM_VFUNCS_ENABLED
+"
+	java ""
+	php ""
+	python ""
+	idl ""
+      end
+
+      operation 156168 "ref_accessibile_vfunc"
+	cpp_virtual protected return_type class_ref 129597 // RefPtr
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "  virtual Glib::RefPtr<Object> ref_accessibile_vfunc();
+"
+      end
+
+      extra_member 129800 "endif"
+	
+	cpp "#endif //GLIBMM_VFUNCS_ENABLED
+" "#endif //GLIBMM_VFUNCS_ENABLED
+"
+	java ""
+	php ""
+	python ""
+	idl ""
+      end
+    end
+
+    class 136200 "Implementor_Class"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
     end
   end
 end

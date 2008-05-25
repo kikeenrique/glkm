@@ -1,7 +1,7 @@
 format 56
 "dbusmm" // dbusmm
-  revision 7
-  modified_by 78 "enrgar"
+  revision 9
+  modified_by 8 "enrgar"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -27,8 +27,6 @@ format 56
   show_infonote default drawing_language default
   
   stereotype "library"
-  cpp_h_dir "dbusmm/"
-  cpp_src_dir "dbusmm/"
   cpp_namespace "DBus"
   classview 128317 "dbusmm class view"
     //class diagram settings
@@ -46,7 +44,6 @@ format 56
     //activity diagram settings
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default
-    associated_deployment_view deploymentview_ref 129213 // dbusmm deployment view
     classdiagram 128061 "dbusmm class diagram"
       draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
       size A3
@@ -54,9 +51,9 @@ format 56
 
     class 129213 "Path"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/types.h>
 "
       java_decl ""
       php_decl ""
@@ -66,9 +63,272 @@ ${inlines}
       
     end
 
+    class 131336 "RefCnt"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/util.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 136456 "RefCnt"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 136584 "RefCnt"
+	stereotype "copy"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "source" type class_ref 131336 // RefCnt
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 136712 "~RefCnt"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 136840 "operator ="
+	public return_type class_ref 131336 // RefCnt
+	nparams 1
+	  param in name "ref" type class_ref 131336 // RefCnt
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 136968 "noref"
+	const public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 137096 "one"
+	const public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 136200 "ref"
+	const private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 136328 "unref"
+	const private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 130184 "__ref"
+	private explicit_type "int"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 129597 "RefPtr"
+      visibility package 
+      nformals 1
+      formal name "T" type "class" explicit_default_value ""
+        explicit_extends ""
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/util.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 135432 "~RefPtr"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135560 "RefPtr"
+	public explicit_return_type ""
+	nparams 1
+	  param out name "ptr" explicit_type "T"
+	    defaultvalue "0"
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135688 "operator ="
+	public return_type class_ref 129597 // RefPtr
+	nparams 1
+	  param in name "ref" type class_ref 129597 // RefPtr
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135816 "operator *"
+	const public explicit_return_type "T"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135944 "operator ->"
+	const public explicit_return_type "T"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 136072 "get"
+	const public explicit_return_type "T"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 129928 "__ptr"
+	private explicit_type "T"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 130056 "__cnt"
+	private type class_ref 131336 // RefCnt
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
     class 129341 "String"
       visibility package stereotype "typedef" explicit_base_type "string"
-      cpp_decl "${comment}typedef ${type} ${name};
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/types.h>
 "
       java_decl ""
       php_decl ""
@@ -79,11 +339,55 @@ ${inlines}
       
     end
 
+    class 128361 "SignalTable"
+      visibility package stereotype "typedef" explicit_base_type "std::map< std::string, Slot<void, const DBus::SignalMessage &> >"
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/interface.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}typedef ${type} ${name};
+"
+      explicit_switch_type ""
+      
+    end
+
+    class 128233 "InterfaceProxyTable"
+      visibility package stereotype "typedef" explicit_base_type "std::map<std::string, DBusmm::InterfaceProxy *>"
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/interface.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}typedef ${type} ${name};
+"
+      explicit_switch_type ""
+      
+    end
+
+    class 129469 "Variant"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/types.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
     class 128317 "Connection"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/connection.h>
 "
       java_decl ""
       php_decl ""
@@ -92,6 +396,48 @@ ${inlines}
       explicit_switch_type ""
       
       associated_diagram classdiagram_ref 128061 // dbusmm class diagram
+      operation 131848 "SystemBus"
+	class_operation public return_type class_ref 128317 // Connection
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131976 "SessionBus"
+	class_operation public return_type class_ref 128317 // Connection
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 132104 "ActivationBus"
+	class_operation public return_type class_ref 128317 // Connection
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
       operation 130117 "Connection"
 	public explicit_return_type ""
 	nparams 2
@@ -100,7 +446,38 @@ ${inlines}
 	    defaultvalue "true"
 	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} * ${p0}, ${t1} ${p1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} * ${p0}, ${t1} ${p1}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 132232 "Connection"
+	stereotype "copy"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "c" type class_ref 128317 // Connection
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 132360 "Connection"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "p" type class_ref 131208 // Private
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}${)}${volatile}${throw} {
   ${body}}
 "
 	
@@ -123,14 +500,21 @@ ${inlines}
 	
       end
 
-      operation 130373 "Connection"
-	stereotype "copy"
-	public explicit_return_type ""
-	nparams 1
-	  param in name "source" type class_ref 128317 // Connection
-	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+      classrelation 130952 // <dependency>
+	relation 130952 -_->
+	  stereotype "friend"
+	  a package
+	    cpp default "${type}"
+	    classrelation_ref 130952 // <dependency>
+	  b parent class_ref 129221 // ObjectAdaptor
+      end
+
+      operation 132488 "init"
+	private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -138,57 +522,371 @@ ${inlines}
 	
 	
       end
-    end
 
-    class 129469 "Variant"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      operation 132616 "setup"
+	public return_type class_ref 130245 // Dispatcher
+	nparams 1
+	  param out name "d" type class_ref 130245 // Dispatcher
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-    end
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
 
-    class 129597 "RefPtr"
-      visibility package 
-      nformals 1
-      formal name "T" type "class" explicit_default_value ""
-        explicit_extends ""
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      operation 132744 "operator =="
+	const public explicit_return_type "bool"
+	nparams 1
+	  param in name "c" type class_ref 128317 // Connection
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-    end
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
 
-    class 129349 "DBus::Object"
-      visibility public 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      operation 132872 "add_match"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "rule" explicit_type "char"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      operation 128233 "path"
-	public explicit_return_type "const DBus::Path &"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 133000 "remove_match"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "rule" explicit_type "char"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 133128 "add_filter"
+	public explicit_return_type "bool"
+	nparams 1
+	  param out name "ms" type class_ref 130440 // MessageSlot
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 133256 "remove_filter"
+	public explicit_return_type "void"
+	nparams 1
+	  param out name "ms" type class_ref 130440 // MessageSlot
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 133384 "unique_name"
+	public explicit_return_type "bool"
+	nparams 1
+	  param in name "n" explicit_type "char"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 133512 "unique_name"
+	const public explicit_return_type "char"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}const ${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 133640 "register_bus"
+	public explicit_return_type "bool"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 133768 "connected"
+	const public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 133896 "disconnect"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134024 "exit_on_disconnect"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "exit" explicit_type "bool"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134152 "flush"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134280 "send"
+	public explicit_return_type "bool"
+	nparams 2
+	  param in name "m" type class_ref 129477 // Message
+	  param out name "serial" explicit_type "uint"
+	    defaultvalue "NULL"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134408 "send_blocking"
+	public return_type class_ref 129477 // Message
+	nparams 2
+	  param out name "msg" type class_ref 129477 // Message
+	  param in name "timeout" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134536 "send_async"
+	public return_type class_ref 131080 // PendingCall
+	nparams 2
+	  param out name "msg" type class_ref 129477 // Message
+	  param in name "timeout" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134664 "request_name"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "name" explicit_type "char"
+	  param in name "flags" explicit_type "int"
+	    defaultvalue "0"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} * ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} * ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134792 "has_name"
+	public explicit_return_type "bool"
+	nparams 1
+	  param in name "name" explicit_type "char"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} * ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134920 "start_service"
+	public explicit_return_type "bool"
+	nparams 2
+	  param in name "name" explicit_type "char"
+	  param in name "flags" explicit_type "ulong"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} * ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} * ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135048 "names"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      class 131208 "Private"
+	visibility package stereotype "struct"
+	cpp_decl "${comment}${template}struct ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl "${comment}struct ${name} {
+${members}};
+"
+	explicit_switch_type ""
+	
+      end
+    end
+
+    class 129349 "Object"
+      abstract visibility public 
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/object.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 129257 "~Object"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128233 "path"
+	const cpp_inline public return_type class_ref 129213 // Path
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} & ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}const ${type} & ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129001 "service"
+	const cpp_inline public return_type class_ref 129288 // string
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual} const ${type} & ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline} const ${type} & ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -214,26 +912,12 @@ ${inlines}
 	
       end
 
-      operation 129001 "service"
-	const cpp_inline public explicit_return_type "const std::string &"
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
       operation 129129 "conn"
-	cpp_inline public explicit_return_type "DBus::Connection&   [dbusmm::public]"
+	public return_type class_ref 128317 // Connection
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -242,26 +926,76 @@ ${inlines}
 	
       end
 
-      operation 129257 "~Object"
-	cpp_virtual public explicit_return_type ""
+      operation 130184 "register_obj"
+	abstract cpp_virtual private explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
+	
+	
+	
+	
+      end
+
+      operation 130312 "unregister_obj"
+	abstract cpp_virtual private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	
 	
 	
 	
+      end
+
+      operation 130440 "handle_message"
+	abstract cpp_virtual private explicit_return_type "bool"
+	nparams 1
+	  param in name "m" type class_ref 129477 // Message
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      attribute 129288 "_conn"
+	protected type class_ref 128317 // Connection
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 129416 "_path"
+	protected type class_ref 129213 // Path
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 129544 "_service"
+	protected type class_ref 129288 // string
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
       end
     end
 
     class 129981 "ObjectProxy"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      abstract visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/object.h>
 "
       java_decl ""
       php_decl ""
@@ -274,7 +1008,7 @@ ${inlines}
 	  a public
 	    cpp virtual default "${type}"
 	    classrelation_ref 128581 // <generalisation>
-	  b parent class_ref 128069 // DBus::ProxyBase
+	  b parent class_ref 128069 // ProxyBase
       end
 
       classrelation 130245 // <generalisation>
@@ -282,7 +1016,7 @@ ${inlines}
 	  a public
 	    cpp default "${type}"
 	    classrelation_ref 130245 // <generalisation>
-	  b parent class_ref 129349 // DBus::Object
+	  b parent class_ref 129349 // Object
       end
 
       operation 128745 "ObjectProxy"
@@ -292,20 +1026,6 @@ ${inlines}
 	  param in name "path" type class_ref 129213 // Path
 	  param in name "service" explicit_type "const char *"
 	    defaultvalue "\"\""
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 129385 "object"
-	const public explicit_return_type "const ObjectProxy *"
-	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
@@ -330,26 +1050,13 @@ ${inlines}
 	
 	
       end
-    end
 
-    class 128069 "DBus::ProxyBase"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      operation 129513 "object"
-	const cpp_virtual public explicit_return_type "const ObjectProxy *"
+      operation 129385 "object"
+	const cpp_inline public return_type class_ref 129981 // ObjectProxy
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}const ${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -358,11 +1065,94 @@ ${inlines}
 	
       end
 
+      operation 130568 "_invoke_method"
+	private return_type class_ref 129477 // Message
+	nparams 1
+	  param in name "cm" type class_ref 129605 // CallMessage
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 130952 "handle_message"
+	private explicit_return_type "bool"
+	nparams 1
+	  param in name "m" type class_ref 129477 // Message
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 130696 "register_obj"
+	private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 130824 "unregister_obj"
+	private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      attribute 129672 "_filtered"
+	private type class_ref 130440 // MessageSlot
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 128069 "ProxyBase"
+      abstract visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/interface.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 129513 "object"
+	abstract const cpp_virtual public return_type class_ref 129981 // ObjectProxy
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
       operation 129641 "find_interface"
-	protected explicit_return_type "InterfaceProxy  *"
+	protected return_type class_ref 129853 // InterfaceProxy
 	nparams 1
 	  param inout name "name" explicit_type "string"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -374,7 +1164,7 @@ ${inlines}
       end
 
       operation 129769 "~ProxyBase"
-	cpp_virtual public explicit_return_type ""
+	cpp_virtual protected explicit_return_type ""
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -388,7 +1178,7 @@ ${inlines}
       end
 
       operation 129897 "_invoke_method"
-	cpp_virtual public return_type class_ref 129477 // Message
+	cpp_virtual protected return_type class_ref 129477 // Message
 	nparams 1
 	  param inout name "c" explicit_type "DBus::CallMessage [dbusmm::public]"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
@@ -413,11 +1203,11 @@ ${inlines}
       end
     end
 
-    class 128197 "DBus::IntrospectableProxy"
+    class 128197 "IntrospectableProxy"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/introspection.h>
 "
       java_decl ""
       php_decl ""
@@ -434,11 +1224,11 @@ ${inlines}
       end
     end
 
-    class 128325 "DBus::PropertiesProxy"
+    class 128325 "PropertiesProxy"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/property.h>
 "
       java_decl ""
       php_decl ""
@@ -455,11 +1245,11 @@ ${inlines}
       end
     end
 
-    class 128581 "DBus::Interface"
+    class 128581 "Interface"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/interface.h>
 "
       java_decl ""
       php_decl ""
@@ -511,11 +1301,11 @@ ${inlines}
       end
     end
 
-    class 128709 "DBus::InterfaceAdaptor"
+    class 128709 "InterfaceAdaptor"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/interface.h>
 "
       java_decl ""
       php_decl ""
@@ -528,7 +1318,7 @@ ${inlines}
 	  a public
 	    cpp default "${type}"
 	    classrelation_ref 129989 // <generalisation>
-	  b parent class_ref 128581 // DBus::Interface
+	  b parent class_ref 128581 // Interface
       end
 
       classrelation 130117 // <generalisation>
@@ -536,15 +1326,15 @@ ${inlines}
 	  a public
 	    cpp default "${type}"
 	    classrelation_ref 130117 // <generalisation>
-	  b parent class_ref 129093 // DBus::AdaptorBase
+	  b parent class_ref 129093 // AdaptorBase
       end
     end
 
     class 129853 "InterfaceProxy"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/interface.h>
 "
       java_decl ""
       php_decl ""
@@ -557,7 +1347,7 @@ ${inlines}
 	  a public
 	    cpp virtual default "${type}"
 	    classrelation_ref 128453 // <generalisation>
-	  b parent class_ref 128069 // DBus::ProxyBase
+	  b parent class_ref 128069 // ProxyBase
       end
 
       classrelation 129605 // <generalisation>
@@ -565,7 +1355,7 @@ ${inlines}
 	  a public
 	    cpp default "${type}"
 	    classrelation_ref 129605 // <generalisation>
-	  b parent class_ref 128581 // DBus::Interface
+	  b parent class_ref 128581 // Interface
       end
 
       operation 130537 "InterfaceProxy"
@@ -586,10 +1376,10 @@ ${inlines}
       operation 130665 "invoke_method"
 	public return_type class_ref 129477 // Message
 	nparams 1
-	  param in name "cm" explicit_type "const CallMessage &"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	  param in name "cm" type class_ref 129605 // CallMessage
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -624,11 +1414,11 @@ ${inlines}
       end
     end
 
-    class 128837 "DBus::IntrospectableAdaptor"
+    class 128837 "IntrospectableAdaptor"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/introspection.h>
 "
       java_decl ""
       php_decl ""
@@ -641,15 +1431,15 @@ ${inlines}
 	  a public
 	    cpp default "${type}"
 	    classrelation_ref 129861 // <generalisation>
-	  b parent class_ref 128709 // DBus::InterfaceAdaptor
+	  b parent class_ref 128709 // InterfaceAdaptor
       end
     end
 
-    class 128965 "DBus::PropertiesAdaptor"
+    class 128965 "PropertiesAdaptor"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/property.h>
 "
       java_decl ""
       php_decl ""
@@ -662,15 +1452,15 @@ ${inlines}
 	  a public
 	    cpp default "${type}"
 	    classrelation_ref 129733 // <generalisation>
-	  b parent class_ref 128709 // DBus::InterfaceAdaptor
+	  b parent class_ref 128709 // InterfaceAdaptor
       end
     end
 
-    class 129093 "DBus::AdaptorBase"
+    class 129093 "AdaptorBase"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/interface.h>
 "
       java_decl ""
       php_decl ""
@@ -680,11 +1470,11 @@ ${inlines}
       
     end
 
-    class 129221 "DBus::ObjectAdaptor"
+    class 129221 "ObjectAdaptor"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/object.h>
 "
       java_decl ""
       php_decl ""
@@ -697,7 +1487,7 @@ ${inlines}
 	  a public
 	    cpp default "${type}"
 	    classrelation_ref 130629 // <generalisation>
-	  b parent class_ref 129349 // DBus::Object
+	  b parent class_ref 129349 // Object
       end
 
       classrelation 130757 // <generalisation>
@@ -705,15 +1495,15 @@ ${inlines}
 	  a public
 	    cpp default "${type}"
 	    classrelation_ref 130757 // <generalisation>
-	  b parent class_ref 129093 // DBus::AdaptorBase
+	  b parent class_ref 129093 // AdaptorBase
       end
     end
 
     class 129477 "Message"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/message.h>
 "
       java_decl ""
       php_decl ""
@@ -725,9 +1515,9 @@ ${inlines}
 
     class 129725 "SignalMessage"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/message.h>
 "
       java_decl ""
       php_decl ""
@@ -744,11 +1534,11 @@ ${inlines}
       end
     end
 
-    class 129605 "DBus::CallMessage"
+    class 129605 "CallMessage"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/message.h>
 "
       java_decl ""
       php_decl ""
@@ -765,11 +1555,11 @@ ${inlines}
       end
     end
 
-    class 129733 "DBus::ErrorMessage"
+    class 129733 "ErrorMessage"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/message.h>
 "
       java_decl ""
       php_decl ""
@@ -786,11 +1576,11 @@ ${inlines}
       end
     end
 
-    class 129861 "DBus::ReturnMessage"
+    class 129861 "ReturnMessage"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/message.h>
 "
       java_decl ""
       php_decl ""
@@ -809,9 +1599,9 @@ ${inlines}
 
     class 130885 "MessageIter"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/message.h>
 "
       java_decl ""
       php_decl ""
@@ -823,9 +1613,9 @@ ${inlines}
 
     class 130245 "Dispatcher"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/dispatcher.h>
 "
       java_decl ""
       php_decl ""
@@ -838,9 +1628,9 @@ ${inlines}
 
     class 130373 "BusDispatcher"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/eventloop-integration.h>
 "
       java_decl ""
       php_decl ""
@@ -867,9 +1657,9 @@ ${inlines}
 
     class 130501 "DefaultMainLoop"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/eventloop.h>
 "
       java_decl ""
       php_decl ""
@@ -879,24 +1669,11 @@ ${inlines}
       
     end
 
-    class 128233 "InterfaceProxyTable"
-      visibility package stereotype "typedef" explicit_base_type "std::map<std::string, DBusmm::InterfaceProxy *>"
-      cpp_decl "${comment}typedef ${type} ${name};
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl "${comment}typedef ${type} ${name};
-"
-      explicit_switch_type ""
-      
-    end
-
     class 128453 "Error"
       visibility package stereotype "exception"
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/error.h>
 "
       java_decl ""
       php_decl ""
@@ -910,9 +1687,9 @@ ${members}};
 
     class 129989 "ErrorInvalidArgs"
       visibility package stereotype "exception"
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/error.h>
 "
       java_decl ""
       php_decl ""
@@ -933,9 +1710,9 @@ ${members}};
 
     class 130117 "ErrorUnknownMethod"
       visibility package stereotype "exception"
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/error.h>
 "
       java_decl ""
       php_decl ""
@@ -954,24 +1731,11 @@ ${members}};
       end
     end
 
-    class 128361 "SignalTable"
-      visibility package stereotype "typedef" explicit_base_type "std::map< std::string, Slot<void, const DBus::SignalMessage &> >"
-      cpp_decl "${comment}typedef ${type} ${name};
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl "${comment}typedef ${type} ${name};
-"
-      explicit_switch_type ""
-      
-    end
-
     class 128334 "Watch"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/dispatcher.h>
 "
       java_decl ""
       php_decl ""
@@ -984,6 +1748,167 @@ ${inlines}
 
     class 128462 "Timeout"
       visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/dispatcher.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 130440 "MessageSlot"
+      visibility package stereotype "typedef" base_type class_ref 130696 // Callback_Base
+      nactuals 2
+      actual class class_ref 130696 // Callback_Base
+        rank 0 explicit_value "bool"
+      actual class class_ref 130696 // Callback_Base
+        rank 1 value class_ref 129477 // Message
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/conection.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130440 // <realization>
+	relation 130440 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130440 // <realization>
+	  b parent class_ref 130696 // Callback_Base
+      end
+    end
+
+    class 130568 "Slot"
+      visibility package 
+      nformals 2
+      formal name "R" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "P" type "class" explicit_default_value ""
+        explicit_extends ""
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/util.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 131464 "operator ="
+	public return_type class_ref 130568 // Slot
+	nparams 1
+	  param in name "s" type class_ref 130696 // Callback_Base
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131336 "operator"
+	const public explicit_return_type "R"
+	nparams 1
+	  param in name "param" explicit_type "P"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131208 "call"
+	const public explicit_return_type "R"
+	nparams 1
+	  param in name "param" explicit_type "P"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131080 "empty"
+	public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 130696 "Callback_Base"
+      abstract visibility package 
+      nformals 2
+      formal name "R" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "P" type "class" explicit_default_value ""
+        explicit_extends ""
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/util.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 131592 "~Callback_Base"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131720 "call"
+	abstract const cpp_virtual public explicit_return_type "R"
+	nparams 1
+	  param in name "Param" explicit_type "P"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 131080 "PendingCall"
+      visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
 ${inlines}
@@ -994,443 +1919,43 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-    end
-  end
-
-  deploymentview 129213 "dbusmm deployment view"
-    //deployment diagram settings
-    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
-    draw_component_as_icon default show_component_req_prov default show_component_rea default
-    deploymentdiagram 128069 "dbusmm deployment diagram"
-      package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
-      draw_component_as_icon default show_component_req_prov default show_component_rea default
-      size A4
-    end
-
-    artifact 128453 "dbusmm_public"
-      stereotype "source"
-      associated_classes
-      end
-      simplerelation 128105
-	-_->
-	  on artifact_ref 129769 // property
+      classrelation 131080 // <dependency>
+	relation 131080 -_->
+	  stereotype "friend"
+	  a package
+	    cpp default "${type}"
+	    classrelation_ref 131080 // <dependency>
+	  b parent class_ref 128317 // Connection
       end
 
-      simplerelation 128233
-	-_->
-	  on artifact_ref 129641 // introspection
-      end
-
-      simplerelation 128361
-	-_->
-	  on artifact_ref 128105 // object
-      end
-
-      simplerelation 128489
-	-_->
-	  on artifact_ref 129129 // util
-      end
-
-      simplerelation 128617
-	-_->
-	  on artifact_ref 128233 // interface
-      end
-
-      simplerelation 128745
-	-_->
-	  on artifact_ref 129001 // types
-      end
-
-      simplerelation 128873
-	-_->
-	  on artifact_ref 128361 // error
-      end
-
-      simplerelation 129001
-	-_->
-	  on artifact_ref 128489 // dispatcher
-      end
-
-      simplerelation 129129
-	-_->
-	  on artifact_ref 128745 // evenloop
-      end
-
-      simplerelation 129257
-	-_->
-	  on artifact_ref 128617 // eventloop-integration
-      end
-
-      simplerelation 129385
-	-_->
-	  on artifact_ref 128873 // glib-integration
-      end
-
-      simplerelation 129513
-	-_->
-	  on artifact_ref 129257 // message
-      end
-
-      simplerelation 129641
-	-_->
-	  on artifact_ref 129513 // message_private
-      end
-
-      simplerelation 129769
-	-_->
-	  on artifact_ref 129385 // connection
-      end
-    end
-
-    artifact 128581 "dbusmm_header"
-      stereotype "library"
-      associated_artifacts
-      end
-      simplerelation 130409
-	-_->
-	  on artifact_ref 128453 // dbusmm_public
-      end
-    end
-
-    artifact 128105 "object"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif ${NAMESPACE}_${NAME}_HPP
+      operation 135176 "~PendingCall"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
 "
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 129349 // DBus::Object
-	class_ref 129981 // ObjectProxy
-	class_ref 129221 // DBus::ObjectAdaptor
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
       end
-    end
 
-    artifact 128233 "interface"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif ${NAMESPACE}_${NAME}_HPP
+      operation 135304 "PendingCall"
+	stereotype "copy"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "source" type class_ref 131080 // PendingCall
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
 "
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 128581 // DBus::Interface
-	class_ref 128069 // DBus::ProxyBase
-	class_ref 129093 // DBus::AdaptorBase
-	class_ref 128709 // DBus::InterfaceAdaptor
-	class_ref 129853 // InterfaceProxy
-	class_ref 128233 // InterfaceProxyTable
-	class_ref 128361 // SignalTable
-      end
-    end
-
-    artifact 128361 "error"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif ${NAMESPACE}_${NAME}_HPP
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
 "
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      idl_src "#ifndef ${MODULE}_${NAME}_H
-#define ${MODULE}_${NAME}_H
-
-${comment}
-${includes}
-${module_start}
-${definition}
-${module_end}
-#endif
-"
-      associated_classes
-	class_ref 128453 // Error
-	class_ref 129989 // ErrorInvalidArgs
-	class_ref 130117 // ErrorUnknownMethod
-      end
-    end
-
-    artifact 128489 "dispatcher"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif ${NAMESPACE}_${NAME}_HPP
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 130245 // Dispatcher
-	class_ref 128462 // Timeout
-	class_ref 128334 // Watch
-      end
-    end
-
-    artifact 128617 "eventloop-integration"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif ${NAMESPACE}_${NAME}_HPP
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 130373 // BusDispatcher
-      end
-    end
-
-    artifact 128745 "evenloop"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif ${NAMESPACE}_${NAME}_HPP
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 130501 // DefaultMainLoop
-      end
-    end
-
-    artifact 129001 "types"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif ${NAMESPACE}_${NAME}_HPP
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 129213 // Path
-	class_ref 129341 // String
-	class_ref 129469 // Variant
-      end
-    end
-
-    artifact 129129 "util"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif ${NAMESPACE}_${NAME}_HPP
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 129597 // RefPtr
-      end
-    end
-
-    artifact 129257 "message"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif ${NAMESPACE}_${NAME}_HPP
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 130885 // MessageIter
-	class_ref 129605 // DBus::CallMessage
-	class_ref 129725 // SignalMessage
-	class_ref 129733 // DBus::ErrorMessage
-	class_ref 129861 // DBus::ReturnMessage
-      end
-    end
-
-    artifact 129385 "connection"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif ${NAMESPACE}_${NAME}_HPP
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 128317 // Connection
-      end
-    end
-
-    artifact 129513 "message_private"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif ${NAMESPACE}_${NAME}_HPP
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 129477 // Message
-      end
-    end
-
-    artifact 129641 "introspection"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif ${NAMESPACE}_${NAME}_HPP
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 128837 // DBus::IntrospectableAdaptor
-	class_ref 128197 // DBus::IntrospectableProxy
-      end
-    end
-
-    artifact 129769 "property"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif ${NAMESPACE}_${NAME}_HPP
-"
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 128965 // DBus::PropertiesAdaptor
-	class_ref 128325 // DBus::PropertiesProxy
+	
+	
+	
+	
       end
     end
   end

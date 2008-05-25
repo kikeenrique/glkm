@@ -1,6 +1,6 @@
 format 56
 "glibmm" // glibmm
-  revision 4
+  revision 5
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -46,13 +46,13 @@ format 56
     show_infonote default drawing_language default
     classdiagram 128590 "glibmm class diagram"
       draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-      size A2
+      size A3
     end
 
     class 129614 "RefPtr"
       visibility package 
       nformals 1
-      formal name "T" type "class" explicit_default_value ""
+      formal name "T_CppObject" type "class" explicit_default_value ""
         explicit_extends ""
       cpp_external cpp_decl "${name}
 
@@ -65,64 +65,254 @@ format 56
       explicit_switch_type ""
       
       associated_diagram classdiagram_ref 128590 // glibmm class diagram
-    end
-
-    class 129870 "ObjectBase"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      operation 152712 "RefPtr"
+	cpp_inline public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
 "
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      associated_diagram classdiagram_ref 128590 // glibmm class diagram
-    end
-
-    class 129998 "Object"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
 "
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      associated_diagram classdiagram_ref 128590 // glibmm class diagram
-      classrelation 129614 // <generalisation>
-	relation 129614 ---|>
-	  a public
-	    cpp default "${type}"
-	    classrelation_ref 129614 // <generalisation>
-	  b parent class_ref 129870 // ObjectBase
+	
+	
+	
+	
       end
-    end
 
-    class 130126 "Interface"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      operation 153096 "~RefPtr"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
 "
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      associated_diagram classdiagram_ref 128590 // glibmm class diagram
-      classrelation 129486 // <generalisation>
-	relation 129486 ---|>
-	  a public
-	    cpp default "${type}"
-	    classrelation_ref 129486 // <generalisation>
-	  b parent class_ref 129870 // ObjectBase
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 152840 "RefPtr"
+	cpp_inline public explicit_return_type ""
+	nparams 1
+	  param out name "pCppObject" explicit_type "T_CppObject"
+	cpp_decl "    ${comment} explicit ${inline}${name}${(}${t0} * ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 152968 "RefPtr"
+	stereotype "copy"
+	cpp_inline public explicit_return_type ""
+	nparams 1
+	  param in name "source" type class_ref 129614 // RefPtr
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 153352 "RefPtr"
+	stereotype "copy"
+	cpp_inline public explicit_return_type ""
+	nparams 1
+	  param in name "source" type class_ref 129614 // RefPtr
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0}<class T_CastFrom> & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0}<class T_CastFrom> & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+	comment "template <class T_CastFrom>
+  inline RefPtr(const RefPtr<T_CastFrom>& src);
+"
+      end
+
+      operation 153480 "swap"
+	cpp_inline public explicit_return_type "void"
+	nparams 1
+	  param out name "other" type class_ref 129614 // RefPtr
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 153608 "operator="
+	cpp_inline public return_type class_ref 129614 // RefPtr
+	nparams 1
+	  param in name "source" type class_ref 129614 // RefPtr
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}const ${t0}<T_CastFrom> & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}const ${t0}<T_CastFrom> & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "  template <class T_CastFrom>
+  inline RefPtr<T_CppObject>& operator=(const RefPtr<T_CastFrom>& src);
+"
+      end
+
+      operation 153736 "operator=="
+	const cpp_inline public explicit_return_type "bool"
+	nparams 1
+	  param in name "src" type class_ref 129614 // RefPtr
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 153864 "operator!="
+	const cpp_inline public explicit_return_type "bool"
+	nparams 1
+	  param in name "src" type class_ref 129614 // RefPtr
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 153992 "operator->"
+	const cpp_inline public explicit_return_type "T_CppObject *"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 154120 "operator bool"
+	const cpp_inline public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 154248 "reset"
+	cpp_inline public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 154376 "cast_dynamic"
+	class_operation cpp_inline public return_type class_ref 129614 // RefPtr
+	nparams 1
+	  param in name "src" type class_ref 129614 // RefPtr
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0}<T_CastFrom> & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0}<T_CastFrom> & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "  template <class T_CastFrom>
+  static inline RefPtr<T_CppObject> cast_dynamic(const RefPtr<T_CastFrom>& src);
+"
+      end
+
+      operation 154504 "cast_static"
+	class_operation cpp_inline public return_type class_ref 129614 // RefPtr
+	nparams 1
+	  param in name "src" type class_ref 129614 // RefPtr
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0}<T_CastFrom> & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0}<T_CastFrom> & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "  template <class T_CastFrom>
+  static inline RefPtr<T_CppObject> cast_static(const RefPtr<T_CastFrom>& src);
+
+"
+      end
+
+      operation 154632 "cast_const"
+	class_operation cpp_inline public return_type class_ref 129614 // RefPtr
+	nparams 1
+	  param in name "src" type class_ref 129614 // RefPtr
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0}<T_CastFrom> & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0}<T_CastFrom> & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "  template <class T_CastFrom>
+  static inline RefPtr<T_CppObject> cast_const(const RefPtr<T_CastFrom>& src);
+
+
+"
+      end
+
+      attribute 133512 "pCppObject_"
+	protected explicit_type "T_CppObject*"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
       end
     end
 
@@ -141,7 +331,1678 @@ ${inlines}
       associated_diagram classdiagram_ref 128590 // glibmm class diagram
     end
 
+    class 133896 "ValueBase"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 140936 "ValueBase"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 141064 "~ValueBase"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 141192 "ValueBase"
+	stereotype "copy"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "other" type class_ref 133896 // ValueBase
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 141320 "operator ="
+	public return_type class_ref 133896 // ValueBase
+	nparams 1
+	  param in name "other" type class_ref 133896 // ValueBase
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 141448 "init"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "type" explicit_type "GType"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 141576 "init"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "value" explicit_type "GType"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 141704 "reset"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 141832 "gobj"
+	public explicit_return_type "GValue"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 141960 "gobj"
+	const public explicit_return_type "GValue"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline} const ${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline} const ${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 132616 "gobject_"
+	protected explicit_type "GValue"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 129870 "ObjectBase"
+      abstract visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <glibmm/objectbase.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      associated_diagram classdiagram_ref 128590 // glibmm class diagram
+      classrelation 135176 // <generalisation>
+	relation 135176 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 135176 // <generalisation>
+	  b parent class_ref 129742 // trackable
+      end
+
+      operation 142344 "set_property_value"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "property_name" type class_ref 132814 // ustring
+	  param in name "value" type class_ref 133896 // ValueBase
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 142472 "get_property_value"
+	const public explicit_return_type "void"
+	nparams 2
+	  param in name "property_name" type class_ref 132814 // ustring
+	  param out name "value" type class_ref 133896 // ValueBase
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 142600 "set_property"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "property_name" type class_ref 132814 // ustring
+	  param in name "value" explicit_type "PropertyType"
+	cpp_decl "    template <class ${t1}>
+   ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "template <class ${t1}>
+${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 142728 "get_property"
+	const public explicit_return_type "void"
+	nparams 2
+	  param in name "property_name" type class_ref 132814 // ustring
+	  param out name "value" explicit_type "PropertyType"
+	cpp_decl "     template <class ${t1}>
+  ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def " template <class ${t1}>
+  ${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 142856 "connect_property_changed"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "property_name" type class_ref 132814 // ustring
+	  param in name "slot" type class_ref 134024 // slot
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "second parameter should be // sigc::slot<void>"
+      end
+
+      operation 143112 "connect_property_changed_with_return"
+	public return_type class_ref 134152 // connection
+	nparams 2
+	  param in name "property_name" type class_ref 132814 // ustring
+	  param in name "slot" type class_ref 134024 // slot
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "second parameter should be // sigc::slot<void>"
+      end
+
+      operation 143240 "reference"
+	const cpp_virtual public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 143368 "unreference"
+	const cpp_virtual public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 143496 "gobj"
+	public return_type class_ref 134280 // GObject
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 143624 "gobj"
+	const public return_type class_ref 134280 // GObject
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual} const ${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline} const ${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 143752 "gobj_copy"
+	const public return_type class_ref 134280 // GObject
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 142088 "ObjectBase"
+	protected explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 143880 "ObjectBase"
+	protected explicit_return_type ""
+	nparams 1
+	  param in name "custom_type_name" explicit_type "char"
+	cpp_decl "    ${comment}${inline} explicit ${name}${(}const ${t0} * ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} * ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 144008 "ObjectBase"
+	protected explicit_return_type ""
+	nparams 1
+	  param in name "custom_type_info" type class_ref 134408 // type_info
+	cpp_decl "    ${comment}${inline} explicit ${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 142216 "~ObjectBase"
+	abstract cpp_virtual protected explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 129998 "Object"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <glibmm/object.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      associated_diagram classdiagram_ref 128590 // glibmm class diagram
+      class 135176 "DestroyNotify"
+	visibility protected stereotype "typedef" explicit_base_type "void"
+	cpp_external cpp_decl "${name}
+
+
+#include <glibmm/object.h>
+//typedef void(* 	DestroyNotify )(gpointer data)
+//more info look into glibmm/object.h"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	comment "//Definition
+typedef void(* 	DestroyNotify )(gpointer data)
+
+"
+      end
+
+      class 135432 "CppClassType"
+	visibility protected stereotype "typedef" base_type class_ref 135304 // Object_Class
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+      end
+
+      classrelation 129614 // <generalisation>
+	relation 129614 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129614 // <generalisation>
+	  b parent class_ref 129870 // ObjectBase
+      end
+
+      operation 145928 "Object"
+	protected explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 146184 "Object"
+	protected explicit_return_type ""
+	nparams 1
+	  param in name "construct_params" explicit_type ""
+	cpp_decl "    ${comment}${inline} explicit ${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 146312 "Object"
+	protected explicit_return_type ""
+	nparams 1
+	  param out name "castitem" type class_ref 134280 // GObject
+	cpp_decl "    ${comment}${inline} explicit ${name}${(}${t0} * ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 146056 "~Object"
+	cpp_virtual protected explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 146952 "get_data"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "key" type class_ref 134920 // QueryQuark
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 147208 "set_data"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "key" type class_ref 134920 // QueryQuark
+	  param out name "data" explicit_type "void"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 147080 "steal_data"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "key" type class_ref 134920 // QueryQuark
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 147336 "set_data"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "key" type class_ref 134920 // QueryQuark
+	  param out name "data" explicit_type "void"
+	  param in name "notify" type class_ref 135176 // DestroyNotify
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} * ${p1}, ${t2} ${p2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} * ${p1}, ${t2} ${p2}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 147464 "remove_data"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "quark" type class_ref 134920 // QueryQuark
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 147592 "Object"
+	stereotype "copy"
+	private explicit_return_type ""
+	nparams 1
+	  param in name "source" type class_ref 129998 // Object
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 147720 "operator="
+	private return_type class_ref 129998 // Object
+	nparams 1
+	  param in name "source" type class_ref 129998 // Object
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      classrelation 135304 // <dependency>
+	relation 135304 -_->
+	  stereotype "friend"
+	  a package
+	    cpp private "friend class ${type};"
+	    classrelation_ref 135304 // <dependency>
+	  b parent class_ref 135304 // Object_Class
+      end
+
+      attribute 132744 "object_class_"
+	class_attribute private type class_ref 135432 // CppClassType
+	cpp_visibility private cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 130126 "Interface"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <glibmm/interface.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      associated_diagram classdiagram_ref 128590 // glibmm class diagram
+      classrelation 129486 // <generalisation>
+	relation 129486 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 129486 // <generalisation>
+	  b parent class_ref 129870 // ObjectBase
+      end
+
+      operation 145032 "Interface"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "interface_class" type class_ref 134536 // Interface_Class
+	cpp_decl "    ${comment}${inline} explicit ${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 145288 "Interface"
+	public explicit_return_type ""
+	nparams 1
+	  param out name "castitem" type class_ref 134280 // GObject
+	cpp_decl "    ${comment}${inline} explicit ${name}${(}${t0} * ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 145160 "~Interface"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 145416 "gobj"
+	public return_type class_ref 134280 // GObject
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 145544 "gobj"
+	const public return_type class_ref 134280 // GObject
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual} const ${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline} const ${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 145672 "Interface"
+	stereotype "copy"
+	private explicit_return_type ""
+	nparams 1
+	  param in name "source" type class_ref 130126 // Interface
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 145800 "operator="
+	private return_type class_ref 130126 // Interface
+	nparams 1
+	  param in name "source" type class_ref 130126 // Interface
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
     class 129160 "OptionContext"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <glibmm/optioncontext.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 150024 "OptionContext"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "parameter_string" type class_ref 132814 // ustring
+	    defaultvalue "Glib::ustring()"
+	cpp_decl "    ${comment}${inline}  explicit ${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 150280 "OptionContext"
+	public explicit_return_type ""
+	nparams 2
+	  param out name "castitem" explicit_type "GOptionContext"
+	  param in name "take_ownership" explicit_type "bool"
+	    defaultvalue "false"
+	cpp_decl "    ${comment}${inline} explicit ${name}${(}${t0} * ${p0}, ${t1} ${p1}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, ${t1} ${p1}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 150152 "~OptionContext"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 150408 "set_help_enabled"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "help_enable" explicit_type "bool"
+	    defaultvalue "true"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 150536 "get_help_enabled"
+	const public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 150664 "set_ignore_unknown_options"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "ignore_unknown" explicit_type "bool"
+	    defaultvalue "true"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 150792 "get_ignore_unknown_options"
+	const public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 129288 "ifdef"
+	
+	cpp "#ifdef GLIBMM_EXCEPTIONS_ENABLED" "#ifdef GLIBMM_EXCEPTIONS_ENABLED"
+	java ""
+	php ""
+	python ""
+	idl ""
+      end
+
+      operation 150920 "parse"
+	public explicit_return_type "bool"
+	nparams 2
+	  param in name "argc" explicit_type "int"
+	  param in name "argv" explicit_type "char"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}, ${t1} **& ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}, ${t1} **& ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 129416 "else"
+	
+	cpp "#else" "#else"
+	java ""
+	php ""
+	python ""
+	idl ""
+      end
+
+      operation 151048 "parse"
+	public explicit_return_type "bool"
+	nparams 3
+	  param in name "argc" explicit_type "int"
+	  param in name "argv" explicit_type "char"
+	  param out name "error" type class_ref 135688 // auto_ptr
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}, ${t1} **& ${p1}, ${t2} & ${p2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}, ${t1} **& ${p1}, ${t2} & ${p2}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "  bool parse(int& argc, char**& argv, std::auto_ptr<Glib::Error>& error);
+"
+      end
+
+      extra_member 129544 "endif"
+	
+	cpp "#endif //GLIBMM_EXCEPTIONS_ENABLED" "#endif //GLIBMM_EXCEPTIONS_ENABLED"
+	java ""
+	php ""
+	python ""
+	idl ""
+      end
+
+      operation 151176 "add_group"
+	public explicit_return_type "void"
+	nparams 1
+	  param out name "group" type class_ref 135816 // OptionGroup
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 151304 "set_main_group"
+	public explicit_return_type "void"
+	nparams 1
+	  param out name "group" type class_ref 135816 // OptionGroup
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 151432 "get_help"
+	const public return_type class_ref 132814 // ustring
+	nparams 2
+	  param in name "main_help" explicit_type "bool"
+	  param in name "group" type class_ref 135816 // OptionGroup
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 151560 "get_help"
+	const public return_type class_ref 132814 // ustring
+	nparams 1
+	  param in name "main_help" explicit_type "bool"
+	    defaultvalue "true"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 151688 "gobj"
+	public explicit_return_type "GOptionContext"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 151816 "gobj"
+	const public explicit_return_type "GOptionContext"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline} const ${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 151944 "set_summary"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "summary" type class_ref 132814 // ustring
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 152072 "get_summary"
+	const public return_type class_ref 132814 // ustring
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 152200 "set_description"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "description" type class_ref 132814 // ustring
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 152328 "get_description"
+	const public return_type class_ref 132814 // ustring
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 152456 "set_translation_domain"
+	const public explicit_return_type "void"
+	nparams 1
+	  param in name "domain" type class_ref 132814 // ustring
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      class 135944 "SlotTranslate"
+	visibility package stereotype "typedef" base_type class_ref 134024 // slot
+	cpp_decl "${comment}typedef ${type} ${name};
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	comment "  typedef sigc::slot<Glib::ustring, const Glib::ustring&> SlotTranslate;
+"
+      end
+
+      operation 152584 "set_translate_func"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "slot" type class_ref 135944 // SlotTranslate
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 133256 "gobject_"
+	protected explicit_type "GOptionContext"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 133384 "has_ownership_"
+	protected explicit_type "bool"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 134280 "GObject"
+      visibility package stereotype "typedef" explicit_base_type "_Gobject"
+      cpp_external cpp_decl "${name}
+
+#include <glibmm/signalproxy.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "//Gobject is declared as 
+// extern \"C\" int glibmm/signalproxy.h
+// {
+//   typedef struct _GObject GObject;
+// }"
+    end
+
+    class 134536 "Interface_Class"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <glibmm/object.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 134664 "ConstructParams"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <glibmm/object.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 146440 "ConstructParams"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "glibmm_class_" type class_ref 134792 // Class
+	cpp_decl "    ${comment}${inline} explicit ${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 148360 "ConstructParams"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "glibmm_class_" type class_ref 134792 // Class
+	  param in name "first_property_name" explicit_type "char"
+	  param in name "..." explicit_type ""
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}, const ${t1} * ${p1}, ${t2} ${p2}${)}${volatile}${throw}    G_GNUC_NULL_TERMINATED; // warn if called without a trailing NULL pointer
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}, const ${t1} * ${p1}, ${t2} ${p2}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 146568 "~ConstructParams"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 146696 "ConstructParams"
+	stereotype "copy"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "source" type class_ref 134664 // ConstructParams
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 146824 "operator="
+	private return_type class_ref 134664 // ConstructParams
+	nparams 1
+	  param in name "source" type class_ref 134664 // ConstructParams
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 134792 "Class"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <glibmm/class.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 147848 "get_type"
+	const cpp_inline public explicit_return_type "GType"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 147976 "clone_custom_type"
+	const public explicit_return_type "GType"
+	nparams 1
+	  param in name "custom_type_name" explicit_type "char"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 132872 "gtype_"
+	protected explicit_type "GType"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 133000 "class_init_func_"
+	protected explicit_type "GClassInitFunc"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 148232 "register_derived_type"
+	protected explicit_return_type "void"
+	nparams 1
+	  param in name "base_type" explicit_type "GType"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 148104 "custom_class_init_function"
+	class_operation private explicit_return_type "void"
+	nparams 2
+	  param out name "g_class" explicit_type "void"
+	  param out name "class_data" explicit_type "void"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 134920 "QueryQuark"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <glibmm/quark.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 148872 "QueryQuark"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "q" explicit_type "GQuark"
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 148488 "QueryQuark"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "s" type class_ref 132814 // ustring
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 149000 "QueryQuark"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "s" explicit_type "char"
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} * ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} * ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 148616 "~QueryQuark"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw} {}
+"
+	
+	
+	
+	
+      end
+
+      operation 148744 "operator="
+	public return_type class_ref 134920 // QueryQuark
+	nparams 1
+	  param in name "q" type class_ref 134920 // QueryQuark
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 149128 "operator ustring"
+	const public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 149256 "operator GQuark"
+	const public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 149384 "id"
+	const public explicit_return_type "GQuark"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 133128 "quark_"
+	protected explicit_type "GQuark"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 135048 "Quark"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <glibmm/quark.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 135432 // <generalisation>
+	relation 135432 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 135432 // <generalisation>
+	  b parent class_ref 134920 // QueryQuark
+      end
+
+      operation 149640 "Quark"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "s" type class_ref 132814 // ustring
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 149768 "Quark"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "s" explicit_type "char"
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} * ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} * ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 149896 "~Quark"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 135304 "Object_Class"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <glibmm/private/object_p.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 135560 "Error"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <glibmm/error.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 135816 "OptionGroup"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <glibmm/optiongroup.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 136712 "PropertyProxy"
+      visibility package 
+      nformals 1
+      formal name "T" type "class" explicit_default_value ""
+        explicit_extends ""
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 135816 // <generalisation>
+	relation 135816 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 135816 // <generalisation>
+	  b parent class_ref 136968 // PropertyProxy_Base
+      end
+    end
+
+    class 136840 "PropertyProxy_ReadOnly"
+      visibility package 
+      nformals 1
+      formal name "T" type "class" explicit_default_value ""
+        explicit_extends ""
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 135944 // <generalisation>
+	relation 135944 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 135944 // <generalisation>
+	  b parent class_ref 136968 // PropertyProxy_Base
+      end
+    end
+
+    class 136968 "PropertyProxy_Base"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};

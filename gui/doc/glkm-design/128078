@@ -1,6 +1,6 @@
 format 56
 "glib_dbusmm" // dbusmm::glib_dbusmm
-  revision 2
+  revision 3
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -52,9 +52,9 @@ format 56
 
     class 130629 "BusDispatcher"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/glib-integration.h>
 "
       java_decl ""
       php_decl ""
@@ -197,33 +197,11 @@ ${inlines}
       end
     end
 
-    class 128078 "BusWatch"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      associated_diagram classdiagram_ref 128078 // glib_dbusmm class diagram
-      classrelation 128334 // <generalisation>
-	relation 128334 ---|>
-	  a public
-	    cpp default "${type}"
-	    classrelation_ref 128334 // <generalisation>
-	  b parent class_ref 128334 // Watch
-      end
-    end
-
     class 128206 "BusTimeout"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/glib-integration.h>
 "
       java_decl ""
       php_decl ""
@@ -240,42 +218,28 @@ ${inlines}
 	  b parent class_ref 128462 // Timeout
       end
     end
-  end
 
-  deploymentview 128078 "glib_dbusmm deployment view"
-    //deployment diagram settings
-    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
-    draw_component_as_icon default show_component_req_prov default show_component_rea default
-    deploymentdiagram 128206 "glib_dbusmm deployment diagram"
-      package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
-      draw_component_as_icon default show_component_req_prov default show_component_rea default
-      size A2
-    end
+    class 128078 "BusWatch"
+      visibility package 
+      cpp_external cpp_decl "${name}
 
-    artifact 128873 "glib-integration"
-      stereotype "source"
-      cpp_h "#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif ${NAMESPACE}_${NAME}_HPP
+#include <dbusmm/glib-integration.h>
 "
-      cpp_src "${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 130629 // BusDispatcher
-	class_ref 128206 // BusTimeout
-	class_ref 128078 // BusWatch
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      associated_diagram classdiagram_ref 128078 // glib_dbusmm class diagram
+      classrelation 128334 // <generalisation>
+	relation 128334 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128334 // <generalisation>
+	  b parent class_ref 128334 // Watch
       end
     end
   end
+
 end

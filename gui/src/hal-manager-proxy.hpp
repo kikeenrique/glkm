@@ -21,16 +21,15 @@
 
 #include <dbusmm/interface.h>
 #include <dbusmm/object.h>
-#include <dbusmm/types.h>
 
 #include <map>
 
-#include "glkm_hal_device_proxy.hpp"
+#include "hal-device-proxy.hpp"
 #include "utils.hpp"
 
-namespace DBus { class Connection; } 
+/*namespace DBus { class Connection; } 
 namespace DBus { class SignalMessage; } 
-namespace DBus { class Path; } 
+namespace DBus { class Path; } */
 
 class HalManagerProxy: 
 	public DBus::InterfaceProxy,
@@ -48,9 +47,8 @@ private:
 	void on_device_removed(const DBus::SignalMessage& sig );
 
 protected:
-	std::map<DBus::Path, HalDeviceProxyRef> _devices;
+	std::map<DBus::Path, HalDeviceProxyRefPtr> _devices;
 
 };
-
 
 #endif//GLKM_HAL_MANAGER_PROXY_HPP

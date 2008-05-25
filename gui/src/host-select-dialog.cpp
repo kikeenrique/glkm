@@ -1,6 +1,7 @@
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
  * gui
- * Copyright (C) Enrique García Álvarez 2007 <kike+glkm@eldemonionegro.com>
+ * Copyright (C) Enrique García Álvarez 2008 <kike+glkm@eldemonionegro.com>
  * 
  * gui is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -16,39 +17,32 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-#include <glibmm/ustring.h>
-
-#include <iostream>
-
+#include "host-select-dialog.hpp"
+#include "icon-view-hosts.hpp"
 
 #include <config.h>
-#ifdef HAVE_LIBGNOME
-#include <libgnome/gnome-url.h>
-#endif // HAVE_LIBGNOME
-
-#include "about-dialog.hpp"
-
 #include "debug.hpp"
 
-AboutDialog::AboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
-	:Gtk::AboutDialog(cobject),
+HostSelectDialog::HostSelectDialog(BaseObjectType * cobject, const RefPtrGladeXml & refGlade):
+	Gtk::Dialog(cobject),
 	_refGlademmXml(refGlade)
 {
 	/* Actioning close button doesn't work by itself, needs a gobernant signal 
 	 to http://mail.gnome.org/archives/gtkmm-list/2007-January/msg00305.html */
-	signal_response().connect( sigc::mem_fun(*this, &AboutDialog::on_button_quit)); 
-
-	set_url_hook(sigc::mem_fun(*this, &AboutDialog::on_activate_link_url));
-	set_email_hook(sigc::mem_fun(*this, &AboutDialog::on_activate_email_url));
+	signal_response().connect( sigc::mem_fun(*this, &HostSelectDialog::on_button_quit));
+	//Host selection Dialog
+	_refGlademmXml->get_widget_derived("host_select_dialog-iconview", _pIconViewHosts);
+	if (_pIconViewHosts){
+	} else{
+		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
+	}	 
 }
 
-AboutDialog::~AboutDialog()
-{
-	PRINTD("~AboutDialog");
+HostSelectDialog::~HostSelectDialog() {
+		PRINTD("~Dialog");
 }
 
-void AboutDialog::on_button_quit(int response_id)
+void HostSelectDialog::on_button_quit(int response_id)
 {
 	switch(response_id) {
 		case Gtk::RESPONSE_NONE :
@@ -99,45 +93,4 @@ void AboutDialog::on_button_quit(int response_id)
 			PRINTD("unattended event" + response_id);
 			;
 	}
-}
-
-void AboutDialog::on_activate_link_url(Gtk::AboutDialog& about_dialog, const Glib::ustring& link)
-{
-	PRINTD("on_activate_link_url");
-#ifdef HAVE_LIBGNOME
-	GError *error = NULL;
-
-    if (gnome_url_show(link.c_str(), &error)){
-		PRINTD("activate_link ok");
-	}else{
-		PRINTD("activate_link BAD");
-	}
-
-	if (error != NULL){
-		g_warning (error->message);
-		g_error_free (error);
-	}
-#endif // HAVE_LIBGNOME
-}
-
-void AboutDialog::on_activate_email_url(Gtk::AboutDialog& about_dialog, const Glib::ustring& email)
-{
-
-	Glib::ustring link="mailto:"+email;
-
-	PRINTD("on_activate_email_url");
-#ifdef HAVE_LIBGNOME
-	GError *error = NULL;
-
-    if (gnome_url_show(link.c_str(), &error)){
-		PRINTD("activate_email ok");
-	}else{
-		PRINTD("activate_email BAD");
-	}	
-	if (error != NULL){
-		g_warning (error->message);
-		g_error_free (error);
-	}
-#endif // HAVE_LIBGNOME
-
 }

@@ -18,10 +18,10 @@
  */
 
 #include <gtkmm/main.h>
-#include "glkm_mainwindow.hpp"
 
 #include <vector>
 
+#include "main-window.hpp"
 #include "config.h"
 
 #ifdef ENABLE_NLS

@@ -23,7 +23,7 @@
 
 #include <iostream>
 
-#include "glkm_hal_manager_proxy.hpp"
+#include "hal-manager-proxy.hpp"
 #include "debug.hpp"
 #include "config.h"
 

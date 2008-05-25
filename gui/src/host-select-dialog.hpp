@@ -17,25 +17,25 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _FILE_HPP_
-#define _FILE_HPP_
+#ifndef _HOST_SELECT_DIALOG_HPP
+#define _HOST_SELECT_DIALOG_HPP
 
-#include <vector>
+#include <gtkmm/dialog.h>
+#include "utils.hpp"
 
-class Process;
-class Inode;
+class IconViewHosts;
 
-class File {
+class HostSelectDialog : public Gtk::Dialog {
   public:
-	File();
-
-	virtual ~File();
-
+	HostSelectDialog(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
+	virtual ~HostSelectDialog();
 
   protected:
-	std::vector<Process *> process_list;
-	Inode * inode;
+	void on_button_quit(int response_id);
+	RefPtrGladeXml _refGlademmXml;
+
+	IconViewHosts * _pIconViewHosts;
 
 };
 
-#endif // _FILE_HPP_
+#endif // _HOST_SELECT_DIALOG_HPP

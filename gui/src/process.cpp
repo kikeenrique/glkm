@@ -17,20 +17,20 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "glkm_procces.hpp"
+#include "process.hpp"
 #include "file.hpp"
 
 #include "debug.hpp"
 
 
-Procces::Procces()
+Process::Process()
 {
 	#ifdef DEBUG
 	//pDebug->debug_print("Constructor procces");
 	#endif // DEBUG
 }
 
-Procces::~Procces()
+Process::~Process()
 {
 	//Null
 }

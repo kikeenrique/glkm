@@ -17,25 +17,18 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _FILE_HPP_
-#define _FILE_HPP_
+#include "icon-view-hosts.hpp"
 
-#include <vector>
+#include <config.h>
+#include "debug.hpp"
 
-class Process;
-class Inode;
+IconViewHosts::IconViewHosts(BaseObjectType * cobject, const RefPtrGladeXml & refGlade):
+	Gtk::IconView(cobject),
+	_refGlademmXml(refGlade)
+{
 
-class File {
-  public:
-	File();
+}
 
-	virtual ~File();
-
-
-  protected:
-	std::vector<Process *> process_list;
-	Inode * inode;
-
-};
-
-#endif // _FILE_HPP_
+IconViewHosts::~IconViewHosts() {
+	PRINTD("~IconViewHosts");
+}

@@ -21,29 +21,28 @@
 #ifndef _HOST_HPP
 #define _HOST_HPP
 
+#include "process.hpp"
 #include <glibmm/ustring.h>
 #include <map>
 
-class Process;
 class Filesystem;
-namespace DBus { template<class T> class RefPtr; } 
 class HalController;
 
 class Host {
   public:
-    Host();
+    Host(const Glib::ustring & name);
 
     virtual ~Host();
 
-    Process & get_process(const int & PID);
+    bool get_process(int PID, Process & process);
 
 
   protected:
     Glib::ustring hostname;
 
-    Filesystem * ;
+    Filesystem * filesystems;
 
-    map<int, RefPtr<Process> > task_list;
+    std::map <int, Process> task_list;
 
     HalController * hal_controler;
 

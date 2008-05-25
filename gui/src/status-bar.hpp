@@ -17,30 +17,26 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GLKM_STATUSBAR_HPP
-#define GLKM_STATUSBAR_HPP
-#include <config.h>
+#ifndef _STATUS_BAR_HPP
+#define _STATUS_BAR_HPP
 
-#include <libglademm/xml.h>
 #include <gtkmm/statusbar.h>
+#include "utils.hpp"
 
-class StatusBar: public Gtk::Statusbar 
-{
-public:
-	StatusBar(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
-	void push_item(const Glib::ustring& text, unsigned int context_id);
-	void push_item(unsigned int context_id);
-	void pop_item(unsigned int context_id);
+class StatusBar: public Gtk::Statusbar {
+  public:
+	StatusBar(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
 	virtual ~StatusBar();
 	
-protected:
-	Glib::RefPtr<Gnome::Glade::Xml> _refGlademmXml;		
+	void push_item(const Glib::ustring & text, unsigned int context_id);
+	void push_item(unsigned int context_id);
+	void pop_item(unsigned int context_id);
+	
+  protected:
+	RefPtrGladeXml _refGlademmXml;
 
 	unsigned int	_context_id;
 	unsigned int	_count;
-
-private:
-
 };
 
-#endif // GLKM_STATUSBAR_HPP
+#endif // _STATUS_BAR_HPP

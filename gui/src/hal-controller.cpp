@@ -16,10 +16,25 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "hal-controller.hpp"
-//#include "hal-manager-proxy.hpp"
-#include "glkm_hal_manager_proxy.hpp"
 //#include <signal.h>
+#include <dbusmm/dispatcher.h>
+
+#include "hal-controller.hpp"
+#include "hal-manager-proxy.hpp"
+
+HalController::HalController():
+	_connection(DBus::Connection::SystemBus())
+{
+//	signal(SIGTERM, sigc::mem_fun( *this, &HalController::niam) );
+//	signal(SIGINT, sigc::mem_fun( *this, &HalController::niam));
+	_hal_manager = new HalManagerProxy(_connection);
+	DBus::default_dispatcher = &_dispatcher;
+	_dispatcher.attach(NULL);
+	_dispatcher.enter();
+}
+
+HalController::~HalController() {
+}
 
 bool HalController::update_processes() {
 }
@@ -27,17 +42,6 @@ bool HalController::update_processes() {
 void HalController::update_process_info() {
 }
 
-void HalController::niam( int sig )
-{
-//	_dispatcher.leave();
+void HalController::niam(int sig) {
+	_dispatcher.leave();
 }
-/*
-	  signal(SIGTERM, sigc::mem_fun( *this, &Host::niam) );
-        signal(SIGINT, niam);
-   
-	DBus::default_dispatcher = &_dispatcher;
-	dispatcher.attach(NULL);
-	_connection = DBus::Connection::SystemBus();
-	_hal_manager(_connection);
-	_dispatcher.enter();
-*/

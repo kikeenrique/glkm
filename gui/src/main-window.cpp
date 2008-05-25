@@ -25,11 +25,11 @@
 #include <iostream>
 #include "debug.hpp"
 
-#include "glkm_mainwindow.hpp"
-#include "glkm_treeviewhost.hpp"
-#include "glkm_statusbar.hpp"
-#include "glkm_aboutdialog.hpp"
-
+#include "main-window.hpp"
+#include "tree-view-host.hpp"
+#include "status-bar.hpp"
+#include "about-dialog.hpp"
+#include "host-select-dialog.hpp"
 
 /* For testing propose use the local (not installed) glade file */
 //#define GLADE_FILE  PACKAGE_DATA_DIR "/glkm/glade/glkm.glade" 
@@ -63,28 +63,69 @@ MainWindow::MainWindow(){
 
 
 	//Connect signal handlers for the main window "menu file" items:
-	_pMenuItemQuit = NULL;
-	_refGlademmXml->get_widget("imagemenuitem_quit", _pMenuItemQuit);
-	if (_pMenuItemQuit){
-		_pMenuItemQuit->signal_activate().connect( sigc::mem_fun( *this, 
+/*	_refGlademmXml->get_widget("imagemenuitem_new", _pImageMenuItemNew);
+	if (_pImageMenuItemNew){
+		_pImageMenuItemNew->signal_activate().connect( sigc::mem_fun( *this, 
 																&MainWindow::on_menuitem_quit_activated) );
 	}
+	_refGlademmXml->get_widget("imagemenuitem_quit", _pImageMenuItemOpenFile);
+	if (_pImageMenuItemOpenFile){
+		_pImageMenuItemOpenFile->signal_activate().connect( sigc::mem_fun( *this, 
+																&MainWindow::on_menuitem_quit_activated) );
+	}
+	_refGlademmXml->get_widget("imagemenuitem_quit", _pImageMenuItemSave);
+	if (_pImageMenuItemSave){
+		_pImageMenuItemSave->signal_activate().connect( sigc::mem_fun( *this, 
+																&MainWindow::on_menuitem_quit_activated) );
+	}
+	_refGlademmXml->get_widget("imagemenuitem_quit", _pImageMenuItemSaveAs);
+	if (_pImageMenuItemSaveAs){
+		_pImageMenuItemSaveAs->signal_activate().connect( sigc::mem_fun( *this, 
+																&MainWindow::on_menuitem_quit_activated) );
+	}
+*/	 
+	_refGlademmXml->get_widget("imagemenuitem_quit", _pImageMenuItemQuit);
+	if (_pImageMenuItemQuit){
+		_pImageMenuItemQuit->signal_activate().connect( sigc::mem_fun( *this, 
+																&MainWindow::on_imagemenuitem_quit_activated) );
+	}
+
 	//Connect signal handlers for the main window "menu edit" items:
-	//TODO
+	_refGlademmXml->get_widget("imagemenuitem_cut", _pImageMenuItemCut);
+	if (_pImageMenuItemCut){
+		_pImageMenuItemCut->signal_activate().connect( sigc::mem_fun( *this, 
+																&MainWindow::on_imagemenuitem_cut_activated) );
+	}
+	_refGlademmXml->get_widget("imagemenuitem_copy", _pImageMenuItemCopy);
+	if (_pImageMenuItemCopy){
+		_pImageMenuItemCopy->signal_activate().connect( sigc::mem_fun( *this, 
+																&MainWindow::on_imagemenuitem_copy_activated) );
+	}
+	_refGlademmXml->get_widget("imagemenuitem_paste", _pImageMenuItemPaste);
+	if (_pImageMenuItemPaste){
+		_pImageMenuItemPaste->signal_activate().connect( sigc::mem_fun( *this, 
+																&MainWindow::on_imagemenuitem_paste_activated) );
+	}
+	_refGlademmXml->get_widget("imagemenuitem_delete", _pImageMenuItemDelete);
+	if (_pImageMenuItemDelete){
+		_pImageMenuItemDelete->signal_activate().connect( sigc::mem_fun( *this, 
+																&MainWindow::on_imagemenuitem_delete_activated) );
+	}
+
 	
 	//Connect signal handlers for the main window "menu view" items:
-	_pMenuItemViewToolbar = NULL;
-	_refGlademmXml->get_widget("checkmenuitem_viewtoolbar", _pMenuItemViewToolbar);
-	if (_pMenuItemViewToolbar){ 
-		_pMenuItemViewToolbar->signal_toggled().connect( sigc::mem_fun( *this, 
-							&MainWindow::on_menuitem_viewtoolbar_toggled) );
+	_pCheckMenuItemViewToolbar = NULL;
+	_refGlademmXml->get_widget("checkmenuitem_viewtoolbar", _pCheckMenuItemViewToolbar);
+	if (_pCheckMenuItemViewToolbar){ 
+		_pCheckMenuItemViewToolbar->signal_toggled().connect( sigc::mem_fun( *this, 
+							&MainWindow::on_checkmenuitem_viewtoolbar_toggled) );
 	}
 	//Connect signal handlers for the main window "menu help" items:
-	_pMenuItemAbout = NULL;
-	_refGlademmXml->get_widget("imagemenuitem_about", _pMenuItemAbout);
-	if (_pMenuItemAbout){
-		_pMenuItemAbout->signal_activate().connect( sigc::mem_fun( *this, 
-							&MainWindow::on_menuitem_about_activated) );
+	_pImageMenuItemAbout = NULL;
+	_refGlademmXml->get_widget("imagemenuitem_about", _pImageMenuItemAbout);
+	if (_pImageMenuItemAbout){
+		_pImageMenuItemAbout->signal_activate().connect( sigc::mem_fun( *this, 
+							&MainWindow::on_imagemenuitem_about_activated) );
 	}
 
 
@@ -94,14 +135,14 @@ MainWindow::MainWindow(){
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}	
-	_refGlademmXml->get_widget("button_connect", _pToolButton_Connect);
+	_refGlademmXml->get_widget("toolbutton_connect", _pToolButton_Connect);
 	if (_pToolButton_Connect){
 		_pToolButton_Connect->signal_clicked().connect( sigc::mem_fun(*this,	
 																   &MainWindow::on_clicked_toolbar_connect) );
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}	
-	_refGlademmXml->get_widget("button_connect", _pToolButton_Refresh);
+	_refGlademmXml->get_widget("toolbutton_refresh", _pToolButton_Refresh);
 	if (_pToolButton_Refresh){
 		_pToolButton_Connect->signal_clicked().connect( sigc::mem_fun(*this,	
 																   &MainWindow::on_clicked_toolbar_refresh) );
@@ -134,8 +175,14 @@ MainWindow::MainWindow(){
 
 
 	//About Dialog
-	_refGlademmXml->get_widget_derived("glkm_aboutdialog", _pAboutDialog);
+	_refGlademmXml->get_widget_derived("about_dialog", _pAboutDialog);
 	if (_pAboutDialog){
+	} else{
+		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
+	}
+	//Host selection Dialog
+	_refGlademmXml->get_widget_derived("host_select_dialog", _pHostSelectDialog);
+	if (_pHostSelectDialog){
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}
@@ -146,34 +193,56 @@ MainWindow::~MainWindow(){
 	//Null
 }
 
-void MainWindow::on_menuitem_quit_activated(){
-	PRINTD("menu quit activated");
+void MainWindow::on_imagemenuitem_quit_activated() {
+	PRINTD("on_imagemenuitem_quit_activated");
 	hide();
 }
 
-void MainWindow::on_menuitem_viewtoolbar_toggled(){
-	if (_pMenuItemViewToolbar->get_active()){
+void MainWindow::on_imagemenuitem_cut_activated() {
+	PRINTD("on_imagemenuitem_cut_activated");
+}
+
+void MainWindow::on_imagemenuitem_copy_activated() {
+	PRINTD("on_imagemenuitem_copy_activated");
+}
+
+void MainWindow::on_imagemenuitem_paste_activated() {
+	PRINTD("on_imagemenuitem_paste_activated");
+}
+
+void MainWindow::on_imagemenuitem_delete_activated() {
+	PRINTD("on_imagemenuitem_delete_activated");
+}
+
+void MainWindow::on_checkmenuitem_viewtoolbar_toggled() {
+	if (_pCheckMenuItemViewToolbar->get_active()){
 		_pToolbar->show();
-		PRINTD("menu viewtoolbar activated");
+		PRINTD("on_checkmenuitem_viewtoolbar_toggled active");
 	} else {
 		_pToolbar->hide();
-		PRINTD("menu viewtoolbar deactivated");
+		PRINTD("on_checkmenuitem_viewtoolbar_toggled inactive");
 	}
 }
 
-void MainWindow::on_menuitem_about_activated(){
-	PRINTD("menu about activated");
+void MainWindow::on_imagemenuitem_about_activated(){
+	PRINTD("on_imagemenuitem_about_activated");
 	_pAboutDialog->show();
 	  //Bring it to the front, in case it was already shown:
 	_pAboutDialog->present();
 }
 
 void MainWindow::on_clicked_toolbar_connect(){
-	_pStatusBar->pop_item(_ContextId);
-	_pStatusBar->push_item(_ContextId);
+	PRINTD("on_clicked_toolbar_connect");
+	_pHostSelectDialog->show();
+	//Bring it to the front, in case it was already shown:
+	_pHostSelectDialog->present();
 }
 
 
 void MainWindow::on_clicked_toolbar_refresh(){
+	PRINTD("on_clicked_toolbar_refresh");
 	//update current host
+//	_pStatusBar->pop_item(_ContextId);
+//	_pStatusBar->push_item(_ContextId);
 }
+

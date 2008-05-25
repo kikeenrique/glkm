@@ -21,15 +21,10 @@
 #include <gtkmm/menu.h>
 #include <gtkmm/menuitem.h>
 
-#ifdef HAVE_LIBGNOME
-#include <libgnome/gnome-url.h>
-#endif // HAVE_LIBGNOME
+#include "main-window.hpp"
+#include "tree-view-host.hpp"
 
-//#include <iostream>
-
-#include "glkm_mainwindow.hpp"
-#include "glkm_treeviewhost.hpp"
-
+#include <config.h>
 #include "debug.hpp"
 
  

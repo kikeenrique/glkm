@@ -27,10 +27,10 @@
 
 class File;
 
-class Procces
+class Process
 {
   public:
-	Procces();
+	Process();
 	virtual ~Process();
 	inline const int get__PID() const;
 	void set__PPID(int value);
@@ -41,7 +41,7 @@ class Procces
 	int _PPID;
 	Glib::ustring _name;
 	
-	vector<File *> files_opened;
+	std::vector<File *> files_opened;
 	
 	
 };

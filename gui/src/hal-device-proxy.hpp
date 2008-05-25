@@ -53,6 +53,6 @@ protected:
 
 };
 
-typedef DBus::RefPtr<HalDeviceProxy> HalDeviceProxyRef;
+typedef DBus::RefPtr<HalDeviceProxy> HalDeviceProxyRefPtr;
 
 #endif // _GLKM_HAL_DEVICE_PROXY_HPP

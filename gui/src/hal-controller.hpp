@@ -27,17 +27,17 @@ class HalManagerProxy;
 
 class HalController {
   public:
-    bool update_processes();
-    void update_process_info();
+	HalController();
+	virtual ~HalController();
+	bool update_processes();
+	void update_process_info();
 
   protected:
-    DBus::Connection _connection;
-    DBus::Glib::BusDispatcher _dispatcher;
+	void niam(int sig);
 
-    HalManagerProxy * _hal_manager;
-
-  private:
-    void niam(int sig);
+	DBus::Connection _connection;
+	HalManagerProxy * _hal_manager;
+	DBus::Glib::BusDispatcher _dispatcher;
 
 };
 

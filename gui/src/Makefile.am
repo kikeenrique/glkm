@@ -17,27 +17,33 @@ bin_PROGRAMS = \
 
 glkm_SOURCES = \
 	main.cpp \
-	glkm_mainwindow.hpp glkm_mainwindow.cpp \
-	glkm_aboutdialog.hpp glkm_aboutdialog.cpp \
-	glkm_procces.cpp \
-	glkm_procces.hpp \
-	glkm_statusbar.hpp \
-	glkm_statusbar.cpp \
 	debug.hpp \
 	debug.cpp \
-	glkm_hal_device_proxy.hpp \
-	glkm_hal_device_proxy.cpp \
-	glkm_hal_manager_proxy.cpp \
-	glkm_hal_manager_proxy.hpp \
-	glkm_host.cpp \
-	glkm_host.hpp \
 	utils.hpp \
 	hal-controller.hpp \
 	hal-controller.cpp \
-	glkm_treeviewhost.cpp \
-	glkm_treeviewhost.hpp \
 	file.hpp \
-	file.cpp
+	file.cpp \
+	about-dialog.cpp \
+	about-dialog.hpp \
+	hal-device-proxy.cpp \
+	hal-device-proxy.hpp \
+	hal-manager-proxy.cpp \
+	hal-manager-proxy.hpp \
+	main-window.cpp \
+	main-window.hpp \
+	status-bar.cpp \
+	status-bar.hpp \
+	tree-view-host.cpp \
+	tree-view-host.hpp \
+	host.cpp \
+	host.hpp \
+	process.cpp \
+	process.hpp \
+	icon-view-hosts.hpp \
+	icon-view-hosts.cpp \
+	host-select-dialog.hpp \
+	host-select-dialog.cpp
 
 #glkm_CFLAGS= \
 #	$(GLKM_CFLAGS) 	$(AM_CFLAGS)	$(LIBGNOME_CFLAGS)

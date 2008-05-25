@@ -24,7 +24,7 @@
 
 #include <iostream>
 
-#include "glkm_hal_device_proxy.hpp"
+#include "hal-device-proxy.hpp"
 #include "debug.hpp"
 #include "config.h"
 

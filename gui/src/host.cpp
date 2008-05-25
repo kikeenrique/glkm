@@ -19,18 +19,24 @@
 
 #include <dbusmm/util.h>
 
-#include "glkm_host.hpp"
-#include "process.hpp"
-#include "filesystem.hpp"
-#include "hal-controler.hpp"
+#include "host.hpp"
+//#include "filesystem.hpp"
+#include "hal-controller.hpp"
 
 #include "debug.hpp"
 
-Host::Host() {
+Host::Host(const Glib::ustring & name):
+	hostname(name)
+{
+	hal_controler = new HalController ();
 }
 
 Host::~Host() {
 }
 
-Process & Host::get_process(const int & PID) {
+bool Host::get_process(int PID, Process & process){
+	bool ret=true;
+
+	process=task_list[PID];
+	return ret;
 }

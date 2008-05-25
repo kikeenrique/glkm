@@ -25,7 +25,6 @@
 #include <gtkmm/treemodel.h>
 
 #include "utils.hpp"
-#include <config.h>
 
 class TreeViewHost : public Gtk::TreeView {
 

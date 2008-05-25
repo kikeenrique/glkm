@@ -17,16 +17,17 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "glkm_statusbar.hpp"
-
-#include "debug.hpp"
+#include <glibmm/ustring.h>
 
 #include <iostream>
 #include <sstream>
 
+#include <config.h>
+#include "status-bar.hpp"
 
-StatusBar::StatusBar(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
-:	
+#include "debug.hpp"
+
+StatusBar::StatusBar(BaseObjectType * cobject, const RefPtrGladeXml & refGlade):
 	Gtk::Statusbar(cobject),
 	_refGlademmXml(refGlade),
 	_count(1)

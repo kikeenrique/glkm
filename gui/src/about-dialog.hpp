@@ -17,27 +17,24 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GLKM_ABOUTDIALOG_HPP
-#define GLKM_ABOUTDIALOG_HPP
+#ifndef _ABOUTDIALOG_HPP
+#define _ABOUTDIALOG_HPP
 
-#include <config.h>
 #include <gtkmm/aboutdialog.h>
-#include <libglademm.h>
+#include "utils.hpp"
 
 class AboutDialog : public Gtk::AboutDialog {
-public:
-
-	AboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+  public:
+	AboutDialog(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
 	virtual ~AboutDialog();
 
-protected:
+  protected:
+	RefPtrGladeXml _refGlademmXml;
 	//Signal handlers:
 	void on_button_quit(int response_id);
 		
-	Glib::RefPtr<Gnome::Glade::Xml> _refGlademmXml;
-
 	void on_activate_link_url(Gtk::AboutDialog& about_dialog, const Glib::ustring& link);
 	void on_activate_email_url(Gtk::AboutDialog& about_dialog, const Glib::ustring& email);
 };
 
-#endif //GLKM_ABOUTDIALOG_HPP
+#endif //_ABOUTDIALOG_HPP

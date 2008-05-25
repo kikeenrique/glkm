@@ -21,12 +21,12 @@
 #define _MAINWINDOW_HPP
 
 #include <gtkmm/window.h>
-//#include <gtkmm/imagemenuitem.h>
 #include "utils.hpp"
 
 class TreeViewHost;
 class StatusBar;
 class AboutDialog;
+class HostSelectDialog;
 namespace Gtk{
 	class ImageMenuItem;
 	class CheckMenuItem;
@@ -51,21 +51,25 @@ protected:
 	/*   *** Signal handlers ***
 			Menu File
 	*/
-	void on_menuitem_quit_activated();
+	void on_imagemenuitem_quit_activated();
 
 	/* 
 			Menu Edit
 	*/
+	void on_imagemenuitem_cut_activated();
+	void on_imagemenuitem_copy_activated();
+	void on_imagemenuitem_paste_activated();
+	void on_imagemenuitem_delete_activated();
 
 	/* 
 			Menu View
 	*/
-	void on_menuitem_viewtoolbar_toggled();
+	void on_checkmenuitem_viewtoolbar_toggled();
 	
 	/* 
 			Menu Help
 	*/
-	void on_menuitem_about_activated();
+	void on_imagemenuitem_about_activated();
 
 	/* 
 			Toolbar
@@ -77,39 +81,40 @@ protected:
 	/*   *** Child widgets ***
 			Menu File
 	*/
-	Gtk::ImageMenuItem * _pMenuItemQuit;
+	Gtk::ImageMenuItem * _pImageMenuItemQuit;
 	
 	/* 
 			Menu Edit
 	*/
-	Gtk::ImageMenuItem * _pMenuItemCopy;
-	Gtk::ImageMenuItem * _pMenuItemCut;
-	Gtk::ImageMenuItem * _pMenuItemDelete;
+	Gtk::ImageMenuItem * _pImageMenuItemCut;
+	Gtk::ImageMenuItem * _pImageMenuItemCopy;
+	Gtk::ImageMenuItem * _pImageMenuItemPaste;
+	Gtk::ImageMenuItem * _pImageMenuItemDelete;
 
 	/* 
 			Menu View
 	*/
-	Gtk::CheckMenuItem * _pMenuItemViewToolbar;
+	Gtk::CheckMenuItem * _pCheckMenuItemViewToolbar;
 	
 	/* 
 			Menu Help
 	*/
-	Gtk::ImageMenuItem * _pMenuItemAbout;
+	Gtk::ImageMenuItem * _pImageMenuItemAbout;
 
 
 	/*		Main Window UI
 	*/
 	TreeViewHost *			_pTreeViewHost;
 	StatusBar *			_pStatusBar;
-	Gtk::ToolButton * 		_pToolButton_Connect;
 	Gtk::Toolbar *			_pToolbar;
+	Gtk::ToolButton * 		_pToolButton_Connect;
 	Gtk::ToolButton *		_pToolButton_Refresh;	
 	
 	/*
 			SubWindows
 	*/
 	AboutDialog *		_pAboutDialog;
-		
+	HostSelectDialog *      _pHostSelectDialog;
 };
 
 #endif //_MAINWINDOW_HPP

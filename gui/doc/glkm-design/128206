@@ -1,6 +1,6 @@
 format 56
 "gtkmm" // gtkmm
-  revision 11
+  revision 12
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -441,7 +441,7 @@ ${inlines}
 	relation 135688 -_->
 	  stereotype "friend"
 	  a package
-	    cpp private "friend class ${type};"
+	    cpp private "${type}"
 	    classrelation_ref 135688 // <dependency>
 	  b parent class_ref 136456 // Object_Class
       end

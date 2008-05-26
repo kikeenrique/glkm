@@ -1,6 +1,6 @@
 format 56
 "glibmm" // glibmm
-  revision 5
+  revision 6
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -314,6 +314,7 @@ format 56
 	python_decl ""
 	idl_decl ""
       end
+
     end
 
     class 132814 "ustring"
@@ -960,7 +961,7 @@ ${inlines}
 	relation 135304 -_->
 	  stereotype "friend"
 	  a package
-	    cpp private "friend class ${type};"
+	    cpp private "${type}"
 	    classrelation_ref 135304 // <dependency>
 	  b parent class_ref 135304 // Object_Class
       end

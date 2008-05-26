@@ -1,6 +1,6 @@
 format 56
 "glkm-model" // glkm::glkm-model
-  revision 24
+  revision 25
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -1839,6 +1839,16 @@ ${includes}
 ${namespace_start}
 ${members}
 ${namespace_end}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
       associated_classes
 	class_ref 132165 // VectorString
 	class_ref 128313 // DictVariable
@@ -1849,6 +1859,9 @@ ${namespace_end}"
 	class_ref 129576 // TreeModelColumnInt
 	class_ref 128021 // TreeModelColumnUstring
 	class_ref 137096 // RefPtrListStore
+	class_ref 138504 // TreeModelColumnString
+	class_ref 138888 // TreeModelColumnRefPtrPixbuf
+	class_ref 138760 // RefPtrPixbuf
       end
     end
 

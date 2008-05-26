@@ -10,7 +10,7 @@ classcanvas 128008 class_ref 128040 // ToolButton
   end
 classcanvas 128021 class_ref 128021 // TreeModelColumnUstring
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 181 175 2000
+  xyz 183 177 2000
   end
 classcanvas 128078 class_ref 128718 // Window
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -58,7 +58,7 @@ classcanvas 128462 class_ref 128846 // AboutDialog
   end
 classcanvas 128476 class_ref 128476 // TreeViewHost
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 737 1047 2000
+  xyz 737 1045 2000
   end
 classcanvas 128517 class_ref 128005 // RefPtrTextBuffer
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -88,7 +88,7 @@ classcanvas 129283 class_ref 132430 // ImageMenuItem
   end
 classcanvas 129288 class_ref 132488 // IconViewHosts
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 847 1682 2000
+  xyz 840 1674 2000
   end
 classcanvas 129320 class_ref 128040 // ToolButton
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -128,38 +128,62 @@ classcanvas 130472 class_ref 128296 // CheckMenuItem
   end
 classcanvas 130638 class_ref 129614 // RefPtr
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 948 18 2005
+  xyz 947 15 2005
   end
 classcanvas 130824 class_ref 137096 // RefPtrListStore
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
   xyz 766 300 2000
   end
+classcanvas 131080 class_ref 138376 // ModelColumns
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1069 1834 2000
+  end
+classcanvas 131208 class_ref 128936 // ModelColumns
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1234 1163 2005
+  end
+classcanvas 131336 class_ref 129064 // ColumnRecord
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1381 1434 2000
+  end
 classcanvas 131752 class_ref 128936 // ModelColumns
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 369 160 2000
+  xyz 369 158 2000
   end
 classcanvas 131880 class_ref 129064 // ColumnRecord
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
   xyz 415 53 2005
   end
+classcanvas 131976 class_ref 138504 // TreeModelColumnString
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 132 293 2000
+  end
 classcanvas 132136 class_ref 129320 // TreeModelColumn
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
   xyz 97 41 2005
   end
+classcanvas 132232 class_ref 138760 // RefPtrPixbuf
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1360 333 2000
+  end
 classcanvas 132264 class_ref 129576 // TreeModelColumnInt
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 50 175 2000
+  xyz 30 177 2000
+  end
+classcanvas 132616 class_ref 138888 // TreeModelColumnRefPtrPixbuf
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 99 493 2000
   end
 relationcanvas 128040 relation_ref 128040 // <unidirectional association>
   from ref 128604 z 1999 to ref 128102
   role_a_pos 266 1204 3000 no_role_b
   multiplicity_a_pos 236 1204 3000 multiplicity_b_pos 139 813 3000
 relationcanvas 128149 relation_ref 128021 // <realization>
-  from ref 128021 z 1999 label "<T->ustring>" xyz 172 119 1999 to ref 132136
+  from ref 128021 z 1999 label "<T->ustring>" xyz 172 120 1999 to ref 132136
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 relationcanvas 128259 relation_ref 128003 // <realization>
-  from ref 128003 z 2004 label "<T_CppObject->TreeStore>" xyz 951 344 2004 to ref 130638
+  from ref 128003 z 2004 label "<T_CppObject->TreeStore>" xyz 951 342 2004 to ref 130638
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 relationcanvas 128334 relation_ref 128590 // <generalisation>
@@ -171,11 +195,11 @@ relationcanvas 128358 relation_ref 128102 // <generalisation>
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 relationcanvas 128387 relation_ref 128131 // <realization>
-  from ref 128131 z 1999 label "<T_CppObject->TreeSelection>" xyz 765 368 1999 to ref 130638
+  from ref 128131 z 1999 label "<T_CppObject->TreeSelection>" xyz 765 366 1999 to ref 130638
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 relationcanvas 128389 relation_ref 128261 // <realization>
-  from ref 130126 z 1999 label "<T_CppObject->Xml>" xyz 1077 407 1999 to ref 130638
+  from ref 130126 z 1999 label "<T_CppObject->Xml>" xyz 1075 405 1999 to ref 130638
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 relationcanvas 128520 relation_ref 128136 // <unidirectional association>
@@ -186,10 +210,10 @@ relationcanvas 128520 relation_ref 128136 // <unidirectional association>
   multiplicity_a_pos 192 1553 3000 multiplicity_b_pos 598 718 3000
 relationcanvas 128533 relation_ref 128405 // <unidirectional association>
   geometry VH
-  from ref 128476 z 1999 to point 929 1347
+  from ref 128476 z 1999 to point 954 1347
   line 128515 z 1999 to ref 128277
-  role_a_pos 960 1332 3000 no_role_b
-  multiplicity_a_pos 1111 1358 3000 multiplicity_b_pos 912 1233 3000
+  role_a_pos 941 1329 3000 no_role_b
+  multiplicity_a_pos 1109 1356 3000 multiplicity_b_pos 937 1260 3000
 relationcanvas 128552 relation_ref 128168 // <unidirectional association>
   geometry VH
   from ref 128092 z 1999 to point 613 1467
@@ -201,7 +225,7 @@ relationcanvas 128590 relation_ref 128718 // <generalisation>
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 relationcanvas 128645 relation_ref 128389 // <realization>
-  from ref 128517 z 2004 label "<T_CppObject->TextBuffer>" xyz 1149 356 2004 to ref 130638
+  from ref 128517 z 2004 label "<T_CppObject->TextBuffer>" xyz 1148 354 2004 to ref 130638
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 relationcanvas 128732 relation_ref 128220 // <directional composition>
@@ -214,10 +238,10 @@ relationcanvas 128846 relation_ref 128846 // <generalisation>
   no_multiplicity_a no_multiplicity_b
 relationcanvas 128917 relation_ref 128533 // <unidirectional association>
   geometry VH
-  from ref 128476 z 1999 to point 929 1306
+  from ref 128476 z 1999 to point 954 1306
   line 128771 z 1999 to ref 128405
-  role_a_pos 1009 1289 3000 no_role_b
-  multiplicity_a_pos 1110 1317 3000 multiplicity_b_pos 912 1233 3000
+  role_a_pos 999 1287 3000 no_role_b
+  multiplicity_a_pos 1109 1315 3000 multiplicity_b_pos 937 1260 3000
 relationcanvas 129027 relation_ref 128259 // <unidirectional association>
   geometry VH
   from ref 128092 z 1999 to point 613 1614
@@ -264,10 +288,10 @@ relationcanvas 129870 relation_ref 133582 // <unidirectional association>
   multiplicity_a_pos 702 954 3000 multiplicity_b_pos 598 718 3000
 relationcanvas 129998 relation_ref 133710 // <unidirectional association>
   geometry VH
-  from ref 128092 z 1999 to point 613 1134
+  from ref 128092 z 1999 to point 629 1150
   line 128936 z 1999 to ref 128476
-  role_a_pos 624 1119 3000 no_role_b
-  multiplicity_a_pos 698 1143 3000 multiplicity_b_pos 598 718 3000
+  role_a_pos 619 1131 3000 no_role_b
+  multiplicity_a_pos 704 1159 3000 multiplicity_b_pos 612 750 3000
 relationcanvas 130184 relation_ref 133768 // <generalisation>
   from ref 130056 z 1999 to ref 129928
   no_role_a no_role_b
@@ -292,8 +316,8 @@ relationcanvas 130312 relation_ref 133896 // <unidirectional association>
   multiplicity_a_pos 714 1580 3000 multiplicity_b_pos 598 718 3000
 relationcanvas 130568 relation_ref 134024 // <unidirectional association>
   from ref 130056 z 1999 to ref 129288
-  role_a_pos 1021 1663 3000 no_role_b
-  multiplicity_a_pos 988 1663 3000 multiplicity_b_pos 952 1620 3000
+  role_a_pos 1031 1656 3000 no_role_b
+  multiplicity_a_pos 997 1656 3000 multiplicity_b_pos 977 1631 3000
 relationcanvas 130600 relation_ref 129448 // <unidirectional association>
   geometry HVr
   from ref 128092 z 1999 to point 613 1774
@@ -301,17 +325,37 @@ relationcanvas 130600 relation_ref 129448 // <unidirectional association>
   role_a_pos 450 1759 3000 no_role_b
   multiplicity_a_pos 442 1783 3000 multiplicity_b_pos 598 718 3000
 relationcanvas 130952 relation_ref 136840 // <realization>
-  from ref 130824 z 1999 label "<T_CppObject->ListStore>" xyz 723 260 3000 to ref 130638
+  from ref 130824 z 1999 label "<T_CppObject->ListStore>" xyz 723 259 1999 to ref 130638
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
-relationcanvas 132008 relation_ref 129704 // <generalisation>
-  from ref 131752 z 1999 to ref 131880
+relationcanvas 131464 relation_ref 137992 // <generalisation>
+  from ref 131080 z 1999 to ref 131336
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 131592 relation_ref 138120 // <generalisation>
+  from ref 131208 z 1999 to ref 131336
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 132104 relation_ref 138248 // <realization>
+  from ref 131976 z 1999 label "<T->string>" xyz 131 262 3000 to ref 132136
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 relationcanvas 132392 relation_ref 129960 // <realization>
-  from ref 132264 z 1999 label "<T->int>" xyz 112 119 1999 to ref 132136
+  from ref 132264 z 1999 label "<T->int>" xyz 101 120 1999 to ref 132136
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 132488 relation_ref 138504 // <realization>
+  from ref 132232 z 1999 label "<T_CppObject->Pixbuf>" xyz 1205 269 3000 to ref 130638
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 132744 relation_ref 138632 // <realization>
+  from ref 132616 z 1999 label "<T->RefPtrPixbuf>" xyz 128 276 3000 to ref 132136
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 line 130696 -_-_
   from ref 128102 z 1999 to ref 128904
+line 131720 -_-_
+  from ref 128476 z 1999 to ref 131208
+line 131848 -_-_
+  from ref 131080 z 1999 to ref 129288
 end

@@ -1,6 +1,6 @@
 format 56
 "glkm-view" // glkm::glkm-view
-  revision 19
+  revision 20
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -794,11 +794,11 @@ ${inlines}
 	idl_decl ""
 	explicit_switch_type ""
 	
-	classrelation 129704 // <generalisation>
-	  relation 129704 ---|>
+	classrelation 138120 // <generalisation>
+	  relation 138120 ---|>
 	    a public
 	      cpp default "${type}"
-	      classrelation_ref 129704 // <generalisation>
+	      classrelation_ref 138120 // <generalisation>
 	    b parent class_ref 129064 // ColumnRecord
 	end
 
@@ -837,7 +837,7 @@ ${inlines}
 	end
       end
 
-      attribute 128277 "_modelColumns"
+      attribute 128277 "_ModelColumns"
 	protected type class_ref 128936 // ModelColumns
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -847,7 +847,7 @@ ${inlines}
 	idl_decl ""
       end
 
-      attribute 128003 "_refTreeStore"
+      attribute 128003 "_refPtrTreeStore"
 	protected type class_ref 128003 // RefPtrTreeStore
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -857,7 +857,7 @@ ${inlines}
 	idl_decl ""
       end
 
-      attribute 128131 "_refTreeSelection"
+      attribute 128131 "_refPtrTreeSelection"
 	protected type class_ref 128131 // RefPtrTreeSelection
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -1139,9 +1139,123 @@ ${inlines}
 	
       end
 
-      attribute 131464 "_refGlademmXml"
+      attribute 131464 "_refPtrGlademmXml"
 	protected type class_ref 133070 // RefPtrGladeXml
 	multiplicity "1"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 159368 "on_item_activated"
+	cpp_virtual protected explicit_return_type "void"
+	nparams 1
+	  param in name "path" type class_ref 128424 // Path
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 159496 "on_selection_changed"
+	cpp_virtual protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      class 138376 "ModelColumns"
+	visibility protected 
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	classrelation 137992 // <generalisation>
+	  relation 137992 ---|>
+	    a public
+	      cpp default "${type}"
+	      classrelation_ref 137992 // <generalisation>
+	    b parent class_ref 129064 // ColumnRecord
+	end
+
+	operation 159624 "ModelColumns"
+	  public explicit_return_type ""
+	  nparams 0
+	  cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	  cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	  
+	  
+	  
+	  
+	end
+
+	attribute 134792 "col_filename"
+	  public type class_ref 138504 // TreeModelColumnString
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	end
+
+	attribute 134920 "col_description"
+	  public type class_ref 128021 // TreeModelColumnUstring
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	end
+
+	attribute 135304 "col_pixbuf"
+	  public type class_ref 138888 // TreeModelColumnRefPtrPixbuf
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	end
+      end
+
+      attribute 135048 "_ModelColumns"
+	protected type class_ref 138376 // ModelColumns
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135176 "_refPtrListStore"
+	protected type class_ref 137096 // RefPtrListStore
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
@@ -1258,6 +1372,73 @@ ${inlines}
 	    cpp default "${type}"
 	    classrelation_ref 136840 // <realization>
 	  b parent class_ref 129614 // RefPtr
+      end
+    end
+
+    class 138504 "TreeModelColumnString"
+      visibility package stereotype "typedef" base_type class_ref 129320 // TreeModelColumn
+      nactuals 1
+      actual class class_ref 129320 // TreeModelColumn
+        rank 0 value class_ref 129288 // string
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}typedef ${type} ${name};
+"
+      explicit_switch_type ""
+      
+      classrelation 138248 // <realization>
+	relation 138248 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 138248 // <realization>
+	  b parent class_ref 129320 // TreeModelColumn
+      end
+    end
+
+    class 138760 "RefPtrPixbuf"
+      visibility package stereotype "typedef" base_type class_ref 129614 // RefPtr
+      nactuals 1
+      actual class class_ref 129614 // RefPtr
+        rank 0 value class_ref 138632 // Pixbuf
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 138504 // <realization>
+	relation 138504 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 138504 // <realization>
+	  b parent class_ref 129614 // RefPtr
+      end
+    end
+
+    class 138888 "TreeModelColumnRefPtrPixbuf"
+      visibility package stereotype "typedef" base_type class_ref 129320 // TreeModelColumn
+      nactuals 1
+      actual class class_ref 129320 // TreeModelColumn
+        rank 0 value class_ref 138760 // RefPtrPixbuf
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 138632 // <realization>
+	relation 138632 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 138632 // <realization>
+	  b parent class_ref 129320 // TreeModelColumn
       end
     end
   end

@@ -1,22 +1,20 @@
-window_sizes 1562 994 390 1166 837 80
+window_sizes 1022 715 309 707 1 644
 diagrams
-  classdiagram_ref 128092 // glkm-view class diagram
-    1260 814 90 2 0 140
+  active  classdiagram_ref 128092 // glkm-view class diagram
+    707 89 80 2 1037 657
   classdiagram_ref 128121 // glkm-model class diagram
     1131 780 100 3 300 0
-  active  classdiagram_ref 128334 // gtkmm class diagram
-    1166 837 100 1 300 975
 end
 show_stereotypes
-selected class_ref 137096 // RefPtrListStore
+selected 
+  package_ref 128008 // gdkmm
 open
   class_ref 128061 // HalManagerProxy
   class_ref 128189 // HalDeviceProxy
   operation_ref 128060 // niam
   attribute_ref 128188 // _connection
   attribute_ref 128060 // _dispatcher
-  operation_ref 138504 // HostSelectDialog
-  class_ref 132488 // IconViewHosts
-  classview_ref 128206 // gtkmm class view
+  class_ref 128476 // TreeViewHost
+  class_ref 138376 // ModelColumns
 end
 end

@@ -29,16 +29,16 @@
 class TreeViewHost : public Gtk::TreeView {
 
   public:
-	TreeViewHost(BaseObjectType* cobject, const RefPtrGladeXml& refGlade);
+	TreeViewHost(BaseObjectType* cobject, const RefPtrGladeXml & refGlade);
 	virtual ~TreeViewHost();
 
   protected:
-	RefPtrGladeXml _refGlademmXml;
+	RefPtrGladeXml _refPtrGlademmXml;
 	
 	//Signal handlers:
-	virtual void on_treeview_row_activated(const Gtk::TreeModel::Path& path, 
-			  		       Gtk::TreeViewColumn* column);
-	void on_selected_row_callback(const Gtk::TreeModel::iterator& iter);
+	virtual void on_treeview_row_activated(const Gtk::TreeModel::Path & path, 
+			  		       Gtk::TreeViewColumn * column);
+	void on_selected_row_callback(const Gtk::TreeModel::iterator & iter);
 	// Override Signal handler:
 	// Alternatively, use signal_button_press_event().connect_notify()
 	virtual bool on_button_press_event(GdkEventButton *ev);
@@ -57,13 +57,13 @@ class TreeViewHost : public Gtk::TreeView {
 			add(col_id);
 			add(col_name);
 		}
-		Gtk::TreeModelColumn<int> col_id;
-		Gtk::TreeModelColumn<Glib::ustring> col_name;
+		TreeModelColumnInt col_id;
+		TreeModelColumnUstring col_name;
 	};
 
-	ModelColumns				_modelColumns;
-	Glib::RefPtr<Gtk::TreeStore>		_refTreeStore;
-	Glib::RefPtr<Gtk::TreeSelection>	_refTreeSelection;
+	ModelColumns			_ModelColumns;
+	RefPtrTreeStore			_refPtrTreeStore;
+	RefPtrTreeSelection		_refPtrTreeSelection;
 
 	Gtk::Menu*				_pMenu_Popup_TreeView_Host;
 	Gtk::MenuItem*				_pMenuitem_Refresh;

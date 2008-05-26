@@ -21,7 +21,7 @@
 #include <gtkmm/menu.h>
 #include <gtkmm/menuitem.h>
 
-#include "main-window.hpp"
+//#include "main-window.hpp"
 #include "tree-view-host.hpp"
 
 #include <config.h>
@@ -30,31 +30,30 @@
  
 TreeViewHost::TreeViewHost(BaseObjectType* cobject, const RefPtrGladeXml& refGlade):
 	Gtk::TreeView(cobject),
-	_refGlademmXml(refGlade)
+	_refPtrGlademmXml(refGlade)
 {
-
 	//Create the Tree model
-	_refTreeStore = Gtk::TreeStore::create(_modelColumns);
-	set_model(_refTreeStore);
+	_refPtrTreeStore = Gtk::TreeStore::create(_ModelColumns);
+	set_model(_refPtrTreeStore);
 	//All the items to be reordered with drag-and-drop
 	set_reorderable();
 
 	//Allow multiple selection
-	_refTreeSelection = get_selection();
-//	_refTreeSelection->set_mode(Gtk::SELECTION_MULTIPLE);
-	_refTreeSelection->set_mode(Gtk::SELECTION_SINGLE);
+	_refPtrTreeSelection = get_selection();
+//	_refPtrTreeSelection->set_mode(Gtk::SELECTION_MULTIPLE);
+	_refPtrTreeSelection->set_mode(Gtk::SELECTION_SINGLE);
 
-	_refTreeSelection->selected_foreach_iter(sigc::mem_fun(*this,
+	_refPtrTreeSelection->selected_foreach_iter(sigc::mem_fun(*this,
 														   &TreeViewHost::on_selected_row_callback) );
 
 	//Connect signal handlers for the treeview "menu popup treeview host" :
 	_pMenu_Popup_TreeView_Host = NULL;
-	_refGlademmXml->get_widget("menu_popup_treeview_host", _pMenu_Popup_TreeView_Host);
+	_refPtrGlademmXml->get_widget("menu_popup_treeview_host", _pMenu_Popup_TreeView_Host);
 	if (_pMenu_Popup_TreeView_Host){
 //TODO		pm_Menu_Popup_TreeView_Host->signal_activate().connect( sigc::mem_fun( *this, &GlkmMainWindow::on_menuitem_quit_activated) );
 	}
 	_pMenuitem_Refresh = NULL;
-	_refGlademmXml->get_widget("menuitem_refresh", _pMenuitem_Refresh);
+	_refPtrGlademmXml->get_widget("menuitem_refresh", _pMenuitem_Refresh);
 	if (_pMenuitem_Refresh) {
 		_pMenuitem_Refresh->signal_activate().connect(sigc::mem_fun(*this,
 																	&TreeViewHost::on_menu_file_popup_generic) );
@@ -65,8 +64,8 @@ TreeViewHost::TreeViewHost(BaseObjectType* cobject, const RefPtrGladeXml& refGla
 	
 	//Add the TreeView's view columns:
 //	append_column_editable("PID", _modelColumns.col_id);
-	append_column("PID", _modelColumns.col_id);
-	append_column("Name", _modelColumns.col_name);
+	append_column("PID", _ModelColumns.col_id);
+	append_column("Name", _ModelColumns.col_name);
 	
 	//Connect signal:
 	signal_row_activated().connect(sigc::mem_fun(
@@ -84,36 +83,36 @@ TreeViewHost::~TreeViewHost(){
 
 /*
 void TreeViewHost::add_process_to_model(const Procces & p){
-	Gtk::TreeStore::Row row = *(_refTreeStore->append());
+	Gtk::TreeStore::Row row = *(_refPtrTreeStore->append());
 	row[_modelColumns.col_id] = p.get_PID();
  	row[_modelColumns.col_name] = p.get_name();
 }
 */
 
 void TreeViewHost::fill_model(){
-	Gtk::TreeStore::Row row = *(_refTreeStore->append());
-	row[_modelColumns.col_id] = 1;
-  	row[_modelColumns.col_name] = "Billy Bob";
+	Gtk::TreeStore::Row row = *(_refPtrTreeStore->append());
+	row[_ModelColumns.col_id] = 1;
+  	row[_ModelColumns.col_name] = "Billy Bob";
 
-	Gtk::TreeStore::Row childrow = *(_refTreeStore->append(row.children()));
-	childrow[_modelColumns.col_id] = 11;
-	childrow[_modelColumns.col_name] = "Billy Bob Junior";
+	Gtk::TreeStore::Row childrow = *(_refPtrTreeStore->append(row.children()));
+	childrow[_ModelColumns.col_id] = 11;
+	childrow[_ModelColumns.col_name] = "Billy Bob Junior";
 
-	childrow = *(_refTreeStore->append(row.children()));
-	childrow[_modelColumns.col_id] = 12;
-	childrow[_modelColumns.col_name] = "Sue Bob";
+	childrow = *(_refPtrTreeStore->append(row.children()));
+	childrow[_ModelColumns.col_id] = 12;
+	childrow[_ModelColumns.col_name] = "Sue Bob";
 
-	row = *(_refTreeStore->append());
-	row[_modelColumns.col_id] = 2;
-	row[_modelColumns.col_name] = "Joey Jojo";
+	row = *(_refPtrTreeStore->append());
+	row[_ModelColumns.col_id] = 2;
+	row[_ModelColumns.col_name] = "Joey Jojo";
 
-	row = *(_refTreeStore->append());
-	row[_modelColumns.col_id] = 3;
-	row[_modelColumns.col_name] = "Rob McRoberts";
+	row = *(_refPtrTreeStore->append());
+	row[_ModelColumns.col_id] = 3;
+	row[_ModelColumns.col_name] = "Rob McRoberts";
 
-	childrow = *(_refTreeStore->append(row.children()));
-	childrow[_modelColumns.col_id] = 31;
-	childrow[_modelColumns.col_name] = "Xavier McRoberts";
+	childrow = *(_refPtrTreeStore->append(row.children()));
+	childrow[_ModelColumns.col_id] = 31;
+	childrow[_ModelColumns.col_name] = "Xavier McRoberts";
 }
 
 /*
@@ -121,11 +120,11 @@ void TreeViewHost::fill_model(){
  */
 void TreeViewHost::on_treeview_row_activated (const Gtk::TreeModel::Path& path,
 											  Gtk::TreeViewColumn*){
-	Gtk::TreeModel::iterator iter = _refTreeStore->get_iter(path);
+	Gtk::TreeModel::iterator iter = _refPtrTreeStore->get_iter(path);
 	if (iter) {
 		Gtk::TreeModel::Row row = *iter;
-		PRINTD("Row activated: ID=" + row[_modelColumns.col_id] 
-			   + std::string(", Name=") + row[_modelColumns.col_name] );
+		PRINTD("Row activated: ID=" + row[_ModelColumns.col_id] 
+			   + std::string(", Name=") + row[_ModelColumns.col_name] );
 	}
 }
 
@@ -149,13 +148,13 @@ bool TreeViewHost::on_button_press_event(GdkEventButton* event){
 
 void TreeViewHost::on_menu_file_popup_generic(){
 	PRINTD("A popup menu item was selected.");
-	_refTreeSelection = get_selection();
-	if (_refTreeSelection)
+	_refPtrTreeSelection = get_selection();
+	if (_refPtrTreeSelection)
 	{
-		Gtk::TreeModel::iterator iter = _refTreeSelection->get_selected();
+		Gtk::TreeModel::iterator iter = _refPtrTreeSelection->get_selected();
 		if (iter)
 		{
-			int id = (*iter)[_modelColumns.col_id];
+			int id = (*iter)[_ModelColumns.col_id];
 			PRINTD("Selected ID=" + id );
 		}
 	}

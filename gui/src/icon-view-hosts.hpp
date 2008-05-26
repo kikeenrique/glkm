@@ -21,6 +21,7 @@
 #define _ICON_VIEW_HOSTS_HPP
 
 #include <gtkmm/iconview.h>
+#include <gtkmm/treemodel.h>
 #include "utils.hpp"
 
 class IconViewHosts : public Gtk::IconView {
@@ -29,30 +30,27 @@ class IconViewHosts : public Gtk::IconView {
 
 	virtual ~IconViewHosts();
   protected:
-	virtual void on_item_activated(const Gtk::TreeModel::Path& path);
+  	RefPtrGladeXml _refPtrGlademmXml;
+	virtual void on_item_activated(const Gtk::TreeModel::Path & path);
 	virtual void on_selection_changed();
-	void add_entry(const std::string& filename, const Glib::ustring& description);
+//	void add_entry(const std::string& filename, const Glib::ustring& description);
 
 	// Tree model columns:
 	//
 	class ModelColumns : public Gtk::TreeModel::ColumnRecord {
 	  public:
 		ModelColumns(){
-			add(_col_filename);
-			add(_col_description);
-			add(_col_pixbuf);
+			add(col_filename);
+			add(col_description);
+			add(col_pixbuf);
 		}
-		Gtk::TreeModelColumn<std::string> _col_filename;
-		Gtk::TreeModelColumn<Glib::ustring>  _col_description;
-		Gtk::TreeModelColumn<Glib::RefPtr<Gdk::Pixbuf> > _col_pixbuf;
+		TreeModelColumnString col_filename;
+		TreeModelColumnUstring col_description;
+		TreeModelColumnRefPtrPixbuf col_pixbuf;
 	};
 
 	ModelColumns _ModelColumns;
-
-	Gtk::IconView _IconView;
-	Glib::RefPtr<Gtk::ListStore> _refPtrListStore;
-
-	RefPtrGladeXml _refGlademmXml;
+	RefPtrListStore _refPtrListStore;
 };
 
 #endif // _ICON_VIEW_HOSTS_HPP

@@ -2,121 +2,129 @@ format 56
 
 classcanvas 128029 class_ref 128029 // Inode
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 161 1072 2000
+  xyz 628 1035 2000
   end
 classcanvas 128061 class_ref 128061 // HalManagerProxy
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 335 340 2000
+  xyz 591 249 2000
   end
 classcanvas 128067 class_ref 128067 // Filesystem
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 566 1071 2000
+  xyz 1231 984 2000
   end
 classcanvas 128121 class_ref 128121 // Host
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 234 699 2000
+  xyz 721 508 2000
   end
 classcanvas 128189 class_ref 128189 // HalDeviceProxy
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 541 601 2000
+  xyz 1185 359 2000
   end
 classcanvas 128220 class_ref 128604 // main
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 29 717 2000
+  xyz 25 555 2000
   end
 note 128233 "Need a Process Group??
 If we permit select group of process maybe we need this"
-  xyzwh 131 858 2000 129 91
+  xyzwh 598 821 2000 129 91
 classcanvas 128249 class_ref 128249 // Process
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 312 852 2000
+  xyz 779 815 2000
   end
 classcanvas 128361 class_ref 128105 // Log
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 813 1033 2000
+  xyz 100 462 2000
   end
 classcanvas 128377 class_ref 128377 // File
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 368 1073 2000
+  xyz 858 1039 2000
   end
 classcanvas 128441 class_ref 128313 // DictVariable
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 981 533 2000
+  xyz 1428 295 2000
   end
 classcanvas 128697 class_ref 128185 // map
-  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 989 393 2005
+  draw_all_relations default hide_attributes yes hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1438 181 2005
   end
 classcanvas 129477 class_ref 130757 // HalController
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 89 325 2000
+  xyz 322 274 2000
   end
 classcanvas 129605 class_ref 132037 // vector
-  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 546 129 2000
+  draw_all_relations default hide_attributes yes hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 786 80 2000
   end
 classcanvas 129733 class_ref 132165 // VectorString
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 539 232 2000
+  xyz 780 183 2000
   end
 classcanvas 130117 class_ref 132421 // HalDeviceProxyRefPtr
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 766 417 2005
+  xyz 976 328 2005
   end
 classcanvas 130245 class_ref 129597 // RefPtr
-  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 737 195 2005
+  draw_all_relations default hide_attributes yes hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 1000 193 2005
   end
-relationcanvas 128008 relation_ref 129288 // <directional composition>
-  from ref 128220 z 1999 stereotype "<<vector>>" xyz 144 738 3000 to ref 128121
-  role_a_pos 197 723 3000 no_role_b
-  multiplicity_a_pos 217 745 3000 multiplicity_b_pos 121 745 3000
+classcanvas 130696 class_ref 142856 // Hosts
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 167 631 2000
+  end
+classcanvas 131080 class_ref 147592 // Controller
+  draw_all_relations default hide_attributes yes hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 368 529 2000
+  end
 relationcanvas 128060 relation_ref 128060 // <unidirectional association>
   from ref 128121 z 1999 to ref 129477
-  role_a_pos 220 453 3000 no_role_b
-  multiplicity_a_pos 194 453 3000 multiplicity_b_pos 329 682 3000
+  role_a_pos 502 374 3000 no_role_b
+  multiplicity_a_pos 502 396 3000 multiplicity_b_pos 731 521 3000
 relationcanvas 128105 relation_ref 128105 // <aggregation>
   decenter_begin 856
   from ref 128121 z 1999 to ref 128067
-  role_a_pos 602 1054 3000 no_role_b
-  multiplicity_a_pos 566 1054 3000 multiplicity_b_pos 457 785 3000
+  role_a_pos 1180 976 3000 role_b_pos 966 693 3000
+  multiplicity_a_pos 1214 998 3000 multiplicity_b_pos 966 715 3000
 relationcanvas 128157 relation_ref 128029 // <unidirectional association>
   from ref 128377 z 1999 to ref 128029
-  role_a_pos 237 1085 3000 no_role_b
-  multiplicity_a_pos 237 1107 3000 multiplicity_b_pos 353 1107 3000
+  role_a_pos 704 1048 3000 no_role_b
+  multiplicity_a_pos 704 1070 3000 multiplicity_b_pos 843 1073 3000
 relationcanvas 128195 relation_ref 128067 // <directional composition>
   from ref 128067 z 1999 to ref 128377
-  role_a_pos 432 1086 3000 no_role_b
-  multiplicity_a_pos 432 1108 3000 multiplicity_b_pos 549 1109 3000
+  role_a_pos 922 1046 3000 no_role_b
+  multiplicity_a_pos 922 1068 3000 multiplicity_b_pos 1214 1027 3000
 relationcanvas 128505 relation_ref 128121 // 
   decenter_begin 587
-  from ref 128121 z 1999 stereotype "<<map>>" xyz 372 813 3000 to ref 128249
-  role_a_pos 405 835 3000 no_role_b
-  multiplicity_a_pos 369 835 3000 multiplicity_b_pos 379 785 3000
+  from ref 128121 z 1999 stereotype "<<map>>" xyz 858 753 3000 to ref 128249
+  role_a_pos 893 798 3000 no_role_b
+  multiplicity_a_pos 857 798 3000 multiplicity_b_pos 866 706 3000
 relationcanvas 128761 relation_ref 128377 // <aggregation>
-  from ref 128249 z 1999 stereotype "<<vector>>" xyz 339 1029 3000 to ref 128377
-  role_a_pos 405 1056 3000 role_b_pos 405 994 3000
-  multiplicity_a_pos 381 1056 3000 multiplicity_b_pos 381 994 3000
+  from ref 128249 z 1999 stereotype "<<vector>>" xyz 828 1007 3000 to ref 128377
+  role_a_pos 894 1022 3000 role_b_pos 894 985 3000
+  multiplicity_a_pos 870 1022 3000 multiplicity_b_pos 870 985 3000
 relationcanvas 128825 relation_ref 128313 // <realization>
-  from ref 128441 z 1999 label "<key->String, value->Variant>" xyz 947 474 1999 to ref 128697
+  from ref 128441 z 1999 label "<_Key->String, _Tp->Variant>" xyz 1394 249 1999 to ref 128697
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 relationcanvas 129989 relation_ref 133189 // <realization>
-  from ref 129733 z 1999 label "<T->String>" xyz 548 191 1999 to ref 129605
+  from ref 129733 z 1999 label "<T->String>" xyz 788 141 1999 to ref 129605
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 relationcanvas 130501 relation_ref 133445 // <realization>
-  from ref 130117 z 2004 label "<T->HalDeviceProxy>" xyz 747 368 2004 to ref 130245
+  from ref 130117 z 2004 label "<T->HalDeviceProxy>" xyz 1000 289 2004 to ref 130245
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 relationcanvas 130568 relation_ref 132232 // <unidirectional association>
   from ref 129477 z 1999 to ref 128061
-  role_a_pos 260 371 3000 no_role_b
-  multiplicity_a_pos 318 393 3000 multiplicity_b_pos 269 393 3000
+  role_a_pos 516 294 3000 no_role_b
+  multiplicity_a_pos 574 316 3000 multiplicity_b_pos 502 329 3000
+relationcanvas 130824 relation_ref 144136 // <directional composition>
+  from ref 130696 z 1999 stereotype "<<map>>" xyz 616 630 3000 to ref 128121
+  role_a_pos 678 602 3000 no_role_b
+  multiplicity_a_pos 706 624 3000 multiplicity_b_pos 565 646 3000
 relationcanvas 130885 relation_ref 133573 // <directional composition>
-  from ref 128061 z 1999 stereotype "<<map>>" xyz 700 459 3000 to ref 130117
-  role_a_pos 715 418 3000 no_role_b
-  multiplicity_a_pos 739 440 3000 multiplicity_b_pos 601 386 3000
+  from ref 128061 z 1999 stereotype "<<map>>" xyz 933 369 3000 to ref 130117
+  role_a_pos 925 326 3000 no_role_b
+  multiplicity_a_pos 949 348 3000 multiplicity_b_pos 857 326 3000
 line 129672 -_-_
   from ref 130117 z 1999 to ref 128189
 line 129928 -_-_

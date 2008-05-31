@@ -1,0 +1,152 @@
+format 56
+
+classinstance 128008 class_ref 128092 // MainWindow
+  name ""   xyz 114 4 2000 life_line_z 2000
+classinstancecanvas 129032 classinstance_ref 128008 // _pIconViewHosts
+  xyz 426 38 2005 life_line_z 2000
+classinstancecanvas 129288 classinstance_ref 128264 // _pHostSelectDialog
+  xyz 238 4 2000 life_line_z 2000
+classinstancecanvas 132872 classinstance_ref 129672 // _pHosts
+  xyz 838 4 2000 life_line_z 2000
+note 133256 "HostSelectDialogAtribute"
+  xyzwh 429 1 2000 157 35
+classinstancecanvas 133768 classinstance_ref 130824 // s
+  xyz 639 4 2000 life_line_z 2000
+fragment 136200 "alt"
+  xyzwh 812 472 1995 261 307
+end
+classinstance 136328 class_ref 128121 // Host
+  name "temp"   mortal  xyz 966 479 2000 life_line_z 2000
+textcanvas 136712 "find() == _hosts.end()"
+  xyzwh 826 532 2020 116 23
+durationcanvas 128136 classinstance_ref 128008 // :MainWindow
+  xyzwh 145 65 2010 11 71
+end
+durationcanvas 129800 classinstance_ref 129288 // _pHostSelectDialog:HostSelectDialog
+  xyzwh 325 104 2010 11 27
+end
+durationcanvas 130568 classinstance_ref 129288 // _pHostSelectDialog:HostSelectDialog
+  xyzwh 325 250 2010 11 530
+  overlappingdurationcanvas 130824
+    xyzwh 331 749 2020 11 25
+  end
+end
+durationcanvas 131848 classinstance_ref 129032 // _pIconViewHosts:IconViewHosts
+  xyzwh 503 169 2010 11 40
+end
+durationcanvas 133896 classinstance_ref 133768 // s:Controller
+  xyzwh 666 289 2010 11 337
+end
+durationcanvas 135304 classinstance_ref 129032 // _pIconViewHosts:IconViewHosts
+  xyzwh 503 338 2010 11 37
+end
+durationcanvas 135688 classinstance_ref 132872 // _pHosts:Hosts
+  xyzwh 873 400 2010 11 350
+  overlappingdurationcanvas 135944
+    xyzwh 879 438 2020 11 25
+  end
+  overlappingdurationcanvas 137864
+    xyzwh 879 701 2020 11 43
+  end
+end
+durationcanvas 136456 classinstance_ref 136328 // temp:Host
+  xyzwh 990 554 2010 11 31
+end
+durationcanvas 137096 classinstance_ref 136328 // temp:Host
+  xyzwh 990 595 2010 11 25
+end
+durationcanvas 137352 classinstance_ref 136328 // temp:Host
+  xyzwh 990 630 2010 11 25
+end
+durationcanvas 137608 classinstance_ref 136328 // temp:Host
+  xyzwh 990 671 2010 11 26
+end
+reflexivemsg 128264 asynchronous
+  to durationcanvas_ref 128136
+  yz 65 2015 msg operation_ref 129486 // "on_clicked_toolbar_select() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 145 47
+msg 129928 asynchronous
+  from durationcanvas_ref 128136
+  to durationcanvas_ref 129800
+  yz 105 2015 msg operation_ref 171528 // "present() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 222 93
+reflexivemsg 130696 asynchronous
+  to durationcanvas_ref 130568
+  yz 251 2015 msg operation_ref 160776 // "on_clicked_button_accept() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 299 227
+reflexivemsg 130952 synchronous
+  to durationcanvas_ref 130824
+  yz 749 2025 msg operation_ref 170888 // "hide() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 341 737
+reflexivemsg 131976 asynchronous
+  to durationcanvas_ref 131848
+  yz 169 2015 msg operation_ref 159368 // "on_item_activated(in path : Path) : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 477 157
+msg 134024 synchronous
+  from durationcanvas_ref 130568
+  to durationcanvas_ref 133896
+  yz 289 3005 msg operation_ref 176904 // "action_host_selected() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 348 281
+msg 135432 synchronous
+  from durationcanvas_ref 133896
+  to durationcanvas_ref 135304
+  yz 338 2015 msg operation_ref 173448 // "get_selected_items() : ArrayHandle_TreePaths"
+  show_full_operations_definition default drawing_language default
+  label_xy 551 326
+msg 135560 return
+  from durationcanvas_ref 135304
+  to durationcanvas_ref 133896
+  yz 358 2015 explicitmsg "item"
+  show_full_operations_definition default drawing_language default
+  label_xy 587 346
+msg 135816 synchronous
+  from durationcanvas_ref 133896
+  to durationcanvas_ref 135688
+  yz 405 2015 msg operation_ref 178568 // "create_host(in hostname : ustring, in ip : ustring, in description : ustring) : bool"
+  show_full_operations_definition default drawing_language default
+  args "item.col_hostname,
+item.col_ip,
+item.col_description"
+  label_xy 703 393
+reflexivemsg 136072 synchronous
+  to durationcanvas_ref 135944
+  yz 438 2025 explicitmsg "hosts.find()"
+  show_full_operations_definition default drawing_language default
+  args "hostname"
+  label_xy 902 425
+msg 136584 synchronous
+  from durationcanvas_ref 135688
+  to durationcanvas_ref 136456
+  yz 554 2015 msg operation_ref 128067 // "Host()"
+  show_full_operations_definition default drawing_language default
+  label_xy 930 542
+msg 137224 synchronous
+  from durationcanvas_ref 135688
+  to durationcanvas_ref 137096
+  yz 595 2015 msg operation_ref 179720 // "set__hostname(in value : ustring) : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 891 583
+msg 137480 synchronous
+  from durationcanvas_ref 135688
+  to durationcanvas_ref 137352
+  yz 630 2015 msg operation_ref 179848 // "set__ip(in value : ustring) : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 909 618
+msg 137736 synchronous
+  from durationcanvas_ref 135688
+  to durationcanvas_ref 137608
+  yz 671 2015 msg operation_ref 179976 // "set__description(in value : ustring) : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 888 659
+reflexivemsg 137992 synchronous
+  to durationcanvas_ref 137864
+  yz 701 2025 explicitmsg "_hosts[hostname] = temp"
+  show_full_operations_definition default drawing_language default
+  label_xy 844 689
+end

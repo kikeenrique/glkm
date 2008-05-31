@@ -1,6 +1,6 @@
 format 56
 "gtkmm" // gtkmm
-  revision 12
+  revision 16
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -67,6 +67,203 @@ ${inlines}
 	    cpp default "${type}"
 	    classrelation_ref 130510 // <generalisation>
 	  b parent class_ref 130638 // Container
+      end
+
+      operation 162056 "add_label"
+	public explicit_return_type "void"
+	nparams 4
+	  param in name "label" type class_ref 132814 // ustring
+	  param in name "mnemonic" explicit_type "bool"
+	  param in name "x_align" type class_ref 141192 // AlignmentEnum
+	  param in name "y_align" type class_ref 141192 // AlignmentEnum
+	    defaultvalue "ALIGN_CENTER"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 162184 "add_label"
+	public explicit_return_type "void"
+	nparams 4
+	  param in name "label" type class_ref 132814 // ustring
+	  param in name "mnemonic" explicit_type "bool"
+	    defaultvalue "false"
+	  param in name "x_align" explicit_type "double"
+	    defaultvalue "0.5"
+	  param in name "y_align" explicit_type "double"
+	    defaultvalue "0.5"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 162312 "add_pixlabel"
+	public explicit_return_type "void"
+	nparams 4
+	  param in name "pixfile" type class_ref 132814 // ustring
+	  param in name "label" type class_ref 132814 // ustring
+	  param in name "x_align" explicit_type "double"
+	    defaultvalue "0.5"
+	  param in name "y_align" explicit_type "double"
+	    defaultvalue "0.5"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 162440 "add_pixlabel"
+	public explicit_return_type "void"
+	nparams 5
+	  param in name "pixmap" type class_ref 129614 // RefPtr
+	  param in name "mask" type class_ref 129614 // RefPtr
+	  param in name "label" type class_ref 132814 // ustring
+	  param in name "x_align" explicit_type "double"
+	    defaultvalue "0.5"
+	  param in name "y_align" explicit_type "double"
+	    defaultvalue "0.5"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "void 	add_pixlabel (const Glib::RefPtr<Gdk::Pixmap>& pixmap, const Glib::RefPtr<Gdk::Bitmap>& mask, const Glib::ustring& label, double x_align=0.5, double y_align=0.5)"
+      end
+
+      operation 162568 "add_pixmap"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "pixmap" type class_ref 129614 // RefPtr
+	  param in name "mask" type class_ref 129614 // RefPtr
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "void 	add_pixmap (const Glib::RefPtr<Gdk::Pixmap>& pixmap, const Glib::RefPtr<Gdk::Bitmap>& mask)"
+      end
+
+      operation 162696 "get_child"
+	public return_type class_ref 130382 // Widget
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 162824 "get_child"
+	const public return_type class_ref 130382 // Widget
+	nparams 0
+	cpp_decl "    ${comment} const ${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 162952 "gobj"
+	const public explicit_return_type "GtkBin"
+	nparams 0
+	cpp_decl "    ${comment} const ${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 163080 "gobj"
+	const public explicit_return_type "GtkBin"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 163208 "remove"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 163336 "~Bin"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 163464 "Bin"
+	protected explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
       end
     end
 
@@ -163,6 +360,48 @@ ${inlines}
 	    classrelation_ref 130638 // <generalisation>
 	  b parent class_ref 130766 // Bin
       end
+
+      operation 171656 "fullscreen"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 171528 "present"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 171784 "raise"
+	cpp_virtual public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
     end
 
     class 128846 "AboutDialog"
@@ -247,7 +486,7 @@ ${inlines}
       end
 
       class 133198 "Children"
-	visibility public stereotype "typedef" explicit_base_type "TreeNodeChildren"
+	visibility public stereotype "typedef" base_type class_ref 133326 // TreeNodeChildren
 	cpp_decl "${comment}typedef ${type} ${name};
 "
 	java_decl ""
@@ -296,6 +535,36 @@ ${inlines}
 	python_2_2 python_decl ""
 	idl_decl ""
 	explicit_switch_type ""
+	
+      end
+
+      operation 172168 "get_iter"
+	public return_type class_ref 133838 // iterator
+	nparams 1
+	  param in name "path_string" type class_ref 132814 // ustring
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 172296 "get_iter"
+	public return_type class_ref 133838 // iterator
+	nparams 1
+	  param in name "path" type class_ref 128424 // Path
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
 	
       end
     end
@@ -374,6 +643,519 @@ ${inlines}
       end
     end
 
+    class 130638 "Container"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130382 // <generalisation>
+	relation 130382 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 130382 // <generalisation>
+	  b parent class_ref 130382 // Widget
+      end
+
+      class 142984 "ForeachSlot"
+	visibility public stereotype "typedef" base_type class_ref 134024 // slot
+	cpp_decl "${comment}typedef ${type} ${name};
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	comment "typedef sigc::slot< void, Widget& > 	ForeachSlot"
+      end
+
+      operation 166920 "add"
+	cpp_virtual public explicit_return_type "void"
+	nparams 1
+	  param out name "widget" type class_ref 130382 // Widget
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 167048 "check_resize"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 167176 "child_type"
+	const public explicit_return_type "GType"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 167304 "foreach"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "slot" type class_ref 142984 // ForeachSlot
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 167432 "get_border_width"
+	const public explicit_return_type "guint"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 167560 "get_children"
+	const public return_type class_ref 143112 // ListHandle
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::ListHandle<const Widget*> 	get_children () const"
+      end
+
+      operation 167688 "get_children"
+	public return_type class_ref 143112 // ListHandle
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::ListHandle<Widget*> 	get_children ()"
+      end
+
+      operation 167816 "get_focus_chain"
+	const public return_type class_ref 143112 // ListHandle
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::ListHandle<const Widget*> 	get_focus_chain () const"
+      end
+
+      operation 167944 "get_focus_chain"
+	public return_type class_ref 143112 // ListHandle
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::ListHandle<const Widget*> 	get_focus_chain () const"
+      end
+
+      extra_member 131080 "..."
+	
+	cpp "//..." "//..."
+	java ""
+	php ""
+	python ""
+	idl ""
+      end
+
+      operation 168072 "gobj"
+	const public explicit_return_type "GtkContainer"
+	nparams 0
+	cpp_decl "	${comment} const ${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 168200 "gobj"
+	public explicit_return_type "GtkContainer"
+	nparams 0
+	cpp_decl "	${comment} ${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 168328 "has_focus_chain"
+	const public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 168456 "propagate_expose"
+	public explicit_return_type "void"
+	nparams 2
+	  param out name "child" type class_ref 130382 // Widget
+	  param out name "event" explicit_type "GdkEventExpose"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "void 	propagate_expose (Widget& child, GdkEventExpose* event)"
+      end
+
+      operation 168584 "remove"
+	public explicit_return_type "void"
+	nparams 1
+	  param out name "widget" type class_ref 130382 // Widget
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 168712 "resize_children"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 168840 "set_border_width"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "border_width" explicit_type "guint"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 168968 "set_focus_chain"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "focusable_widgets" type class_ref 143112 // ListHandle
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "void 	set_focus_chain (const Glib::ListHandle<Widget*>& focusable_widgets)"
+      end
+
+      operation 169096 "set_focus_child"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "widget" type class_ref 130382 // Widget
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 131208 "..."
+	
+	cpp "//..." "//..."
+	java ""
+	php ""
+	python ""
+	idl ""
+      end
+
+      operation 169224 "show_all_children"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "recursive" explicit_type "bool"
+	    defaultvalue "true"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 169352 "signal_add"
+	public return_type class_ref 143368 // SignalProxy1
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::SignalProxy1< void, Widget* > 	signal_add ()"
+      end
+
+      operation 169480 "signal_check_resize"
+	public return_type class_ref 143240 // SignalProxy0
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::SignalProxy0<void> 	signal_check_resize ()"
+      end
+
+      operation 169736 "signal_remove"
+	public return_type class_ref 143368 // SignalProxy1
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::SignalProxy1< void,Widget* > 	signal_remove ()"
+      end
+
+      operation 169608 "signal_set_focus_child"
+	public return_type class_ref 143368 // SignalProxy1
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::SignalProxy1< void,Widget* > 	signal_set_focus_child ()"
+      end
+
+      operation 169864 "unset_focus_chain"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 169992 "~Widget"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 170120 "child_type_vfunc"
+	const cpp_virtual protected explicit_return_type "GtkType"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 170376 "composite_name_vfunc"
+	cpp_virtual protected explicit_return_type "char"
+	nparams 1
+	  param out name "child" explicit_type "GtkWidget"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "virtual char* 	composite_name_vfunc (GtkWidget* child)"
+      end
+
+      operation 170248 "Container"
+	protected explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 131336 "..."
+	
+	cpp "//..." "//..."
+	java ""
+	php ""
+	python ""
+	idl ""
+      end
+
+      operation 170504 "on_add"
+	cpp_virtual public explicit_return_type "void"
+	nparams 1
+	  param out name "widget" type class_ref 130382 // Widget
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 170632 "on_check_resize"
+	cpp_virtual public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 131464 "..."
+	
+	cpp "//..." "//..."
+	java ""
+	php ""
+	python ""
+	idl ""
+      end
+    end
+
     class 130382 "Widget"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
@@ -400,6 +1182,99 @@ ${inlines}
 	    cpp default "${type}"
 	    classrelation_ref 130254 // <generalisation>
 	  b parent class_ref 130254 // Implementor
+      end
+
+      extra_member 131592 "..."
+	
+	cpp "//..." "//..."
+	java ""
+	php ""
+	python ""
+	idl ""
+      end
+
+      operation 170760 "has_focus"
+	const public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 170888 "hide"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 171016 "hide_all"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 171144 "show"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 171272 "show_all"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 171400 "show_now"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
       end
     end
 
@@ -633,27 +1508,6 @@ ${inlines}
       end
     end
 
-    class 130638 "Container"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      classrelation 130382 // <generalisation>
-	relation 130382 ---|>
-	  a public
-	    cpp default "${type}"
-	    classrelation_ref 130382 // <generalisation>
-	  b parent class_ref 130382 // Widget
-      end
-    end
-
     class 130894 "Assistant"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
@@ -761,9 +1615,9 @@ ${inlines}
 
     class 131534 "TextView"
       visibility package 
-      cpp_external cpp_decl "${namespace}::${name}
+      cpp_external cpp_decl "${name}
 
-#include <gtkmm/${name}.h>
+#include <gtkmm/textview.h>
 "
       java_decl ""
       php_decl ""
@@ -861,6 +1715,22 @@ ${inlines}
 	    cpp default "${type}"
 	    classrelation_ref 132558 // <generalisation>
 	  b parent class_ref 130126 // Interface
+      end
+
+      operation 172040 "set_sort_column"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "sort_column_id" type class_ref 129448 // TreeModelColumnBase
+	  param in name "order" type class_ref 143752 // SortType
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
       end
     end
 
@@ -1331,6 +2201,170 @@ ${inlines}
 	    classrelation_ref 133384 // <generalisation>
 	  b parent class_ref 130638 // Container
       end
+
+      class 143496 "ArrayHandle_TreePaths"
+	visibility package stereotype "typedef" base_type class_ref 143112 // ListHandle
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	comment "typedef Glib::ListHandle<TreePath, TreePathTraits > ArrayHandle_TreePaths"
+      end
+
+      class 143624 "SlotForeach"
+	visibility package stereotype "typedef" base_type class_ref 134024 // slot
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	comment "typedef sigc::slot< void,
+const TreeModel::Path& > 	SlotForeach"
+      end
+
+      operation 173448 "get_selected_items"
+	const public return_type class_ref 143496 // ArrayHandle_TreePaths
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 172552 "set_model"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "model" type class_ref 129614 // RefPtr
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "void 	set_model (const Glib::RefPtr<TreeModel>& model)"
+      end
+
+      operation 172680 "set_markup_column"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "column" type class_ref 129448 // TreeModelColumnBase
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "void 	set_markup_column (const TreeModelColumnBase& column)
+ 	Sets the column with markup information for icon_view to be column . "
+      end
+
+      operation 172808 "set_markup_column"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "column" explicit_type "int"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 172936 "set_pixbuf_column"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "column" type class_ref 129448 // TreeModelColumnBase
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "void 	set_pixbuf_column (const TreeModelColumnBase& column)
+ 	Sets the column with pixbufs for icon_view to be column . "
+      end
+
+      operation 173064 "set_pixbuf_column"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "column" explicit_type "int"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 173192 "signal_item_activated"
+	public return_type class_ref 143368 // SignalProxy1
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::SignalProxy1< void,
+const TreeModel::Path& > 	signal_item_activated ()
+ 	
+
+Prototype:
+    void on_my_item_activated(const TreeModel::Path& path) "
+      end
+
+      operation 173320 "signal_selection_changed"
+	public return_type class_ref 143240 // SignalProxy0
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::SignalProxy0<void> 	signal_selection_changed ()
+ 	
+
+Prototype:
+    void on_my_selection_changed() "
+      end
     end
 
     class 136456 "Object_Class"
@@ -1398,6 +2432,127 @@ ${inlines}
 	    classrelation_ref 136712 // <generalisation>
 	  b parent class_ref 129832 // TreeDragDest
       end
+
+      operation 171912 "create"
+	class_operation public return_type class_ref 129614 // RefPtr
+	nparams 1
+	  param in name "columns" type class_ref 129192 // TreeModelColumnRecord
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "static Glib::RefPtr<ListStore> 	create (const TreeModelColumnRecord& columns)
+ 	Instantiate a new ListStore. "
+      end
+
+      operation 172424 "append"
+	public return_type class_ref 133838 // iterator
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 140040 "Button"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/button.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 139784 // <generalisation>
+	relation 139784 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 139784 // <generalisation>
+	  b parent class_ref 130766 // Bin
+      end
+    end
+
+    class 141192 "AlignmentEnum"
+      visibility package stereotype "enum"
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/enums.h>
+"
+      java_decl "${comment}${@}${public}${final}${abstract}enum ${name}${implements} {
+${items};
+${members}}
+"
+      php_decl "${comment}${visibility}final class ${name} {
+${items}}
+"
+      python_2_2 python_decl "class ${name}:
+${docstring}${members}
+"
+      idl_decl "${comment}enum ${name} {
+${items}};
+"
+      explicit_switch_type ""
+      
+    end
+
+    class 141320 "ResponseType"
+      visibility package stereotype "enum"
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/dialog.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "enum ResponseType
+{
+  RESPONSE_NONE = -1,
+  RESPONSE_REJECT = -2,
+  RESPONSE_ACCEPT = -3,
+  RESPONSE_DELETE_EVENT = -4,
+  RESPONSE_OK = -5,
+  RESPONSE_CANCEL = -6,
+  RESPONSE_CLOSE = -7,
+  RESPONSE_YES = -8,
+  RESPONSE_NO = -9,
+  RESPONSE_APPLY = -10,
+  RESPONSE_HELP = -11
+};
+"
+    end
+
+    class 143752 "SortType"
+      visibility package stereotype "enum"
+      cpp_external cpp_decl "${name}
+
+#include <${name}.hpp>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Enumerator:
+    SORT_ASCENDING 	
+    SORT_DESCENDING 	"
     end
   end
 end

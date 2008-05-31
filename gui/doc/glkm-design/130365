@@ -1,7 +1,7 @@
 format 56
 "glkm" // glkm
-  revision 6
-  modified_by 100 "enrgar"
+  revision 14
+  modified_by 8 "enrgar"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -59,7 +59,7 @@ format 56
       
     end
 
-    usecase 128310 "monitorizar procesos"
+    usecase 128310 "monitor process"
       stereotype "realization"
       //use case diagram settings
       package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default
@@ -78,11 +78,11 @@ format 56
       simplerelation 128029
 	-_->
 	  stereotype "include"
-	  on usecase_ref 128029 // mostrar procesos
+	  on usecase_ref 128029 // show process
       end
     end
 
-    usecase 128121 "seleccionar máquina"
+    usecase 128121 "select host"
       //use case diagram settings
       package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default
       //sequence diagram settings
@@ -97,14 +97,67 @@ format 56
       //activity diagram settings
       package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
       show_infonote default drawing_language default
-      simplerelation 128121
+      sequencediagram 129160 "select host"
+	show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
+	overlapping_bars size A4-Landscape
+      end
+
+      classinstance 128008 "_pIconViewHosts"
+	type class_ref 132488 // IconViewHosts
+	attributes
+	  end
+	relations
+	  end
+      end
+
+      classinstance 128264 "_pHostSelectDialog"
+	type class_ref 132744 // HostSelectDialog
+	attributes
+	  end
+	relations
+	  end
+      end
+
+      classinstance 129672 "_pHosts"
+	type class_ref 142856 // Hosts
+	attributes
+	  end
+	relations
+	  end
+      end
+
+      classinstance 130824 "s"
+	type class_ref 147592 // Controller
+	attributes
+	  end
+	relations
+	  end
+      end
+    end
+
+    usecase 128249 "select process"
+      //use case diagram settings
+      package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default
+      //sequence diagram settings
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
+      //collaboration diagram settings
+      show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default
+      //object diagram settings
+       write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+      //state diagram settings
+      package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+      show_activities default region_horizontally default drawing_language default
+      //activity diagram settings
+      package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+      show_infonote default drawing_language default
+      simplerelation 128008
 	-_->
-	  stereotype "extend"
-	  on usecase_ref 128310 // monitorizar procesos
+	  stereotype "include"
+	  on usecase_ref 128008 // show processes
       end
     end
 
-    usecase 128249 "seleccionar procesos"
+    usecase 128029 "show process"
       //use case diagram settings
       package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default
       //sequence diagram settings
@@ -119,62 +172,56 @@ format 56
       //activity diagram settings
       package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
       show_infonote default drawing_language default
-      simplerelation 128249
-	-_->
-	  stereotype "extend"
-	  on usecase_ref 128310 // monitorizar procesos
+    end
+
+    usecase 128157 "show process information"
+      //use case diagram settings
+      package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default
+      //sequence diagram settings
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
+      //collaboration diagram settings
+      show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default
+      //object diagram settings
+       write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+      //state diagram settings
+      package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+      show_activities default region_horizontally default drawing_language default
+      //activity diagram settings
+      package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+      show_infonote default drawing_language default
+    end
+
+    usecase 128008 "show processes"
+      //use case diagram settings
+      package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default
+      //sequence diagram settings
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
+      //collaboration diagram settings
+      show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default
+      //object diagram settings
+       write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+      //state diagram settings
+      package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+      show_activities default region_horizontally default drawing_language default
+      //activity diagram settings
+      package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+      show_infonote default drawing_language default
+      classinstance 128105 "man"
+	type class_ref 130757 // HalController
+	attributes
+	  end
+	relations
+	  end
       end
-    end
 
-    usecase 128029 "mostrar procesos"
-      //use case diagram settings
-      package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default
-      //sequence diagram settings
-      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
-      //collaboration diagram settings
-      show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default
-      //object diagram settings
-       write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
-      //state diagram settings
-      package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
-      show_activities default region_horizontally default drawing_language default
-      //activity diagram settings
-      package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
-      show_infonote default drawing_language default
-    end
-
-    usecase 128157 "mostrar información procesos"
-      //use case diagram settings
-      package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default
-      //sequence diagram settings
-      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
-      //collaboration diagram settings
-      show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default
-      //object diagram settings
-       write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
-      //state diagram settings
-      package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
-      show_activities default region_horizontally default drawing_language default
-      //activity diagram settings
-      package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
-      show_infonote default drawing_language default
-    end
-
-    sequencediagram 128197 "mostrar procesos sequence diagram"
-      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
-      overlapping_bars size A4
-    end
-
-    classinstance 128105 "man"
-      type class_ref 130757 // HalControler
-      attributes
-        end
-      relations
-        end
+      sequencediagram 128197 "show processes sequence diagram"
+	show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
+	overlapping_bars size A4
+      end
     end
   end
 
-  deploymentview 128220 "Abstract"
+  deploymentview 128220 "Abstract deployment"
     //deployment diagram settings
     package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
     draw_component_as_icon default show_component_req_prov default show_component_rea default
@@ -197,7 +244,9 @@ format 56
     end
   end
 
-  package_ref 128092 // model manager
+  package_ref 128092 // glkm-model
 
-  package_ref 128220 // view manager
+  package_ref 129160 // glkm-controller
+
+  package_ref 128220 // glkm-view
 end

@@ -1,24 +1,30 @@
 format 56
 
-usecasecanvas 128029 usecase_ref 128029 // mostrar procesos
-  xyzwh 614 145 3005 64 32 label_xy 606 177
+usecasecanvas 128029 usecase_ref 128029 // show process
+  xyzwh 576 292 3005 64 32 label_xy 576 324
 classcanvas 128054 class_ref 128182 // developer
   class_drawing_mode default show_context_mode default
-  xyz 81 122 3015
-usecasecanvas 128121 usecase_ref 128121 // seleccionar máquina
-  xyzwh 619 64 3005 64 32 label_xy 606 96
-usecasecanvas 128249 usecase_ref 128249 // seleccionar procesos
-  xyzwh 620 233 3005 64 32 label_xy 605 265
-usecasecanvas 128310 usecase_ref 128310 // monitorizar procesos
-  xyzwh 340 136 3005 64 32 label_xy 319 167
-usecasecanvas 128413 usecase_ref 128157 // mostrar información procesos
-  xyzwh 499 339 3005 64 32 label_xy 462 371
+  xyz 86 276 3015
+usecasecanvas 128121 usecase_ref 128121 // select host
+  xyzwh 344 210 3005 64 32 label_xy 351 242
+usecasecanvas 128136 usecase_ref 128008 // show processes
+  xyzwh 575 375 3005 64 32 label_xy 570 407
+usecasecanvas 128249 usecase_ref 128249 // select process
+  xyzwh 350 370 3005 64 32 label_xy 350 402
+usecasecanvas 128310 usecase_ref 128310 // monitor process
+  xyzwh 345 290 3005 64 32 label_xy 335 321
+usecasecanvas 128413 usecase_ref 128157 // show process information
+  xyzwh 350 451 3005 64 32 label_xy 322 483
+line 128008 --->
+  from ref 128054 z 3004 to ref 128121
+simplerelationcanvas 128264 simplerelation_ref 128008
+  from ref 128249 z 3004 stereotype "<<include>>" xyz 466 386 3000 to ref 128136
 simplerelationcanvas 128285 simplerelation_ref 128029
-  from ref 128310 z 3004 stereotype "<<include>>" xyz 480 153 3000 to ref 128029
-simplerelationcanvas 128505 simplerelation_ref 128121
-  from ref 128121 z 3004 stereotype "<<extend>>" xyz 481 113 3000 to ref 128310
-line 129913 ----
+  from ref 128310 z 3004 stereotype "<<include>>" xyz 463 304 3000 to ref 128029
+line 128392 --->
+  from ref 128054 z 3004 to ref 128249
+line 128520 --->
   from ref 128054 z 3004 to ref 128310
-simplerelationcanvas 130041 simplerelation_ref 128249
-  from ref 128249 z 3004 stereotype "<<extend>>" xyz 482 198 3000 to ref 128310
+line 128648 --->
+  from ref 128054 z 3004 to ref 128413
 end

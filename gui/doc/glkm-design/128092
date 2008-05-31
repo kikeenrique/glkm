@@ -1,6 +1,6 @@
 format 56
 "glkm-model" // glkm::glkm-model
-  revision 25
+  revision 33
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -49,7 +49,7 @@ format 56
     associated_deployment_view deploymentview_ref 128067 // glkm-model deployment view
     classdiagram 128121 "glkm-model class diagram"
       draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-      size A3
+      size A3-Landscape
     end
 
     class 128604 "main"
@@ -64,25 +64,6 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      classrelation 128348 // main_window (<directional composition>)
-	relation 128220 *-->
-	  a role_name "main_window" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	    classrelation_ref 128348 // main_window (<directional composition>)
-	  b multiplicity "1" parent class_ref 128092 // MainWindow
-      end
-
-      classrelation 129288 // hosts (<directional composition>)
-	relation 129288 *-->
-	  stereotype "vector"
-	  a role_name "hosts" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
-"
-	    classrelation_ref 129288 // hosts (<directional composition>)
-	  b multiplicity "*" parent class_ref 128121 // Host
-      end
-
       extra_member 128008 "#ifdef"
 	
 	cpp "#ifdef DEBUG
@@ -142,7 +123,7 @@ ${inlines}
       operation 128707 "File"
 	public explicit_return_type ""
 	nparams 0
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
   ${body}}
@@ -156,7 +137,7 @@ ${inlines}
       operation 128835 "~File"
 	cpp_virtual public explicit_return_type ""
 	nparams 0
-	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
   ${body}}
@@ -174,7 +155,7 @@ ${inlines}
       classrelation 128029 // inode (<unidirectional association>)
 	relation 128029 --->
 	  a role_name "inode" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128029 // inode (<unidirectional association>)
 	  b multiplicity "*" parent class_ref 128029 // Inode
@@ -194,15 +175,6 @@ ${inlines}
       explicit_switch_type ""
       
       associated_diagram classdiagram_ref 128121 // glkm-model class diagram
-      classrelation 128067 // file_list (<directional composition>)
-	relation 128067 *-->
-	  a role_name "file_list" multiplicity "1..*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	    classrelation_ref 128067 // file_list (<directional composition>)
-	  b multiplicity "1" parent class_ref 128377 // File
-      end
-
       operation 128963 "Filesystem"
 	public explicit_return_type ""
 	nparams 0
@@ -232,13 +204,22 @@ ${inlines}
       end
 
       attribute 128029 "type"
-	public explicit_type "string"
+	protected explicit_type "string"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+      end
+
+      classrelation 128067 // file_list (<directional composition>)
+	relation 128067 *-->
+	  a role_name "file_list" multiplicity "1..*" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    classrelation_ref 128067 // file_list (<directional composition>)
+	  b multiplicity "1" parent class_ref 128377 // File
       end
 
       classrelation 128233 // <aggregation>
@@ -637,9 +618,8 @@ ${members}};
       associated_diagram classdiagram_ref 128121 // glkm-model class diagram
       operation 128067 "Host"
 	public explicit_return_type ""
-	nparams 1
-	  param in name "name" type class_ref 132814 // ustring
-	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+	nparams 0
+	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
   ${body}}
@@ -653,7 +633,7 @@ ${members}};
       operation 128195 "~Host"
 	cpp_virtual public explicit_return_type ""
 	nparams 0
-	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
   ${body}}
@@ -664,12 +644,130 @@ ${members}};
 	
       end
 
+      operation 183048 "Host"
+	stereotype "copy"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "source" type class_ref 128121 // Host
+	cpp_decl "	${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 183176 "operator="
+	public return_type class_ref 128121 // Host
+	nparams 1
+	  param in name "source" type class_ref 128121 // Host
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 183304 "get__hostname"
+	force_body_gen const cpp_inline public return_type class_ref 132814 // ustring
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return _hostname;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 128106 // _hostname
+      end
+
+      operation 179720 "set__hostname"
+	force_body_gen public explicit_return_type "void"
+	nparams 1
+	  param in name "value" type class_ref 132814 // ustring
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  _hostname = ${p0};
+}
+"
+	cpp_name_spec "set_${name}"
+	
+	java_name_spec "set${Name}"
+	
+	php_name_spec "set${Name}"
+	
+	python_name_spec "set${Name}"
+	
+	idl_name_spec "set_${name}"
+	set_of_attribute attribute_ref 128106 // _hostname
+      end
+
+      operation 179848 "set__ip"
+	force_body_gen public explicit_return_type "void"
+	nparams 1
+	  param in name "value" type class_ref 132814 // ustring
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  _ip = ${p0};
+}
+"
+	cpp_name_spec "set_${name}"
+	
+	java_name_spec "set${Name}"
+	
+	php_name_spec "set${Name}"
+	
+	python_name_spec "set${Name}"
+	
+	idl_name_spec "set_${name}"
+	set_of_attribute attribute_ref 137992 // _ip
+      end
+
+      operation 179976 "set__description"
+	force_body_gen public explicit_return_type "void"
+	nparams 1
+	  param in name "value" type class_ref 132814 // ustring
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  _description = ${p0};
+}
+"
+	cpp_name_spec "set_${name}"
+	
+	java_name_spec "set${Name}"
+	
+	php_name_spec "set${Name}"
+	
+	python_name_spec "set${Name}"
+	
+	idl_name_spec "set_${name}"
+	set_of_attribute attribute_ref 140296 // _description
+      end
+
       operation 128490 "get_process"
 	public explicit_return_type "bool"
 	nparams 2
 	  param in name "PID" explicit_type "int"
 	  param out name "process" type class_ref 128249 // Process
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -680,24 +778,48 @@ ${members}};
 	
       end
 
-      attribute 128106 "hostname"
+      attribute 128106 "_hostname"
 	protected type class_ref 132814 // ustring
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+	get_oper operation_ref 183304 // get__hostname
+	set_oper operation_ref 179720 // set__hostname
+      end
+
+      attribute 137992 "_ip"
+	protected type class_ref 132814 // ustring
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	set_oper operation_ref 179848 // set__ip
+      end
+
+      attribute 140296 "_description"
+	protected type class_ref 132814 // ustring
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	set_oper operation_ref 179976 // set__description
       end
 
       classrelation 128105 // filesystems (<aggregation>)
 	relation 128105 o---
 	  a role_name "filesystems" multiplicity "1..*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}${type} * ${name}${value};
 "
 	    classrelation_ref 128105 // filesystems (<aggregation>)
-	  b role_name "" multiplicity "*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	  b role_name "host" multiplicity "*" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}${association}${type} * ${name}${value};
 "
 	    classrelation_ref 128233 // <aggregation>
       end
@@ -706,7 +828,7 @@ ${members}};
 	relation 128121 *--> name ""
 	  stereotype "map"
 	  a role_name "task_list" multiplicity "1..*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${association}, ${type}> ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}<${association}, ${type}> ${name}${value};
 "
 	    classrelation_ref 128121 // task_list ()
 	  b multiplicity "1" parent class_ref 128249 // Process
@@ -716,10 +838,79 @@ ${members}};
       classrelation 128060 // hal_controler (<unidirectional association>)
 	relation 128060 --->
 	  a role_name "hal_controler" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128060 // hal_controler (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 130757 // HalController
+      end
+    end
+
+    class 142856 "Hosts"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 166664 "Hosts"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 166536 "~Hosts"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 178568 "create_host"
+	public explicit_return_type "bool"
+	nparams 3
+	  param in name "hostname" type class_ref 132814 // ustring
+	  param in name "ip" type class_ref 132814 // ustring
+	  param in name "description" type class_ref 132814 // ustring
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      classrelation 144136 // _hosts (<directional composition>)
+	relation 144136 *-->
+	  stereotype "map"
+	  a role_name "_hosts" multiplicity "*" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}<${association}, ${type}> ${name}${value};
+"
+	    classrelation_ref 144136 // _hosts (<directional composition>)
+	  b multiplicity "1" parent class_ref 128121 // Host
+	  association_type class_ref 132814 // ustring
       end
     end
 
@@ -839,7 +1030,7 @@ ${inlines}
       operation 128323 "Process"
 	public explicit_return_type ""
 	nparams 0
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
   ${body}}
@@ -853,7 +1044,7 @@ ${inlines}
       operation 128451 "~Process"
 	cpp_virtual public explicit_return_type ""
 	nparams 0
-	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
   ${body}}
@@ -864,56 +1055,41 @@ ${inlines}
 	
       end
 
-      classrelation 128633 // files_opened (<aggregation>)
-	relation 128377 o---
-	  stereotype "vector"
-	  a role_name "files_opened" multiplicity "*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
+      operation 182792 "Process"
+	stereotype "copy"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "source" type class_ref 128249 // Process
+	cpp_decl "	${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
 "
-	    classrelation_ref 128633 // files_opened (<aggregation>)
-	  b role_name "process_list" multiplicity "*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${stereotype}<${type} *> ${name}${value};
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
 "
-	    classrelation_ref 128761 // <aggregation>
+	
+	
+	
+	
       end
 
-      attribute 128197 "_PID"
-	protected explicit_type "int"
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+      operation 182920 "operator="
+	public return_type class_ref 128249 // Process
+	nparams 1
+	  param in name "source" type class_ref 128249 // Process
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	get_oper operation_ref 128520 // get__PID
-      end
-
-      attribute 128325 "_PPID"
-	protected explicit_type "int"
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
 "
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	set_oper operation_ref 128776 // set__PPID
-      end
-
-      attribute 128136 "_name"
-	protected type class_ref 132814 // ustring
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	get_oper operation_ref 128648 // get__name
+	
+	
+	
+	
       end
 
       operation 128520 "get__PID"
 	force_body_gen const cpp_inline public explicit_return_type "int"
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   return _PID;
@@ -935,7 +1111,7 @@ ${inlines}
 	force_body_gen public explicit_return_type "void"
 	nparams 1
 	  param in name "value" explicit_type "int"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
   _PPID = ${p0};
@@ -956,7 +1132,7 @@ ${inlines}
       operation 128648 "get__name"
 	force_body_gen const cpp_inline public return_type class_ref 132814 // ustring
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   return _name;
@@ -973,15 +1149,65 @@ ${inlines}
 	idl_name_spec "get_${name}"
 	get_of_attribute attribute_ref 128136 // _name
       end
+
+      classrelation 128633 // files_opened (<aggregation>)
+	relation 128377 o---
+	  stereotype "vector"
+	  a role_name "files_opened" multiplicity "*" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}<${association}${type} *> ${name}${value};
+"
+	    classrelation_ref 128633 // files_opened (<aggregation>)
+	  b role_name "process_list" multiplicity "*" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}<${association}${type} *> ${name}${value};
+"
+	    classrelation_ref 128761 // <aggregation>
+      end
+
+      attribute 128197 "_PID"
+	protected explicit_type "int"
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	get_oper operation_ref 128520 // get__PID
+      end
+
+      attribute 128325 "_PPID"
+	protected explicit_type "int"
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	set_oper operation_ref 128776 // set__PPID
+      end
+
+      attribute 128136 "_name"
+	protected type class_ref 132814 // ustring
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	get_oper operation_ref 128648 // get__name
+      end
     end
 
     class 128313 "DictVariable"
       visibility package stereotype "typedef" base_type class_ref 128185 // map
-      nactuals 2
+      nactuals 4
       actual class class_ref 128185 // map
         rank 0 value class_ref 129341 // String
       actual class class_ref 128185 // map
         rank 1 value class_ref 129469 // Variant
+      actual class class_ref 128185 // map
+        rank 2 explicit_value ""
+      actual class class_ref 128185 // map
+        rank 3 explicit_value ""
       cpp_decl "${comment}typedef ${type} ${name};
 "
       java_decl ""
@@ -1862,12 +2088,75 @@ ${module_end}
 	class_ref 138504 // TreeModelColumnString
 	class_ref 138888 // TreeModelColumnRefPtrPixbuf
 	class_ref 138760 // RefPtrPixbuf
+	class_ref 146312 // ListTreeModelPath
       end
     end
 
     artifact 128008 "config"
       stereotype "source"
       associated_classes
+      end
+    end
+
+    artifact 130440 "hosts"
+      stereotype "source"
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif // ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 142856 // Hosts
       end
     end
   end

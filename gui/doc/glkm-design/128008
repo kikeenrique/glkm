@@ -1,6 +1,6 @@
 format 56
 "gdkmm" // gdkmm
-  revision 1
+  revision 2
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -61,6 +61,34 @@ format 56
       idl_decl ""
       explicit_switch_type ""
       
+      classrelation 142344 // <generalisation>
+	relation 142344 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 142344 // <generalisation>
+	  b parent class_ref 129998 // Object
+      end
+    end
+
+    class 141448 "PixbufError"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 142472 // <generalisation>
+	relation 142472 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 142472 // <generalisation>
+	  b parent class_ref 135560 // Error
+      end
     end
   end
 end

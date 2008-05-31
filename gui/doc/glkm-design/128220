@@ -1,6 +1,6 @@
 format 56
 "glkm-view" // glkm::glkm-view
-  revision 20
+  revision 31
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -47,7 +47,7 @@ format 56
     associated_deployment_view deploymentview_ref 128092 // glkm-view deployment view
     classdiagram 128092 "glkm-view class diagram"
       draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-      size A2
+      size A1
     end
 
     class 133070 "RefPtrGladeXml"
@@ -118,7 +118,7 @@ ${inlines}
       operation 128040 "MainWindow"
 	public explicit_return_type ""
 	nparams 0
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
   ${body}}
@@ -132,7 +132,7 @@ ${inlines}
       operation 128168 "~MainWindow"
 	cpp_virtual public explicit_return_type ""
 	nparams 0
-	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
   ${body}}
@@ -146,7 +146,7 @@ ${inlines}
       attribute 128168 "_refGlademmXml"
 	protected type class_ref 133070 // RefPtrGladeXml
 	multiplicity "1"
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
 	php_decl ""
@@ -154,9 +154,20 @@ ${inlines}
 	idl_decl ""
       end
 
+      classrelation 147208 // _pHosts (<unidirectional association>)
+	relation 146952 --->
+	  a role_name "_pHosts" multiplicity "1" protected
+	    comment "Provides access to Controller-Model"
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 147208 // _pHosts (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 142856 // Hosts
+      end
+
       attribute 128296 "_ContextId"
 	protected explicit_type "uint"
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+	multiplicity "1"
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
 	php_decl ""
@@ -167,7 +178,7 @@ ${inlines}
       operation 129102 "on_imagemenuitem_quit_activated"
 	protected explicit_return_type "void"
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -181,7 +192,7 @@ ${inlines}
       operation 157832 "on_imagemenuitem_cut_activated"
 	protected explicit_return_type "void"
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -195,7 +206,7 @@ ${inlines}
       operation 157960 "on_imagemenuitem_copy_activated"
 	protected explicit_return_type "void"
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -209,7 +220,7 @@ ${inlines}
       operation 158088 "on_imagemenuitem_paste_activated"
 	protected explicit_return_type "void"
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -223,7 +234,7 @@ ${inlines}
       operation 158216 "on_imagemenuitem_delete_activated"
 	protected explicit_return_type "void"
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -237,7 +248,7 @@ ${inlines}
       operation 129230 "on_checkmenuitem_viewtoolbar_toggled"
 	protected explicit_return_type "void"
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -251,7 +262,7 @@ ${inlines}
       operation 129358 "on_imagemenuitem_about_activated"
 	protected explicit_return_type "void"
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -262,10 +273,24 @@ ${inlines}
 	
       end
 
-      operation 129486 "on_clicked_toolbar_connect"
+      operation 129486 "on_clicked_toolbar_select"
 	protected explicit_return_type "void"
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 181512 "on_clicked_toolbar_connect"
+	protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -279,7 +304,7 @@ ${inlines}
       operation 128008 "on_clicked_toolbar_refresh"
 	protected explicit_return_type "void"
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -293,7 +318,7 @@ ${inlines}
       classrelation 128259 // _pImageMenuItemQuit (<unidirectional association>)
 	relation 128259 --->
 	  a role_name "_pImageMenuItemQuit" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128259 // _pImageMenuItemQuit (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 132430 // ImageMenuItem
@@ -302,7 +327,7 @@ ${inlines}
       classrelation 128387 // _pImageMenuItemCopy (<unidirectional association>)
 	relation 128387 --->
 	  a role_name "_pImageMenuItemCopy" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128387 // _pImageMenuItemCopy (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 132430 // ImageMenuItem
@@ -311,7 +336,7 @@ ${inlines}
       classrelation 128515 // _pImageMenuItemCut (<unidirectional association>)
 	relation 128515 --->
 	  a role_name "_pImageMenuItemCut" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128515 // _pImageMenuItemCut (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 132430 // ImageMenuItem
@@ -320,7 +345,7 @@ ${inlines}
       classrelation 129064 // _pImageMenuItemDelete (<unidirectional association>)
 	relation 129064 --->
 	  a role_name "_pImageMenuItemDelete" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 129064 // _pImageMenuItemDelete (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 132430 // ImageMenuItem
@@ -329,7 +354,7 @@ ${inlines}
       classrelation 129448 // _pCheckMenuItemViewToolbar (<unidirectional association>)
 	relation 129448 --->
 	  a role_name "_pCheckMenuItemViewToolbar" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 129448 // _pCheckMenuItemViewToolbar (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 128296 // CheckMenuItem
@@ -338,7 +363,7 @@ ${inlines}
       classrelation 128643 // _pImageMenuItemAbout (<unidirectional association>)
 	relation 128643 --->
 	  a role_name "_pImageMenuItemAbout" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128643 // _pImageMenuItemAbout (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 132430 // ImageMenuItem
@@ -347,7 +372,7 @@ ${inlines}
       classrelation 133710 // _pTreeViewHost (<unidirectional association>)
 	relation 133710 --->
 	  a role_name "_pTreeViewHost" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 133710 // _pTreeViewHost (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 128476 // TreeViewHost
@@ -356,7 +381,7 @@ ${inlines}
       classrelation 133582 // _pStatusBar (<unidirectional association>)
 	relation 133582 --->
 	  a role_name "_pStatusBar" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 133582 // _pStatusBar (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 128348 // StatusBar
@@ -365,25 +390,34 @@ ${inlines}
       classrelation 128168 // _pToolbar (<unidirectional association>)
 	relation 128168 --->
 	  a role_name "_pToolbar" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128168 // _pToolbar (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 132302 // Toolbar
       end
 
-      classrelation 128552 // _pToolButton_Connect (<unidirectional association>)
+      classrelation 128552 // _pToolButton_Select (<unidirectional association>)
 	relation 128552 --->
-	  a role_name "_pToolButton_Connect" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	  a role_name "_pToolButton_Select" multiplicity "1" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128552 // _pToolButton_Connect (<unidirectional association>)
+	    classrelation_ref 128552 // _pToolButton_Select (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 128040 // ToolButton
+      end
+
+      classrelation 151304 // _pToolButton_Connect (<unidirectional association>)
+	relation 151048 --->
+	  a role_name "_pToolButton_Connect" multiplicity "1" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 151304 // _pToolButton_Connect (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 128040 // ToolButton
       end
 
       classrelation 128136 // _pToolButton_Refresh (<unidirectional association>)
 	relation 128136 --->
 	  a role_name "_pToolButton_Refresh" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128136 // _pToolButton_Refresh (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 128040 // ToolButton
@@ -392,7 +426,7 @@ ${inlines}
       classrelation 133454 // _pAboutDialog (<unidirectional association>)
 	relation 133454 --->
 	  a role_name "_pAboutDialog" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 133454 // _pAboutDialog (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 128220 // AboutDialog
@@ -400,11 +434,29 @@ ${inlines}
 
       classrelation 133896 // _pHostSelectDialog (<unidirectional association>)
 	relation 133896 --->
-	  a role_name "_pHostSelectDialog" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	  a role_name "_pHostSelectDialog" multiplicity "1" public
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 133896 // _pHostSelectDialog (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 132744 // HostSelectDialog
+      end
+
+      classrelation 151176 // _pImageMenuItemPaste (<unidirectional association>)
+	relation 150920 --->
+	  a role_name "_pImageMenuItemPaste" multiplicity "1" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 151176 // _pImageMenuItemPaste (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 132430 // ImageMenuItem
+      end
+
+      classrelation 152584 // <unidirectional association>
+	relation 152328 --->
+	  a role_name "" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 152584 // <unidirectional association>
+	  b parent class_ref 128008 // Notebook
       end
     end
 
@@ -458,7 +510,7 @@ ${inlines}
 	
       end
 
-      operation 130382 "on_button_quit"
+      operation 130382 "on_signal_response"
 	protected explicit_return_type "void"
 	nparams 1
 	  param in name "response_id" explicit_type "int"
@@ -913,7 +965,7 @@ ${inlines}
 	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
 	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
 "
 	
@@ -934,17 +986,6 @@ ${inlines}
 	
 	
 	
-      end
-
-      attribute 128005 "_refGlademmXml"
-	protected type class_ref 133070 // RefPtrGladeXml
-	multiplicity "1"
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
       end
 
       operation 128102 "debug_print"
@@ -977,6 +1018,32 @@ ${inlines}
 	
       end
 
+      operation 163592 "debug_print"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "number" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 128005 "_refPtrGlademmXml"
+	protected type class_ref 133070 // RefPtrGladeXml
+	multiplicity "1"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
       operation 128389 "fill_buffer"
 	cpp_virtual protected explicit_return_type "void"
 	nparams 0
@@ -991,7 +1058,7 @@ ${inlines}
 	
       end
 
-      attribute 128040 "_refTextBuffer"
+      attribute 128040 "_refPtrTextBuffer"
 	protected type class_ref 128005 // RefPtrTextBuffer
 	multiplicity "1"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
@@ -1028,7 +1095,7 @@ ${inlines}
 	nparams 2
 	  param in name "cobject" explicit_type "BaseObjectType"
 	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
-	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
+	cpp_decl "	${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
@@ -1042,24 +1109,9 @@ ${inlines}
       operation 138632 "~HostSelectDialog"
 	cpp_virtual public explicit_return_type ""
 	nparams 0
-	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 139784 "on_button_quit"
-	protected explicit_return_type "void"
-	nparams 1
-	  param in name "response_id" explicit_type "int"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -1071,7 +1123,7 @@ ${inlines}
       attribute 131336 "_refGlademmXml"
 	protected type class_ref 133070 // RefPtrGladeXml
 	multiplicity "1"
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
 	php_decl ""
@@ -1079,13 +1131,82 @@ ${inlines}
 	idl_decl ""
       end
 
+      operation 139784 "on_signal_response"
+	protected explicit_return_type "void"
+	nparams 1
+	  param in name "response_id" explicit_type "int"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 160776 "on_clicked_button_accept"
+	protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 160904 "on_clicked_button_cancel"
+	protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
       classrelation 134024 // _pIconViewHosts (<unidirectional association>)
 	relation 134024 --->
-	  a role_name "_pIconViewHosts" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	  a role_name "_pIconViewHosts" multiplicity "1" public
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 134024 // _pIconViewHosts (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 132488 // IconViewHosts
+      end
+
+      classrelation 140936 // _pButtonAccept (<unidirectional association>)
+	relation 140936 --->
+	  a role_name "_pButtonAccept" multiplicity "1" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 140936 // _pButtonAccept (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 140040 // Button
+      end
+
+      classrelation 141192 // _pButtonCancel (<unidirectional association>)
+	relation 141192 --->
+	  a role_name "_pButtonCancel" multiplicity "1" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 141192 // _pButtonCancel (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 140040 // Button
+      end
+
+      classrelation 150024 // <dependency>
+	relation 149768 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 150024 // <dependency>
+	  b parent class_ref 147592 // Controller
       end
     end
 
@@ -1114,7 +1235,7 @@ ${inlines}
 	nparams 2
 	  param in name "cobject" explicit_type "BaseObjectType"
 	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
-	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
+	cpp_decl "	${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
@@ -1128,7 +1249,7 @@ ${inlines}
       operation 138376 "~IconViewHosts"
 	cpp_virtual public explicit_return_type ""
 	nparams 0
-	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
   ${body}}
@@ -1142,7 +1263,7 @@ ${inlines}
       attribute 131464 "_refPtrGlademmXml"
 	protected type class_ref 133070 // RefPtrGladeXml
 	multiplicity "1"
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
 	php_decl ""
@@ -1154,7 +1275,7 @@ ${inlines}
 	cpp_virtual protected explicit_return_type "void"
 	nparams 1
 	  param in name "path" type class_ref 128424 // Path
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -1168,7 +1289,7 @@ ${inlines}
       operation 159496 "on_selection_changed"
 	cpp_virtual protected explicit_return_type "void"
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -1213,8 +1334,18 @@ ${inlines}
 	  
 	end
 
-	attribute 134792 "col_filename"
-	  public type class_ref 138504 // TreeModelColumnString
+	attribute 134792 "col_hostname"
+	  public type class_ref 128021 // TreeModelColumnUstring
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	end
+
+	attribute 136456 "col_ip"
+	  public type class_ref 128021 // TreeModelColumnUstring
 	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	  java_decl ""
@@ -1245,8 +1376,8 @@ ${inlines}
       end
 
       attribute 135048 "_ModelColumns"
-	protected type class_ref 138376 // ModelColumns
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+	public type class_ref 138376 // ModelColumns
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
 	php_decl ""
@@ -1255,13 +1386,188 @@ ${inlines}
       end
 
       attribute 135176 "_refPtrListStore"
-	protected type class_ref 137096 // RefPtrListStore
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+	public type class_ref 137096 // RefPtrListStore
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+      end
+
+      class 142728 "TextViewHosts"
+	visibility protected 
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	classrelation 143752 // <generalisation>
+	  relation 143752 ---|>
+	    a public
+	      cpp default "${type}"
+	      classrelation_ref 143752 // <generalisation>
+	    b parent class_ref 131534 // TextView
+	end
+
+	operation 165256 "TextViewHosts"
+	  public explicit_return_type ""
+	  nparams 2
+	    param in name "cobject" explicit_type "BaseObjectType"
+	    param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	  cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
+"
+	  cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
+  ${body}}
+"
+	  
+	  
+	  
+	  
+	end
+
+	operation 165384 "~TextViewHosts"
+	  cpp_virtual public explicit_return_type ""
+	  nparams 0
+	  cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	  cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	  
+	  
+	  
+	  
+	end
+
+	attribute 137608 "_refPtrGlademmXml"
+	  protected type class_ref 133070 // RefPtrGladeXml
+	  multiplicity "1"
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	end
+
+	attribute 137736 "_refPtrTextBuffer"
+	  protected type class_ref 128005 // RefPtrTextBuffer
+	  multiplicity "1"
+	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	end
+
+	operation 166024 "show_hostname"
+	  public explicit_return_type "void"
+	  nparams 1
+	    param in name "hostname" type class_ref 132814 // ustring
+	  cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	  cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	  
+	end
+
+	operation 166152 "show_ip"
+	  public explicit_return_type "void"
+	  nparams 1
+	    param in name "ip" type class_ref 132814 // ustring
+	  cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	  cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	  
+	end
+
+	operation 166280 "show_description"
+	  public explicit_return_type "void"
+	  nparams 1
+	    param in name "description" type class_ref 132814 // ustring
+	  cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	  cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	  
+	end
+
+	operation 166408 "reset"
+	  public explicit_return_type "void"
+	  nparams 0
+	  cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	  cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	  
+	end
+      end
+
+      classrelation 144008 // _TextViewHosts (<unidirectional association>)
+	relation 144008 --->
+	  a role_name "_TextViewHosts" multiplicity "1" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 144008 // _TextViewHosts (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 142728 // TextViewHosts
+      end
+
+      operation 163720 "add_entry"
+	private explicit_return_type "void"
+	nparams 3
+	  param in name "hostname" type class_ref 132814 // ustring
+	  param in name "ip" type class_ref 132814 // ustring
+	  param in name "description" type class_ref 132814 // ustring
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 174600 "show_entry"
+	private explicit_return_type "void"
+	nparams 3
+	  param in name "hostname" type class_ref 132814 // ustring
+	  param in name "ip" type class_ref 132814 // ustring
+	  param in name "description" type class_ref 132814 // ustring
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
       end
     end
 
@@ -1439,6 +1745,28 @@ ${inlines}
 	    cpp default "${type}"
 	    classrelation_ref 138632 // <realization>
 	  b parent class_ref 129320 // TreeModelColumn
+      end
+    end
+
+    class 146312 "ListTreeModelPath"
+      visibility package stereotype "typedef" base_type class_ref 146184 // list
+      nactuals 1
+      actual class class_ref 146184 // list
+        rank 0 value class_ref 128424 // Path
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 146696 // <realization>
+	relation 146568 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 146696 // <realization>
+	  b parent class_ref 146184 // list
       end
     end
   end

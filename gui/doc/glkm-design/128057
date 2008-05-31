@@ -1,6 +1,6 @@
 format 56
 "std" // std
-  revision 5
+  revision 8
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -51,13 +51,16 @@ format 56
 
     class 128185 "map"
       visibility package 
-      nformals 2
-      formal name "key" type "class" explicit_default_value ""
+      nformals 4
+      formal name "_Key" type "class" explicit_default_value ""
         explicit_extends ""
-      formal name "value" type "class" explicit_default_value ""
+      formal name "_Tp" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "_Compare" type "class" explicit_default_value "less<_Key>"
+        explicit_extends ""
+      formal name "_Alloc" type "class" explicit_default_value "allocator<std::pair<const _Key, _Tp> > >"
         explicit_extends ""
       cpp_external cpp_decl "${name}
-
 #include <${name}>
 "
       java_decl ""
@@ -66,15 +69,85 @@ format 56
       idl_decl ""
       explicit_switch_type ""
       
+      class 148872 "iterator"
+	visibility public stereotype "typedef" explicit_base_type "_Rep_type::iterator"
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+      end
+
+      class 149128 "const_iterator"
+	visibility package stereotype "typedef" explicit_base_type "_Rep_type::const_iterator"
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+      end
+
+      class 149000 "key_type"
+	visibility package stereotype "typedef" explicit_base_type "_Key"
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+      end
+
+      operation 183432 "find"
+	public return_type class_ref 148872 // iterator
+	nparams 1
+	  param in name "x" type class_ref 149000 // key_type
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 183560 "find"
+	const public return_type class_ref 149128 // const_iterator
+	nparams 1
+	  param in name "x" type class_ref 149000 // key_type
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
     end
 
     class 132037 "vector"
-      visibility package 
+      visibility protected 
       nformals 1
       formal name "T" type "class" explicit_default_value ""
         explicit_extends ""
       cpp_external cpp_decl "${name}
-
 #include <${name}>
 "
       java_decl ""
@@ -88,7 +161,6 @@ format 56
     class 129288 "string"
       visibility package 
       cpp_external cpp_decl "${name}
-
 #include <${name}>
 "
       java_decl ""
@@ -102,7 +174,6 @@ format 56
     class 134408 "type_info"
       visibility package 
       cpp_external cpp_decl "${name}
-
 #include <typeinfo>
 "
       java_decl ""
@@ -118,9 +189,41 @@ format 56
       nformals 1
       formal name "T" type "class" explicit_default_value ""
         explicit_extends ""
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+#include <autoptr>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 146184 "list"
+      visibility package 
+      nformals 1
+      formal name "T" type "class" explicit_default_value ""
+        explicit_extends ""
+      cpp_external cpp_decl "${name}
+#include <${name}>
+
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 147720 "set"
+      visibility package 
+      nformals 1
+      formal name "T" type "class" explicit_default_value ""
+        explicit_extends ""
+      cpp_external cpp_decl "${name}
+#include <${name}>
 "
       java_decl ""
       php_decl ""

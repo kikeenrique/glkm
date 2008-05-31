@@ -21,15 +21,16 @@
  * 	Boston, MA  02110-1301, USA.
  */
 
-#ifndef GLKM_DEBUG_HPP
-#define GLKM_DEBUG_HPP
+#ifndef _DEBUG_HPP
+#define _DEBUG_HPP
 
-#include <config.h>
 #include <gtkmm/textview.h>
-#include <gtkmm/textbuffer.h>
-#include <libglademm/xml.h>
+#include <glibmm/ustring.h>
 
 #include <iostream>
+
+#include "utils.hpp"
+#include "config.h"
 
 /*
 	PRINT_EXP(A)
@@ -82,23 +83,21 @@
 /*
  *
  */
-class TextViewDebug : public Gtk::TextView
-{
-public:
-	TextViewDebug(BaseObjectType* cobject, 
-				  const Glib::RefPtr<Gnome::Glade::Xml>& refGlade);
+class TextViewDebug : public Gtk::TextView {
+  public:
+	TextViewDebug(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
 	virtual ~TextViewDebug();
 	void debug_print(const Glib::ustring& text);
 	void debug_print(const char* text);
-protected:
+	void debug_print(const int & number);
 
-	Glib::RefPtr<Gnome::Glade::Xml> m_refGlademmXml;
+  protected:
+	RefPtrGladeXml _refPtrGlademmXml;
 
 	//Text model buffer:
 	virtual void fill_buffer();  
-	Glib::RefPtr<Gtk::TextBuffer> m_refTextBuffer;
-
+	Glib::RefPtr<Gtk::TextBuffer> _refPtrTextBuffer;
 };
 
-#endif //GLKM_DEBUG_HPP
+#endif //_DEBUG_HPP
 

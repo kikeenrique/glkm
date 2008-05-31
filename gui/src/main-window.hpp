@@ -17,24 +17,21 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _MAINWINDOW_HPP
-#define _MAINWINDOW_HPP
+#ifndef _MAIN_WINDOW_HPP
+#define _MAIN_WINDOW_HPP
 
 #include <gtkmm/window.h>
+#include <gtkmm/imagemenuitem.h>
+#include <gtkmm/checkmenuitem.h>
+#include <gtkmm/toolbutton.h>
+#include <gtkmm/toolbar.h>
 #include "utils.hpp"
 
+class Hosts;
 class TreeViewHost;
 class StatusBar;
 class AboutDialog;
 class HostSelectDialog;
-namespace Gtk{
-	class ImageMenuItem;
-	class CheckMenuItem;
-	class ToolButton;
-	class Toolbar;	
-}
-
-#include <config.h>
 
 class MainWindow : public Gtk::Window
 {
@@ -42,10 +39,14 @@ public:
 	MainWindow();
 	virtual ~MainWindow();
 
+	HostSelectDialog *      _pHostSelectDialog;
+
 protected:
 	RefPtrGladeXml _refGlademmXml;
-// Future mapping #include <libglademm/variablesmap.h>
-//	Gnome::Glade::VariablesMap* m_pVariablesMap;
+
+	//Provides access to Controller-Model
+	Hosts * _pHosts;
+
 	unsigned int			_ContextId;
 
 	/*   *** Signal handlers ***
@@ -75,6 +76,7 @@ protected:
 			Toolbar
 	*/
 
+	void on_clicked_toolbar_select();
 	void on_clicked_toolbar_connect();
 	void on_clicked_toolbar_refresh();
 		
@@ -86,8 +88,8 @@ protected:
 	/* 
 			Menu Edit
 	*/
-	Gtk::ImageMenuItem * _pImageMenuItemCut;
 	Gtk::ImageMenuItem * _pImageMenuItemCopy;
+	Gtk::ImageMenuItem * _pImageMenuItemCut;
 	Gtk::ImageMenuItem * _pImageMenuItemPaste;
 	Gtk::ImageMenuItem * _pImageMenuItemDelete;
 
@@ -107,14 +109,15 @@ protected:
 	TreeViewHost *			_pTreeViewHost;
 	StatusBar *			_pStatusBar;
 	Gtk::Toolbar *			_pToolbar;
-	Gtk::ToolButton * 		_pToolButton_Connect;
-	Gtk::ToolButton *		_pToolButton_Refresh;	
+	Gtk::ToolButton * 		_pToolButton_Select;
+	Gtk::ToolButton *		_pToolButton_Connect;
+	Gtk::ToolButton *		_pToolButton_Refresh;
 	
 	/*
 			SubWindows
 	*/
 	AboutDialog *		_pAboutDialog;
-	HostSelectDialog *      _pHostSelectDialog;
+
 };
 
-#endif //_MAINWINDOW_HPP
+#endif //_MAIN_WINDOW_HPP

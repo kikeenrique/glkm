@@ -19,8 +19,9 @@
 
 #include "host-select-dialog.hpp"
 #include "icon-view-hosts.hpp"
+#include "controller.hpp"
 
-#include <config.h>
+#include "config.h"
 #include "debug.hpp"
 
 HostSelectDialog::HostSelectDialog(BaseObjectType * cobject, const RefPtrGladeXml & refGlade):
@@ -29,20 +30,41 @@ HostSelectDialog::HostSelectDialog(BaseObjectType * cobject, const RefPtrGladeXm
 {
 	/* Actioning close button doesn't work by itself, needs a gobernant signal 
 	 to http://mail.gnome.org/archives/gtkmm-list/2007-January/msg00305.html */
-	signal_response().connect( sigc::mem_fun(*this, &HostSelectDialog::on_button_quit));
-	//Host selection Dialog
+	signal_response().connect( sigc::mem_fun(*this, &HostSelectDialog::on_signal_response));
+
+	//Icon View Hosts list
 	_refGlademmXml->get_widget_derived("host_select_dialog-iconview", _pIconViewHosts);
 	if (_pIconViewHosts){
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
-	}	 
+	}
+
+ 	//Buttons Accept and Cancel
+	_refGlademmXml->get_widget("host_select_dialog-button_accept", _pButtonAccept);
+	if (_pButtonAccept){
+		_pButtonAccept->signal_clicked().connect( sigc::mem_fun(*this,	
+																   &HostSelectDialog::on_clicked_button_accept) );
+	} else{
+		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
+	}	
+	_refGlademmXml->get_widget("host_select_dialog-button_cancel", _pButtonCancel);
+	if (_pButtonCancel){
+		_pButtonCancel->signal_clicked().connect( sigc::mem_fun(*this,	
+																   &HostSelectDialog::on_clicked_button_cancel) );
+	} else{
+		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
+	}
+
+	//Set pointer in Controller that permits access to IconViewHosts 
+	Controller& c = Controller::instance();
+	c.set__pIconViewHosts(_pIconViewHosts);
 }
 
 HostSelectDialog::~HostSelectDialog() {
-		PRINTD("~Dialog");
+		PRINTD("~HostSelectDialog");
 }
 
-void HostSelectDialog::on_button_quit(int response_id)
+void HostSelectDialog::on_signal_response(int response_id)
 {
 	switch(response_id) {
 		case Gtk::RESPONSE_NONE :
@@ -90,7 +112,23 @@ void HostSelectDialog::on_button_quit(int response_id)
 			hide();
 			break;
 		default:
-			PRINTD("unattended event" + response_id);
+			PRINTD("unattended event");
+			PRINTD(response_id);
 			;
 	}
+}
+
+void HostSelectDialog::on_clicked_button_accept() {
+	PRINTD("on_clicked_button_accept");
+
+	//Tell controller that a new host could have been selected
+	Controller& c = Controller::instance();
+	c.action_host_selected();
+
+	hide();
+}
+
+void HostSelectDialog::on_clicked_button_cancel() {
+	PRINTD("on_clicked_button_cancel");
+	hide();
 }

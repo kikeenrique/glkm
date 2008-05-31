@@ -17,12 +17,11 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <glibmm/ustring.h>
 
 #include <iostream>
 #include <sstream>
 
-#include <config.h>
+#include "config.h"
 #include "status-bar.hpp"
 
 #include "debug.hpp"

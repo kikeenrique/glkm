@@ -16,39 +16,33 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GLKM_HAL_MANAGER_PROXY_HPP
-#define GLKM_HAL_MANAGER_PROXY_HPP
+#ifndef _HAL_MANAGER_PROXY_HPP
+#define _HAL_MANAGER_PROXY_HPP
 
-#include <dbusmm/interface.h>
+#include <dbusmm/connection.h>
+#include <dbusmm/message.h>
 #include <dbusmm/object.h>
+#include <dbusmm/interface.h>
 
 #include <map>
 
 #include "hal-device-proxy.hpp"
 #include "utils.hpp"
 
-/*namespace DBus { class Connection; } 
-namespace DBus { class SignalMessage; } 
-namespace DBus { class Path; } */
+class HalManagerProxy : public DBus::ObjectProxy, public DBus::InterfaceProxy {
 
-class HalManagerProxy: 
-	public DBus::InterfaceProxy,
-	public DBus::ObjectProxy
-{
-
-public:
+  public:
 	HalManagerProxy(DBus::Connection& connection );
 	virtual ~HalManagerProxy();
 	
 	VectorString get_all_devices();
+
+  protected:
+	std::map<DBus::Path, HalDeviceProxyRefPtr> _devices;
 	
-private:
+  private:
 	void on_device_added(const DBus::SignalMessage& sig );
 	void on_device_removed(const DBus::SignalMessage& sig );
-
-protected:
-	std::map<DBus::Path, HalDeviceProxyRefPtr> _devices;
-
 };
 
-#endif//GLKM_HAL_MANAGER_PROXY_HPP
+#endif //_HAL_MANAGER_PROXY_HPP

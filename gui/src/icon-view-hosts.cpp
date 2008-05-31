@@ -17,52 +17,42 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <string>
+
 #include "icon-view-hosts.hpp"
 
-#include <config.h>
+#include "config.h"
 #include "debug.hpp"
 
 IconViewHosts::IconViewHosts(BaseObjectType * cobject, const RefPtrGladeXml & refGlade):
 	Gtk::IconView(cobject),
 	_refPtrGlademmXml(refGlade)
 {
-  // Create the Tree model:
-  _refPtrListStore = Gtk::ListStore::create(_ModelColumns);
-  _refPtrListStore->set_sort_column( _ModelColumns.col_description, Gtk::SORT_ASCENDING );
+	_refPtrGlademmXml->get_widget_derived("host_select_dialog-textview", _TextViewHosts);
+	if (_TextViewHosts){
+	} else{
+		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
+	}
 
-  set_model(_refPtrListStore);
+	signal_item_activated().connect(sigc::mem_fun(*this,
+												  &IconViewHosts::on_item_activated) );
+	signal_selection_changed().connect(sigc::mem_fun(*this,
+												     &IconViewHosts::on_selection_changed) );
+
+	_refPtrListStore = Gtk::ListStore::create(_ModelColumns);
+	_refPtrListStore->set_sort_column( _ModelColumns.col_ip, Gtk::SORT_ASCENDING );
+
+	set_model(_refPtrListStore);
+	set_markup_column(_ModelColumns.col_hostname);
+	set_pixbuf_column(_ModelColumns.col_pixbuf);
 	
-  set_markup_column(_ModelColumns.col_description);
-  set_pixbuf_column(_ModelColumns.col_pixbuf);
-	
-  signal_item_activated().connect(sigc::mem_fun(*this,
-																			&IconViewHosts::on_item_activated) );
-  signal_selection_changed().connect(sigc::mem_fun(*this,
-																			&IconViewHosts::on_selection_changed) );
-/*
-  IconEntry entries[] =
-  {
-    IconEntry("mozilla-firefox.png", "<b>Mozilla Firefox</b> Logo"),
-    IconEntry("xmms.xpm", "<b>XMMS</b> Logo"),
-    IconEntry("gnome-dice-1.svg", "<b>Gnome Dice 1</b> Logo"),
-    IconEntry("gnome-dice-2.svg", "<b>Gnome Dice 2</b> Logo"),
-    IconEntry("gnome-dice-3.svg", "<b>Gnome Dice 3</b> Logo"),
-    IconEntry("gnome-dice-4.svg", "<b>Gnome Dice 4</b> Logo"),
-    IconEntry("gnome-dice-5.svg", "<b>Gnome Dice 5</b> Logo"),
-    IconEntry("gnome-dice-6.svg", "<b>Gnome Dice 6</b> Logo")
-  };
-*/
+	// Add our hosts to the TreeView's model
+	add_entry("localhost", "127.0.0.1", "Our current host");
+	add_entry("localhost", "127.0.0.1", "A remote host (virtualbox host) need var environment DBUS_SYSTEM_BUS_ADDRESS");
+	add_entry("garfield", "192.168.0.5", "A host in our net");
+	add_entry("eldemonionegro.com", "89.128.19.104", "A remote host. Don't even try it by now");
 
-	// Fill the TreeView's model
-/*
-  const int count = sizeof( entries ) / sizeof( IconEntry );
-  for( int idx = 0; idx < count; ++idx )
-  {
-    add_entry( entries[idx].m_filename, entries[idx].m_description );
-  }
-*/
-  show_all_children();
-
+	show_all_children();
 }
 
 IconViewHosts::~IconViewHosts() {
@@ -73,12 +63,12 @@ void IconViewHosts::on_item_activated(const Gtk::TreeModel::Path & path) {
 	Gtk::TreeModel::iterator iter = _refPtrListStore->get_iter(path);
 	Gtk::TreeModel::Row row = *iter;
 
-	const std::string filename = row[_ModelColumns.col_filename];
-	const Glib::ustring description = row[_ModelColumns.col_description];
-
-	PRINTD("Item activated: filename= " + filename);
-	PRINTD("description= " + description);
-
+	//Show info to user
+	const Glib::ustring hostname = row[_ModelColumns.col_hostname];
+	show_entry (hostname,
+			    row[_ModelColumns.col_ip],
+			    row[_ModelColumns.col_description]);	
+	PRINTD("Item Activated:" + hostname);
 }
 
 void IconViewHosts::on_selection_changed() {
@@ -89,27 +79,84 @@ void IconViewHosts::on_selection_changed() {
 		const Gtk::TreeModel::Path& path = *selected.begin();
 		Gtk::TreeModel::iterator iter = _refPtrListStore->get_iter(path);
 		Gtk::TreeModel::Row row = *iter;
-		const std::string filename = row[_ModelColumns.col_filename];
-		const Glib::ustring description = row[_ModelColumns.col_description];
-
-		PRINTD("Selection Changed to: filename=" + filename);
-		PRINTD("description= " + description);
+		//Show info to user
+		//Get column col_XX value 
+		const Glib::ustring hostname = row[_ModelColumns.col_hostname];
+		show_entry (hostname,
+				    row[_ModelColumns.col_ip],
+				    row[_ModelColumns.col_description]);	
+		PRINTD("Selection Changed to: hostname=" + hostname);
 	}
 }
 
-/*
-void ExampleWindow::add_entry(const std::string& filename,
-        const Glib::ustring& description )
+IconViewHosts::TextViewHosts::TextViewHosts(BaseObjectType * cobject, const RefPtrGladeXml & refGlade)
+	:Gtk::TextView(cobject),
+	 _refPtrGlademmXml(refGlade) 
 {
-  Gtk::TreeModel::Row row = *(_refPtrListStore->append());
-  row[_ModelColumns.col_filename] = filename;
-  row[_ModelColumns.col_description] = description;
-
-  #ifdef GLIBMM_EXCEPTIONS_ENABLED
-  row[_ModelColumns.col_pixbuf] = Gdk::Pixbuf::create_from_file(filename);
-  #else
-  std::auto_ptr<Glib::Error> error;
-  row[_ModelColumns.col_pixbuf] = Gdk::Pixbuf::create_from_file(filename, error);
-  #endif //GLIBMM_EXCEPTIONS_ENABLED
+	_refPtrTextBuffer = get_buffer();
+	show_all_children();
 }
+
+IconViewHosts::TextViewHosts::~TextViewHosts() {
+	//Null
+}
+
+void IconViewHosts::TextViewHosts::show_hostname(const Glib::ustring & hostname) {
+	_refPtrTextBuffer->insert_at_cursor("Hostname: " + hostname + "\n");
+}
+
+void IconViewHosts::TextViewHosts::show_ip(const Glib::ustring & ip) {
+	_refPtrTextBuffer->insert_at_cursor("IP: " + ip + "\n");
+}
+
+void IconViewHosts::TextViewHosts::show_description(const Glib::ustring & description) {
+	_refPtrTextBuffer->insert_at_cursor("Description: " + description + "\n");
+}
+
+void IconViewHosts::TextViewHosts::reset() {
+	_refPtrTextBuffer->set_text("");
+}
+
+void IconViewHosts::add_entry(const Glib::ustring & hostname, 
+							  const Glib::ustring & ip, 
+							  const Glib::ustring & description) {						  
+	Gtk::TreeModel::Row row = *(_refPtrListStore->append());
+	row[_ModelColumns.col_hostname] = hostname;
+	row[_ModelColumns.col_ip] = ip;
+	row[_ModelColumns.col_description] = description;
+
+/*//TODO
+PACKAGE_PIXMAPS_DIR"/"GLKM_PIXMAP_LOCALHOST
+	const std::string FILENAME="search";
+#ifdef GLIBMM_EXCEPTIONS_ENABLED
+	try
+	{
+		row[_ModelColumns.col_pixbuf] = Gdk::Pixbuf::create_from_file(FILENAME);
+	}
+	catch(const Glib::Error& exception)
+    {
+		std::cerr << exception.what() << std::endl;
+//		throw;
+	}	
+#else
+	std::auto_ptr<Glib::Error> error;
+	row[_ModelColumns.col_pixbuf] = Gdk::Pixbuf::create_from_file(FILENAME, error);
+	if (error.get())
+	{
+		std::cerr << error->what() << std::endl;
+		return 1;
+	}
+#endif //GLIBMM_EXCEPTIONS_ENABLED
 */
+}
+
+void IconViewHosts::show_entry(const Glib::ustring & hostname, 
+							  const Glib::ustring & ip, 
+							  const Glib::ustring & description) {
+
+	//Show info to user
+	_TextViewHosts->reset ();
+	_TextViewHosts->show_hostname (hostname);
+	_TextViewHosts->show_ip (ip);
+	_TextViewHosts->show_description (description);
+}

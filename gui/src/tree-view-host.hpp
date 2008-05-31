@@ -17,12 +17,16 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _TREEVIEWHOST_HPP
-#define _TREEVIEWHOST_HPP
+#ifndef _TREE_VIEW_HOST_HPP
+#define _TREE_VIEW_HOST_HPP
 
 #include <gtkmm/treeview.h>
-//#include <gtkmm/treestore.h>
 #include <gtkmm/treemodel.h>
+#include <gtkmm/treeviewcolumn.h>
+#include <gtkmm/menu.h>
+#include <gtkmm/menuitem.h>
+
+//#include <gtkmm/treestore.h>
 
 #include "utils.hpp"
 
@@ -65,9 +69,9 @@ class TreeViewHost : public Gtk::TreeView {
 	RefPtrTreeStore			_refPtrTreeStore;
 	RefPtrTreeSelection		_refPtrTreeSelection;
 
-	Gtk::Menu*				_pMenu_Popup_TreeView_Host;
-	Gtk::MenuItem*				_pMenuitem_Refresh;
+	Gtk::Menu*			_pMenu_Popup_TreeView_Host;
+	Gtk::MenuItem*			_pMenuitem_Refresh;
 	
 };
 
-#endif //_TREEVIEWHOST_HPP
+#endif //_TREE_VIEW_HOST_HPP

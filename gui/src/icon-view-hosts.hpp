@@ -22,6 +22,10 @@
 
 #include <gtkmm/iconview.h>
 #include <gtkmm/treemodel.h>
+#include <gtkmm/textview.h>
+
+#include <glibmm/ustring.h>
+
 #include "utils.hpp"
 
 class IconViewHosts : public Gtk::IconView {
@@ -29,28 +33,52 @@ class IconViewHosts : public Gtk::IconView {
 	IconViewHosts(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
 
 	virtual ~IconViewHosts();
+	
   protected:
   	RefPtrGladeXml _refPtrGlademmXml;
 	virtual void on_item_activated(const Gtk::TreeModel::Path & path);
 	virtual void on_selection_changed();
-//	void add_entry(const std::string& filename, const Glib::ustring& description);
 
 	// Tree model columns:
 	//
 	class ModelColumns : public Gtk::TreeModel::ColumnRecord {
 	  public:
 		ModelColumns(){
-			add(col_filename);
+			add(col_hostname);
+			add(col_ip);			
 			add(col_description);
 			add(col_pixbuf);
 		}
-		TreeModelColumnString col_filename;
+		TreeModelColumnUstring col_hostname;
+		TreeModelColumnUstring col_ip;		
 		TreeModelColumnUstring col_description;
+//		TreeModelColumnString col_filename;		
 		TreeModelColumnRefPtrPixbuf col_pixbuf;
 	};
 
+
+
+	class TextViewHosts : public Gtk::TextView {
+	  public:
+		TextViewHosts(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
+		virtual ~TextViewHosts();
+	  protected:
+		RefPtrGladeXml _refPtrGlademmXml;
+		RefPtrTextBuffer _refPtrTextBuffer;
+	  public:
+		void show_hostname(const Glib::ustring & hostname);
+		void show_ip(const Glib::ustring & ip);
+		void show_description(const Glib::ustring & description);
+		void reset();
+    };
+    
+	TextViewHosts * _TextViewHosts;
+  public:
 	ModelColumns _ModelColumns;
 	RefPtrListStore _refPtrListStore;
+  private:
+	void add_entry(const Glib::ustring & hostname, const Glib::ustring & ip, const Glib::ustring & description);
+	void show_entry(const Glib::ustring & hostname, const Glib::ustring & ip, const Glib::ustring & description);	
 };
 
 #endif // _ICON_VIEW_HOSTS_HPP

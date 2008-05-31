@@ -21,20 +21,28 @@
 #define _HOST_SELECT_DIALOG_HPP
 
 #include <gtkmm/dialog.h>
+#include <gtkmm/button.h>
 #include "utils.hpp"
 
 class IconViewHosts;
+class Controller;
 
 class HostSelectDialog : public Gtk::Dialog {
   public:
 	HostSelectDialog(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
 	virtual ~HostSelectDialog();
 
+	IconViewHosts * _pIconViewHosts;
+	
   protected:
-	void on_button_quit(int response_id);
 	RefPtrGladeXml _refGlademmXml;
 
-	IconViewHosts * _pIconViewHosts;
+	void on_signal_response(int response_id);
+	void on_clicked_button_accept();
+	void on_clicked_button_cancel();
+
+	Gtk::Button * _pButtonAccept;
+	Gtk::Button * _pButtonCancel;
 
 };
 

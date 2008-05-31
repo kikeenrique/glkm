@@ -17,15 +17,16 @@
  */
 
 
-#include <dbusmm/connection.h>
-#include <dbusmm/message.h>
+
 #include <dbusmm/types.h>
 
 #include <iostream>
 
 #include "hal-manager-proxy.hpp"
-#include "debug.hpp"
+
 #include "config.h"
+#include "debug.hpp"
+
 
 
 

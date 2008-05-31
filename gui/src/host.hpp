@@ -21,31 +21,40 @@
 #ifndef _HOST_HPP
 #define _HOST_HPP
 
-#include "process.hpp"
 #include <glibmm/ustring.h>
+
 #include <map>
 
+class Process;
 class Filesystem;
 class HalController;
 
 class Host {
   public:
-    Host(const Glib::ustring & name);
+	Host();
+	virtual ~Host();
+	Host(const Host & source);
+	Host & operator=(const Host & source);
 
-    virtual ~Host();
+	inline const Glib::ustring get__hostname() const;
+	void set__hostname(Glib::ustring value);
+	void set__ip(Glib::ustring value);
+	void set__description(Glib::ustring value);
 
-    bool get_process(int PID, Process & process);
-
+	bool get_process(int PID, Process & process);
 
   protected:
-    Glib::ustring hostname;
+	Glib::ustring _hostname;
+	Glib::ustring _ip;	
+	Glib::ustring _description;
 
-    Filesystem * filesystems;
+	Filesystem * filesystems;
+	std::map<int, Process> task_list;
 
-    std::map <int, Process> task_list;
-
-    HalController * hal_controler;
-
+	HalController * hal_controler;
 };
+inline const Glib::ustring Host::get__hostname() const {
+  return _hostname;
+}
 
 #endif // _HOST_HPP

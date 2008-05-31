@@ -17,20 +17,17 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _GLKM_HAL_DEVICE_PROXY_HPP
-#define _GLKM_HAL_DEVICE_PROXY_HPP
+#ifndef _HAL_DEVICE_PROXY_HPP
+#define _HAL_DEVICE_PROXY_HPP
 
+#include <dbusmm/connection.h>
 #include <dbusmm/types.h>
+#include <dbusmm/message.h>
 #include <dbusmm/interface.h>
 #include <dbusmm/object.h>
 #include <dbusmm/util.h>
 
 #include "utils.hpp"
-
-
-namespace DBus { class Connection; } 
-namespace DBus { class Path; } 
-namespace DBus { class SignalMessage; } 
 
 class HalDeviceProxy: 
 	public DBus::InterfaceProxy,
@@ -55,4 +52,4 @@ protected:
 
 typedef DBus::RefPtr<HalDeviceProxy> HalDeviceProxyRefPtr;
 
-#endif // _GLKM_HAL_DEVICE_PROXY_HPP
+#endif // _HAL_DEVICE_PROXY_HPP

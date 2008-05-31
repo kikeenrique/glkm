@@ -21,6 +21,7 @@
 #define _ABOUTDIALOG_HPP
 
 #include <gtkmm/aboutdialog.h>
+#include <glibmm/ustring.h>
 #include "utils.hpp"
 
 class AboutDialog : public Gtk::AboutDialog {
@@ -31,7 +32,7 @@ class AboutDialog : public Gtk::AboutDialog {
   protected:
 	RefPtrGladeXml _refGlademmXml;
 	//Signal handlers:
-	void on_button_quit(int response_id);
+	void on_signal_response(int response_id);
 		
 	void on_activate_link_url(Gtk::AboutDialog& about_dialog, const Glib::ustring& link);
 	void on_activate_email_url(Gtk::AboutDialog& about_dialog, const Glib::ustring& email);

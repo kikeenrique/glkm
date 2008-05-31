@@ -43,7 +43,15 @@ glkm_SOURCES = \
 	icon-view-hosts.hpp \
 	icon-view-hosts.cpp \
 	host-select-dialog.hpp \
-	host-select-dialog.cpp
+	host-select-dialog.cpp \
+	hosts.hpp \
+	hosts.cpp \
+	filesystem.hpp \
+	filesystem.cpp \
+	observer.hpp \
+	observer.cpp \
+	controller.hpp \
+	controller.cpp
 
 #glkm_CFLAGS= \
 #	$(GLKM_CFLAGS) 	$(AM_CFLAGS)	$(LIBGNOME_CFLAGS)

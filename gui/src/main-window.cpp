@@ -17,14 +17,12 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm/imagemenuitem.h>
-#include <gtkmm/checkmenuitem.h>
-#include <gtkmm/toolbutton.h>
-#include <gtkmm/toolbar.h>
-
 #include <iostream>
+
+#include "config.h"
 #include "debug.hpp"
 
+#include "hosts.hpp"
 #include "main-window.hpp"
 #include "tree-view-host.hpp"
 #include "status-bar.hpp"
@@ -37,7 +35,7 @@
 
 
 MainWindow::MainWindow(){
-		//Load the Glade file 
+	//Load the Glade file
 #ifdef GLIBMM_EXCEPTIONS_ENABLED
 	try
 	{
@@ -56,7 +54,7 @@ MainWindow::MainWindow(){
 		std::cerr << error->what() << std::endl;
 		return 1;
 	}
-#endif
+#endif //GLIBMM_EXCEPTIONS_ENABLED
 
 	//Initiate glade widgets for main window
 	_refGlademmXml->reparent_widget("vbox_mainwindow", *this);
@@ -135,6 +133,13 @@ MainWindow::MainWindow(){
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}	
+	_refGlademmXml->get_widget("toolbutton_select", _pToolButton_Select);
+	if (_pToolButton_Select){
+		_pToolButton_Select->signal_clicked().connect( sigc::mem_fun(*this,	
+																   &MainWindow::on_clicked_toolbar_select) );
+	} else{
+		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
+	}	
 	_refGlademmXml->get_widget("toolbutton_connect", _pToolButton_Connect);
 	if (_pToolButton_Connect){
 		_pToolButton_Connect->signal_clicked().connect( sigc::mem_fun(*this,	
@@ -144,7 +149,7 @@ MainWindow::MainWindow(){
 	}	
 	_refGlademmXml->get_widget("toolbutton_refresh", _pToolButton_Refresh);
 	if (_pToolButton_Refresh){
-		_pToolButton_Connect->signal_clicked().connect( sigc::mem_fun(*this,	
+		_pToolButton_Refresh->signal_clicked().connect( sigc::mem_fun(*this,	
 																   &MainWindow::on_clicked_toolbar_refresh) );
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
@@ -226,23 +231,27 @@ void MainWindow::on_checkmenuitem_viewtoolbar_toggled() {
 
 void MainWindow::on_imagemenuitem_about_activated(){
 	PRINTD("on_imagemenuitem_about_activated");
-	_pAboutDialog->show();
-	  //Bring it to the front, in case it was already shown:
+	// if use Gtk::Window::present then Gtk::Widget::show is redundant 
+	// (more on gtkmm doc)
+	//	_pHostSelectDialog->show();
 	_pAboutDialog->present();
 }
 
-void MainWindow::on_clicked_toolbar_connect(){
-	PRINTD("on_clicked_toolbar_connect");
-	_pHostSelectDialog->show();
-	//Bring it to the front, in case it was already shown:
+void MainWindow::on_clicked_toolbar_select(){
+	PRINTD("on_clicked_toolbar_select");
+
+	// if use Gtk::Window::present then Gtk::Widget::show is redundant 
+	// (more on gtkmm doc)
+	//	_pHostSelectDialog->show();
 	_pHostSelectDialog->present();
 }
 
+void MainWindow::on_clicked_toolbar_connect() {
+	PRINTD("on_clicked_toolbar_connect");
+}
 
 void MainWindow::on_clicked_toolbar_refresh(){
 	PRINTD("on_clicked_toolbar_refresh");
-	//update current host
-//	_pStatusBar->pop_item(_ContextId);
-//	_pStatusBar->push_item(_ContextId);
+//TODO
 }
 

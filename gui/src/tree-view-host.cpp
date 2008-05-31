@@ -17,14 +17,9 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtkmm/treeviewcolumn.h>
-#include <gtkmm/menu.h>
-#include <gtkmm/menuitem.h>
-
-//#include "main-window.hpp"
 #include "tree-view-host.hpp"
 
-#include <config.h>
+#include "config.h"
 #include "debug.hpp"
 
  

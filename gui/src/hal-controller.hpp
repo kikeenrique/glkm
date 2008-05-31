@@ -17,8 +17,8 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _HAL_CONTROLLER_HPP_
-#define _HAL_CONTROLLER_HPP_
+#ifndef _HAL_CONTROLLER_HPP
+#define _HAL_CONTROLLER_HPP
 
 #include <dbusmm/glib-integration.h>
 #include <dbusmm/connection.h>
@@ -41,4 +41,4 @@ class HalController {
 
 };
 
-#endif // _HAL-CONTROLER_HPP
+#endif // _HAL_CONTROLER_HPP

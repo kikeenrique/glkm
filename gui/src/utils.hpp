@@ -26,6 +26,7 @@
 #include <gtkmm/treestore.h>
 #include <gtkmm/treemodelcolumn.h>
 #include <gtkmm/liststore.h>
+#include <gtkmm/treemodel.h>
 
 #include <glibmm/refptr.h>
 #include <glibmm/ustring.h>
@@ -37,6 +38,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <list>
 
 typedef std::vector<DBus::String> VectorString;
 typedef std::map<DBus::String, DBus::Variant> DictVariable;
@@ -50,5 +52,6 @@ typedef Glib::RefPtr<Gtk::ListStore> RefPtrListStore;
 typedef Gtk::TreeModelColumn<std::string> TreeModelColumnString;
 typedef Glib::RefPtr<Gdk::Pixbuf> RefPtrPixbuf;
 typedef Gtk::TreeModelColumn<RefPtrPixbuf> TreeModelColumnRefPtrPixbuf;
+typedef std::list<Gtk::TreeModel::Path> ListTreeModelPath;
 
 #endif // _UTILS_HPP

@@ -17,18 +17,14 @@
  */
 
 
-#include <glibmm/ustring.h>
-
 #include <iostream>
 
-
-#include <config.h>
+#include "config.h"
 #ifdef HAVE_LIBGNOME
 #include <libgnome/gnome-url.h>
 #endif // HAVE_LIBGNOME
 
 #include "about-dialog.hpp"
-
 #include "debug.hpp"
 
 AboutDialog::AboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
@@ -37,7 +33,7 @@ AboutDialog::AboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glad
 {
 	/* Actioning close button doesn't work by itself, needs a gobernant signal 
 	 to http://mail.gnome.org/archives/gtkmm-list/2007-January/msg00305.html */
-	signal_response().connect( sigc::mem_fun(*this, &AboutDialog::on_button_quit)); 
+	signal_response().connect( sigc::mem_fun(*this, &AboutDialog::on_signal_response)); 
 
 	set_url_hook(sigc::mem_fun(*this, &AboutDialog::on_activate_link_url));
 	set_email_hook(sigc::mem_fun(*this, &AboutDialog::on_activate_email_url));
@@ -48,7 +44,7 @@ AboutDialog::~AboutDialog()
 	PRINTD("~AboutDialog");
 }
 
-void AboutDialog::on_button_quit(int response_id)
+void AboutDialog::on_signal_response(int response_id)
 {
 	switch(response_id) {
 		case Gtk::RESPONSE_NONE :

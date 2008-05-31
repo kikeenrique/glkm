@@ -23,11 +23,12 @@
  */
 
 #include "debug.hpp"
+#include <sstream>
 
 TextViewDebug::TextViewDebug (BaseObjectType* cobject, 
 							  const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 	:Gtk::TextView(cobject),
-	 m_refGlademmXml(refGlade)
+	 _refPtrGlademmXml(refGlade)
 {
 	//Create the text buffer
 	fill_buffer();
@@ -42,20 +43,27 @@ TextViewDebug::~TextViewDebug()
 
 void TextViewDebug::fill_buffer()
 {
-	m_refTextBuffer = get_buffer();
-	m_refTextBuffer->set_text("BEGIN\n");
+	_refPtrTextBuffer = get_buffer();
+	_refPtrTextBuffer->set_text("BEGIN\n");
 }
 
 void TextViewDebug::debug_print(const Glib::ustring& text)
 {
-	m_refTextBuffer->insert_at_cursor(text+"\n");
+	_refPtrTextBuffer->insert_at_cursor(text+"\n");
 }
 
-/*
- */
 void TextViewDebug::debug_print(const char* text)
 {
 	Glib::ustring tmp(text);
-	m_refTextBuffer->insert_at_cursor(tmp+"\n");
+	_refPtrTextBuffer->insert_at_cursor(tmp+"\n");
+}
 
+void TextViewDebug::debug_print(const int & number)
+{
+	Glib::ustring tmp;
+	std::stringstream out;
+	out << number;
+	tmp = out.str();
+
+	_refPtrTextBuffer->insert_at_cursor(tmp+"\n");
 }

@@ -18,10 +18,6 @@
  */
 
 
-#include <dbusmm/connection.h>
-#include <dbusmm/types.h>
-#include <dbusmm/message.h>
-
 #include <iostream>
 
 #include "hal-device-proxy.hpp"

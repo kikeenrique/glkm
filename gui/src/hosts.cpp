@@ -17,52 +17,36 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "hosts.hpp"
 #include "host.hpp"
-#include "process.hpp"
-#include "filesystem.hpp"
-#include "hal-controller.hpp"
 
 #include "config.h"
 #include "debug.hpp"
 
-Host::Host() {
-	//hal_controler = new HalController ();
+Hosts::Hosts() {
 }
 
-Host::~Host() {
-	//Null
+Hosts::~Hosts() {
 }
 
-Host::Host(const Host & source) :
-	_hostname(source._hostname),
-	_ip(source._ip),
-	_description(source._description)
-{
-}
+bool Hosts::create_host(const Glib::ustring & hostname, const Glib::ustring & ip, const Glib::ustring & description) {
+	std::map<Glib::ustring, Host>::iterator it;
+	bool create=false;
+	
+	// Search for element with a value of hostname and returns an iterator to it
+	// if found, otherwise it returns an iterator to map::end (the
+	// element past the end of the container).
+	it = _hosts.find(hostname);
+	if ( it == _hosts.end() ) {
+		//Host does not exists so we have to add it
+		create = true;
+		Host temp;
+		temp.set__hostname(hostname);
+		temp.set__ip(ip);
+		temp.set__description(description);
+		_hosts[hostname] = temp;
+		PRINTD("Hosts:: Host added " + _hosts[hostname].get__hostname());
+	}
 
-Host & Host::operator=(const Host & source) {
-	_hostname = source._hostname;
-	_ip = source._ip;
-	_description = source._description;
-	return *this;
-}
-
-void Host::set__hostname(Glib::ustring value) {
-  _hostname = value;
-}
-
-void Host::set__ip(Glib::ustring value) {
-  _ip = value;
-}
-
-void Host::set__description(Glib::ustring value) {
-  _description = value;
-}
-
-bool Host::get_process(int PID, Process & process){
-	bool ret=true;
-
-	//REWORK this creates task_list[PID] even if process with PID does not exists
-//	process=task_list[PID];
-	return ret;
+	return create;
 }

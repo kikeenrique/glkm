@@ -20,24 +20,38 @@
 #include "process.hpp"
 #include "file.hpp"
 
+#include "config.h"
 #include "debug.hpp"
 
 
-Process::Process()
-{
-	#ifdef DEBUG
-	//pDebug->debug_print("Constructor procces");
-	#endif // DEBUG
+Process::Process(){
+	_PID = 1;
+	_PPID = 1;
+	_name = "";
 }
 
-Process::~Process()
-{
+Process::~Process(){
 	//Null
+}
+
+Process::Process(const Process & source) :
+	_PID(source._PID),
+	_PPID(source._PPID),
+	_name(source._name)
+{
+	//TODO
+	//std::vector<File *> files_opened;
+}
+
+Process & Process::operator=(const Process & source) {
+	_PID = source._PID;
+	_PPID = source._PPID;
+	_name = source._name;	
+	//TODO
+	//	std::vector<File *> files_opened;
+	return *this;	
 }
 
 void Process::set__PPID(int value) {
   _PPID = value;
-	#ifdef DEBUG
-//	pDebug->debug_print("PPID:" + value);
-	#endif // DEBUG	
 }

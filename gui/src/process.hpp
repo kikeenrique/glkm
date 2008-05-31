@@ -20,18 +20,19 @@
 #ifndef _PROCCES_HPP
 #define _PROCCES_HPP
 
-#include <vector>
 #include <glibmm/ustring.h>
 
-#include "config.h"
+#include <vector>
 
 class File;
 
-class Process
-{
+class Process {
   public:
 	Process();
 	virtual ~Process();
+	Process(const Process & source);
+	Process & operator=(const Process & source);
+
 	inline const int get__PID() const;
 	void set__PPID(int value);
 	inline const Glib::ustring get__name() const;
@@ -42,10 +43,7 @@ class Process
 	Glib::ustring _name;
 	
 	std::vector<File *> files_opened;
-	
-	
 };
-
 inline const int Process::get__PID() const {
   return _PID;
 }

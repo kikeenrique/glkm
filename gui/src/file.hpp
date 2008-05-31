@@ -17,8 +17,8 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _FILE_HPP_
-#define _FILE_HPP_
+#ifndef _FILE_HPP
+#define _FILE_HPP
 
 #include <vector>
 
@@ -38,4 +38,4 @@ class File {
 
 };
 
-#endif // _FILE_HPP_
+#endif // _FILE_HPP

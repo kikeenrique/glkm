@@ -19,38 +19,34 @@
 
 #include <gtkmm/main.h>
 
-#include <vector>
-
-#include "main-window.hpp"
 #include "config.h"
-
 #ifdef ENABLE_NLS
 #include <libintl.h>
 #endif
 
+#include "main-window.hpp"
 #include "debug.hpp"
+
 #ifdef DEBUG
 TextViewDebug*	pDebug;
 #endif // DEBUG
 
-int 
-main (int	argc, 
-	  char	*argv[])
+int main (int	argc, char	*argv[])
 {
 
 #ifdef ENABLE_NLS	
 /*
-TODO
+	TODO
 	bindtextdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
 	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
 	domain(GETTEXT_PACKAGE);
 	*/
 #endif
-
 	Gtk::Main kit(argc, argv);
 	MainWindow main_window;
 
 	kit.run(main_window);
 
+	//Bye bye!!
 	return 0;
 }

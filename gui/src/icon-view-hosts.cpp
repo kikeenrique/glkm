@@ -46,6 +46,8 @@ IconViewHosts::IconViewHosts(BaseObjectType * cobject, const RefPtrGladeXml & re
 	set_markup_column(_ModelColumns.col_hostname);
 	set_pixbuf_column(_ModelColumns.col_pixbuf);
 	
+	//TODO
+	//This is just a test code
 	// Add our hosts to the TreeView's model
 	add_entry("localhost", "127.0.0.1", "Our current host");
 	add_entry("localhost", "127.0.0.1", "A remote host (virtualbox host) need var environment DBUS_SYSTEM_BUS_ADDRESS");
@@ -125,7 +127,10 @@ void IconViewHosts::add_entry(const Glib::ustring & hostname,
 	row[_ModelColumns.col_ip] = ip;
 	row[_ModelColumns.col_description] = description;
 
-/*//TODO
+//TODO
+//Need to look for code that autolocates default icons path and it only needs 
+//icon name
+/*
 PACKAGE_PIXMAPS_DIR"/"GLKM_PIXMAP_LOCALHOST
 	const std::string FILENAME="search";
 #ifdef GLIBMM_EXCEPTIONS_ENABLED

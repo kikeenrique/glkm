@@ -35,7 +35,7 @@ class HostSelectDialog : public Gtk::Dialog {
 	IconViewHosts * _pIconViewHosts;
 	
   protected:
-	RefPtrGladeXml _refGlademmXml;
+	RefPtrGladeXml _refPtrGlademmXml;
 
 	void on_signal_response(int response_id);
 	void on_clicked_button_accept();

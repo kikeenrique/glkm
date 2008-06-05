@@ -19,8 +19,9 @@
 
 #include "controller.hpp"
 #include "hosts.hpp"
-#include "main-window.hpp"
 #include "icon-view-hosts.hpp"
+#include "main-window.hpp"
+#include "notebook-hosts.hpp"
 
 #include "config.h"
 #include "debug.hpp"
@@ -49,15 +50,23 @@ Controller & Controller::instance(){
 	return singleton;
 }
 
-void Controller::update() {
+void Controller::update(Subject * s) {
+}
+
+void Controller::update(Subject * s, Argument * arg) {
 }
 
 void Controller::set__pHosts(Hosts * value) {
-  _pHosts = value;
+	_pHosts = value;
 }
 
 void Controller::set__pIconViewHosts(IconViewHosts * value) {
-  _pIconViewHosts = value;
+	_pIconViewHosts = value;
+}
+
+void Controller::set__pNotebookHosts(NotebookHosts * value) {
+	_pNotebookHosts = value;
+	_pHosts->attach(*_pNotebookHosts);
 }
 
 Controller Controller::singleton;

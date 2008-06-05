@@ -20,28 +20,32 @@
 #ifndef _OBSERVER_HPP
 #define _OBSERVER_HPP
 
-#include <list>
+#include <set>
+
+class Subject;
+class Argument {
+};
 
 class Observer {
   public:
 	virtual ~Observer();
-	virtual void update() = 0;
-
-  protected:
-	Observer();
+	virtual void update(Subject * s) = 0;
+	virtual void update(Subject * s, Argument * arg) = 0;
 };
+
 class Subject {
   public:
 	virtual ~Subject();
-	virtual void attach(Observer * observer);
-	virtual void detach(Observer * observer);
+	virtual void attach(Observer & observer);
+	virtual void detach(Observer & observer);
 	virtual void notify();
+	virtual void notify(Argument * arg);
 
   protected:
 	Subject();
 
   private:
-	std::list<Observer *> _observers;
+	std::set<Observer *> _observers;
 
 };
 

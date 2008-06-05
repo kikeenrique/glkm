@@ -33,6 +33,55 @@ A string list of process [pid] - [ppid]
 See libsysfs documentation for more info about implementation.
 Mechanism could be a button (or a dialog?).</comment>
     </item>
+    <item>
+      <attribute id="1211994951" priority="0" done="0" start_date="733190" enddate="99999999" notify="0" endtime="-60" last_edited="1211994951"/>
+      <summary>Add custom icons to display in select host dialog</summary>
+      <comment>Add custom icons to display in select host dialog.
+
+Links:
+http://live.gnome.org/ThemableAppSpecificIcons
+http://live.gnome.org/GnomeGoals/AppIcon</comment>
+    </item>
+    <item>
+      <attribute id="1212013175" priority="1" done="0" start_date="733191" enddate="99999999" notify="0" endtime="-60" last_edited="1212013175"/>
+      <summary>add doc to code</summary>
+      <comment>This is a template of what should be in every function/member/etc
+
+  /** Copy one string to another.
+   *
+   * PRECONDITION
+
+   * REQUIRE(from != 0)
+   * REQUIRE(to != 0)
+   *
+   * WARNING
+
+   * The to buffer must be long enough to hold
+   * the entire from buffer.
+   *
+
+   * EXCEPTIONS
+
+   * lalala
+
+   * EXAMPLES
+
+   * 
+
+   * strcpy(somebuf, "test")
+   * 
+
+      
+
+   *
+   * @param from The string to copy.
+   * @param to The buffer to copy the string to.
+   *
+   * @return void
+   */
+   void  strcpy(const char* from, char* to); 
+</comment>
+    </item>
   </category>
   <item>
     <attribute id="1204215454" priority="2" done="1" start_date="733100" completed_date="733143" enddate="733101" notify="0" endtime="-60" last_edited="1207940324"/>

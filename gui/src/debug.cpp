@@ -32,7 +32,7 @@ TextViewDebug::TextViewDebug (BaseObjectType* cobject,
 {
 	//Create the text buffer
 	fill_buffer();
-	
+
 	show_all_children();
 }
 

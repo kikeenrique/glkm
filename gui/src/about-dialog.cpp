@@ -29,7 +29,7 @@
 
 AboutDialog::AboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
 	:Gtk::AboutDialog(cobject),
-	_refGlademmXml(refGlade)
+	_refPtrGlademmXml(refGlade)
 {
 	/* Actioning close button doesn't work by itself, needs a gobernant signal 
 	 to http://mail.gnome.org/archives/gtkmm-list/2007-January/msg00305.html */

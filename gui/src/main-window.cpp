@@ -19,15 +19,15 @@
 
 #include <iostream>
 
-#include "config.h"
-#include "debug.hpp"
-
-#include "hosts.hpp"
 #include "main-window.hpp"
-#include "tree-view-host.hpp"
+#include "host-select-dialog.hpp"
+#include "notebook-hosts.hpp"
 #include "status-bar.hpp"
 #include "about-dialog.hpp"
-#include "host-select-dialog.hpp"
+#include "controller.hpp"
+
+#include "config.h"
+#include "debug.hpp"
 
 /* For testing propose use the local (not installed) glade file */
 //#define GLADE_FILE  PACKAGE_DATA_DIR "/glkm/glade/glkm.glade" 
@@ -37,74 +37,72 @@
 MainWindow::MainWindow(){
 	//Load the Glade file
 #ifdef GLIBMM_EXCEPTIONS_ENABLED
-	try
-	{
-		_refGlademmXml = Gnome::Glade::Xml::create(GLADE_FILE);
+	try {
+		_refPtrGlademmXml = Gnome::Glade::Xml::create(GLADE_FILE);
 	}
-	catch(const Gnome::Glade::XmlError& exception)
-    {
+	catch(const Gnome::Glade::XmlError& exception) {
 		std::cerr << exception.what() << std::endl;
 		throw; 
 	}	
 #else
 	std::auto_ptr<Gnome::Glade::XmlError> error;
-	_refGlademmXml = Gnome::Glade::Xml::create(GLADE_FILE, "", "", error);
-	if (error.get())
-	{
+	_refPtrGlademmXml = Gnome::Glade::Xml::create(GLADE_FILE, "", "", error);
+	if (error.get()){
 		std::cerr << error->what() << std::endl;
 		return 1;
 	}
 #endif //GLIBMM_EXCEPTIONS_ENABLED
 
 	//Initiate glade widgets for main window
-	_refGlademmXml->reparent_widget("vbox_mainwindow", *this);
+	_refPtrGlademmXml->reparent_widget("main_window-vbox", *this);
 
 
 	//Connect signal handlers for the main window "menu file" items:
-/*	_refGlademmXml->get_widget("imagemenuitem_new", _pImageMenuItemNew);
+/*	_refPtrGlademmXml->get_widget("imagemenuitem_new", _pImageMenuItemNew);
 	if (_pImageMenuItemNew){
 		_pImageMenuItemNew->signal_activate().connect( sigc::mem_fun( *this, 
 																&MainWindow::on_menuitem_quit_activated) );
 	}
-	_refGlademmXml->get_widget("imagemenuitem_quit", _pImageMenuItemOpenFile);
+	_refPtrGlademmXml->get_widget("imagemenuitem_quit", _pImageMenuItemOpenFile);
 	if (_pImageMenuItemOpenFile){
 		_pImageMenuItemOpenFile->signal_activate().connect( sigc::mem_fun( *this, 
 																&MainWindow::on_menuitem_quit_activated) );
 	}
-	_refGlademmXml->get_widget("imagemenuitem_quit", _pImageMenuItemSave);
+	_refPtrGlademmXml->get_widget("imagemenuitem_quit", _pImageMenuItemSave);
 	if (_pImageMenuItemSave){
 		_pImageMenuItemSave->signal_activate().connect( sigc::mem_fun( *this, 
 																&MainWindow::on_menuitem_quit_activated) );
 	}
-	_refGlademmXml->get_widget("imagemenuitem_quit", _pImageMenuItemSaveAs);
+	_refPtrGlademmXml->get_widget("imagemenuitem_quit", _pImageMenuItemSaveAs);
 	if (_pImageMenuItemSaveAs){
 		_pImageMenuItemSaveAs->signal_activate().connect( sigc::mem_fun( *this, 
 																&MainWindow::on_menuitem_quit_activated) );
 	}
 */	 
-	_refGlademmXml->get_widget("imagemenuitem_quit", _pImageMenuItemQuit);
+	_refPtrGlademmXml->get_widget("imagemenuitem_quit", _pImageMenuItemQuit);
 	if (_pImageMenuItemQuit){
 		_pImageMenuItemQuit->signal_activate().connect( sigc::mem_fun( *this, 
 																&MainWindow::on_imagemenuitem_quit_activated) );
 	}
 
+
 	//Connect signal handlers for the main window "menu edit" items:
-	_refGlademmXml->get_widget("imagemenuitem_cut", _pImageMenuItemCut);
+	_refPtrGlademmXml->get_widget("imagemenuitem_cut", _pImageMenuItemCut);
 	if (_pImageMenuItemCut){
 		_pImageMenuItemCut->signal_activate().connect( sigc::mem_fun( *this, 
 																&MainWindow::on_imagemenuitem_cut_activated) );
 	}
-	_refGlademmXml->get_widget("imagemenuitem_copy", _pImageMenuItemCopy);
+	_refPtrGlademmXml->get_widget("imagemenuitem_copy", _pImageMenuItemCopy);
 	if (_pImageMenuItemCopy){
 		_pImageMenuItemCopy->signal_activate().connect( sigc::mem_fun( *this, 
 																&MainWindow::on_imagemenuitem_copy_activated) );
 	}
-	_refGlademmXml->get_widget("imagemenuitem_paste", _pImageMenuItemPaste);
+	_refPtrGlademmXml->get_widget("imagemenuitem_paste", _pImageMenuItemPaste);
 	if (_pImageMenuItemPaste){
 		_pImageMenuItemPaste->signal_activate().connect( sigc::mem_fun( *this, 
 																&MainWindow::on_imagemenuitem_paste_activated) );
 	}
-	_refGlademmXml->get_widget("imagemenuitem_delete", _pImageMenuItemDelete);
+	_refPtrGlademmXml->get_widget("imagemenuitem_delete", _pImageMenuItemDelete);
 	if (_pImageMenuItemDelete){
 		_pImageMenuItemDelete->signal_activate().connect( sigc::mem_fun( *this, 
 																&MainWindow::on_imagemenuitem_delete_activated) );
@@ -113,14 +111,16 @@ MainWindow::MainWindow(){
 	
 	//Connect signal handlers for the main window "menu view" items:
 	_pCheckMenuItemViewToolbar = NULL;
-	_refGlademmXml->get_widget("checkmenuitem_viewtoolbar", _pCheckMenuItemViewToolbar);
+	_refPtrGlademmXml->get_widget("checkmenuitem_viewtoolbar", _pCheckMenuItemViewToolbar);
 	if (_pCheckMenuItemViewToolbar){ 
 		_pCheckMenuItemViewToolbar->signal_toggled().connect( sigc::mem_fun( *this, 
 							&MainWindow::on_checkmenuitem_viewtoolbar_toggled) );
 	}
+
+
 	//Connect signal handlers for the main window "menu help" items:
 	_pImageMenuItemAbout = NULL;
-	_refGlademmXml->get_widget("imagemenuitem_about", _pImageMenuItemAbout);
+	_refPtrGlademmXml->get_widget("imagemenuitem_about", _pImageMenuItemAbout);
 	if (_pImageMenuItemAbout){
 		_pImageMenuItemAbout->signal_activate().connect( sigc::mem_fun( *this, 
 							&MainWindow::on_imagemenuitem_about_activated) );
@@ -128,26 +128,26 @@ MainWindow::MainWindow(){
 
 
 	//Main Window -> Toolbar
-	_refGlademmXml->get_widget("toolbar_mainwindow", _pToolbar);
+	_refPtrGlademmXml->get_widget("main_window-toolbar", _pToolbar);
 	if (_pToolbar){
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}	
-	_refGlademmXml->get_widget("toolbutton_select", _pToolButton_Select);
+	_refPtrGlademmXml->get_widget("toolbutton_select", _pToolButton_Select);
 	if (_pToolButton_Select){
 		_pToolButton_Select->signal_clicked().connect( sigc::mem_fun(*this,	
 																   &MainWindow::on_clicked_toolbar_select) );
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}	
-	_refGlademmXml->get_widget("toolbutton_connect", _pToolButton_Connect);
+	_refPtrGlademmXml->get_widget("toolbutton_connect", _pToolButton_Connect);
 	if (_pToolButton_Connect){
 		_pToolButton_Connect->signal_clicked().connect( sigc::mem_fun(*this,	
 																   &MainWindow::on_clicked_toolbar_connect) );
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}	
-	_refGlademmXml->get_widget("toolbutton_refresh", _pToolButton_Refresh);
+	_refPtrGlademmXml->get_widget("toolbutton_refresh", _pToolButton_Refresh);
 	if (_pToolButton_Refresh){
 		_pToolButton_Refresh->signal_clicked().connect( sigc::mem_fun(*this,	
 																   &MainWindow::on_clicked_toolbar_refresh) );
@@ -155,23 +155,17 @@ MainWindow::MainWindow(){
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}	
 
-	//Main Window -> Tree View
-	_refGlademmXml->get_widget_derived("treeview_host", _pTreeViewHost);
-	if (_pTreeViewHost){
+
+	//Main Window -> (Important stuff)
+	_refPtrGlademmXml->get_widget_derived("main_window-notebook_hosts", _pNotebookHosts);
+	if (_pNotebookHosts){
+		//Set pointer in Controller that permits access to NotebookHosts 
+		Controller& c = Controller::instance();
+		c.set__pNotebookHosts(_pNotebookHosts);
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}
-#ifdef DEBUG
-	//Main Window -> Debug Text View
-	extern TextViewDebug*	pDebug;
-	_refGlademmXml->get_widget_derived("textview_debug", pDebug);
-	if (pDebug){
-	} else{
-		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
-	}
-#endif // DEBUG		
-	//Main Window -> Status Bar
-	_refGlademmXml->get_widget_derived("statusbar_mainwindow", _pStatusBar);
+	_refPtrGlademmXml->get_widget_derived("main_window-statusbar", _pStatusBar);
 	if (_pStatusBar){
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
@@ -179,18 +173,34 @@ MainWindow::MainWindow(){
 	_ContextId = _pStatusBar->get_context_id("glkm app");
 
 
-	//About Dialog
-	_refGlademmXml->get_widget_derived("about_dialog", _pAboutDialog);
-	if (_pAboutDialog){
-	} else{
-		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
-	}
 	//Host selection Dialog
-	_refGlademmXml->get_widget_derived("host_select_dialog", _pHostSelectDialog);
+	_refPtrGlademmXml->get_widget_derived("host_select_dialog", _pHostSelectDialog);
 	if (_pHostSelectDialog){
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}
+
+	//About Dialog
+	_refPtrGlademmXml->get_widget_derived("about_dialog", _pAboutDialog);
+	if (_pAboutDialog){
+	} else{
+		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
+	}
+#ifdef DEBUG
+	//Debug space
+	extern TextViewDebug*	pDebug;
+	_refPtrGlademmXml->get_widget_derived("textview_debug", pDebug);
+	if (pDebug){
+	} else{
+		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
+	}
+	_refPtrGlademmXml->get_widget("debug_window", _pWindowDebug);
+	if (_pWindowDebug){
+		_pWindowDebug->show();
+	} else{
+		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
+	}
+#endif // DEBUG
 
 }
 
@@ -198,10 +208,12 @@ MainWindow::~MainWindow(){
 	//Null
 }
 
+
 void MainWindow::on_imagemenuitem_quit_activated() {
 	PRINTD("on_imagemenuitem_quit_activated");
 	hide();
 }
+
 
 void MainWindow::on_imagemenuitem_cut_activated() {
 	PRINTD("on_imagemenuitem_cut_activated");
@@ -219,6 +231,7 @@ void MainWindow::on_imagemenuitem_delete_activated() {
 	PRINTD("on_imagemenuitem_delete_activated");
 }
 
+
 void MainWindow::on_checkmenuitem_viewtoolbar_toggled() {
 	if (_pCheckMenuItemViewToolbar->get_active()){
 		_pToolbar->show();
@@ -229,6 +242,17 @@ void MainWindow::on_checkmenuitem_viewtoolbar_toggled() {
 	}
 }
 
+void MainWindow::on_checkmenuitem_viewdebug_toggled() {
+	extern TextViewDebug*	pDebug;
+	if (_pCheckMenuItemViewDebug->get_active()){
+		_pWindowDebug->show();
+		PRINTD("on_checkmenuitem_viewdebug_toggled active");
+	} else {
+		_pWindowDebug->hide();
+		PRINTD("on_checkmenuitem_viewdebug_toggled inactive");
+	}
+}
+
 void MainWindow::on_imagemenuitem_about_activated(){
 	PRINTD("on_imagemenuitem_about_activated");
 	// if use Gtk::Window::present then Gtk::Widget::show is redundant 
@@ -236,6 +260,7 @@ void MainWindow::on_imagemenuitem_about_activated(){
 	//	_pHostSelectDialog->show();
 	_pAboutDialog->present();
 }
+
 
 void MainWindow::on_clicked_toolbar_select(){
 	PRINTD("on_clicked_toolbar_select");

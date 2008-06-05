@@ -17,39 +17,34 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef _NOTEBOOK_HOSTS_HPP
+#define _NOTEBOOK_HOSTS_HPP
+
+#include <gtkmm/notebook.h>
+#include <gtkmm/widget.h>
+
 #include "observer.hpp"
+#include "utils.hpp"
 
-Observer::~Observer() {
-}
+class Subject;
+class Argument;
+class Host;
+class NotebookPageHost;
 
-Subject::~Subject() {
-}
+class NotebookHosts : public Gtk::Notebook, public Observer {
+  public:
+	NotebookHosts(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
+	virtual ~NotebookHosts();
+	virtual void update(Subject * s);
+	virtual void update(Subject * s, Argument * arg);
 
-void Subject::attach(Observer & observer) {
-//	_observers.insert(_observers.end(), observer);
-	_observers.insert(&observer);
-}
+  protected:
+  	RefPtrGladeXml _refPtrGlademmXml;
 
-void Subject::detach(Observer & observer) {
-//	_observers.remove(observer); 
-	_observers.erase(&observer);
-}
+	void on_my_page_added(Gtk::Widget * page, guint page_num);
+	void on_my_page_removed(Gtk::Widget * page, guint page_num);
 
-void Subject::notify() {
-	std::set<Observer *>::iterator it;
+	void add_host_page(Host & host);
+};
 
-	for ( it=_observers.begin(); it!=_observers.end(); it++) {
-		(*it)->update(this);
-	} 
-}
-
-void Subject::notify(Argument * arg) {
-	std::set<Observer *>::iterator it;
-
-	for ( it=_observers.begin(); it!=_observers.end(); it++) {
-		(*it)->update(this, arg);
-	} 
-}
-
-Subject::Subject() {
-}
+#endif // _NOTEBOOK_HOSTS_HPP

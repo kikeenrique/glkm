@@ -25,11 +25,13 @@
 
 #include <map>
 
+#include "observer.hpp"
+
 class Process;
 class Filesystem;
 class HalController;
 
-class Host {
+class Host : public Subject {
   public:
 	Host();
 	virtual ~Host();

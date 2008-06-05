@@ -26,28 +26,28 @@
 
 HostSelectDialog::HostSelectDialog(BaseObjectType * cobject, const RefPtrGladeXml & refGlade):
 	Gtk::Dialog(cobject),
-	_refGlademmXml(refGlade)
+	_refPtrGlademmXml(refGlade)
 {
 	/* Actioning close button doesn't work by itself, needs a gobernant signal 
 	 to http://mail.gnome.org/archives/gtkmm-list/2007-January/msg00305.html */
 	signal_response().connect( sigc::mem_fun(*this, &HostSelectDialog::on_signal_response));
 
 	//Icon View Hosts list
-	_refGlademmXml->get_widget_derived("host_select_dialog-iconview", _pIconViewHosts);
+	_refPtrGlademmXml->get_widget_derived("host_select_dialog-iconview", _pIconViewHosts);
 	if (_pIconViewHosts){
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}
 
  	//Buttons Accept and Cancel
-	_refGlademmXml->get_widget("host_select_dialog-button_accept", _pButtonAccept);
+	_refPtrGlademmXml->get_widget("host_select_dialog-button_accept", _pButtonAccept);
 	if (_pButtonAccept){
 		_pButtonAccept->signal_clicked().connect( sigc::mem_fun(*this,	
 																   &HostSelectDialog::on_clicked_button_accept) );
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}	
-	_refGlademmXml->get_widget("host_select_dialog-button_cancel", _pButtonCancel);
+	_refPtrGlademmXml->get_widget("host_select_dialog-button_cancel", _pButtonCancel);
 	if (_pButtonCancel){
 		_pButtonCancel->signal_clicked().connect( sigc::mem_fun(*this,	
 																   &HostSelectDialog::on_clicked_button_cancel) );
@@ -55,6 +55,8 @@ HostSelectDialog::HostSelectDialog(BaseObjectType * cobject, const RefPtrGladeXm
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}
 
+	//TODO
+	//This seems not the better place to put this code.
 	//Set pointer in Controller that permits access to IconViewHosts 
 	Controller& c = Controller::instance();
 	c.set__pIconViewHosts(_pIconViewHosts);
@@ -121,7 +123,7 @@ void HostSelectDialog::on_signal_response(int response_id)
 void HostSelectDialog::on_clicked_button_accept() {
 	PRINTD("on_clicked_button_accept");
 
-	//Tell controller that a new host could have been selected
+	//Tell controller that a new host have been selected
 	Controller& c = Controller::instance();
 	c.action_host_selected();
 

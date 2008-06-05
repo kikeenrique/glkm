@@ -17,39 +17,23 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "observer.hpp"
+#ifndef _NOTEBOOK_PAGE_HOST_HPP
+#define _NOTEBOOK_PAGE_HOST_HPP
 
-Observer::~Observer() {
-}
+#include <gtkmm/paned.h>
 
-Subject::~Subject() {
-}
+#include "utils.hpp"
 
-void Subject::attach(Observer & observer) {
-//	_observers.insert(_observers.end(), observer);
-	_observers.insert(&observer);
-}
+class TreeViewHost;
 
-void Subject::detach(Observer & observer) {
-//	_observers.remove(observer); 
-	_observers.erase(&observer);
-}
+class NotebookPageHost : public Gtk::HPaned {
+  public:
+	NotebookPageHost(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
+	virtual ~NotebookPageHost();
 
-void Subject::notify() {
-	std::set<Observer *>::iterator it;
+  protected:
+	RefPtrGladeXml _refPtrGlademmXml;
+	TreeViewHost * _pTreeViewHost;
+};
 
-	for ( it=_observers.begin(); it!=_observers.end(); it++) {
-		(*it)->update(this);
-	} 
-}
-
-void Subject::notify(Argument * arg) {
-	std::set<Observer *>::iterator it;
-
-	for ( it=_observers.begin(); it!=_observers.end(); it++) {
-		(*it)->update(this, arg);
-	} 
-}
-
-Subject::Subject() {
-}
+#endif // _NOTEBOOK_PAGE_HOST_HPP

@@ -25,13 +25,13 @@
 #include <gtkmm/checkmenuitem.h>
 #include <gtkmm/toolbutton.h>
 #include <gtkmm/toolbar.h>
+
 #include "utils.hpp"
 
-class Hosts;
-class TreeViewHost;
 class StatusBar;
 class AboutDialog;
 class HostSelectDialog;
+class NotebookHosts;
 
 class MainWindow : public Gtk::Window
 {
@@ -39,85 +39,58 @@ public:
 	MainWindow();
 	virtual ~MainWindow();
 
-	HostSelectDialog *      _pHostSelectDialog;
+	HostSelectDialog * _pHostSelectDialog;
 
 protected:
-	RefPtrGladeXml _refGlademmXml;
+	RefPtrGladeXml _refPtrGlademmXml;
 
-	//Provides access to Controller-Model
-	Hosts * _pHosts;
+	unsigned int		_ContextId;
 
-	unsigned int			_ContextId;
-
-	/*   *** Signal handlers ***
-			Menu File
-	*/
+	//	      Menu File
 	void on_imagemenuitem_quit_activated();
 
-	/* 
-			Menu Edit
-	*/
+	Gtk::ImageMenuItem * _pImageMenuItemQuit;
+
+	//		Menu Edit
 	void on_imagemenuitem_cut_activated();
 	void on_imagemenuitem_copy_activated();
 	void on_imagemenuitem_paste_activated();
 	void on_imagemenuitem_delete_activated();
 
-	/* 
-			Menu View
-	*/
-	void on_checkmenuitem_viewtoolbar_toggled();
-	
-	/* 
-			Menu Help
-	*/
-	void on_imagemenuitem_about_activated();
-
-	/* 
-			Toolbar
-	*/
-
-	void on_clicked_toolbar_select();
-	void on_clicked_toolbar_connect();
-	void on_clicked_toolbar_refresh();
-		
-	/*   *** Child widgets ***
-			Menu File
-	*/
-	Gtk::ImageMenuItem * _pImageMenuItemQuit;
-	
-	/* 
-			Menu Edit
-	*/
 	Gtk::ImageMenuItem * _pImageMenuItemCopy;
 	Gtk::ImageMenuItem * _pImageMenuItemCut;
 	Gtk::ImageMenuItem * _pImageMenuItemPaste;
 	Gtk::ImageMenuItem * _pImageMenuItemDelete;
 
-	/* 
-			Menu View
-	*/
+	//	      Menu View
+	void on_checkmenuitem_viewtoolbar_toggled();
+	void on_checkmenuitem_viewdebug_toggled();
+
 	Gtk::CheckMenuItem * _pCheckMenuItemViewToolbar;
-	
-	/* 
-			Menu Help
-	*/
+	Gtk::CheckMenuItem * _pCheckMenuItemViewDebug;
+
+	//		Menu Help
+	void on_imagemenuitem_about_activated();
+
 	Gtk::ImageMenuItem * _pImageMenuItemAbout;
 
+	//		Toolbar
+	void on_clicked_toolbar_select();
+	void on_clicked_toolbar_connect();
+	void on_clicked_toolbar_refresh();
+		
+	Gtk::Toolbar *		_pToolbar;
+	Gtk::ToolButton * 	_pToolButton_Select;
+	Gtk::ToolButton *	_pToolButton_Connect;
+	Gtk::ToolButton *	_pToolButton_Refresh;
 
-	/*		Main Window UI
-	*/
-	TreeViewHost *			_pTreeViewHost;
-	StatusBar *			_pStatusBar;
-	Gtk::Toolbar *			_pToolbar;
-	Gtk::ToolButton * 		_pToolButton_Select;
-	Gtk::ToolButton *		_pToolButton_Connect;
-	Gtk::ToolButton *		_pToolButton_Refresh;
+	//		Main Window (Important stuff)
+	NotebookHosts *		_pNotebookHosts;
+	StatusBar *		_pStatusBar;
 	
-	/*
-			SubWindows
-	*/
+	//		SubWindows
 	AboutDialog *		_pAboutDialog;
-
+	Gtk::Window *		_pWindowDebug;
 };
 
 #endif //_MAIN_WINDOW_HPP

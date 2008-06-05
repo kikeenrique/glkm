@@ -30,7 +30,7 @@ class AboutDialog : public Gtk::AboutDialog {
 	virtual ~AboutDialog();
 
   protected:
-	RefPtrGladeXml _refGlademmXml;
+	RefPtrGladeXml _refPtrGlademmXml;
 	//Signal handlers:
 	void on_signal_response(int response_id);
 		

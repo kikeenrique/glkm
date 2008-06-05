@@ -51,7 +51,11 @@ glkm_SOURCES = \
 	observer.hpp \
 	observer.cpp \
 	controller.hpp \
-	controller.cpp
+	controller.cpp \
+	notebook-hosts.hpp \
+	notebook-hosts.cpp \
+	notebook-page-host.hpp \
+	notebook-page-host.cpp
 
 #glkm_CFLAGS= \
 #	$(GLKM_CFLAGS) 	$(AM_CFLAGS)	$(LIBGNOME_CFLAGS)

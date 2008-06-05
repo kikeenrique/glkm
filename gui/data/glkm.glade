@@ -2,16 +2,16 @@
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
 <!--*- mode: xml -*-->
 <glade-interface>
-  <widget class="GtkWindow" id="main-window">
+  <widget class="GtkWindow" id="main_window">
     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <property name="title" translatable="yes">Gnome Linux Kernel Monitor</property>
     <property name="icon_name">system-search</property>
     <child>
-      <widget class="GtkVBox" id="vbox_mainwindow">
+      <widget class="GtkVBox" id="main_window-vbox">
         <property name="visible">True</property>
         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
         <child>
-          <widget class="GtkMenuBar" id="menubar_mainwindow">
+          <widget class="GtkMenuBar" id="main_window-menubar">
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <child>
@@ -148,6 +148,15 @@
                         <property name="active">True</property>
                       </widget>
                     </child>
+                    <child>
+                      <widget class="GtkCheckMenuItem" id="checkmenuitem_viewdebug">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="label" translatable="yes">View debug</property>
+                        <property name="use_underline">True</property>
+                        <property name="active">True</property>
+                      </widget>
+                    </child>
                   </widget>
                 </child>
               </widget>
@@ -181,7 +190,7 @@
           </packing>
         </child>
         <child>
-          <widget class="GtkToolbar" id="toolbar_mainwindow">
+          <widget class="GtkToolbar" id="main_window-toolbar">
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="toolbar_style">GTK_TOOLBAR_BOTH</property>
@@ -246,18 +255,18 @@
           </packing>
         </child>
         <child>
-          <widget class="GtkNotebook" id="notebook_hosts">
+          <widget class="GtkNotebook" id="main_window-notebook_hosts">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="scrollable">True</property>
             <child>
-              <widget class="GtkHPaned" id="hpaned1">
+              <widget class="GtkHPaned" id="notebook_hosts-hpaned">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <child>
-                  <widget class="GtkTreeView" id="treeview_host">
+                  <widget class="GtkTreeView" id="notebook_hosts-treeview_host">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
@@ -381,52 +390,6 @@
               </widget>
             </child>
             <child>
-              <widget class="GtkLabel" id="label_hostname">
-                <property name="visible">True</property>
-                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                <property name="label" translatable="yes">hostname</property>
-              </widget>
-              <packing>
-                <property name="type">tab</property>
-                <property name="tab_fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="GtkScrolledWindow" id="scrolledwindow_debug">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
-                <child>
-                  <widget class="GtkTextView" id="textview_debug">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="editable">False</property>
-                  </widget>
-                </child>
-              </widget>
-              <packing>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <widget class="GtkLabel" id="label_debug">
-                <property name="visible">True</property>
-                <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                <property name="label" translatable="yes">debug</property>
-              </widget>
-              <packing>
-                <property name="type">tab</property>
-                <property name="position">1</property>
-                <property name="tab_fill">False</property>
-              </packing>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
               <placeholder/>
               <packing>
                 <property name="type">tab</property>
@@ -438,7 +401,7 @@
           </packing>
         </child>
         <child>
-          <widget class="GtkStatusbar" id="statusbar_mainwindow">
+          <widget class="GtkStatusbar" id="main_window-statusbar">
             <property name="visible">True</property>
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="spacing">2</property>
@@ -448,18 +411,6 @@
             <property name="position">3</property>
           </packing>
         </child>
-      </widget>
-    </child>
-  </widget>
-  <widget class="GtkMenu" id="menu_popup_treeview_host">
-    <property name="visible">True</property>
-    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-    <child>
-      <widget class="GtkMenuItem" id="menuitem_refresh">
-        <property name="visible">True</property>
-        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-        <property name="label" translatable="yes">Refresh</property>
-        <property name="use_underline">True</property>
       </widget>
     </child>
   </widget>
@@ -664,6 +615,26 @@ reminder of what you have done.</property>
             <property name="expand">False</property>
             <property name="pack_type">GTK_PACK_END</property>
           </packing>
+        </child>
+      </widget>
+    </child>
+  </widget>
+  <widget class="GtkWindow" id="debug_window">
+    <property name="title" translatable="yes">Debug</property>
+    <child>
+      <widget class="GtkScrolledWindow" id="notebook_hosts-scrolledwindow_debug">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+        <property name="hscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+        <property name="vscrollbar_policy">GTK_POLICY_AUTOMATIC</property>
+        <child>
+          <widget class="GtkTextView" id="textview_debug">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+            <property name="editable">False</property>
+          </widget>
         </child>
       </widget>
     </child>

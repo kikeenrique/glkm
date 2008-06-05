@@ -23,17 +23,22 @@
 
 #include "observer.hpp"
 
+class Subject;
+class Argument;
 class Hosts;
-class MainWindow;
 class IconViewHosts;
+class MainWindow;
+class NotebookHosts;
 
 class Controller : public Observer {
   public:
 	void action_host_selected();
 	static Controller & instance();
-	void update();
+	virtual void update(Subject * s);
+	virtual void update(Subject * s, Argument * arg);
 	void set__pHosts(Hosts * value);
 	void set__pIconViewHosts(IconViewHosts * value);
+	void set__pNotebookHosts(NotebookHosts * value);
 
   private:
 	static Controller singleton;
@@ -44,6 +49,7 @@ class Controller : public Observer {
 	Hosts *		_pHosts;
 	MainWindow *    _pMainwindow;
 	IconViewHosts * _pIconViewHosts;
+	NotebookHosts * _pNotebookHosts;
 };
 
 #endif // _CONTROLLER_HPP

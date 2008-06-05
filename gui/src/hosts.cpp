@@ -31,22 +31,31 @@ Hosts::~Hosts() {
 
 bool Hosts::create_host(const Glib::ustring & hostname, const Glib::ustring & ip, const Glib::ustring & description) {
 	std::map<Glib::ustring, Host>::iterator it;
-	bool create=false;
+	bool created = false;
 	
 	// Search for element with a value of hostname and returns an iterator to it
-	// if found, otherwise it returns an iterator to map::end (the
+	// if found. Otherwise it returns an iterator to map::end (the
 	// element past the end of the container).
 	it = _hosts.find(hostname);
 	if ( it == _hosts.end() ) {
 		//Host does not exists so we have to add it
-		create = true;
-		Host temp;
+/*		Host temp;
 		temp.set__hostname(hostname);
 		temp.set__ip(ip);
 		temp.set__description(description);
-		_hosts[hostname] = temp;
+		_hosts[hostname] = temp;*/
+		_hosts[hostname].set__hostname(hostname);
+		_hosts[hostname].set__ip(ip);
+		_hosts[hostname].set__description(description);
+		created = true;
+
 		PRINTD("Hosts:: Host added " + _hosts[hostname].get__hostname());
+		//TODO
+		//Try to improve this ugly code which easyly jumps over type safety and
+		// can broke program easily.
+		void * tmp = &_hosts[hostname];
+		notify ((Argument *)tmp);
 	}
 
-	return create;
+	return created;
 }

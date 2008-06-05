@@ -17,39 +17,33 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "observer.hpp"
+#include <iostream>
 
-Observer::~Observer() {
+#include "notebook-page-host.hpp"
+#include "tree-view-host.hpp"
+
+
+NotebookPageHost::NotebookPageHost(BaseObjectType * cobject, const RefPtrGladeXml & refGlade)
+	:Gtk::HPaned(cobject),
+	_refPtrGlademmXml(refGlade) 
+{
+	
+	//Tree View
+	_refPtrGlademmXml->get_widget_derived("notebook_hosts-treeview_host", _pTreeViewHost);
+	if (_pTreeViewHost){
+	}else{
+		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
+	}
+
+//	pages().push_back(Gtk::Notebook_Helpers::TabElem(_pTreeViewHost, "tab 1") );
+//	TreeViewHost* temp;
+//	_refPtrGlademmXml->get_widget_derived("notebook_hosts-treeview_host", temp);
+//	_refPtrGlademmXml->get_widget("notebook_hosts-hpaned", temp);
+
 }
 
-Subject::~Subject() {
+NotebookPageHost::~NotebookPageHost() {
 }
 
-void Subject::attach(Observer & observer) {
-//	_observers.insert(_observers.end(), observer);
-	_observers.insert(&observer);
-}
 
-void Subject::detach(Observer & observer) {
-//	_observers.remove(observer); 
-	_observers.erase(&observer);
-}
 
-void Subject::notify() {
-	std::set<Observer *>::iterator it;
-
-	for ( it=_observers.begin(); it!=_observers.end(); it++) {
-		(*it)->update(this);
-	} 
-}
-
-void Subject::notify(Argument * arg) {
-	std::set<Observer *>::iterator it;
-
-	for ( it=_observers.begin(); it!=_observers.end(); it++) {
-		(*it)->update(this, arg);
-	} 
-}
-
-Subject::Subject() {
-}

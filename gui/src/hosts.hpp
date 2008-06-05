@@ -24,9 +24,11 @@
 
 #include <map>
 
+#include "observer.hpp"
+
 class Host;
 
-class Hosts {
+class Hosts : public Subject {
   public:
   	Hosts();
 	virtual ~Hosts();

@@ -1,6 +1,6 @@
 format 56
 "glkm-model" // glkm::glkm-model
-  revision 33
+  revision 38
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -843,6 +843,28 @@ ${members}};
 	    classrelation_ref 128060 // hal_controler (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 130757 // HalController
       end
+
+      classrelation 160520 // <generalisation>
+	relation 160136 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 160520 // <generalisation>
+	  b parent class_ref 144904 // Subject
+      end
+
+      operation 195720 "update_processes"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
     end
 
     class 142856 "Hosts"
@@ -911,6 +933,14 @@ ${inlines}
 	    classrelation_ref 144136 // _hosts (<directional composition>)
 	  b multiplicity "1" parent class_ref 128121 // Host
 	  association_type class_ref 132814 // ustring
+      end
+
+      classrelation 158472 // <generalisation>
+	relation 158088 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 158472 // <generalisation>
+	  b parent class_ref 144904 // Subject
       end
     end
 

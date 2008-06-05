@@ -1,6 +1,6 @@
 format 56
 "glkm-controller" // glkm::glkm-controller
-  revision 5
+  revision 11
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -78,10 +78,10 @@ ${inlines}
       operation 175112 "attach"
 	cpp_virtual public explicit_return_type "void"
 	nparams 1
-	  param in name "observer" type class_ref 145032 // Observer
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+	  param inout name "observer" type class_ref 145032 // Observer
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -93,10 +93,10 @@ ${inlines}
       operation 175496 "detach"
 	cpp_virtual public explicit_return_type "void"
 	nparams 1
-	  param in name "observer" type class_ref 145032 // Observer
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+	  param inout name "observer" type class_ref 145032 // Observer
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -111,6 +111,21 @@ ${inlines}
 	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 193928 "notify"
+	cpp_virtual public explicit_return_type "void"
+	nparams 1
+	  param inout name "arg" type class_ref 155272 // Argument
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -135,7 +150,7 @@ ${inlines}
 
       classrelation 145544 // _observers (<directional aggregation>)
 	relation 145416 o-->
-	  stereotype "list"
+	  stereotype "set"
 	  a role_name "_observers" multiplicity "*" private
 	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}<${association}${type} *> ${name}${value};
 "
@@ -178,8 +193,9 @@ ${members}};
 
       operation 174984 "update"
 	abstract cpp_virtual public explicit_return_type "void"
-	nparams 0
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	nparams 1
+	  param inout name "s" type class_ref 144904 // Subject
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	
 	
@@ -187,13 +203,12 @@ ${members}};
 	
       end
 
-      operation 174728 "Observer"
-	protected explicit_return_type ""
-	nparams 0
-	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
+      operation 193672 "update"
+	abstract cpp_virtual public explicit_return_type "void"
+	nparams 2
+	  param inout name "s" type class_ref 144904 // Subject
+	  param inout name "arg" type class_ref 155272 // Argument
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${abstract};
 "
 	
 	
@@ -250,12 +265,29 @@ ${inlines}
 	
       end
 
-      operation 181128 "update"
-	public explicit_return_type "void"
-	nparams 0
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+      operation 194056 "update"
+	cpp_virtual public explicit_return_type "void"
+	nparams 1
+	  param inout name "s" type class_ref 144904 // Subject
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 194184 "update"
+	cpp_virtual public explicit_return_type "void"
+	nparams 2
+	  param inout name "s" type class_ref 144904 // Subject
+	  param inout name "arg" type class_ref 155272 // Argument
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -306,6 +338,28 @@ ${inlines}
 	
 	idl_name_spec "set_${name}"
 	set_of_relation classrelation_ref 151432 // _pIconViewHosts (<unidirectional association>)
+      end
+
+      operation 195336 "set__pNotebookHosts"
+	force_body_gen public explicit_return_type "void"
+	nparams 1
+	  param in name "value" type class_ref 150280 // NotebookHosts
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  _pNotebookHosts = ${p0};
+}
+"
+	cpp_name_spec "set_${name}"
+	
+	java_name_spec "set${Name}"
+	
+	php_name_spec "set${Name}"
+	
+	python_name_spec "set${Name}"
+	
+	idl_name_spec "set_${name}"
+	set_of_relation classrelation_ref 160776 // _pNotebookHosts (<unidirectional association>)
       end
 
       attribute 139144 "singleton"
@@ -391,6 +445,30 @@ ${inlines}
 	  b multiplicity "1" parent class_ref 132488 // IconViewHosts
 	set_oper operation_ref 181640 // set__pIconViewHosts
       end
+
+      classrelation 160776 // _pNotebookHosts (<unidirectional association>)
+	relation 160392 --->
+	  a role_name "_pNotebookHosts" private
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 160776 // _pNotebookHosts (<unidirectional association>)
+	  b parent class_ref 150280 // NotebookHosts
+	set_oper operation_ref 195336 // set__pNotebookHosts
+      end
+    end
+
+    class 155272 "Argument"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
     end
   end
 
@@ -464,6 +542,7 @@ ${namespace_end}"
       associated_classes
 	class_ref 145032 // Observer
 	class_ref 144904 // Subject
+	class_ref 155272 // Argument
       end
     end
 

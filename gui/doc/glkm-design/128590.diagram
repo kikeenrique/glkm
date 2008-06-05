@@ -98,11 +98,15 @@ classcanvas 131592 class_ref 143112 // ListHandle
   end
 classcanvas 131720 class_ref 143240 // SignalProxy0
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 49 168 2000
+  xyz 17 168 2000
   end
 classcanvas 131848 class_ref 143368 // SignalProxy1
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 180 169 2000
+  xyz 147 164 2000
+  end
+classcanvas 131976 class_ref 152712 // SignalProxy2
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 270 159 2000
   end
 relationcanvas 128264 relation_ref 135176 // <generalisation>
   from ref 128206 z 1999 to ref 128136

@@ -1,6 +1,6 @@
 format 56
 "glademm" // glademm
-  revision 3
+  revision 4
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -46,7 +46,7 @@ format 56
     show_infonote default drawing_language default
     classdiagram 129102 "glade class diagram"
       draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-      size A2
+      size A4-Landscape
     end
 
     class 132942 "Xml"
@@ -61,6 +61,133 @@ format 56
       idl_decl ""
       explicit_switch_type ""
       
+      operation 192520 "get_widget"
+	public return_type class_ref 130382 // Widget
+	nparams 1
+	  param in name "name" type class_ref 132814 // ustring
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 192648 "reparent_widget"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "name" type class_ref 132814 // ustring
+	  param out name "container" type class_ref 130638 // Container
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 192776 "get_widget"
+	public explicit_return_type "T_Widget"
+	nparams 2
+	  param in name "name" type class_ref 132814 // ustring
+	  param out name "widget" explicit_type "T_Widget"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} *& ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} *& ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "template<class T_Widget>
+T_Widget * 	get_widget (const Glib::ustring &name, T_Widget *&widget)
+ 	This is for convenience. "
+      end
+
+      operation 192904 "get_widget_derived"
+	public explicit_return_type "T_Widget"
+	nparams 2
+	  param in name "name" type class_ref 132814 // ustring
+	  param out name "widget" explicit_type "T_Widget"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} *& ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} *& ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "template<class T_Widget>
+T_Widget * 	get_widget_derived (const Glib::ustring &name, T_Widget *&widget)
+ 	This provides a pointer to a widget whose details are specified in the Glade file, but which is implemented by your own derived class. "
+      end
+
+      operation 192392 "create"
+	class_operation public return_type class_ref 129614 // RefPtr
+	nparams 3
+	  param in name "filename" explicit_type "string"
+	  param in name "root" type class_ref 132814 // ustring
+	    defaultvalue "Glib::ustring()"
+	  param in name "domain" type class_ref 132814 // ustring
+	    defaultvalue "Glib::ustring()"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "static Glib::RefPtr< Xml > 	create (const std::string &filename, const Glib::ustring &root=Glib::ustring(), const Glib::ustring &domain=Glib::ustring())
+ 	Loads a glade XML file. "
+      end
+
+      operation 193032 "create_from_buffer"
+	class_operation public return_type class_ref 129614 // RefPtr
+	nparams 4
+	  param inout name "buffer" explicit_type "char"
+	  param in name "size" explicit_type "int"
+	  param in name "root" type class_ref 132814 // ustring
+	    defaultvalue "Glib::ustring()"
+	  param in name "domain" type class_ref 132814 // ustring
+	    defaultvalue "Glib::ustring()"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} * ${p0}, ${t1} ${p1}, const ${t2} & ${p2}, const ${t3} & ${p3}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} * ${p0}, ${t1} ${p1}, const ${t2} & ${p2}, const ${t3} & ${p3}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "static Glib::RefPtr< Xml > 	create_from_buffer (const char *buffer, int size, const Glib::ustring &root=Glib::ustring(), const Glib::ustring &domain=Glib::ustring())
+ 	Reads glade XML data from memory. "
+      end
+
+      operation 193160 "get_widget_tree"
+	class_operation public return_type class_ref 129614 // RefPtr
+	nparams 1
+	  param inout name "widget" type class_ref 130382 // Widget
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "static Glib::RefPtr< Xml > 	get_widget_tree (Gtk::Widget &widget)"
+      end
     end
 
     class 147464 "VariablesMap"

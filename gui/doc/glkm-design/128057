@@ -1,6 +1,6 @@
 format 56
 "std" // std
-  revision 8
+  revision 9
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -61,8 +61,7 @@ format 56
       formal name "_Alloc" type "class" explicit_default_value "allocator<std::pair<const _Key, _Tp> > >"
         explicit_extends ""
       cpp_external cpp_decl "${name}
-#include <${name}>
-"
+#include <${name}>"
       java_decl ""
       php_decl ""
       python_2_2 python_decl ""

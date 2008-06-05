@@ -1,6 +1,6 @@
 format 56
 "gtkmm" // gtkmm
-  revision 16
+  revision 22
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -1158,9 +1158,8 @@ ${inlines}
 
     class 130382 "Widget"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+#include <gtkmm/widget.h>
 "
       java_decl ""
       php_decl ""
@@ -2163,9 +2162,8 @@ ${inlines}
 
     class 128008 "Notebook"
       visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+      cpp_external cpp_decl "${name}
+#include <gtkmm/notebook.h>
 "
       java_decl ""
       php_decl ""
@@ -2179,6 +2177,232 @@ ${inlines}
 	    cpp default "${type}"
 	    classrelation_ref 128008 // <generalisation>
 	  b parent class_ref 130638 // Container
+      end
+
+      operation 188168 "signal_page_added"
+	public return_type class_ref 152712 // SignalProxy2
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::SignalProxy2< void,
+Widget*, guint > 	signal_page_added ()
+ 	
+
+Prototype:
+    void on_my_page_added(Widget* page, guint page_num) "
+      end
+
+      operation 188296 "signal_page_removed"
+	public return_type class_ref 152712 // SignalProxy2
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::SignalProxy2< void,
+Widget*, guint > 	signal_page_removed ()
+ 	
+
+Prototype:
+    void on_my_page_removed(Widget* page, guint page_num) "
+      end
+
+      operation 188424 "signal_page_reordered"
+	public return_type class_ref 152712 // SignalProxy2
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::SignalProxy2< void,
+Widget*, guint > 	signal_page_reordered ()
+ 	
+
+Prototype:
+    void on_my_page_reordered(Widget* page, guint page_num) "
+      end
+
+      operation 188552 "signal_switch_page"
+	public return_type class_ref 152712 // SignalProxy2
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::SignalProxy2< void,
+GtkNotebookPage*, guint > 	signal_switch_page ()
+ 	
+
+Prototype:
+    void on_my_switch_page(GtkNotebookPage* page, guint page_num) "
+      end
+
+      operation 191496 "append_page"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "child" type class_ref 130382 // Widget
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 191624 "append_page"
+	public explicit_return_type "int"
+	nparams 2
+	  param inout name "child" type class_ref 130382 // Widget
+	  param inout name "tab_label" type class_ref 130382 // Widget
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 191752 "append_page"
+	public explicit_return_type "int"
+	nparams 3
+	  param inout name "child" type class_ref 130382 // Widget
+	  param in name "tab_label" type class_ref 132814 // ustring
+	  param in name "use_mnemonic" explicit_type "bool"
+	    defaultvalue "false"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}, const ${t1} & ${p1}, ${t2} ${p2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}, const ${t1} & ${p1}, ${t2} ${p2}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 191880 "append_page"
+	public explicit_return_type "int"
+	nparams 4
+	  param inout name "child" type class_ref 130382 // Widget
+	  param in name "tab_label" type class_ref 132814 // ustring
+	  param in name "menu_label" type class_ref 132814 // ustring
+	  param in name "use_mnemonic" explicit_type "bool"
+	    defaultvalue "false"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}, ${t3} ${p3}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}, ${t3} ${p3}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 192008 "append_page"
+	public explicit_return_type "int"
+	nparams 3
+	  param inout name "child" type class_ref 130382 // Widget
+	  param inout name "tab_label" type class_ref 130382 // Widget
+	  param inout name "menu_label" type class_ref 130382 // Widget
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}, ${t1} & ${p1}, ${t2} & ${p2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}, ${t1} & ${p1}, ${t2} & ${p2}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 192136 "remove_page"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "page_num" explicit_type "int"
+	    defaultvalue "0"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 192264 "remove_page"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "child" type class_ref 130382 // Widget
+	    defaultvalue "0"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 195464 "get_current"
+	public explicit_return_type "PageList::iterator"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "PageList::iterator 	get_current ()"
+      end
+
+      operation 195592 "get_current_page"
+	const public explicit_return_type "int"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
       end
     end
 
@@ -2553,6 +2777,48 @@ ${items}};
       comment "Enumerator:
     SORT_ASCENDING 	
     SORT_DESCENDING 	"
+    end
+
+    class 151432 "Paned"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/paned.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 155016 // <generalisation>
+	relation 154760 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 155016 // <generalisation>
+	  b parent class_ref 130638 // Container
+      end
+    end
+
+    class 151560 "HPaned"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/paned.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 155272 // <generalisation>
+	relation 155016 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 155272 // <generalisation>
+	  b parent class_ref 151432 // Paned
+      end
     end
   end
 end

@@ -1,0 +1,41 @@
+format 56
+
+classinstance 128008 class_ref 128092 // MainWindow
+  name ""   xyz 57 4 2000 life_line_z 2000
+classinstancecanvas 128392 classinstance_ref 130824 // s
+  xyz 227 4 2000 life_line_z 2000
+classinstancecanvas 128776 classinstance_ref 131976 // _pNotebooHosts
+  xyz 326 4 2005 life_line_z 2000
+durationcanvas 128136 classinstance_ref 128008 // :MainWindow
+  xyzwh 88 91 2010 11 281
+end
+durationcanvas 128520 classinstance_ref 128392 // s:Controller
+  xyzwh 254 119 2010 11 122
+end
+durationcanvas 128904 classinstance_ref 128776 // _pNotebooHosts:NotebookHosts
+  xyzwh 405 135 2010 11 32
+end
+reflexivemsg 128264 asynchronous
+  to durationcanvas_ref 128136
+  yz 91 2015 msg operation_ref 181512 // "on_clicked_toolbar_connect() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 39 79
+msg 128648 synchronous
+  from durationcanvas_ref 128136
+  to durationcanvas_ref 128520
+  yz 119 2015 explicitmsg "action_host_connect"
+  show_full_operations_definition default drawing_language default
+  label_xy 122 105
+msg 129032 synchronous
+  from durationcanvas_ref 128520
+  to durationcanvas_ref 128904
+  yz 135 2020 msg operation_ref 195464 // "get_current() : PageList::iterator"
+  show_full_operations_definition default drawing_language default
+  label_xy 304 123
+msg 129160 return
+  from durationcanvas_ref 128904
+  to durationcanvas_ref 128520
+  yz 156 2025 explicitmsg "page_iterator"
+  show_full_operations_definition default drawing_language default
+  label_xy 305 145
+end

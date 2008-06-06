@@ -234,7 +234,7 @@ classcanvas 141704 class_ref 128718 // Window
   end
 classcanvas 142344 class_ref 128121 // Host
   draw_all_relations default hide_attributes yes hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 1573 868 2005
+  xyz 1573 867 2005
   end
 relationcanvas 128040 relation_ref 128040 // <unidirectional association>
   from ref 128604 z 1999 to ref 128102

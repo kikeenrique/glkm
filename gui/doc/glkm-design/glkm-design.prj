@@ -1,6 +1,6 @@
 format 56
 "glkm-design"
-  revision 24
+  revision 25
   modified_by 8 "enrgar"
   cpp_root_dir "./"
   java_root_dir "./"
@@ -42,6 +42,8 @@ format 56
   mark_for_import
   
   stereotype "toplevel"
+  ncouples 1
+  key "html dir" value "/mnt/extra/home/enrgar/tmp/test/"
   package_ref 130365 // glkm
 
   package_ref 130493 // dbusmm

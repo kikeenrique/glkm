@@ -1,41 +1,264 @@
 format 56
 
 classinstance 128008 class_ref 128092 // MainWindow
-  name ""   xyz 57 4 2000 life_line_z 2000
+  name ""   xyz 29 4 2000 life_line_z 2000
 classinstancecanvas 128392 classinstance_ref 130824 // s
-  xyz 227 4 2000 life_line_z 2000
+  xyz 159 5 2000 life_line_z 2000
 classinstancecanvas 128776 classinstance_ref 131976 // _pNotebooHosts
-  xyz 326 4 2005 life_line_z 2000
+  xyz 232 4 2005 life_line_z 2000
+classinstancecanvas 129288 classinstance_ref 133384 // _pHost
+  xyz 394 126 2000 life_line_z 5050
+classinstancecanvas 129928 classinstance_ref 133512 // hal_manager
+  xyz 475 180 2000 life_line_z 4045
+classinstancecanvas 130824 classinstance_ref 133640 // _hal_manager
+  xyz 734 232 2005 life_line_z 4040
+classinstance 131208 class_ref 128317 // Connection
+  name ""   xyz 649 231 2005 life_line_z 4040
+classinstancecanvas 131592 classinstance_ref 133768 // _dispatcher
+  xyz 1048 235 2010 life_line_z 4040
+classinstancecanvas 133256 classinstance_ref 134024 // 
+  xyz 1022 296 4055 life_line_z 4040
+classinstancecanvas 133896 classinstance_ref 133896 // devices
+  mortal  xyz 842 297 4050 life_line_z 4040
+fragment 134536 "loop"
+  xyzwh 717 467 2040 387 165
+end
+textcanvas 134664 "it =devices.begin
+it!= devices.end
+++it"
+  xyzwh 727 490 4040 76 38
+note 135304 "udi = *it"
+  xyzwh 818 482 4040 63 35
+fragment 137864 "alt"
+  xyzwh 338 270 2035 834 494
+end
+textcanvas 137992 "!connected"
+  xyzwh 345 293 4080 51 12
+classinstance 138504 class_ref 132165 // VectorString
+  name "task_list"   mortal  xyz 556 835 4040 life_line_z 4040
+classinstance 139912 class_ref 128249 // Process
+  name ""   xyz 854 829 2005 life_line_z 2000
+fragment 141448 "loop"
+  xyzwh 331 1057 0 638 286
+end
+textcanvas 142216 "it = task_list.begin
+it!= task_list.end
+++it"
+  xyzwh 336 1080 2005 83 38
 durationcanvas 128136 classinstance_ref 128008 // :MainWindow
-  xyzwh 88 91 2010 11 281
+  xyzwh 60 91 2010 11 281
 end
 durationcanvas 128520 classinstance_ref 128392 // s:Controller
-  xyzwh 254 119 2010 11 122
+  xyzwh 186 117 2010 11 781
 end
 durationcanvas 128904 classinstance_ref 128776 // _pNotebooHosts:NotebookHosts
-  xyzwh 405 135 2010 11 32
+  xyzwh 311 118 2010 11 32
+end
+durationcanvas 130056 classinstance_ref 129288 // _pHost:Host
+  xyzwh 424 249 4055 11 504
+end
+durationcanvas 130184 classinstance_ref 129928 // hal_manager:HalController
+  xyzwh 536 285 4055 11 464
+end
+durationcanvas 130952 classinstance_ref 130824 // _hal_manager:HalManagerProxy
+  xyzwh 809 348 4050 11 233
+  overlappingdurationcanvas 133000
+    xyzwh 815 406 4060 11 35
+  end
+end
+durationcanvas 131336 classinstance_ref 131208 // :Connection
+  xyzwh 677 301 4050 11 25
+end
+durationcanvas 131720 classinstance_ref 131592 // _dispatcher:BusDispatcher
+  xyzwh 1110 673 4050 11 25
+end
+durationcanvas 131976 classinstance_ref 131592 // _dispatcher:BusDispatcher
+  xyzwh 1110 705 4050 11 26
+end
+durationcanvas 133384 classinstance_ref 133256 // :HalDeviceProxy
+  xyzwh 1060 535 4050 11 31
+end
+durationcanvas 134152 classinstance_ref 133896 // devices:VectorString
+  xyzwh 890 364 4050 11 204
+end
+durationcanvas 139144 classinstance_ref 129288 // _pHost:Host
+  xyzwh 424 873 5060 11 445
+  overlappingdurationcanvas 141192
+    xyzwh 430 1082 5070 11 27
+  end
+end
+durationcanvas 139400 classinstance_ref 133256 // :HalDeviceProxy
+  xyzwh 1060 919 4050 11 101
+end
+durationcanvas 140168 classinstance_ref 138504 // task_list:VectorString
+  xyzwh 606 906 4050 11 138
+end
+durationcanvas 140424 classinstance_ref 139912 // :Process
+  xyzwh 874 1116 2010 11 25
+end
+durationcanvas 140936 classinstance_ref 139912 // :Process
+  xyzwh 874 1156 2010 11 25
+end
+durationcanvas 141576 classinstance_ref 139912 // :Process
+  xyzwh 874 1187 2010 11 27
+end
+durationcanvas 141832 classinstance_ref 139912 // :Process
+  xyzwh 874 1220 2010 11 27
 end
 reflexivemsg 128264 asynchronous
   to durationcanvas_ref 128136
   yz 91 2015 msg operation_ref 181512 // "on_clicked_toolbar_connect() : void"
   show_full_operations_definition default drawing_language default
-  label_xy 39 79
+  label_xy 11 79
 msg 128648 synchronous
   from durationcanvas_ref 128136
   to durationcanvas_ref 128520
   yz 119 2015 explicitmsg "action_host_connect"
   show_full_operations_definition default drawing_language default
-  label_xy 122 105
+  label_xy 83 106
 msg 129032 synchronous
   from durationcanvas_ref 128520
   to durationcanvas_ref 128904
-  yz 135 2020 msg operation_ref 195464 // "get_current() : PageList::iterator"
+  yz 118 2020 msg operation_ref 195464 // "get_current() : PageList::iterator"
   show_full_operations_definition default drawing_language default
-  label_xy 304 123
+  label_xy 224 105
 msg 129160 return
   from durationcanvas_ref 128904
   to durationcanvas_ref 128520
-  yz 156 2025 explicitmsg "page_iterator"
+  yz 139 2025 explicitmsg "page_iterator"
   show_full_operations_definition default drawing_language default
-  label_xy 305 145
+  label_xy 218 128
+msg 130312 synchronous
+  from durationcanvas_ref 130056
+  to durationcanvas_ref 130184
+  yz 285 5045 msg operation_ref 129928 // "HalController()"
+  show_full_operations_definition default drawing_language default
+  label_xy 448 274
+msg 131080 synchronous
+  from durationcanvas_ref 130184
+  to durationcanvas_ref 130952
+  yz 351 4065 msg operation_ref 128061 // "HalManagerProxy(in connection : Connection)"
+  show_full_operations_definition default drawing_language default
+  args "_connection"
+  label_xy 612 340
+msg 131464 synchronous
+  from durationcanvas_ref 130184
+  to durationcanvas_ref 131336
+  yz 301 5045 msg operation_ref 131848 // "SystemBus() : Connection"
+  show_full_operations_definition default drawing_language default
+  label_xy 582 289
+msg 131848 synchronous
+  from durationcanvas_ref 130184
+  to durationcanvas_ref 131720
+  yz 673 4060 msg operation_ref 128206 // "attach(in g : GMainContext) : void"
+  show_full_operations_definition default drawing_language default
+  args "NULL"
+  label_xy 708 661
+msg 132104 synchronous
+  from durationcanvas_ref 130184
+  to durationcanvas_ref 131976
+  yz 705 4060 msg operation_ref 128334 // "enter() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 724 693
+reflexivemsg 133128 synchronous
+  to durationcanvas_ref 133000
+  yz 406 4065 msg operation_ref 195848 // "find_device_by_capability(in capability : String) : VectorString"
+  show_full_operations_definition default drawing_language default
+  args "PROCESS_MONITOR"
+  label_xy 829 389
+msg 133512 synchronous
+  from durationcanvas_ref 130952
+  to durationcanvas_ref 133384
+  yz 535 4055 msg operation_ref 128317 // "HalDeviceProxy(in connection : Connection, in udi : Path)"
+  show_full_operations_definition default drawing_language default
+  args "_connection, udi"
+  label_xy 839 523
+selfreflexivemsg 133768
+  to durationcanvas_ref 133000
+  yz 433 5045 explicitmsg "devices"
+  show_full_operations_definition default drawing_language default
+  label_xy 830 417
+msg 134280 synchronous
+  from durationcanvas_ref 130952
+  to durationcanvas_ref 134152
+  yz 364 5045 explicitmsg "Constructor()"
+  show_full_operations_definition default drawing_language default
+  label_xy 829 352
+msg 135176 return
+  from durationcanvas_ref 133384
+  to durationcanvas_ref 130952
+  yz 555 4060 explicitmsg "_devices[udi] = valuereturned"
+  show_full_operations_definition default drawing_language default
+  label_xy 831 546
+msg 137480 synchronous
+  from durationcanvas_ref 128520
+  to durationcanvas_ref 130056
+  yz 249 2030 msg operation_ref 195976 // "connect()"
+  show_full_operations_definition default drawing_language default
+  label_xy 275 240
+msg 139272 synchronous
+  from durationcanvas_ref 128520
+  to durationcanvas_ref 139144
+  yz 873 5065 msg operation_ref 195720 // "get_all_processes() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 258 861
+msg 139528 synchronous
+  from durationcanvas_ref 139144
+  to durationcanvas_ref 139400
+  yz 924 5065 msg operation_ref 128829 // "get_property(in key : String) : Variant"
+  show_full_operations_definition default drawing_language default
+  args "\"task_list\""
+  label_xy 703 913
+msg 139656 return
+  from durationcanvas_ref 139400
+  to durationcanvas_ref 139144
+  yz 1008 5070 explicitmsg "task_list"
+  show_full_operations_definition default drawing_language default
+  label_xy 491 994
+msg 140296 synchronous
+  from durationcanvas_ref 139144
+  to durationcanvas_ref 140168
+  yz 906 5070 explicitmsg "Constructor"
+  show_full_operations_definition default drawing_language default
+  label_xy 498 894
+msg 140552 synchronous
+  from durationcanvas_ref 139144
+  to durationcanvas_ref 140424
+  yz 1116 5065 msg operation_ref 128323 // "Process()"
+  show_full_operations_definition default drawing_language default
+  label_xy 609 1106
+msg 141064 synchronous
+  from durationcanvas_ref 139144
+  to durationcanvas_ref 140936
+  yz 1156 5075 msg operation_ref 196104 // "set__PID(in value : int) : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 608 1142
+reflexivemsg 141320 synchronous
+  to durationcanvas_ref 141192
+  yz 1082 5075 explicitmsg "parse_line()"
+  show_full_operations_definition default drawing_language default
+  args "*it"
+  label_xy 444 1067
+msg 141704 synchronous
+  from durationcanvas_ref 139144
+  to durationcanvas_ref 141576
+  yz 1187 5065 msg operation_ref 128776 // "set__PPID(in value : int) : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 607 1176
+msg 141960 synchronous
+  from durationcanvas_ref 139144
+  to durationcanvas_ref 141832
+  yz 1220 5065 msg operation_ref 196232 // "set__name(in value : ustring) : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 609 1209
+line 134024 -_-_
+  from ref 133000 z 4049 to ref 133896
+line 134792 -_-_
+  from ref 134664 z 4039 to point 719 541
+  line 135048 z 4039 to ref 134536
+line 140040 -_-_ decenter_begin 152
+  from ref 139656 z 4039 to ref 138504
+line 142344 -_-_
+  from ref 142216 z 1999 to point 334 1147
+  line 142472 z 1999 to ref 141448
 end

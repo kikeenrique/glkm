@@ -174,9 +174,58 @@ format 56
       //activity diagram settings
       package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
       show_infonote default drawing_language default
-      sequencediagram 131720 "connect to host"
+      sequencediagram 131720 "connect  to host"
 	show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
-	overlapping_bars size A4-Landscape
+	comment "make a DBus/HAL connection from local *model* host to remote host (or also local host)"
+	overlapping_bars size A3
+      end
+
+      classinstance 133384 "_pHost"
+	type class_ref 128121 // Host
+	attributes
+	  end
+	relations
+	  end
+      end
+
+      classinstance 133512 "hal_manager"
+	type class_ref 130757 // HalController
+	attributes
+	  end
+	relations
+	  end
+      end
+
+      classinstance 133640 "_hal_manager"
+	type class_ref 128061 // HalManagerProxy
+	attributes
+	  end
+	relations
+	  end
+      end
+
+      classinstance 133768 "_dispatcher"
+	type class_ref 130629 // BusDispatcher
+	attributes
+	  end
+	relations
+	  end
+      end
+
+      classinstance 133896 "devices"
+	type class_ref 132165 // VectorString
+	attributes
+	  end
+	relations
+	  end
+      end
+
+      classinstance 134024 ""
+	type class_ref 128189 // HalDeviceProxy
+	attributes
+	  end
+	relations
+	  end
       end
     end
 

@@ -270,9 +270,24 @@ ${inlines}
       end
 
       operation 128453 "get_all_devices"
-	public return_type class_ref 132165 // VectorString
+	private return_type class_ref 132165 // VectorString
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 195848 "find_device_by_capability"
+	private return_type class_ref 132165 // VectorString
+	nparams 1
+	  param in name "capability" type class_ref 129341 // String
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -520,22 +535,8 @@ ${members}};
 	
       end
 
-      operation 128837 "update_processes"
+      operation 128837 "get_all_processes"
 	public explicit_return_type "bool"
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 128965 "update_process_info"
-	public explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
@@ -852,7 +853,21 @@ ${members}};
 	  b parent class_ref 144904 // Subject
       end
 
-      operation 195720 "update_processes"
+      operation 195976 "connect"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 195720 "get_all_processes"
 	public explicit_return_type "void"
 	nparams 0
 	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
@@ -1137,6 +1152,28 @@ ${inlines}
 	get_of_attribute attribute_ref 128197 // _PID
       end
 
+      operation 196104 "set__PID"
+	force_body_gen public explicit_return_type "void"
+	nparams 1
+	  param in name "value" explicit_type "int"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  _PID = ${p0};
+}
+"
+	cpp_name_spec "set_${name}"
+	
+	java_name_spec "set${Name}"
+	
+	php_name_spec "set${Name}"
+	
+	python_name_spec "set${Name}"
+	
+	idl_name_spec "set_${name}"
+	set_of_attribute attribute_ref 128197 // _PID
+      end
+
       operation 128776 "set__PPID"
 	force_body_gen public explicit_return_type "void"
 	nparams 1
@@ -1180,6 +1217,28 @@ ${inlines}
 	get_of_attribute attribute_ref 128136 // _name
       end
 
+      operation 196232 "set__name"
+	force_body_gen public explicit_return_type "void"
+	nparams 1
+	  param in name "value" type class_ref 132814 // ustring
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  _name = ${p0};
+}
+"
+	cpp_name_spec "set_${name}"
+	
+	java_name_spec "set${Name}"
+	
+	php_name_spec "set${Name}"
+	
+	python_name_spec "set${Name}"
+	
+	idl_name_spec "set_${name}"
+	set_of_attribute attribute_ref 128136 // _name
+      end
+
       classrelation 128633 // files_opened (<aggregation>)
 	relation 128377 o---
 	  stereotype "vector"
@@ -1202,6 +1261,7 @@ ${inlines}
 	python_decl ""
 	idl_decl ""
 	get_oper operation_ref 128520 // get__PID
+	set_oper operation_ref 196104 // set__PID
       end
 
       attribute 128325 "_PPID"
@@ -1224,6 +1284,7 @@ ${inlines}
 	python_decl ""
 	idl_decl ""
 	get_oper operation_ref 128648 // get__name
+	set_oper operation_ref 196232 // set__name
       end
     end
 

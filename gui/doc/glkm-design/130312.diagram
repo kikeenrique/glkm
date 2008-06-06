@@ -6,7 +6,7 @@ classcanvas 128008 class_ref 144904 // Subject
   end
 classcanvas 128136 class_ref 145032 // Observer
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-  xyz 503 356 2000
+  xyz 511 360 2000
   end
 classcanvas 128392 class_ref 147592 // Controller
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
@@ -39,12 +39,12 @@ classcanvas 134920 class_ref 155272 // Argument
   xyz 276 254 2000
   end
 relationcanvas 128264 relation_ref 145416 // <directional aggregation>
-  from ref 128008 z 1999 stereotype "<<set>>" xyz 432 408 3000 to ref 128136
-  role_a_pos 440 385 3000 no_role_b
-  multiplicity_a_pos 488 407 3000 multiplicity_b_pos 414 408 3000
+  from ref 128008 z 1999 stereotype "<<set>>" xyz 436 410 3000 to ref 128136
+  role_a_pos 448 388 3000 no_role_b
+  multiplicity_a_pos 496 410 3000 multiplicity_b_pos 414 410 3000
 relationcanvas 128520 relation_ref 148104 // <generalisation>
   geometry VHr
-  from ref 128392 z 1999 to point 632 240
+  from ref 128392 z 1999 to point 640 240
   line 129032 z 1999 to ref 128136
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b

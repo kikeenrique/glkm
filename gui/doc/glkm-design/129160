@@ -1,51 +1,51 @@
-format 56
+format 58
 "glkm-controller" // glkm::glkm-controller
-  revision 11
+  revision 18
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
-  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
   //use case diagram settings
-  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
   //sequence diagram settings
-  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
   //collaboration diagram settings
-  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
   //object diagram settings
-   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
   //component diagram settings
   package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
-  draw_component_as_icon default show_component_req_prov default show_component_rea default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
   //deployment diagram settings
   package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
-  draw_component_as_icon default show_component_req_prov default show_component_rea default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
   //state diagram settings
   package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
-  show_activities default region_horizontally default drawing_language default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
   //activity diagram settings
   package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
-  show_infonote default drawing_language default
+  show_infonote default drawing_language default show_stereotype_properties default
   
   cpp_h_dir "src-glkm/"
   cpp_src_dir "src-glkm/"
   classview 129160 "glkm-controller"
     //class diagram settings
-    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
     //collaboration diagram settings
-    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
     //object diagram settings
-     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
     //sequence diagram settings
-    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
     //state diagram settings
     package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
-    show_activities default region_horizontally default drawing_language default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
     //class settings
     //activity diagram settings
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
-    show_infonote default drawing_language default
+    show_infonote default drawing_language default show_stereotype_properties default
     classdiagram 130312 "glkm-controller"
-      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+      draw_all_relations yes hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
       size A4-Landscape
     end
 
@@ -229,15 +229,35 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      classrelation 148360 // <generalisation>
-	relation 148104 ---|>
-	  a public
-	    cpp default "${type}"
-	    classrelation_ref 148360 // <generalisation>
-	  b parent class_ref 145032 // Observer
+      operation 176904 "action_host_selected"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
       end
 
-      operation 176904 "action_host_selected"
+      operation 197384 "action_host_connect"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 212360 "action_host_refresh"
 	public explicit_return_type "void"
 	nparams 0
 	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
@@ -263,59 +283,6 @@ ${inlines}
 	
 	
 	
-      end
-
-      operation 194056 "update"
-	cpp_virtual public explicit_return_type "void"
-	nparams 1
-	  param inout name "s" type class_ref 144904 // Subject
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 194184 "update"
-	cpp_virtual public explicit_return_type "void"
-	nparams 2
-	  param inout name "s" type class_ref 144904 // Subject
-	  param inout name "arg" type class_ref 155272 // Argument
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 181256 "set__pHosts"
-	force_body_gen public explicit_return_type "void"
-	nparams 1
-	  param in name "value" type class_ref 142856 // Hosts
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  _pHosts = ${p0};
-}
-"
-	cpp_name_spec "set_${name}"
-	
-	java_name_spec "set${Name}"
-	
-	php_name_spec "set${Name}"
-	
-	python_name_spec "set${Name}"
-	
-	idl_name_spec "set_${name}"
-	set_of_relation classrelation_ref 148488 // _pHosts (<unidirectional association>)
       end
 
       operation 181640 "set__pIconViewHosts"
@@ -427,15 +394,6 @@ ${inlines}
 	set_oper operation_ref 181256 // set__pHosts
       end
 
-      classrelation 148616 // _pMainwindow (<unidirectional association>)
-	relation 148360 --->
-	  a role_name "_pMainwindow" multiplicity "1" private
-	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 148616 // _pMainwindow (<unidirectional association>)
-	  b multiplicity "1" parent class_ref 128092 // MainWindow
-      end
-
       classrelation 151432 // _pIconViewHosts (<unidirectional association>)
 	relation 151176 --->
 	  a role_name "_pIconViewHosts" multiplicity "1" private
@@ -454,6 +412,22 @@ ${inlines}
 	    classrelation_ref 160776 // _pNotebookHosts (<unidirectional association>)
 	  b parent class_ref 150280 // NotebookHosts
 	set_oper operation_ref 195336 // set__pNotebookHosts
+      end
+
+      classrelation 164488 // <dependency>
+	relation 164104 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 164488 // <dependency>
+	  b parent class_ref 153864 // NotebookPageHost
+      end
+
+      classrelation 166408 // <dependency>
+	relation 166024 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 166408 // <dependency>
+	  b parent class_ref 128121 // Host
       end
     end
 
@@ -475,10 +449,10 @@ ${inlines}
   deploymentview 128008 "glkm-controller deployment view"
     //deployment diagram settings
     package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
-    draw_component_as_icon default show_component_req_prov default show_component_rea default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
     deploymentdiagram 130440 "glkm-controller deployment diagram"
       package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
-      draw_component_as_icon default show_component_req_prov default show_component_rea default
+      draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
       size A2
     end
 

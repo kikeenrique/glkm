@@ -1,6 +1,6 @@
 format 56
-"sigc" // sigc
-  revision 2
+"sigc++" // sigc++
+  revision 4
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -28,7 +28,7 @@ format 56
   
   stereotype "library"
   cpp_namespace "sigc"
-  classview 128462 "sigc class view"
+  classview 128462 "sigc++ class view"
     //class diagram settings
     draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
     //collaboration diagram settings
@@ -44,9 +44,9 @@ format 56
     //activity diagram settings
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default
-    classdiagram 128846 "sigc class diagram"
+    classdiagram 128846 "sigc++ class diagram"
       draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-      size A5
+      size A4-Landscape
     end
 
     class 129742 "trackable"
@@ -198,6 +198,596 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
+    end
+
+    class 156552 "signal"
+      visibility package 
+      nformals 8
+      formal name "T_return" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "T_arg1" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "T_arg2" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "T_arg3" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "T_arg4" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "T_arg5" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "T_arg6" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "T_arg7" type "class" explicit_default_value ""
+        explicit_extends ""
+      nactuals 9
+      actual class class_ref 156808 // signal7
+        rank 0 explicit_value ""
+      actual class class_ref 156808 // signal7
+        rank 1 explicit_value ""
+      actual class class_ref 156808 // signal7
+        rank 2 explicit_value ""
+      actual class class_ref 156808 // signal7
+        rank 3 explicit_value ""
+      actual class class_ref 156808 // signal7
+        rank 4 explicit_value ""
+      actual class class_ref 156808 // signal7
+        rank 5 explicit_value ""
+      actual class class_ref 156808 // signal7
+        rank 6 explicit_value ""
+      actual class class_ref 156808 // signal7
+        rank 7 explicit_value ""
+      actual class class_ref 156808 // signal7
+        rank 8 explicit_value ""
+      cpp_external cpp_decl "${name}
+
+#include <sigc++/signal.h>"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "sigc::signal< T_return, T_arg1, T_arg2, T_arg3, T_arg4, T_arg5, T_arg6, T_arg7 > Class Template Reference"
+      classrelation 165768 // <generalisation>
+	relation 165384 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 165768 // <generalisation>
+	  b parent class_ref 156808 // signal7
+      end
+
+      operation 203656 "signal"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 203784 "signal"
+	stereotype "copy"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "source" type class_ref 156552 // signal
+	cpp_decl "	${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 156808 "signal7"
+      visibility package 
+      nformals 9
+      formal name "T_return" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "T_arg1" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "T_arg2" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "T_arg3" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "T_arg4" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "T_arg5" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "T_arg6" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "T_arg7" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "T_accumulator" type "class" explicit_default_value ""
+        explicit_extends ""
+      cpp_external cpp_decl "${name}
+
+#include <sigc++/signal.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "sigc::signal7< T_return, T_arg1, T_arg2, T_arg3, T_arg4, T_arg5, T_arg6, T_arg7, T_accumulator > Class Template Reference"
+      classrelation 165896 // <generalisation>
+	relation 165512 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 165896 // <generalisation>
+	  b parent class_ref 156936 // signal_base
+      end
+
+      class 158344 "result_type"
+	visibility package stereotype "typedef" explicit_base_type "emitter_type::result_type"
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	comment "typedef emitter_type::result_type 	result_type"
+      end
+
+      class 157704 "slot_type"
+	visibility package stereotype "typedef" base_type class_ref 134024 // slot
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	comment "typedef slot
+< T_return, T_arg1,
+T_arg2, T_arg3,
+T_arg4, T_arg5,
+T_arg6, T_arg7 > 	slot_type"
+      end
+
+      class 157832 "slot_list_type"
+	visibility package stereotype "typedef" base_type class_ref 157960 // slot_list
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	comment "typedef slot_list  <slot_type> 	slot_list_type"
+      end
+
+      class 157576 "iterator"
+	visibility package stereotype "typedef" explicit_base_type "slot_list_type::iterator"
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	comment "typedef slot_list_type::iterator 	iterator"
+      end
+
+      operation 203400 "connect"
+	public return_type class_ref 157576 // iterator
+	nparams 1
+	  param in name "slot" type class_ref 157704 // slot_type
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 203528 "emit"
+	public return_type class_ref 158344 // result_type
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "result_type 	emit (typename type_trait<T_arg1>::take _A_a1, typename type_trait<T_arg2>::take _A_a2, typename type_trait<T_arg3>::take _A_a3, typename type_trait<T_arg4>::take _A_a4, typename type_trait<T_arg5>::take _A_a5, typename type_trait<T_arg6>::take _A_a6, typename type_trait<T_arg7>::take _A_a7) const
+ 	Triggers the emission of the signal. "
+      end
+    end
+
+    class 156936 "signal_base"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <sigc++/signal_base.h>"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 166024 // <generalisation>
+	relation 165640 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 166024 // <generalisation>
+	  b parent class_ref 129742 // trackable
+      end
+
+      operation 201352 "signal_base"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 201480 "~signal_base"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 201608 "signal_base"
+	stereotype "copy"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "source" type class_ref 156936 // signal_base
+	cpp_decl "	${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 201736 "operator="
+	public return_type class_ref 156936 // signal_base
+	nparams 1
+	  param in name "source" type class_ref 156936 // signal_base
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 201864 "empty"
+	const public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 201992 "clear"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 202120 "size"
+	const public return_type class_ref 157064 // size_type
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 203016 "connect"
+	public explicit_return_type "iterator_type"
+	nparams 1
+	  param in name "slot_" type class_ref 157192 // slot_base
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 203144 "insert"
+	public explicit_return_type "iterator_type"
+	nparams 2
+	  param in name "i" explicit_type "iterator_type"
+	  param in name "slot_" type class_ref 157192 // slot_base
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 203272 "erase"
+	public explicit_return_type "iterator_type"
+	nparams 1
+	  param in name "i" explicit_type "iterator_type"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 157064 "size_type"
+      visibility package stereotype "typedef" explicit_base_type "size_t"
+      cpp_external cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 157192 "slot_base"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <sigc++/functors/slot_base.h>"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 166152 // <generalisation>
+	relation 165768 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 166152 // <generalisation>
+	  b parent class_ref 157320 // functor_base
+      end
+
+      operation 202376 "slot_base"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 202632 "slot_base"
+	stereotype "copy"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "source" type class_ref 157192 // slot_base
+	cpp_decl "	${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 202504 "~slot_base"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 202760 "block"
+	public explicit_return_type "bool"
+	nparams 1
+	  param in name "should_block" explicit_type "bool"
+	    defaultvalue "true"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 202888 "unblock"
+	public explicit_return_type "bool"
+	nparams 1
+	  param in name "should_block" explicit_type "bool"
+	    defaultvalue "true"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 202248 "disconnect"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 157320 "functor_base"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 157448 "slot_iterator"
+      visibility package 
+      nformals 1
+      formal name "T_slot" type "class" explicit_default_value ""
+        explicit_extends ""
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 157960 "slot_list"
+      visibility package 
+      nformals 1
+      formal name "T_slot" type "class" explicit_default_value ""
+        explicit_extends ""
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      class 158216 "slot_type"
+	visibility package stereotype "typedef" explicit_base_type "T_slot"
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+      end
+
+      class 158088 "iterator"
+	visibility package stereotype "typedef" base_type class_ref 157448 // slot_iterator
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	comment "typedef slot_iterator <slot_type> 	iterator"
+      end
     end
   end
 end

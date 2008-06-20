@@ -1,27 +1,234 @@
-format 56
+format 58
 
-classinstance 128069 class_ref 128121 // Host
-  name "h"   xyz 105 4 2000 life_line_z 2000
-classinstancecanvas 128105 classinstance_ref 128105 // man
-  xyz 318 4 2000 life_line_z 2000
+classinstancecanvas 128008 classinstance_ref 130824 // s
+  xyz 20 5 2000 life_line_z 2000
+end
 classinstance 128197 class_ref 128249 // Process
-  name ""   xyz 215 5 2000 life_line_z 2000
-durationcanvas 128233 classinstance_ref 128069 // h:Host
-  xyzwh 124 86 2010 11 76
+  name "p"   xyz 1374 568 1995 life_line_z 2005
+classinstancecanvas 128520 classinstance_ref 133512 // hal_controller
+  xyz 236 22 2005 life_line_z 2030
 end
-durationcanvas 128361 classinstance_ref 128105 // man:HalController
-  xyzwh 360 86 2010 11 76
+classinstancecanvas 128904 classinstance_ref 133640 // _hal_manager
+  xyz 368 60 2010 life_line_z 2030
 end
-msg 128489 synchronous
-  from durationcanvas_ref 128233
-  to durationcanvas_ref 128361
-  yz 86 2015 msg operation_ref 128837 // "update_processes() : bool"
+classinstance 129288 class_ref 128189 // HalDeviceProxy
+  name ""   xyz 667 85 2000 life_line_z 4030
+classinstance 129416 class_ref 132165 // VectorString
+  name "task_list"   xyz 770 84 2000 life_line_z 4030
+classinstance 129544 class_ref 159496 // HalParser
+  name ""   xyz 915 84 2000 life_line_z 4045
+textcanvas 130312 "it = task_list.begin
+it!= task_list.end
+++it"
+  xyzwh 93 282 2000 83 38
+fragment 130440 "loop"
+  color lightyellow xyzwh 75 254 1965 1520 532
+end
+note 131848 "BECAREFUL
+PID is unique and linux kernel doesn't reuse them, so we have not to care about a replaced PID"
+  color orange  xyzwh 663 458 4030 188 81
+classinstance 132232 class_ref 132165 // VectorString
+  name "parsed_process"   mortal  xyz 1090 263 1995 life_line_z 2005
+fragment 132616 "continue"
+  color mediumyellow xyzwh 83 392 4054 977 55
+end
+textcanvas 132744 "parsed_process < 3"
+  xyzwh 88 412 5035 99 16
+note 132872 "without messages.
+Transform string parsed_process
+into process params
+"
+  xyzwh 973 455 5040 182 56
+fragment 133000 "alt"
+  color mediumyellow xyzwh 830 557 1970 705 197
+end
+textcanvas 133128 "find() == host._task_list.end()"
+  xyzwh 834 582 4055 143 15
+classinstancecanvas 133512 classinstance_ref 136456 // host._task_list
+  xyz 1244 261 1995 life_line_z 2005
+end
+note 134536 "TODO
+return values"
+  color red  xyzwh 207 853 2020 218 53
+classinstance 135176 class_ref 128476 // TreeViewHost
+  name ""   xyz 529 597 2000 life_line_z 1995
+classinstancecanvas 136968 classinstance_ref 133384 // present_host
+  xyz 133 5 2005 life_line_z 2000
+end
+durationcanvas 128136 classinstance_ref 128008 // s:Controller
+  xyzwh 39 62 2010 11 806
+end
+durationcanvas 128648 classinstance_ref 128520 // hal_controller:HalController
+  xyzwh 300 80 4040 11 775
+end
+durationcanvas 129032 classinstance_ref 128904 // _hal_manager:HalManagerProxy
+  xyzwh 443 117 4040 11 727
+end
+durationcanvas 129672 classinstance_ref 129288 // :HalDeviceProxy
+  xyzwh 705 170 2010 11 34
+end
+durationcanvas 130056 classinstance_ref 129544 // :HalParser
+  xyzwh 939 227 4050 11 518
+  overlappingdurationcanvas 131976
+    xyzwh 945 353 2020 11 25
+  end
+end
+durationcanvas 130568 classinstance_ref 129416 // task_list:VectorString
+  xyzwh 820 136 2010 11 30
+end
+durationcanvas 131336 classinstance_ref 128197 // p:Process
+  xyzwh 1397 618 2015 11 26
+end
+durationcanvas 131592 classinstance_ref 128197 // p:Process
+  xyzwh 1397 648 2015 11 25
+end
+durationcanvas 132360 classinstance_ref 132232 // parsed_process:VectorString
+  xyzwh 1158 315 2005 11 195
+end
+durationcanvas 133640 classinstance_ref 133512 // host._task_list:map
+  xyzwh 1263 525 2005 11 25
+end
+durationcanvas 133896 classinstance_ref 128197 // p:Process
+  xyzwh 1397 680 2020 11 25
+end
+durationcanvas 134152 classinstance_ref 128197 // p:Process
+  xyzwh 1397 707 2020 11 25
+end
+durationcanvas 137352 classinstance_ref 136968 // present_host:Host
+  xyzwh 152 62 2010 11 800
+  overlappingdurationcanvas 137736
+    xyzwh 158 701 2020 11 57
+  end
+end
+durationcanvas 138120 classinstance_ref 135176 // :TreeViewHost
+  xyzwh 562 736 2005 11 27
+end
+msg 129160 synchronous
+  from durationcanvas_ref 128648
+  to durationcanvas_ref 129032
+  yz 118 2025 msg operation_ref 205832 // "get_all_processes(inout host : Host) : bool"
   show_full_operations_definition default drawing_language default
-  label_xy 158 74
-msg 128617 return
-  from durationcanvas_ref 128361
-  to durationcanvas_ref 128233
-  yz 151 2020 explicitmsg "std::vector <DBus::string>"
+  args "host"
+  label_xy 319 106
+msg 129800 synchronous
+  from durationcanvas_ref 129032
+  to durationcanvas_ref 129672
+  yz 170 2030 msg operation_ref 207112 // "get_property_string_list(in key : String) : VectorString"
   show_full_operations_definition default drawing_language default
-  label_xy 132 139
+  args "TASK_LIST"
+  label_xy 499 156
+msg 129928 return
+  from durationcanvas_ref 129672
+  to durationcanvas_ref 129032
+  yz 193 2035 explicitmsg "task_list"
+  show_full_operations_definition default drawing_language default
+  label_xy 613 183
+msg 130184 synchronous
+  from durationcanvas_ref 129032
+  to durationcanvas_ref 130056
+  yz 227 2015 msg operation_ref 205704 // "parse_add_processes(inout hal_task_list : VectorString, inout host : Host) : void"
+  show_full_operations_definition default drawing_language default
+  args "task_list, host"
+  label_xy 556 213
+msg 130696 synchronous
+  from durationcanvas_ref 129032
+  to durationcanvas_ref 130568
+  yz 136 3005 explicitmsg "VectorString()"
+  show_full_operations_definition default drawing_language default
+  label_xy 600 124
+msg 131464 synchronous
+  from durationcanvas_ref 130056
+  to durationcanvas_ref 131336
+  yz 618 2030 msg operation_ref 128323 // "Process()"
+  show_full_operations_definition default drawing_language default
+  label_xy 1144 611
+msg 131720 synchronous
+  from durationcanvas_ref 130056
+  to durationcanvas_ref 131592
+  yz 648 2025 msg operation_ref 196104 // "set__PID(in value : int) : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 1145 639
+reflexivemsg 132104 synchronous
+  to durationcanvas_ref 131976
+  yz 353 2025 msg operation_ref 208648 // "tokenize(in str_orig : String, in delimiters : String, out tokens : VectorString) : void"
+  show_full_operations_definition default drawing_language default
+  args "*it, DELIMITER, parsed_process"
+  label_xy 953 341
+msg 132488 synchronous
+  from durationcanvas_ref 130056
+  to durationcanvas_ref 132360
+  yz 315 3005 explicitmsg "VectorString()"
+  show_full_operations_definition default drawing_language default
+  label_xy 998 303
+msg 133768 synchronous
+  from durationcanvas_ref 130056
+  to durationcanvas_ref 133640
+  yz 525 2020 msg operation_ref 183432 // "find(in x : key_type) : iterator"
+  show_full_operations_definition default drawing_language default
+  args "PID"
+  label_xy 1069 514
+msg 134024 synchronous
+  from durationcanvas_ref 130056
+  to durationcanvas_ref 133896
+  yz 680 2025 msg operation_ref 128776 // "set__PPID(in value : int) : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 1144 668
+msg 134280 synchronous
+  from durationcanvas_ref 130056
+  to durationcanvas_ref 134152
+  yz 707 2025 msg operation_ref 196232 // "set__name(in value : ustring) : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 1144 695
+msg 134664 return
+  from durationcanvas_ref 129032
+  to durationcanvas_ref 128648
+  yz 833 2025 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 137224 synchronous
+  from durationcanvas_ref 128136
+  to durationcanvas_ref 137352
+  yz 62 2015 msg operation_ref 195720 // "get_all_processes() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 66 41
+msg 137864 synchronous
+  from durationcanvas_ref 130056
+  to durationcanvas_ref 137736
+  yz 701 4055 explicitmsg "signal_Process_added.emit()"
+  show_full_operations_definition default drawing_language default
+  args "host._task_list[PID]"
+  label_xy 677 688
+msg 138248 asynchronous
+  from durationcanvas_ref 137736
+  to durationcanvas_ref 138120
+  yz 736 4045 msg operation_ref 209800 // "on_Process_added(in process : Process) : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 207 726
+msg 138760 synchronous
+  from durationcanvas_ref 137352
+  to durationcanvas_ref 128648
+  yz 87 4055 msg operation_ref 128837 // "get_all_processes(inout host : Host) : bool"
+  show_full_operations_definition default drawing_language default
+  args "*this"
+  label_xy 176 68
+msg 138888 return
+  from durationcanvas_ref 128648
+  to durationcanvas_ref 137352
+  yz 844 4045 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+line 135944 -_-_
+  from ref 130440 z 2029 to ref 132744
+line 136072 -_-_
+  from ref 132744 z 2029 to ref 130440
+line 136200 -_-_
+  from ref 132744 z 2029 to ref 130440
+line 136328 -_-_
+  from ref 132744 z 2029 to ref 130440
+line 136456 -_-_
+  from ref 132744 z 2029 to ref 130440
+line 136584 -_-_
+  from ref 132744 z 2029 to ref 130440
+line 136712 -_-_
+  from ref 132744 z 4049 to ref 132616
+line 136840 -_-_
+  from ref 130056 z 4044 to ref 132872
 end

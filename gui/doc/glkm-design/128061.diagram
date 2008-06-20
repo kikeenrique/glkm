@@ -112,6 +112,21 @@ classcanvas 130757 class_ref 129349 // Object
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
   xyz 521 6 2000
   end
+note 131208 "# define register_method(interface, method, callback) \\
+        InterfaceAdaptor::_methods[ #method ] = \\
+                new ::DBus::Callback< interface, ::DBus::Message, const ::DBus::CallMessage& >(this, & interface :: callback );
+
+# define bind_property(variable, type, can_read, can_write) \\
+        InterfaceAdaptor::_properties[ #variable ].read = can_read; \\
+        InterfaceAdaptor::_properties[ #variable ].write = can_write; \\
+        InterfaceAdaptor::_properties[ #variable ].sig = type; \\
+        variable.bind( InterfaceAdaptor::_properties[ #variable ] );
+
+# define connect_signal(interface, signal, callback) \\
+        InterfaceProxy::_signals[ #signal ] = \\
+                new ::DBus::Callback< interface, void, const ::DBus::SignalMessage& >(this, & interface :: callback );
+"
+  xyzwh 842 247 2000 582 195
 classcanvas 131653 class_ref 129477 // Message
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
   xyz 240 726 2000
@@ -169,7 +184,7 @@ relationcanvas 128453 relation_ref 128581 // <generalisation>
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 relationcanvas 128648 relation_ref 130952 // <dependency>
-  from ref 128069 z 1999 stereotype "<<friend>>" xyz 364 647 3000 to ref 130629
+  from ref 128069 z 1999 stereotype "<<friend>>" xyz 368 640 3000 to ref 130629
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 relationcanvas 128965 relation_ref 129221 // <generalisation>
@@ -270,4 +285,8 @@ line 130952 -_-_
   from ref 128069 z 1999 to ref 128008
 line 131080 -_-_
   from ref 128069 z 1999 to ref 131653
+line 131336 -_-_
+  from ref 129349 z 1999 to ref 131208
+line 131464 -_-_
+  from ref 128829 z 1999 to ref 131208
 end

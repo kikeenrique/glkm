@@ -1,52 +1,52 @@
-format 56
+format 58
 "glkm-view" // glkm::glkm-view
-  revision 38
+  revision 48
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
-  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
   //use case diagram settings
-  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
   //sequence diagram settings
-  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
   //collaboration diagram settings
-  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
   //object diagram settings
-   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
   //component diagram settings
   package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
-  draw_component_as_icon default show_component_req_prov default show_component_rea default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
   //deployment diagram settings
   package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
-  draw_component_as_icon default show_component_req_prov default show_component_rea default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
   //state diagram settings
   package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
-  show_activities default region_horizontally default drawing_language default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
   //activity diagram settings
   package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
-  show_infonote default drawing_language default
+  show_infonote default drawing_language default show_stereotype_properties default
   
   cpp_h_dir "src-glkm/"
   cpp_src_dir "src-glkm/"
   classview 128092 "glkm-view class view"
     //class diagram settings
-    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
     //collaboration diagram settings
-    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
     //object diagram settings
-     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
     //sequence diagram settings
-    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
     //state diagram settings
     package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
-    show_activities default region_horizontally default drawing_language default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
     //class settings
     //activity diagram settings
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
-    show_infonote default drawing_language default
+    show_infonote default drawing_language default show_stereotype_properties default
     associated_deployment_view deploymentview_ref 128092 // glkm-view deployment view
     classdiagram 128092 "glkm-view class diagram"
-      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
       size A1
     end
 
@@ -448,6 +448,7 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
+      comment "Already trackable as inherits from Gtk::Notebook"
       classrelation 153864 // <generalisation>
 	relation 153608 ---|>
 	  a public
@@ -486,29 +487,13 @@ ${inlines}
 	
       end
 
-      operation 193416 "update"
-	cpp_virtual public explicit_return_type "void"
+      operation 201224 "on_Host_added"
+	public explicit_return_type "void"
 	nparams 1
-	  param inout name "s" type class_ref 144904 // Subject
+	  param inout name "host" type class_ref 128121 // Host
 	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 193800 "update"
-	cpp_virtual public explicit_return_type "void"
-	nparams 2
-	  param inout name "s" type class_ref 144904 // Subject
-	  param inout name "arg" type class_ref 155272 // Argument
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -583,22 +568,6 @@ ${inlines}
 	    classrelation_ref 157960 // <aggregation>
       end
 
-      classrelation 160264 // <generalisation>
-	relation 159880 ---|>
-	  a public
-	    cpp default "${type}"
-	    classrelation_ref 160264 // <generalisation>
-	  b parent class_ref 145032 // Observer
-      end
-
-      classrelation 160392 // <dependency>
-	relation 160008 -_->
-	  a default
-	    cpp default "#include in source"
-	    classrelation_ref 160392 // <dependency>
-	  b parent class_ref 128121 // Host
-      end
-
       classrelation 160648 // <dependency>
 	relation 160264 -_->
 	  a default
@@ -662,6 +631,35 @@ ${inlines}
 	
       end
 
+      operation 204168 "get_my_Host"
+	public return_type class_ref 128121 // Host
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 204040 "set_my_Host"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "host" type class_ref 128121 // Host
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
       attribute 142600 "_refPtrGlademmXml"
 	protected type class_ref 133070 // RefPtrGladeXml
 	multiplicity "1"
@@ -708,7 +706,7 @@ ${inlines}
 	nparams 2
 	  param in name "cobject" explicit_type "BaseObjectType"
 	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
-	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
+	cpp_decl "	${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
@@ -722,9 +720,60 @@ ${inlines}
       operation 130254 "~TreeViewHost"
 	cpp_virtual public explicit_return_type ""
 	nparams 0
-	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 204296 "take_Host"
+	public return_type class_ref 128121 // Host
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 211080 "set_pHost"
+	force_body_gen public explicit_return_type "void"
+	nparams 1
+	  param in name "value" type class_ref 128121 // Host
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  _pHost = ${p0};
+}
+"
+	cpp_name_spec "set_${name}"
+	
+	java_name_spec "set${Name}"
+	
+	php_name_spec "set${Name}"
+	
+	python_name_spec "set${Name}"
+	
+	idl_name_spec "set_${name}"
+	set_of_relation classrelation_ref 170120 // _pHost (<unidirectional association>)
+      end
+
+      operation 209800 "on_Process_added"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "process" type class_ref 128249 // Process
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -736,7 +785,7 @@ ${inlines}
       attribute 128718 "_refPtrGlademmXml"
 	protected type class_ref 133070 // RefPtrGladeXml
 	multiplicity "1"
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
 	php_decl ""
@@ -745,13 +794,13 @@ ${inlines}
       end
 
       operation 128296 "on_treeview_row_activated"
-	cpp_virtual protected explicit_return_type "void"
+	protected explicit_return_type "void"
 	nparams 2
 	  param in name "path" type class_ref 128424 // Path
-	  param in name "column" type class_ref 128680 // TreeViewColumn
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${abstract};
+	  param inout name "column" type class_ref 128680 // TreeViewColumn
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -764,7 +813,7 @@ ${inlines}
 	protected explicit_return_type "void"
 	nparams 1
 	  param in name "iter" type class_ref 133838 // iterator
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -778,8 +827,8 @@ ${inlines}
       operation 131662 "on_button_press_event"
 	cpp_virtual protected explicit_return_type "bool"
 	nparams 1
-	  param in name "ev" explicit_type "GdkEventButton"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+	  param inout name "ev" explicit_type "GdkEventButton"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -790,24 +839,10 @@ ${inlines}
 	
       end
 
-      operation 131534 "on_menu_file_popup_generic"
-	cpp_virtual protected explicit_return_type "void"
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 128424 "fill_model"
+      operation 131534 "on_menu_popup_refresh"
 	protected explicit_return_type "void"
 	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -841,7 +876,7 @@ ${inlines}
 	operation 128021 "ModelColumns"
 	  public explicit_return_type ""
 	  nparams 0
-	  cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+	  cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
 "
 	  cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
   ${body}}
@@ -854,7 +889,7 @@ ${inlines}
 
 	attribute 128021 "col_pid"
 	  public type class_ref 129576 // TreeModelColumnInt
-	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+	  cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	  java_decl ""
 	  php_decl ""
@@ -864,7 +899,7 @@ ${inlines}
 
 	attribute 128149 "col_name"
 	  public type class_ref 128021 // TreeModelColumnUstring
-	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+	  cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	  java_decl ""
 	  php_decl ""
@@ -875,7 +910,7 @@ ${inlines}
 
       attribute 128277 "_ModelColumns"
 	protected type class_ref 128936 // ModelColumns
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
 	php_decl ""
@@ -885,7 +920,7 @@ ${inlines}
 
       attribute 128003 "_refPtrTreeStore"
 	protected type class_ref 128003 // RefPtrTreeStore
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
 	php_decl ""
@@ -895,7 +930,7 @@ ${inlines}
 
       attribute 128131 "_refPtrTreeSelection"
 	protected type class_ref 128131 // RefPtrTreeSelection
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
 	php_decl ""
@@ -906,7 +941,7 @@ ${inlines}
       classrelation 128405 // _pMenu_Popup_TreeView_Host (<unidirectional association>)
 	relation 128405 --->
 	  a role_name "_pMenu_Popup_TreeView_Host" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128405 // _pMenu_Popup_TreeView_Host (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 128149 // Menu
@@ -915,19 +950,20 @@ ${inlines}
       classrelation 128533 // _pMenuitem_Refresh (<unidirectional association>)
 	relation 128533 --->
 	  a role_name "_pMenuitem_Refresh" multiplicity "1" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 128533 // _pMenuitem_Refresh (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 132686 // MenuItem
       end
 
-      classrelation 162184 // _pHost (<unidirectional association>)
-	relation 161800 --->
+      classrelation 170120 // _pHost (<unidirectional association>)
+	relation 169736 --->
 	  a role_name "_pHost" multiplicity "1" protected
 	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 162184 // _pHost (<unidirectional association>)
+	    classrelation_ref 170120 // _pHost (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 128121 // Host
+	set_oper operation_ref 211080 // set_pHost
       end
     end
 
@@ -2051,10 +2087,10 @@ ${inlines}
   deploymentview 128092 "glkm-view deployment view"
     //deployment diagram settings
     package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
-    draw_component_as_icon default show_component_req_prov default show_component_rea default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
     deploymentdiagram 128220 "glkm-view deployment diagram"
       package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
-      draw_component_as_icon default show_component_req_prov default show_component_rea default
+      draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
       size A4
     end
 

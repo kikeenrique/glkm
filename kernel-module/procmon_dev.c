@@ -132,7 +132,7 @@ static ssize_t show_task_list(struct device * dev, struct device_attribute *attr
 //		printk("%s [%d] - [%d]\n", task->comm, task->pid, task->parent->pid);
 		buf_size +=
 			sprintf(&b_task_list[buf_size],
-				"%s [%d] - [%d]\n", 
+				"%s:%d:%d\n", 
 				task->comm, 
 				task->pid, 
 				task->parent->pid);

@@ -1,31 +1,29 @@
-window_sizes 1680 998 309 1365 921 0
+window_sizes 1672 994 309 1357 917 0
 diagrams
-  classdiagram_ref 128092 // glkm-view class diagram
-    792 607 90 1 420 793
   classdiagram_ref 128121 // glkm-model class diagram
-    842 598 100 14 540 672
+    976 695 100 13 420 926
+  classdiagram_ref 128092 // glkm-view class diagram
+    1085 733 100 1 420 756
   classdiagram_ref 130312 // glkm-controller
-    873 606 100 15 161 25
-  active  sequencediagram_ref 131720 // connect  to host
-    1365 921 100 3 660 0
+    1218 842 100 15 29 0
+  sequencediagram_ref 132872 // refresh processes
+    1085 595 100 15 0 0
+  active  sequencediagram_ref 128197 // show processes
+    1357 917 100 14 0 0
 end
 show_stereotypes
-selected operation_ref 196232 // set__name
+selected sequencediagram_ref 128197 // show processes
 open
-  usecase_ref 128121 // select host
-  usecase_ref 129160 // connect to host
-  usecase_ref 128249 // select process
-  classrelation_ref 133573 // _devices (<directional composition>)
-  operation_ref 195720 // get_all_processes
-  operation_ref 166664 // Hosts
-  operation_ref 166536 // ~Hosts
-  operation_ref 128776 // set__PPID
-  attribute_ref 128136 // _name
-  classview_ref 129160 // glkm-controller
-  classrelation_ref 153864 // <generalisation>
-  operation_ref 185864 // ~NotebookHosts
-  classrelation_ref 160264 // <generalisation>
-  classrelation_ref 157704 // _pTreeViewHost (<unidirectional association>)
-  class_ref 128008 // Notebook
+  usecase_ref 128008 // show processes
+  class_ref 128061 // HalManagerProxy
+  class_ref 128189 // HalDeviceProxy
+  operation_ref 128837 // get_all_processes
+  class_ref 159496 // HalParser
+  attribute_ref 128106 // _hostname
+  classrelation_ref 167560 // <dependency>
+  operation_ref 212232 // get__PPID
+  classrelation_ref 166408 // <dependency>
+  class_ref 153864 // NotebookPageHost
+  class_ref 128476 // TreeViewHost
 end
 end

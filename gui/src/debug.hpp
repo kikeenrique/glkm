@@ -97,6 +97,9 @@ class TextViewDebug : public Gtk::TextView {
 	//Text model buffer:
 	virtual void fill_buffer();  
 	Glib::RefPtr<Gtk::TextBuffer> _refPtrTextBuffer;
+	Gtk::TextBuffer::iterator _position;
+	
+	Glib::ustring get_timestamp();
 };
 
 #endif //_DEBUG_HPP

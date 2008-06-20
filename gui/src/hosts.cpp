@@ -18,7 +18,6 @@
  */
 
 #include "hosts.hpp"
-#include "host.hpp"
 
 #include "config.h"
 #include "debug.hpp"
@@ -37,24 +36,15 @@ bool Hosts::create_host(const Glib::ustring & hostname, const Glib::ustring & ip
 	// if found. Otherwise it returns an iterator to map::end (the
 	// element past the end of the container).
 	it = _hosts.find(hostname);
+
 	if ( it == _hosts.end() ) {
 		//Host does not exists so we have to add it
-/*		Host temp;
-		temp.set__hostname(hostname);
-		temp.set__ip(ip);
-		temp.set__description(description);
-		_hosts[hostname] = temp;*/
 		_hosts[hostname].set__hostname(hostname);
 		_hosts[hostname].set__ip(ip);
 		_hosts[hostname].set__description(description);
 		created = true;
-
+		signal_Host_added.emit(&_hosts[hostname]);
 		PRINTD("Hosts:: Host added " + _hosts[hostname].get__hostname());
-		//TODO
-		//Try to improve this ugly code which easyly jumps over type safety and
-		// can broke program easily.
-		void * tmp = &_hosts[hostname];
-		notify ((Argument *)tmp);
 	}
 
 	return created;

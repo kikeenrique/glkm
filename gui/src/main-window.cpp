@@ -114,7 +114,13 @@ MainWindow::MainWindow(){
 	_refPtrGlademmXml->get_widget("checkmenuitem_viewtoolbar", _pCheckMenuItemViewToolbar);
 	if (_pCheckMenuItemViewToolbar){ 
 		_pCheckMenuItemViewToolbar->signal_toggled().connect( sigc::mem_fun( *this, 
-							&MainWindow::on_checkmenuitem_viewtoolbar_toggled) );
+							                                                &MainWindow::on_checkmenuitem_viewtoolbar_toggled) );
+	}
+	_pCheckMenuItemViewDebug = NULL;
+	_refPtrGlademmXml->get_widget("checkmenuitem_viewdebug", _pCheckMenuItemViewDebug);
+	if (_pCheckMenuItemViewDebug){ 
+		_pCheckMenuItemViewDebug->signal_toggled().connect( sigc::mem_fun( *this, 
+							                                                &MainWindow::on_checkmenuitem_viewdebug_toggled) );
 	}
 
 
@@ -243,7 +249,6 @@ void MainWindow::on_checkmenuitem_viewtoolbar_toggled() {
 }
 
 void MainWindow::on_checkmenuitem_viewdebug_toggled() {
-	extern TextViewDebug*	pDebug;
 	if (_pCheckMenuItemViewDebug->get_active()){
 		_pWindowDebug->show();
 		PRINTD("on_checkmenuitem_viewdebug_toggled active");
@@ -273,10 +278,14 @@ void MainWindow::on_clicked_toolbar_select(){
 
 void MainWindow::on_clicked_toolbar_connect() {
 	PRINTD("on_clicked_toolbar_connect");
+	//Tell controller that a new host have been selected
+	Controller& c = Controller::instance();
+	c.action_host_connect();
 }
 
 void MainWindow::on_clicked_toolbar_refresh(){
 	PRINTD("on_clicked_toolbar_refresh");
-//TODO
+	Controller& c = Controller::instance();
+	c.action_host_refresh();
 }
 

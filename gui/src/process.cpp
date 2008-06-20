@@ -52,6 +52,19 @@ Process & Process::operator=(const Process & source) {
 	return *this;	
 }
 
+void Process::set__PID(int value) {
+  _PID = value;
+}
+
 void Process::set__PPID(int value) {
   _PPID = value;
+}
+
+void Process::set__name(Glib::ustring value) {
+	_name = value;
+/*	if (_name.validate()){
+		PRINTD ("Process() validated ");
+	} else {
+		PRINTD ("Process() validated NOT ");
+	}*/
 }

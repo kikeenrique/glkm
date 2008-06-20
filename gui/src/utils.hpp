@@ -19,7 +19,10 @@
 #ifndef _UTILS_HPP
 #define _UTILS_HPP
 
-#include <dbusmm/types.h>
+#include <vector>
+#include <map>
+#include <string>
+#include <list>
 
 #include <gtkmm/textbuffer.h>
 #include <gtkmm/treeselection.h>
@@ -35,10 +38,8 @@
 
 #include <libglademm/xml.h>
 
-#include <vector>
-#include <map>
-#include <string>
-#include <list>
+#include <dbusmm/types.h>
+
 
 typedef std::vector<DBus::String> VectorString;
 typedef std::map<DBus::String, DBus::Variant> DictVariable;

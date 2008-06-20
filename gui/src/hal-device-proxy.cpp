@@ -21,11 +21,18 @@
 #include <iostream>
 
 #include "hal-device-proxy.hpp"
-#include "debug.hpp"
+
 #include "config.h"
+#include "debug.hpp"
 
 
 /**
+ */
+
+
+/** 
+ *  @HalDeviceProxy:
+ *
  *  General Documentation
  *
  *  HAL Specification URL:
@@ -46,26 +53,6 @@
  *					written code should use dedicated signals on a dedicated 
  *					interface.).
  *
- *	Method:			GetProperty
- *  Returns:		Variant      
- *  Parameters:		String key
- *  Throws:			NoSuchProperty
- *  Description:	Get property
- *
- *	Method:			GetAllProterties
- *  Returns:		type = a{sv} -> an array of dict entry
- *					(which DBus protocol suggest as a map, hash table or dict object)
- *  Parameters:		- 
- *  Throws:			??
- *  Description:	Get all properties of a device
- *
- */
-
-
-/** 
- *  @name:
- *  @param:
- *
  *  Returns:
  *
  *  Explanation.
@@ -83,8 +70,7 @@ HalDeviceProxy::HalDeviceProxy(DBus::Connection& connection, const DBus::Path& u
 
 
 /** 
- *  @name:
- *  @param:
+ *  @~HalDeviceProxy:
  *
  *  Returns:
  *
@@ -101,6 +87,15 @@ HalDeviceProxy::~HalDeviceProxy() {
 /** 
  *  get_property:
  *  @key:
+ *
+ *  HAL INFO
+ *  ========
+ *	Method:			GetProperty
+ *  Returns:		Variant      
+ *  Parameters:		String key
+ *  Throws:			NoSuchProperty
+ *  Description:	Get property
+ *
  *
  *  Returns:
  *
@@ -123,55 +118,169 @@ DBus::Variant HalDeviceProxy::get_property(const DBus::String & key) {
 	    	it = reply.reader();
 	}
 	catch (const DBus::Error& exception){
-		std::cerr << exception.what() << std::endl;
+			std::cerr << "GetProperty" << std::endl;
+			std::cerr << exception.what() << std::endl;
     		std::cerr << exception.name() << std::endl;
        		std::cerr << exception.message() << std::endl;
 	}
 
 	DBus::Variant argout;
     it >> argout;
-//some _properties stuff
+
 	return argout;	
 }
 
-
 /** 
- *  @name:
- *  @param:
+ *  get_property_string_list:
+ *  @key:
+ *
+ *  HAL INFO
+ *  ========
+ *
+ *	Method:			GetPropertyStringList
+ *  Returns:		String[]
+ *  Parameters:		String key
+ *  Throws:			NoSuchProperty, TypeMismatch
+ *  Description:	Get property
+ *
  *
  *  Returns:
  *
- *  
- *
+ *  Exceptions:			NoSuchProperty, TypeMismatch
  *
  *  Example:
  *
  */
-bool HalDeviceProxy::update_all_properties() {
+VectorString HalDeviceProxy::get_property_string_list(const DBus::String & key) {
+	DBus::CallMessage call;
+	DBus::MessageIter wi = call.writer();
+	
+	wi << key;
+	call.member("GetPropertyStringList");
+
+	//declaret out of try. scope solution 
+   	DBus::MessageIter it;
+	try {
+			DBus::Message reply = invoke_method(call);
+	    	it = reply.reader();
+	}
+	catch (const DBus::Error& exception){
+			std::cerr << "GetPropertyStringList" << std::endl;
+			std::cerr << exception.what() << std::endl;
+    		std::cerr << exception.name() << std::endl;
+       		std::cerr << exception.message() << std::endl;
+	}
+
+	VectorString argout;
+    it >> argout;
+
+	return argout;	
+}
+
+/** 
+ *  @rescan:
+ *
+ *  HAL INFO
+ *  ========
+ *
+ *	Method:			Rescan
+ *  Returns:		Bool
+ *  Parameters:		
+ *  Throws:			PermissionDenied
+ *  Description:	Force an updates of the properties of a device object by 
+ *                  rereading data that is not monitored for changes. 
+ *
+ *
+ *  Returns:
+ *           true in case all properpies have been received, false in any other
+ *           case.
+ *  
+ *  Example:
+ *
+ *
+ */
+bool HalDeviceProxy::rescan() {
+	DBus::CallMessage call;
+
+	call.member("Rescan");
+
+	//declaret out of try. scope solution 
+   	DBus::MessageIter it;
+	try {
+			DBus::Message reply = invoke_method(call);
+	    	it = reply.reader();
+	}
+	catch (const DBus::Error& exception){
+			std::cerr << "Rescan" << std::endl;
+			std::cerr << exception.what() << std::endl;
+    		std::cerr << exception.name() << std::endl;
+       		std::cerr << exception.message() << std::endl;
+	}
+
+	DBus::Bool argout;
+    it >> argout;
+
+	return argout;	
+}
+
+/** 
+ *  @get_all_properties:
+ *
+ *  HAL INFO
+ *  ========
+ *
+ *	Method:			GetAllProterties
+ *  Returns:		type = a{sv} -> an array of dict entry
+ *					(which DBus protocol suggest as a map, hash table or dict object)
+ *  Parameters:		- 
+ *  Throws:			??
+ *  Description:	Get all properties of a device
+ *
+ *  Returns:
+ *           true in case all properpies have been received, false in any other
+ *           case.
+ *  
+ *  Example:
+ *
+ *          This example shows how to print all key -> properties values that
+ *          a device possesses
+ *
+ *             DictVariable properties = HalDeviceProxy::GetAllProterties(_devices[udi]);
+ *             DictVariable::iterator it_properties;
+ *             for(it_properties = properties.begin(); it_properties != properties.end(); ++it_properties) {
+ *                std::cout << '\t' << "[" << it_properties->first << "->";
+ *                std::cout << it_properties->second;
+ *                std::cout << "]" << std::endl;
+ *             }
+ *
+ */
+bool HalDeviceProxy::get_all_properties() throw(DBus::Error) {
 	DBus::CallMessage call;
 	bool ok=false;
 	
 	call.member("GetAllProperties");
     
 	try {
-			DBus::Message reply = this->invoke_method(call);
-	    	DBus::MessageIter it = reply.reader();
+		DBus::Message reply = this->invoke_method(call);
+		DBus::MessageIter it = reply.reader();
 	    
-    		it >> _properties;
+		it >> _properties;
+		ok=true;
 	}
 	catch (const DBus::Error& exception){
+		std::cerr << "GetAllProperties" << std::endl;
 		std::cerr << exception.what() << std::endl;
-    		std::cerr << exception.name() << std::endl;
-       		std::cerr << exception.message() << std::endl;
+		std::cerr << exception.name() << std::endl;
+		std::cerr << exception.message() << std::endl;
 	}
-//TODO ok must be treated correctly
+
 	return ok;
 }
 
 
 /** 
- *  @name:
- *  @param:
+ *  @on_property_modified:
+ *  @sig:
  *
  *  Returns:
  *
@@ -205,8 +314,8 @@ void HalDeviceProxy::on_property_modified( const DBus::SignalMessage& sig ) {
 
 
 /** 
- *  @name:
- *  @param:
+ *  @on_condition:
+ *  @sig:
  *
  *  Returns:
  *

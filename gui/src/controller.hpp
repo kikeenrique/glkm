@@ -21,22 +21,18 @@
 #define _CONTROLLER_HPP
 
 
-#include "observer.hpp"
-
-class Subject;
-class Argument;
 class Hosts;
 class IconViewHosts;
-class MainWindow;
 class NotebookHosts;
+class NotebookPageHost;
+class Host;
 
-class Controller : public Observer {
+class Controller{
   public:
 	void action_host_selected();
+	void action_host_connect();
+	void action_host_refresh();
 	static Controller & instance();
-	virtual void update(Subject * s);
-	virtual void update(Subject * s, Argument * arg);
-	void set__pHosts(Hosts * value);
 	void set__pIconViewHosts(IconViewHosts * value);
 	void set__pNotebookHosts(NotebookHosts * value);
 
@@ -47,7 +43,6 @@ class Controller : public Observer {
 	Controller & operator=(const Controller & source);
 
 	Hosts *		_pHosts;
-	MainWindow *    _pMainwindow;
 	IconViewHosts * _pIconViewHosts;
 	NotebookHosts * _pNotebookHosts;
 };

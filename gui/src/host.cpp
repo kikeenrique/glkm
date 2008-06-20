@@ -18,7 +18,6 @@
  */
 
 #include "host.hpp"
-#include "process.hpp"
 #include "filesystem.hpp"
 #include "hal-controller.hpp"
 
@@ -26,25 +25,57 @@
 #include "debug.hpp"
 
 Host::Host() {
-	//hal_controler = new HalController ();
+	_hal_controller = NULL;
+	_filesystems = NULL;
 }
 
 Host::~Host() {
 	//Null
+	PRINTD ("~Host() ");
 }
 
 Host::Host(const Host & source) :
 	_hostname(source._hostname),
 	_ip(source._ip),
-	_description(source._description)
+	_description(source._description),
+	_hal_controller(source._hal_controller),
+	_filesystems(source._filesystems)
 {
+	PRINTD ("Host() copy ");
 }
 
 Host & Host::operator=(const Host & source) {
 	_hostname = source._hostname;
 	_ip = source._ip;
 	_description = source._description;
+	_hal_controller = source._hal_controller;
+	_filesystems = source._filesystems;
+	PRINTD ("Host() asignation ");
+
 	return *this;
+}
+
+void Host::connect (){
+	//connected means hal_controler != NULL
+	if (_hal_controller==NULL){
+		PRINTD ("Host:: beginning hal connection ");
+		_hal_controller = new HalController ();
+	} else {
+		PRINTD ("Host:: already connected " + _hostname);
+	}
+}
+
+void Host::get_all_processes() {
+	bool result;
+	result = _hal_controller->get_all_processes(*this);
+}
+
+bool Host::get_process(int PID, Process & process){
+	bool ret=true;
+
+	//REWORK this creates task_list[PID] even if process with PID does not exists
+//	process=task_list[PID];
+	return ret;
 }
 
 void Host::set__hostname(Glib::ustring value) {
@@ -57,12 +88,4 @@ void Host::set__ip(Glib::ustring value) {
 
 void Host::set__description(Glib::ustring value) {
   _description = value;
-}
-
-bool Host::get_process(int PID, Process & process){
-	bool ret=true;
-
-	//REWORK this creates task_list[PID] even if process with PID does not exists
-//	process=task_list[PID];
-	return ret;
 }

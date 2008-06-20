@@ -20,30 +20,30 @@
 #include <iostream>
 
 #include "notebook-page-host.hpp"
+#include "host.hpp"
 #include "tree-view-host.hpp"
-
 
 NotebookPageHost::NotebookPageHost(BaseObjectType * cobject, const RefPtrGladeXml & refGlade)
 	:Gtk::HPaned(cobject),
 	_refPtrGlademmXml(refGlade) 
 {
-	
-	//Tree View
+	//Set TreeView
 	_refPtrGlademmXml->get_widget_derived("notebook_hosts-treeview_host", _pTreeViewHost);
 	if (_pTreeViewHost){
 	}else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}
-
-//	pages().push_back(Gtk::Notebook_Helpers::TabElem(_pTreeViewHost, "tab 1") );
-//	TreeViewHost* temp;
-//	_refPtrGlademmXml->get_widget_derived("notebook_hosts-treeview_host", temp);
-//	_refPtrGlademmXml->get_widget("notebook_hosts-hpaned", temp);
-
 }
 
 NotebookPageHost::~NotebookPageHost() {
 }
 
+Host * NotebookPageHost::get_my_Host() {
+	return _pTreeViewHost->take_Host();
+}
 
-
+void NotebookPageHost::set_my_Host(Host & host) {
+	_pTreeViewHost->set__pHost(&host);
+	host.signal_Process_added.connect( sigc::mem_fun(*_pTreeViewHost,
+													 &TreeViewHost::on_Process_added));
+}

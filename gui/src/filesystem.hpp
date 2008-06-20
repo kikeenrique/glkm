@@ -33,7 +33,7 @@ class Filesystem
 
   protected:
 	File file_list;
-	Host * host;
+	Host * _host;
 };
 
 #endif // _FILESYSTEM_HPP

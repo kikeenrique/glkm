@@ -32,6 +32,7 @@ class StatusBar;
 class AboutDialog;
 class HostSelectDialog;
 class NotebookHosts;
+class Controller;
 
 class MainWindow : public Gtk::Window
 {

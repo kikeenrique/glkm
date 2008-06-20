@@ -23,37 +23,49 @@
 
 #include <glibmm/ustring.h>
 
+#include <sigc++/signal.h>
+
 #include <map>
 
-#include "observer.hpp"
+#include "process.hpp"
 
-class Process;
 class Filesystem;
 class HalController;
 
-class Host : public Subject {
+class Host {
   public:
 	Host();
 	virtual ~Host();
 	Host(const Host & source);
 	Host & operator=(const Host & source);
 
+	void connect();
+	void get_all_processes();
+	bool get_process(int PID, Process & process);
+
 	inline const Glib::ustring get__hostname() const;
 	void set__hostname(Glib::ustring value);
 	void set__ip(Glib::ustring value);
 	void set__description(Glib::ustring value);
-
-	bool get_process(int PID, Process & process);
 
   protected:
 	Glib::ustring _hostname;
 	Glib::ustring _ip;	
 	Glib::ustring _description;
 
-	Filesystem * filesystems;
-	std::map<int, Process> task_list;
+	typedef sigc::signal<void, Process> type_signal_Process_added;
 
-	HalController * hal_controler;
+	Filesystem * _filesystems;
+	std::map<int, Process> _task_list;
+
+	HalController * _hal_controller;
+
+  friend class HalParser;
+  
+  public:
+	type_signal_Process_added signal_Process_added;
+
+
 };
 inline const Glib::ustring Host::get__hostname() const {
   return _hostname;

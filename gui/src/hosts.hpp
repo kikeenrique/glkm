@@ -20,22 +20,26 @@
 #ifndef _HOSTS_HPP
 #define _HOSTS_HPP
 
+#include <sigc++/signal.h>
+
 #include <glibmm/ustring.h>
 
 #include <map>
 
-#include "observer.hpp"
+#include "host.hpp"
 
-class Host;
-
-class Hosts : public Subject {
+class Hosts{
   public:
   	Hosts();
 	virtual ~Hosts();
 	bool create_host(const Glib::ustring & hostname, const Glib::ustring & ip, const Glib::ustring & description);
 
   protected:
+	typedef sigc::signal<void, Host *> type_signal_Host_added;
 	std::map<Glib::ustring, Host> _hosts;
+
+  public:
+	type_signal_Host_added signal_Host_added;
 };
 
 #endif // _HOSTS_HPP

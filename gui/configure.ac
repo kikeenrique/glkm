@@ -46,6 +46,7 @@ GTKMM_REQUIRED=2.12
 LIBGLADEMM_REQUIRED=2.6
 LIBGNOME_REQUIRED=2.20
 LIBDBUSMM_REQUIRED=0.5.0
+LIBSIGCMM_REQUIRED=2.0.18
 AC_SUBST([GTKMM_REQUIRED])
 AC_SUBST([LIBGLADEMM_REQUIRED])
 AC_SUBST([LIBGNOME_REQUIRED])
@@ -128,6 +129,11 @@ if test "x$enable_gnome" = "xyes"; then
 else
 	AC_MSG_RESULT(no)
 fi
+
+# libdbusmm
+PKG_CHECK_MODULES([LIBSIGCMM], [sigc++-2.0 >= $LIBSIGCMM_REQUIRED])
+AC_SUBST([LIBSIGCMM_CFLAGS])
+AC_SUBST([LIBSIGCMM_LIBS])
 
 ################################################################################
 #		Checks for header files.
@@ -250,6 +256,8 @@ echo "  HAVE_LIBGNOME: $HAVE_LIBGNOME"
 echo "  LIBGNOME_CFLAGS: $LIBGNOME_CFLAGS"
 echo "  LIBGNOME_LIBS: $LIBGNOME_LIBS"
 echo ""
+echo "  LIBSIGCMM_CFLAGS: $LIBSIGCMM_CFLAGS"
+echo "  LIBSIGCMM_LIBS: $LIBSIGCMM_LIBS"
 echo ""
 echo "======================================================================"
 echo ""

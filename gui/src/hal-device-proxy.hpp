@@ -22,6 +22,7 @@
 
 #include <dbusmm/connection.h>
 #include <dbusmm/types.h>
+#include <dbusmm/error.h>
 #include <dbusmm/message.h>
 #include <dbusmm/interface.h>
 #include <dbusmm/object.h>
@@ -39,7 +40,9 @@ public:
 	virtual ~HalDeviceProxy();
 
 	DBus::Variant get_property(const DBus::String & key);
-	bool update_all_properties();
+	VectorString get_property_string_list(const DBus::String & key);
+	bool rescan();
+	bool get_all_properties() throw(DBus::Error);
 	
 private:
 	void on_property_modified(const DBus::SignalMessage & sig );

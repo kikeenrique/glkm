@@ -20,8 +20,9 @@
 #include "controller.hpp"
 #include "hosts.hpp"
 #include "icon-view-hosts.hpp"
-#include "main-window.hpp"
 #include "notebook-hosts.hpp"
+#include "notebook-page-host.hpp"
+#include "host.hpp"
 
 #include "config.h"
 #include "debug.hpp"
@@ -40,24 +41,38 @@ void Controller::action_host_selected() {
 		const Glib::ustring description = row[_pIconViewHosts->_ModelColumns.col_description];
 
 		PRINTD("Selected: hostname=" + hostname);
-
 		_pHosts->create_host(hostname, ip, description);
 	}
 
 }
 
+void Controller::action_host_connect() {
+	Gtk::Notebook::PageList::iterator current_page_it;
+	current_page_it = _pNotebookHosts->get_current();
+      
+	NotebookPageHost * current_page;
+	current_page = static_cast<NotebookPageHost *> (current_page_it->get_child());
+	Host * present_host;
+	present_host = current_page->get_my_Host();
+	PRINTD("Controller:: connect=" + present_host->get__hostname());
+	present_host->connect();
+	present_host->get_all_processes();
+}
+
+void Controller::action_host_refresh() {
+	Gtk::Notebook::PageList::iterator current_page_it;
+	current_page_it = _pNotebookHosts->get_current();
+      
+	NotebookPageHost * current_page;
+	current_page = static_cast<NotebookPageHost *> (current_page_it->get_child());
+	Host * present_host;	
+	present_host = current_page->get_my_Host();
+	PRINTD("Controller:: refresh=" + present_host->get__hostname());
+	present_host->get_all_processes();
+}
+
 Controller & Controller::instance(){
 	return singleton;
-}
-
-void Controller::update(Subject * s) {
-}
-
-void Controller::update(Subject * s, Argument * arg) {
-}
-
-void Controller::set__pHosts(Hosts * value) {
-	_pHosts = value;
 }
 
 void Controller::set__pIconViewHosts(IconViewHosts * value) {
@@ -66,13 +81,17 @@ void Controller::set__pIconViewHosts(IconViewHosts * value) {
 
 void Controller::set__pNotebookHosts(NotebookHosts * value) {
 	_pNotebookHosts = value;
-	_pHosts->attach(*_pNotebookHosts);
+	//_pHost exists because its created in Controller constructor
+	_pHosts->signal_Host_added.connect(sigc::mem_fun(*_pNotebookHosts,
+													 &NotebookHosts::on_Host_added) );
 }
 
 Controller Controller::singleton;
 
 Controller::Controller() {
-	_pHosts = new Hosts();
+	if (_pHosts==NULL){
+		_pHosts = new Hosts();
+	}
 }
 
 Controller::Controller(const Controller & source) {

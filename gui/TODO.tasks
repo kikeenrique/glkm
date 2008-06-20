@@ -82,6 +82,12 @@ http://live.gnome.org/GnomeGoals/AppIcon</comment>
    void  strcpy(const char* from, char* to); 
 </comment>
     </item>
+    <item>
+      <attribute id="1213744355" priority="0" done="0" start_date="733211" enddate="99999999" notify="0" endtime="-60" last_edited="1213744355"/>
+      <summary>window debug needs taking care of menu check</summary>
+      <comment>window debug needs taking care of menu check.
+Look for "on_close" signal and add a handler that unchecks checkmenu item</comment>
+    </item>
   </category>
   <item>
     <attribute id="1204215454" priority="2" done="1" start_date="733100" completed_date="733143" enddate="733101" notify="0" endtime="-60" last_edited="1207940324"/>
@@ -94,6 +100,13 @@ http://live.gnome.org/GnomeGoals/AppIcon</comment>
       <summary>Add timestamp to output info</summary>
       <comment>Add a timestamp on each debug output.
 </comment>
+    </item>
+    <item>
+      <attribute id="1213738198" priority="1" done="0" start_date="733210" enddate="99999999" notify="0" endtime="-60" last_edited="1213738198"/>
+      <summary>individuals and dynamicals entries and atribbutes with my kernel</summary>
+      <comment>This kernel module code maybe will help to create individuals and dynamicals entries and atribbutes with my kernel module
+
+svn checkout http://eeepc-linux.googlecode.com/svn/trunk/ eeepc-linux-read-only</comment>
     </item>
   </category>
   <category title="glkm-utils" place="3">

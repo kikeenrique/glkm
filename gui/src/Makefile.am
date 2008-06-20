@@ -7,6 +7,7 @@ AM_CPPFLAGS = \
 	$(GLKM_CFLAGS) \
 	$(LIBDBUSMM_CFLAGS) \
 	$(LIBGNOME_CFLAGS) \
+	$(LIBSIGCMM_CFLAGS) \
 	-DPROGRAMNAME_LOCALEDIR="${PROGRAMNAME_LOCALEDIR}" \
 	-DPACKAGE_LOCALE_DIR="$(prefix)/$(DATADIRNAME)/locale" \
 	-DPACKAGE_DATA_DIR="$(datadir)" \
@@ -55,7 +56,9 @@ glkm_SOURCES = \
 	notebook-hosts.hpp \
 	notebook-hosts.cpp \
 	notebook-page-host.hpp \
-	notebook-page-host.cpp
+	notebook-page-host.cpp \
+	hal-parser.hpp \
+	hal-parser.cpp
 
 #glkm_CFLAGS= \
 #	$(GLKM_CFLAGS) 	$(AM_CFLAGS)	$(LIBGNOME_CFLAGS)
@@ -64,7 +67,8 @@ glkm_SOURCES = \
 glkm_LDADD = \
 	$(GLKM_LIBS) \
 	$(LIBGNOME_LIBS) \
-	$(LIBDBUSMM_LIBS)
+	$(LIBDBUSMM_LIBS) \
+	$(LIBSIGCMM_LIBS)
 
 #glkm_LDFLAGS = \
 #	$(GLKM_LDFLAGS)

@@ -19,28 +19,34 @@
 #ifndef _HAL_MANAGER_PROXY_HPP
 #define _HAL_MANAGER_PROXY_HPP
 
-#include <dbusmm/connection.h>
-#include <dbusmm/message.h>
 #include <dbusmm/object.h>
 #include <dbusmm/interface.h>
+#include <dbusmm/connection.h>
+#include <dbusmm/message.h>
+#include <dbusmm/types.h>
 
 #include <map>
 
 #include "hal-device-proxy.hpp"
 #include "utils.hpp"
 
+class Host;
+class HalParser;
+
 class HalManagerProxy : public DBus::ObjectProxy, public DBus::InterfaceProxy {
 
   public:
 	HalManagerProxy(DBus::Connection& connection );
 	virtual ~HalManagerProxy();
-	
-	VectorString get_all_devices();
+	bool get_all_processes(Host & host);
 
   protected:
 	std::map<DBus::Path, HalDeviceProxyRefPtr> _devices;
+	HalDeviceProxyRefPtr _device;
 	
   private:
+	VectorString get_all_devices();
+	VectorString find_device_by_capability(const DBus::String & capability);
 	void on_device_added(const DBus::SignalMessage& sig );
 	void on_device_removed(const DBus::SignalMessage& sig );
 };

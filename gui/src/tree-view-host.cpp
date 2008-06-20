@@ -18,11 +18,15 @@
  */
 
 #include "tree-view-host.hpp"
+#include "host.hpp"
+#include "process.hpp"
 
 #include "config.h"
 #include "debug.hpp"
 
- 
+//TODO temporal
+#define GLADE_FILE  "/home/enrgar/svn/pfc/trunk/gui/data/glkm.glade" 
+
 TreeViewHost::TreeViewHost(BaseObjectType* cobject, const RefPtrGladeXml& refGlade):
 	Gtk::TreeView(cobject),
 	_refPtrGlademmXml(refGlade)
@@ -42,20 +46,37 @@ TreeViewHost::TreeViewHost(BaseObjectType* cobject, const RefPtrGladeXml& refGla
 														   &TreeViewHost::on_selected_row_callback) );
 
 	//Connect signal handlers for the treeview "menu popup treeview host" :
+//TODO this must be fixed sometime, this is not a proper way to do this	
+	RefPtrGladeXml _refPtrGlademmXml2;
+#ifdef GLIBMM_EXCEPTIONS_ENABLED
+	try {
+		_refPtrGlademmXml2 = Gnome::Glade::Xml::create(GLADE_FILE, "notebook_hosts-treeview_host-menu");
+	}
+	catch(const Gnome::Glade::XmlError& exception) {
+		std::cerr << exception.what() << std::endl;
+		throw; 
+	}	
+#else
+	std::auto_ptr<Gnome::Glade::XmlError> error;
+	_refPtrGlademmXml2 = Gnome::Glade::Xml::create(GLADE_FILE, "notebook_hosts-treeview_host-menu", "", error);
+	if (error.get()){
+		std::cerr << error->what() << std::endl;
+		return 1;
+	}
+#endif //GLIBMM_EXCEPTIONS_ENABLED
 	_pMenu_Popup_TreeView_Host = NULL;
-	_refPtrGlademmXml->get_widget("menu_popup_treeview_host", _pMenu_Popup_TreeView_Host);
+	_refPtrGlademmXml2->get_widget("notebook_hosts-treeview_host-menu", _pMenu_Popup_TreeView_Host);
 	if (_pMenu_Popup_TreeView_Host){
-//TODO		pm_Menu_Popup_TreeView_Host->signal_activate().connect( sigc::mem_fun( *this, &GlkmMainWindow::on_menuitem_quit_activated) );
 	}
 	_pMenuitem_Refresh = NULL;
-	_refPtrGlademmXml->get_widget("menuitem_refresh", _pMenuitem_Refresh);
+	_refPtrGlademmXml2->get_widget("notebook_hosts-treeview_host-menu-menuitem-refresh", _pMenuitem_Refresh);
 	if (_pMenuitem_Refresh) {
 		_pMenuitem_Refresh->signal_activate().connect(sigc::mem_fun(*this,
-																	&TreeViewHost::on_menu_file_popup_generic) );
+																	&TreeViewHost::on_menu_popup_refresh) );
 	}
 
 	//Fill the TreeView's model
-	fill_model();
+//	fill_model();
 	
 	//Add the TreeView's view columns:
 //	append_column_editable("PID", _modelColumns.col_id);
@@ -76,38 +97,47 @@ TreeViewHost::~TreeViewHost(){
 	//Null
 }
 
-/*
-void TreeViewHost::add_process_to_model(const Procces & p){
-	Gtk::TreeStore::Row row = *(_refPtrTreeStore->append());
-	row[_modelColumns.col_id] = p.get_PID();
- 	row[_modelColumns.col_name] = p.get_name();
+
+Host * TreeViewHost::take_Host() {
+	return _pHost;
 }
-*/
 
-void TreeViewHost::fill_model(){
-	Gtk::TreeStore::Row row = *(_refPtrTreeStore->append());
-	row[_ModelColumns.col_id] = 1;
-  	row[_ModelColumns.col_name] = "Billy Bob";
+void TreeViewHost::set__pHost(Host * value) {
+  _pHost = value;
+}
 
-	Gtk::TreeStore::Row childrow = *(_refPtrTreeStore->append(row.children()));
-	childrow[_ModelColumns.col_id] = 11;
-	childrow[_ModelColumns.col_name] = "Billy Bob Junior";
+void TreeViewHost::on_Process_added(const Process & process) {
+	int PID = process.get__PID();
+	int PPID = process.get__PPID();
+	PRINTD("TreeViewHost::on_Process_added " + process.get__name());
+	PRINTD(PPID);
 
-	childrow = *(_refPtrTreeStore->append(row.children()));
-	childrow[_ModelColumns.col_id] = 12;
-	childrow[_ModelColumns.col_name] = "Sue Bob";
-
-	row = *(_refPtrTreeStore->append());
-	row[_ModelColumns.col_id] = 2;
-	row[_ModelColumns.col_name] = "Joey Jojo";
-
-	row = *(_refPtrTreeStore->append());
-	row[_ModelColumns.col_id] = 3;
-	row[_ModelColumns.col_name] = "Rob McRoberts";
-
-	childrow = *(_refPtrTreeStore->append(row.children()));
-	childrow[_ModelColumns.col_id] = 31;
-	childrow[_ModelColumns.col_name] = "Xavier McRoberts";
+	if (PPID == 0) {
+		// When parent process is kernel
+		Gtk::TreeStore::Row row = *(_refPtrTreeStore->append());
+		row[_ModelColumns.col_id] = PID;
+	  	row[_ModelColumns.col_name] = "kernel " + process.get__name();
+	} else if (PPID == 1) {
+		// When parent process is init
+		Gtk::TreeStore::Row row = *(_refPtrTreeStore->append());
+		row[_ModelColumns.col_id] = PID;
+	  	row[_ModelColumns.col_name] = process.get__name();
+	} else {
+		// When parent process is other process look for it and let assume its
+		// responsability...
+		Gtk::TreeStore::Children children = _refPtrTreeStore->children();
+		Gtk::TreeStore::iterator iter;
+		for(iter = children.begin(); iter != children.end(); ++iter) {
+			Gtk::TreeModel::Row row = *iter;
+			// When parent process is founded, appendit as children and exit
+			if (row[_ModelColumns.col_id] == PPID ) {
+				Gtk::TreeStore::Row childrow = *(_refPtrTreeStore->append(row.children()));
+				childrow[_ModelColumns.col_id] = PID;
+				childrow[_ModelColumns.col_name] = process.get__name();
+				break;
+			}
+		}
+	}
 }
 
 /*
@@ -118,8 +148,9 @@ void TreeViewHost::on_treeview_row_activated (const Gtk::TreeModel::Path& path,
 	Gtk::TreeModel::iterator iter = _refPtrTreeStore->get_iter(path);
 	if (iter) {
 		Gtk::TreeModel::Row row = *iter;
-		PRINTD("Row activated: ID=" + row[_ModelColumns.col_id] 
-			   + std::string(", Name=") + row[_ModelColumns.col_name] );
+		int PID = (*iter)[_ModelColumns.col_id];
+		PRINTD("TreeViewHost::Row activated: ID=");
+		PRINTD(PID);
 	}
 }
 
@@ -141,16 +172,16 @@ bool TreeViewHost::on_button_press_event(GdkEventButton* event){
 	return return_value;
 }
 
-void TreeViewHost::on_menu_file_popup_generic(){
-	PRINTD("A popup menu item was selected.");
+void TreeViewHost::on_menu_popup_refresh(){
 	_refPtrTreeSelection = get_selection();
 	if (_refPtrTreeSelection)
 	{
 		Gtk::TreeModel::iterator iter = _refPtrTreeSelection->get_selected();
 		if (iter)
 		{
-			int id = (*iter)[_ModelColumns.col_id];
-			PRINTD("Selected ID=" + id );
+			int PID = (*iter)[_ModelColumns.col_id];
+			PRINTD("TreeViewHost::Row activated: ID=");
+			PRINTD(PID);
 		}
 	}
 }

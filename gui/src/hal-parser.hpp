@@ -17,28 +17,23 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _NOTEBOOK_PAGE_HOST_HPP
-#define _NOTEBOOK_PAGE_HOST_HPP
+#ifndef _HAL_PARSER_HPP_
+#define _HAL_PARSER_HPP_
 
-#include <gtkmm/paned.h>
+#include <dbusmm/types.h>
 
 #include "utils.hpp"
 
 class Host;
-class TreeViewHost;
 
-
-class NotebookPageHost : public Gtk::HPaned {
+class HalParser {
   public:
-	NotebookPageHost(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
-	virtual ~NotebookPageHost();
+	HalParser();
+	virtual ~HalParser();
+	void parse_add_processes(VectorString & hal_task_list, Host & host);
 
-	Host * get_my_Host();
-	void set_my_Host(Host & host);
-
-  protected:
-	RefPtrGladeXml _refPtrGlademmXml;
-	TreeViewHost * _pTreeViewHost;
+  private:
+	void tokenize(const DBus::String & str_orig, const DBus::String & delimiters, VectorString & tokens);
 };
 
-#endif // _NOTEBOOK_PAGE_HOST_HPP
+#endif // _HAL_PARSER_HPP_

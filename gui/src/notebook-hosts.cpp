@@ -19,7 +19,6 @@
 
 #include "notebook-hosts.hpp"
 #include "notebook-page-host.hpp"
-#include "hosts.hpp"
 #include "host.hpp"
 
 #include "config.h"
@@ -44,13 +43,17 @@ NotebookHosts::NotebookHosts(BaseObjectType * cobject, const RefPtrGladeXml & re
 NotebookHosts::~NotebookHosts() {
 }
 
+void NotebookHosts::on_Host_added(Host * host) {
+	add_host_page(*host);
+}
+/*
 void NotebookHosts::update(Subject * s) {
 }
 
 void NotebookHosts::update(Subject * s, Argument * arg) {
 	add_host_page(*(Host *)arg);
 }
-
+*/
 void NotebookHosts::on_my_page_added(Gtk::Widget * page, guint page_num) {
 //	PRINTD("Switched to tab with index " + page_num);
 }
@@ -78,14 +81,19 @@ void NotebookHosts::add_host_page(Host & host) {
 	}
 #endif //GLIBMM_EXCEPTIONS_ENABLED
 
-	NotebookPageHost * tmp;
-	_refPtrGlademmXml2->get_widget_derived("notebook_hosts-hpaned", tmp);
-	if (tmp){
-		//Set direct access on tree*view*host to host
-		//TODO
+	NotebookPageHost * tmp_NotebookPageHost = NULL;
+	_refPtrGlademmXml2->get_widget_derived("notebook_hosts-hpaned", tmp_NotebookPageHost);
+	if (tmp_NotebookPageHost){
+		tmp_NotebookPageHost->set_my_Host(host);
 
+/*
+		/TreeViewHost * tmp_TreeViewHost= NULL;
+		tmp_NotebookPageHost->take__pTreeViewHost(tmp_TreeViewHost);
+		//Set direct access on tree*view*host to its corresponent model host
+		tmp_TreeViewHost->set__pHost(&host);
+*/
 		//Label showed will be hostname
-		append_page(*tmp, host.get__hostname());	
+		append_page(*tmp_NotebookPageHost, host.get__hostname());	
 		show_all_children();
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;

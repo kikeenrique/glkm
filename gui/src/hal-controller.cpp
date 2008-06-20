@@ -16,32 +16,53 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+//TODO further investigation
 //#include <signal.h>
-#include <dbusmm/dispatcher.h>
+
+#include <iostream>
 
 #include "hal-controller.hpp"
 #include "hal-manager-proxy.hpp"
+#include "host.hpp"
 
 HalController::HalController():
-	_connection(DBus::Connection::SystemBus())
+//	_connection(DBus::Connection::SystemBus())
+	_dispatcher()
 {
-//	signal(SIGTERM, sigc::mem_fun( *this, &HalController::niam) );
-//	signal(SIGINT, sigc::mem_fun( *this, &HalController::niam));
-	_hal_manager = new HalManagerProxy(_connection);
+//TODO further investigation 
+//      signal(SIGTERM, sigc::mem_fun( *this, &HalController::niam) );
+//      signal(SIGINT, sigc::mem_fun( *this, &HalController::niam));
 	DBus::default_dispatcher = &_dispatcher;
+	//attached by default to glib main context
 	_dispatcher.attach(NULL);
-	_dispatcher.enter();
+	try {
+		_connection = new DBus::Connection(DBus::Connection::SystemBus());
+	}
+	catch (const DBus::Error& exception){
+		std::cerr << "Connection" << std::endl;
+		std::cerr << exception.what() << std::endl;
+    		std::cerr << exception.name() << std::endl;
+       		std::cerr << exception.message() << std::endl;
+	}
+
+	/*
+	dbusmm Connection seems to use dbus_bus_get_private() to get a system 
+	bus connection. And as DBUS api doc version 1.2.1 says 
+	"This function calls dbus_connection_set_exit_on_disconnect() on the
+	new connection, so the application will exit if the connection closes.
+	You can undo this by calling dbus_connection_set_exit_on_disconnect()
+	yourself after you get the connection."
+	*/
+	_connection->exit_on_disconnect (false);
+	_hal_manager = new HalManagerProxy(*_connection);
 }
 
 HalController::~HalController() {
-}
-
-bool HalController::update_processes() {
-}
-
-void HalController::update_process_info() {
-}
-
-void HalController::niam(int sig) {
 	_dispatcher.leave();
+	_connection->disconnect();
+	//TODO threat halmanagerproxy pointer, for example    
+}
+
+bool HalController::get_all_processes(Host & host) {
+	return _hal_manager->get_all_processes(host);
 }

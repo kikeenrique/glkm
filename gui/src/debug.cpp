@@ -22,8 +22,14 @@
  *		Boston, MA  02110-1301, USA.
  */
 
-#include "debug.hpp"
+#include <string>
+#include <iostream>
 #include <sstream>
+#include <stdexcept>
+#include <iomanip>
+#include <ctime>
+
+#include "debug.hpp"
 
 TextViewDebug::TextViewDebug (BaseObjectType* cobject, 
 							  const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
@@ -41,29 +47,65 @@ TextViewDebug::~TextViewDebug()
 	//Null
 }
 
-void TextViewDebug::fill_buffer()
-{
-	_refPtrTextBuffer = get_buffer();
-	_refPtrTextBuffer->set_text("BEGIN\n");
-}
-
 void TextViewDebug::debug_print(const Glib::ustring& text)
 {
-	_refPtrTextBuffer->insert_at_cursor(text+"\n");
+	_position = _refPtrTextBuffer->insert(_position, "[" + get_timestamp() + "] " + text + "\n");
 }
 
 void TextViewDebug::debug_print(const char* text)
 {
 	Glib::ustring tmp(text);
-	_refPtrTextBuffer->insert_at_cursor(tmp+"\n");
+	_position = _refPtrTextBuffer->insert(_position, "[" + get_timestamp() + "] " + tmp + "\n");
 }
 
 void TextViewDebug::debug_print(const int & number)
 {
 	Glib::ustring tmp;
-	std::stringstream out;
+	tmp = Glib::ustring::format(number);
+/*	std::stringstream out;
 	out << number;
 	tmp = out.str();
+*/
+	_position = _refPtrTextBuffer->insert(_position, "[" + get_timestamp() + "] " + tmp + "\n");
+}
 
-	_refPtrTextBuffer->insert_at_cursor(tmp+"\n");
+void TextViewDebug::fill_buffer()
+{
+	_refPtrTextBuffer = get_buffer();
+	_refPtrTextBuffer->set_text(get_timestamp());
+	_refPtrTextBuffer->set_text(" BEGIN\n");
+	_position = _refPtrTextBuffer->end();
+}
+
+/*
+  Deprecated for Glib::ustring::format
+class BadConversion : public std::runtime_error {
+  public:
+	BadConversion(const std::string& s)
+		: std::runtime_error(s) {
+	}
+};
+ 
+inline std::string dtostring(double x) {
+	std::ostringstream o;
+	o.precision(10);
+
+	if (!(o << x)){
+		throw BadConversion("dtostring(double)");
+	}
+	return o.str();
+} 
+*/
+
+Glib::ustring TextViewDebug::get_timestamp(){
+	double dtime = clock();
+	Glib::ustring timestamp;
+	try {
+		timestamp = Glib::ustring::format(std::setprecision(10), dtime);
+	} catch (const Glib::ConvertError exception) {
+		std::cerr << exception.what() << std::endl;
+		throw;
+	}
+		
+	return timestamp;
 }

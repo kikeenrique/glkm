@@ -34,8 +34,11 @@ class Process {
 	Process & operator=(const Process & source);
 
 	inline const int get__PID() const;
+	void set__PID(int value);
+	inline const int get__PPID() const;
 	void set__PPID(int value);
 	inline const Glib::ustring get__name() const;
+	void set__name(Glib::ustring value);
 
   protected:
 	int _PID;
@@ -46,6 +49,10 @@ class Process {
 };
 inline const int Process::get__PID() const {
   return _PID;
+}
+
+inline const int Process::get__PPID() const {
+  return _PPID;
 }
 
 inline const Glib::ustring Process::get__name() const {

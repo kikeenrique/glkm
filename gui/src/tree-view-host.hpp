@@ -26,9 +26,10 @@
 #include <gtkmm/menu.h>
 #include <gtkmm/menuitem.h>
 
-//#include <gtkmm/treestore.h>
-
 #include "utils.hpp"
+
+class Host;
+class Process;
 
 class TreeViewHost : public Gtk::TreeView {
 
@@ -36,11 +37,16 @@ class TreeViewHost : public Gtk::TreeView {
 	TreeViewHost(BaseObjectType* cobject, const RefPtrGladeXml & refGlade);
 	virtual ~TreeViewHost();
 
+	Host * take_Host();
+	void set__pHost(Host * value);
+
+	void on_Process_added(const Process & process);
+
   protected:
 	RefPtrGladeXml _refPtrGlademmXml;
 	
 	//Signal handlers:
-	virtual void on_treeview_row_activated(const Gtk::TreeModel::Path & path, 
+	void on_treeview_row_activated(const Gtk::TreeModel::Path & path, 
 			  		       Gtk::TreeViewColumn * column);
 	void on_selected_row_callback(const Gtk::TreeModel::iterator & iter);
 	// Override Signal handler:
@@ -48,10 +54,7 @@ class TreeViewHost : public Gtk::TreeView {
 	virtual bool on_button_press_event(GdkEventButton *ev);
 
 	//Signal handler for popup menu items:
-	virtual void on_menu_file_popup_generic();
-
-	//
-	void fill_model();
+	void on_menu_popup_refresh();
 
 
 	//Tree model columns:
@@ -71,7 +74,8 @@ class TreeViewHost : public Gtk::TreeView {
 
 	Gtk::Menu*			_pMenu_Popup_TreeView_Host;
 	Gtk::MenuItem*			_pMenuitem_Refresh;
-	
+
+	Host * _pHost;
 };
 
 #endif //_TREE_VIEW_HOST_HPP

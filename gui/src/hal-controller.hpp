@@ -23,22 +23,19 @@
 #include <dbusmm/glib-integration.h>
 #include <dbusmm/connection.h>
 
+class Host;
 class HalManagerProxy;
 
 class HalController {
   public:
 	HalController();
 	virtual ~HalController();
-	bool update_processes();
-	void update_process_info();
+	bool get_all_processes(Host & host);
 
   protected:
-	void niam(int sig);
-
-	DBus::Connection _connection;
+	DBus::Connection * _connection;
 	HalManagerProxy * _hal_manager;
 	DBus::Glib::BusDispatcher _dispatcher;
-
 };
 
 #endif // _HAL_CONTROLER_HPP

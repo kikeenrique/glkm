@@ -16,18 +16,14 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-
 #include <dbusmm/types.h>
 
-#include <iostream>
-
 #include "hal-manager-proxy.hpp"
+#include "host.hpp"
+#include "hal-parser.hpp"
 
 #include "config.h"
 #include "debug.hpp"
-
-
 
 
 #define DBUS_TYPE_STRUCT        ((int) 'r')
@@ -39,7 +35,6 @@
 /** 
  *  HalManagerProxy:  
  *  @connection:         Bla, bla
- *  @file:               File, e.g. "procmon"
  *
  *  Returns:             A stringlist with the content of file. 
  *                       Each line is a string
@@ -52,53 +47,48 @@
  * HAL Manager
  *
  *
-	Method			Returns		Parameters	Throws	Description
-	------			-------		----------	------  -----------
-	GetAllDevices   Objref[]					Get all UDI's in the database.
-     
+	Method			Returns		Parameters		Throws	Description
+	------			-------		----------		------  -----------
+	GetAllDevices		Objref[]	-			-	Get all UDI's in the database.
+	FindDeviceByCapability	Objref[]	String capability       -       Finds devices of the given capability. 
+
 	Signal			Parameters		Description
 	------			----------		-----------	 
 	DeviceAdded     Objref obj			A device was added to the global device list (GDL).
 	DeviceRemoved   Objref obj			A device was removed from the global device list (GDL).
  *	 
  */
-HalManagerProxy::HalManagerProxy(DBus::Connection& connection )
-: DBus::InterfaceProxy("org.freedesktop.Hal.Manager"),
-  DBus::ObjectProxy(connection, "/org/freedesktop/Hal/Manager", "org.freedesktop.Hal") {
+HalManagerProxy::HalManagerProxy(DBus::Connection& connection ) :
+	DBus::InterfaceProxy("org.freedesktop.Hal.Manager"),
+	DBus::ObjectProxy(connection, "/org/freedesktop/Hal/Manager", "org.freedesktop.Hal"),
+	_device(NULL)
+{
 	connect_signal(HalManagerProxy, DeviceAdded, on_device_added);
 	connect_signal(HalManagerProxy, DeviceRemoved, on_device_removed);
 
-	std::vector< DBus::String > devices = get_all_devices();
-	std::vector< DBus::String >::iterator it;
+	// Get devices that are able to monitor kernel, that should be only our 
+        // own "glkm device"(:p)
+	VectorString devices = find_device_by_capability("linux-kernel-monitor");
+	VectorString::iterator it;
+	//Load those devices in our model.
 	for(it = devices.begin(); it != devices.end(); ++it) {
 		DBus::Path udi = *it;
-		_devices[udi] = new HalDeviceProxy(connection, udi);
-
+		//TODO see design doc *this should be our future*
 		if ( udi.find("proc", 0) != DBus::String::npos ) {
-			std::cout << "procmon device " << udi << std::endl;
-/*			std::cout << "device properties: " << std::endl;
-			std::map< DBus::String, DBus::Variant > properties = HalDeviceProxy::GetAllProterties(_devices[udi]);
-			std::map< DBus::String, DBus::Variant >::iterator it_properties;
-			for(it_properties = properties.begin(); it_properties != properties.end(); ++it_properties){
-				std::cout << '\t' << "[" << it_properties->first << "->";
-				std::cout << it_properties->second;
-				std::cout << "]" << std::endl;
-			}
-*/
-		} else {
-			std::cout << "found device " << udi << std::endl;
+			_device = new HalDeviceProxy(connection, udi);
+			PRINTD ("lkm device found " + udi );
 		}
+//    		_devices[udi]->update_all_properties();
 	}
 }
 
 
 /** 
- *  get_property:
- *  @key:
+ *  ~HalManagerProxy:
  *
  *  Returns:
  *
- *  Exceptions:			NoSuchProperty
+ *  Exceptions:
  *
  *  Example:
  *
@@ -106,10 +96,31 @@ HalManagerProxy::HalManagerProxy(DBus::Connection& connection )
 HalManagerProxy::~HalManagerProxy() {
 }
 
+/** 
+ *  get_all_processes:
+ *
+ *  Returns:
+ *
+ *  Exceptions:
+ *
+ *  Example:
+ *
+ */
+bool HalManagerProxy::get_all_processes(Host & host) {
+	if (_device){
+//     		PRINTD("refreshing properties");
+//		_device->rescan();
+    		PRINTD("getting all processess");
+		VectorString task_list = _device->get_property_string_list ("misc.task_list");
+	    	HalParser h;
+		h.parse_add_processes (task_list, host);
+	} else {
+		PRINTD("no linux-kernel-monitor device found");
+	}
+}
 
 /** 
- *  get_property:
- *  @key:
+ *  get_all_devices:
  *
  *  Returns:
  *
@@ -119,22 +130,70 @@ HalManagerProxy::~HalManagerProxy() {
  *
  */
 VectorString HalManagerProxy::get_all_devices() {
-
 	DBus::CallMessage call;
+
 	call.member("GetAllDevices");
 
-	DBus::Message reply = invoke_method(call);
-	DBus::MessageIter it = reply.reader();
+    	//declaret out of try. scope solution 
+	DBus::MessageIter it;
+	try {
+		DBus::Message reply = invoke_method(call);
+		it = reply.reader();
+	}
+	catch (const DBus::Error& exception){
+		std::cerr << "GetAllDevices" << std::endl;
+		std::cerr << exception.what() << std::endl;
+    		std::cerr << exception.name() << std::endl;
+       		std::cerr << exception.message() << std::endl;
+	}
 
-	std::vector< DBus::String > udis;
+	VectorString udis;
 	it >> udis;
+
+	return udis;
+}
+
+/** 
+ *  find_device_by_capability:
+ *  @capability:
+ *
+ *  Returns:
+ *
+ *  Exceptions:			NoSuchProperty
+ *
+ *  Example:
+ *
+ */
+VectorString HalManagerProxy::find_device_by_capability(const DBus::String & capability) {
+    	DBus::CallMessage call;
+        DBus::MessageIter wi = call.writer();
+        wi << capability;
+
+	call.member("FindDeviceByCapability");
+
+    	//declaret out of try. scope solution 
+	DBus::MessageIter it;
+    	try {
+		DBus::Message reply = invoke_method(call);
+		it = reply.reader();
+	}
+	catch (const DBus::Error& exception){
+		std::cerr << "FindDeviceByCapability" << std::endl;
+		std::cerr << exception.what() << std::endl;
+    		std::cerr << exception.name() << std::endl;
+       		std::cerr << exception.message() << std::endl;
+	}
+
+	VectorString udis;
+	it >> udis;
+
 	return udis;
 }
 
 
 /** 
- *  get_property:
- *  @key:
+ *  on_device_added:
+ *  @sig:
  *
  *  Returns:
  *
@@ -152,13 +211,13 @@ void HalManagerProxy::on_device_added(const DBus::SignalMessage & sig) {
 	DBus::Path udi(devname);
 
 	_devices[devname] = new HalDeviceProxy(conn(), udi);
-	std::cout << "added device " << udi << std::endl;
+	PRINTD("added device " + devname);
 }
 
 
 /** 
- *  get_property:
- *  @key:
+ *  on_device_removed:
+ *  @sig:
  *
  *  Returns:
  *
@@ -174,7 +233,7 @@ void HalManagerProxy::on_device_removed(const DBus::SignalMessage & sig) {
 
 	it >> devname;
 
-	std::cout << "removed device " << devname << std::endl;
+	PRINTD("removed device " + devname);
 
 	_devices.erase(devname);
 }

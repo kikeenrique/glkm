@@ -441,7 +441,6 @@ hal_util_get_strlist_from_file (const gchar *directory, const gchar *file)
 				break;
 			buf[i] = '\0';
 		}
-		g_printf ("KIKE %s", &buf[0]);
 		result = g_slist_prepend (result, g_strdup (buf));
 	}
     
@@ -497,7 +496,6 @@ gboolean hal_util_set_strlist_from_file (HalDevice *d, const gchar *key, const g
     
 	return ret;
 }
-
 
 void
 hal_util_make_udi_unique (HalDeviceStore *store, gchar *udi, gsize udisize, const char *original_udi)

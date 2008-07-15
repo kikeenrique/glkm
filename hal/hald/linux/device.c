@@ -119,6 +119,9 @@ misc_add (const gchar *sysfs_path, const gchar *device_file, HalDevice *parent_d
 	dev_id = hal_util_get_last_element (sysfs_path);
 	hal_device_property_set_string (d, "misc.id", dev_id);
 
+/*
+        dev_type has no real implications, so deprecate this code
+	related code is also commented out in "misc_compute_udi"
 	dev_type = hal_util_get_string_from_file (sysfs_path, "name");
 	if (dev_type) {
 		hal_device_property_set_string (d, "misc.type", dev_type);
@@ -127,9 +130,10 @@ misc_add (const gchar *sysfs_path, const gchar *device_file, HalDevice *parent_d
 	} else {
 		hal_device_property_set_string (d, "info.product", "Misc Device (unknown)");
 	}
-
+	
+	This is a subsystem-specific property
 	hal_util_set_strlist_from_file (d, "misc.task_list", sysfs_path, "task_list");
-
+*/
 	hal_device_add_capability (d, "misc");
 
 	HAL_INFO (("misc_info: sysfs_path=%s device_file=%s dev_id=%s dev_type=%s", sysfs_path, device_file, dev_id, dev_type));
@@ -138,7 +142,11 @@ misc_add (const gchar *sysfs_path, const gchar *device_file, HalDevice *parent_d
 out:
 	return d;
 }
+
 /*
+ This code is not needed by now and need further investigation to know what could
+ it be used for.
+
 static const gchar *
 misc_get_prober (HalDevice *d)
 {
@@ -153,6 +161,7 @@ misc_post_probing (HalDevice *d)
 	return TRUE;
 }
 */
+
 static gboolean
 misc_compute_udi (HalDevice *d)
 {
@@ -161,7 +170,7 @@ misc_compute_udi (HalDevice *d)
 
 	type = hal_device_property_get_string (d, "misc.type");
 
-	if (type) {
+/*	if (type) {
 		hald_compute_udi (udi, sizeof (udi),
 				  "/org/freedesktop/Hal/devices/misc_%s_%s",
 				  type,
@@ -171,7 +180,11 @@ misc_compute_udi (HalDevice *d)
 				  "/org/freedesktop/Hal/devices/misc_%s",
 				  hal_device_property_get_string (d, "misc.id"));
 	}
+*/
 
+	hald_compute_udi (udi, sizeof (udi),
+			  "/org/freedesktop/Hal/devices/%s",
+			  hal_device_property_get_string (d, "misc.id"));
 	hal_device_set_udi (d, udi);
 	hal_device_property_set_string (d, "info.udi", udi);
 

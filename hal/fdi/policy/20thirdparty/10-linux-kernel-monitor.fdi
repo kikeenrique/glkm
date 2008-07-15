@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<deviceinfo version="0.2">
+  <device>
+    <match key="info.udi" string="/org/freedesktop/Hal/devices/procmon">
+      <append key="info.capabilities" type="strlist">linux-kernel-monitor</append>
+      <append key="info.addons" type="strlist">hald-addon-linux-kernel-monitor</append>
+      <merge key="info.category" type="string">linux_kernel_monitor</merge>
+      <merge key="info.product" type="string">linux kernel monitor Hal-Control</merge>
+    </match>
+  </device>
+</deviceinfo>

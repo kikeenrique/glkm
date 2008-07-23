@@ -17,42 +17,30 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _HAL_DEVICE_PROXY_HPP
-#define _HAL_DEVICE_PROXY_HPP
+#ifndef _LINUX_KERNEL_MONITOR_CLIENT_HPP_
+#define _LINUX_KERNEL_MONITOR_CLIENT_HPP_
 
+#include <dbusmm/introspection.h>
+#include <dbusmm/object.h>
 #include <dbusmm/connection.h>
 #include <dbusmm/types.h>
-#include <dbusmm/error.h>
-#include <dbusmm/message.h>
-#include <dbusmm/interface.h>
-#include <dbusmm/object.h>
-#include <dbusmm/util.h>
 
-#include "utils.hpp"
 
-class HalDeviceProxy: 
-	public DBus::InterfaceProxy,
-	public DBus::ObjectProxy
+#include "linux-kernel-monitor-client-proxy.hpp"
+
+class Host;
+class HalParser;
+
+class LinuxKernelMonitorClient : 
+	public org::freedesktop::Hal::Device::LinuxKernelMonitor,
+	public DBus::IntrospectableProxy,
+	public DBus::ObjectProxy 
 {
 
-public:
-	HalDeviceProxy(DBus::Connection & connection, const DBus::Path & udi );
-	virtual ~HalDeviceProxy();
+  public:
+	LinuxKernelMonitorClient(DBus::Connection & conn, const DBus::Path & udi);
 
-	DBus::String get_property_string(const DBus::String & key);
-	VectorString get_property_string_list(const DBus::String & key);
-	bool rescan();
-	bool get_all_properties() throw(DBus::Error);
-
-private:
-	void on_property_modified(const DBus::SignalMessage & sig );
-	void on_condition( const DBus::SignalMessage & sig );
-	
-protected:
-	DictVariable _properties;
-
+	bool get_all_processes(Host & host);
 };
 
-typedef DBus::RefPtr<HalDeviceProxy> HalDeviceProxyRefPtr;
-
-#endif // _HAL_DEVICE_PROXY_HPP
+#endif // _LINUX_KERNEL_MONITOR_CLIENT_HPP_

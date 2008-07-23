@@ -40,15 +40,25 @@ class TreeViewHost : public Gtk::TreeView {
 	Host * take_Host();
 	void set__pHost(Host * value);
 
-	void on_Process_added(const Process & process);
+	void on_process_added(const Process & process);
+	void on_process_removed(const Process & process);
 
   protected:
 	RefPtrGladeXml _refPtrGlademmXml;
-	
+
+	bool find_parent_process(const Process & process,
+				  Gtk::TreeModel::iterator & found_iter);
+	bool find_process(const Process & process,
+			  Gtk::TreeModel::iterator & found_iter);
+	bool find_process_by_PID_from_here(int PID,
+					   const Gtk::TreeModel::iterator & from_iter,
+					   Gtk::TreeModel::iterator & found_iter);
+
 	//Signal handlers:
 	void on_treeview_row_activated(const Gtk::TreeModel::Path & path, 
 			  		       Gtk::TreeViewColumn * column);
 	void on_selected_row_callback(const Gtk::TreeModel::iterator & iter);
+
 	// Override Signal handler:
 	// Alternatively, use signal_button_press_event().connect_notify()
 	virtual bool on_button_press_event(GdkEventButton *ev);
@@ -56,16 +66,17 @@ class TreeViewHost : public Gtk::TreeView {
 	//Signal handler for popup menu items:
 	void on_menu_popup_refresh();
 
-
 	//Tree model columns:
 	class ModelColumns : public Gtk::TreeModel::ColumnRecord {
 	public:
 		ModelColumns() {
-			add(col_id);
+			add(col_PID);
 			add(col_name);
+			add(col_PPID);
 		}
-		TreeModelColumnInt col_id;
+		TreeModelColumnInt col_PID;
 		TreeModelColumnUstring col_name;
+		TreeModelColumnInt col_PPID;
 	};
 
 	ModelColumns			_ModelColumns;

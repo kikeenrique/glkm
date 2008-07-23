@@ -46,7 +46,9 @@ Process::Process(const Process & source) :
 Process & Process::operator=(const Process & source) {
 	_PID = source._PID;
 	_PPID = source._PPID;
-	_name = source._name;	
+	_name = source._name;
+	_synchronized = source._synchronized;
+	PRINTD ("Process::operator= ");
 	//TODO
 	//	std::vector<File *> files_opened;
 	return *this;	
@@ -62,9 +64,8 @@ void Process::set__PPID(int value) {
 
 void Process::set__name(Glib::ustring value) {
 	_name = value;
-/*	if (_name.validate()){
-		PRINTD ("Process() validated ");
-	} else {
-		PRINTD ("Process() validated NOT ");
-	}*/
+}
+
+void Process::set__synchronized(bool value) {
+  _synchronized = value;
 }

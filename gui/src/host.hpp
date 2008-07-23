@@ -41,6 +41,11 @@ class Host {
 
 	void connect();
 	void get_all_processes();
+	void add_and_synchronize_process(Process & process);
+	void delete_all_not_synchronized();
+
+	void print_processes();
+
 	bool get_process(int PID, Process & process);
 
 	inline const Glib::ustring get__hostname() const;
@@ -53,19 +58,19 @@ class Host {
 	Glib::ustring _ip;	
 	Glib::ustring _description;
 
-	typedef sigc::signal<void, Process> type_signal_Process_added;
-
 	Filesystem * _filesystems;
 	std::map<int, Process> _task_list;
 
 	HalController * _hal_controller;
 
-  friend class HalParser;
-  
+//	friend class HalParser;
+
+	typedef sigc::signal<void, Process> type_signal_process_added;
+	typedef sigc::signal<void, Process> type_signal_process_removed;
+
   public:
-	type_signal_Process_added signal_Process_added;
-
-
+	type_signal_process_added signal_process_added;
+	type_signal_process_removed signal_process_removed;
 };
 inline const Glib::ustring Host::get__hostname() const {
   return _hostname;

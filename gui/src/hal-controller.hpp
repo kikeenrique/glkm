@@ -25,6 +25,7 @@
 
 class Host;
 class HalManagerProxy;
+class LinuxKernelMonitorClient;
 
 class HalController {
   public:
@@ -36,6 +37,9 @@ class HalController {
 	DBus::Connection * _connection;
 	HalManagerProxy * _hal_manager;
 	DBus::Glib::BusDispatcher _dispatcher;
+
+  private:
+	LinuxKernelMonitorClient * _lkm_client;
 };
 
 #endif // _HAL_CONTROLER_HPP

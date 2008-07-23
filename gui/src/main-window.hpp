@@ -78,12 +78,12 @@ protected:
 	//		Toolbar
 	void on_clicked_toolbar_select();
 	void on_clicked_toolbar_connect();
-	void on_clicked_toolbar_refresh();
+	void on_clicked_toolbar_synchronize();
 		
 	Gtk::Toolbar *		_pToolbar;
 	Gtk::ToolButton * 	_pToolButton_Select;
 	Gtk::ToolButton *	_pToolButton_Connect;
-	Gtk::ToolButton *	_pToolButton_Refresh;
+	Gtk::ToolButton *	_pToolButton_Synchronize;
 
 	//		Main Window (Important stuff)
 	NotebookHosts *		_pNotebookHosts;

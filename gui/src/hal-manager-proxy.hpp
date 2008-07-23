@@ -30,15 +30,13 @@
 #include "hal-device-proxy.hpp"
 #include "utils.hpp"
 
-class Host;
-class HalParser;
-
 class HalManagerProxy : public DBus::ObjectProxy, public DBus::InterfaceProxy {
 
   public:
 	HalManagerProxy(DBus::Connection& connection );
 	virtual ~HalManagerProxy();
-	bool get_all_processes(Host & host);
+
+	DBus::Path get_device_udi();
 
   protected:
 	std::map<DBus::Path, HalDeviceProxyRefPtr> _devices;
@@ -52,3 +50,6 @@ class HalManagerProxy : public DBus::ObjectProxy, public DBus::InterfaceProxy {
 };
 
 #endif //_HAL_MANAGER_PROXY_HPP
+
+
+

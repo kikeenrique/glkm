@@ -25,12 +25,13 @@
 #include "utils.hpp"
 
 class Host;
+class Process;
 
 class HalParser {
   public:
 	HalParser();
 	virtual ~HalParser();
-	void parse_add_processes(VectorString & hal_task_list, Host & host);
+	void parse_synchronize_processes(VectorString & hal_task_list, Host & host);
 
   private:
 	void tokenize(const DBus::String & str_orig, const DBus::String & delimiters, VectorString & tokens);

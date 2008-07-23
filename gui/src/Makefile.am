@@ -58,7 +58,9 @@ glkm_SOURCES = \
 	notebook-page-host.hpp \
 	notebook-page-host.cpp \
 	hal-parser.hpp \
-	hal-parser.cpp
+	hal-parser.cpp \
+	linux-kernel-monitor-client.hpp \
+	linux-kernel-monitor-client.cpp
 
 #glkm_CFLAGS= \
 #	$(GLKM_CFLAGS) 	$(AM_CFLAGS)	$(LIBGNOME_CFLAGS)

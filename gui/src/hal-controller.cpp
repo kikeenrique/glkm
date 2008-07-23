@@ -24,9 +24,9 @@
 #include "hal-controller.hpp"
 #include "hal-manager-proxy.hpp"
 #include "host.hpp"
+#include "linux-kernel-monitor-client.hpp"
 
 HalController::HalController():
-//	_connection(DBus::Connection::SystemBus())
 	_dispatcher()
 {
 //TODO further investigation 
@@ -39,7 +39,7 @@ HalController::HalController():
 		_connection = new DBus::Connection(DBus::Connection::SystemBus());
 	}
 	catch (const DBus::Error& exception){
-		std::cerr << "Connection" << std::endl;
+		std::cerr << "HalController(): Connection" << std::endl;
 		std::cerr << exception.what() << std::endl;
     		std::cerr << exception.name() << std::endl;
        		std::cerr << exception.message() << std::endl;
@@ -55,6 +55,19 @@ HalController::HalController():
 	*/
 	_connection->exit_on_disconnect (false);
 	_hal_manager = new HalManagerProxy(*_connection);
+    
+	DBus::Path procmon_udi = _hal_manager->get_device_udi();
+	try {
+		_lkm_client = new LinuxKernelMonitorClient(*_connection, procmon_udi);
+	}
+	catch (const DBus::Error& exception){
+		std::cerr << "HalController() : LinuxKernelMonitorClient" << std::endl;
+		std::cerr << exception.what() << std::endl;
+    		std::cerr << exception.name() << std::endl;
+       		std::cerr << exception.message() << std::endl;
+	}
+
+
 }
 
 HalController::~HalController() {
@@ -64,5 +77,5 @@ HalController::~HalController() {
 }
 
 bool HalController::get_all_processes(Host & host) {
-	return _hal_manager->get_all_processes(host);
+	return _lkm_client->get_all_processes(host);
 }

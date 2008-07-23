@@ -18,19 +18,11 @@
 
 #include <dbusmm/types.h>
 
+
 #include "hal-manager-proxy.hpp"
-#include "host.hpp"
-#include "hal-parser.hpp"
 
 #include "config.h"
 #include "debug.hpp"
-
-
-#define DBUS_TYPE_STRUCT        ((int) 'r')
-#define DBUS_TYPE_STRING        ((int) 's')
-#define DBUS_TYPE_ARRAY         ((int) 'a')
-#define DBUS_TYPE_VARIANT       ((int) 'v')
-#define DBUS_TYPE_DICT_ENTRY    ((int) 'e')
 
 /** 
  *  HalManagerProxy:  
@@ -97,7 +89,7 @@ HalManagerProxy::~HalManagerProxy() {
 }
 
 /** 
- *  get_all_processes:
+ *  get_device_udi:
  *
  *  Returns:
  *
@@ -106,18 +98,17 @@ HalManagerProxy::~HalManagerProxy() {
  *  Example:
  *
  */
-bool HalManagerProxy::get_all_processes(Host & host) {
+DBus::Path HalManagerProxy::get_device_udi() {
+	DBus::Path udi;
 	if (_device){
-//     		PRINTD("refreshing properties");
-//		_device->rescan();
-    		PRINTD("getting all processess");
-		VectorString task_list = _device->get_property_string_list ("misc.task_list");
-	    	HalParser h;
-		h.parse_add_processes (task_list, host);
+		udi = _device->path();
 	} else {
-		PRINTD("no linux-kernel-monitor device found");
+		PRINTD ("No procmon decive to get udi");
 	}
+
+    return udi;
 }
+
 
 /** 
  *  get_all_devices:
@@ -152,6 +143,7 @@ VectorString HalManagerProxy::get_all_devices() {
 
 	return udis;
 }
+
 
 /** 
  *  find_device_by_capability:

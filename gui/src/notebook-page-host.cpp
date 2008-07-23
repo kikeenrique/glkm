@@ -44,6 +44,9 @@ Host * NotebookPageHost::get_my_Host() {
 
 void NotebookPageHost::set_my_Host(Host & host) {
 	_pTreeViewHost->set__pHost(&host);
-	host.signal_Process_added.connect( sigc::mem_fun(*_pTreeViewHost,
-													 &TreeViewHost::on_Process_added));
+	host.signal_process_added.connect( sigc::mem_fun(*_pTreeViewHost,
+													 &TreeViewHost::on_process_added));
+	host.signal_process_removed.connect( sigc::mem_fun(*_pTreeViewHost,
+													 &TreeViewHost::on_process_removed));
+
 }

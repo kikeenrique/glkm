@@ -85,13 +85,13 @@ HalDeviceProxy::~HalDeviceProxy() {
 
 
 /** 
- *  get_property:
+ *  get_property_string:
  *  @key:
  *
  *  HAL INFO
  *  ========
- *	Method:			GetProperty
- *  Returns:		Variant      
+ *	Method:			GetPropertyString
+ *  Returns:		String
  *  Parameters:		String key
  *  Throws:			NoSuchProperty
  *  Description:	Get property
@@ -104,28 +104,28 @@ HalDeviceProxy::~HalDeviceProxy() {
  *  Example:
  *
  */
-DBus::Variant HalDeviceProxy::get_property(const DBus::String & key) {
+DBus::String HalDeviceProxy::get_property_string(const DBus::String & key) {
 	DBus::CallMessage call;
 	DBus::MessageIter wi = call.writer();
 	
 	wi << key;
-	call.member("GetProperty");
+	call.member("GetPropertyString");
 
 	//declaret out of try. scope solution 
    	DBus::MessageIter it;
 	try {
 			DBus::Message reply = invoke_method(call);
-	    	it = reply.reader();
+			it = reply.reader();
 	}
 	catch (const DBus::Error& exception){
-			std::cerr << "GetProperty" << std::endl;
+			std::cerr << "GetPropertyString" << std::endl;
 			std::cerr << exception.what() << std::endl;
-    		std::cerr << exception.name() << std::endl;
+			std::cerr << exception.name() << std::endl;
        		std::cerr << exception.message() << std::endl;
 	}
 
-	DBus::Variant argout;
-    it >> argout;
+	DBus::String argout;
+	it >> argout;	
 
 	return argout;	
 }

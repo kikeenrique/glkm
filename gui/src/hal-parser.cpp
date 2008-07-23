@@ -22,7 +22,7 @@
 
 #include "hal-parser.hpp"
 #include "host.hpp"
-//#include "process.hpp"
+#include "process.hpp"
 
 #include "config.h"
 #include "debug.hpp"
@@ -32,6 +32,77 @@ HalParser::HalParser() {
 }
 
 HalParser::~HalParser() {
+}
+
+/** 
+ *  parse_synchronize_processes:
+ *  @hal_task_list:
+ *  @host:
+ *
+ *  Returns:
+ *
+ *  Exceptions:
+ *
+ *  Example:
+ *           Line format gets defined in kernel module with this format:
+ *                              "%s:%d:%d\n",
+ *                              task->comm,
+ *                              task->pid,
+ *                              task->parent->pid
+ *
+ */
+void HalParser::parse_synchronize_processes(VectorString & hal_task_list, Host & host) {
+
+	host.print_processes();
+	VectorString::iterator hal_task_list_it;
+	for(hal_task_list_it = hal_task_list.begin(); hal_task_list_it != hal_task_list.end(); ++hal_task_list_it) {
+	/* 
+	   We're going to loop processes reversed as hal_task_list goes from mayor 
+	   to minor PID and we want to parented processes to be able to find its 
+	   previously created parent
+	 */
+//	VectorString::reverse_iterator hal_task_list_it;
+//	for(hal_task_list_it = hal_task_list.rbegin(); hal_task_list_it != hal_task_list.rend(); ++hal_task_list_it) {
+		VectorString parsed_process;
+		// TODO
+		// We use iss and iss2 because working with just one doesn't work 
+		// as expected. This shoul be looked up.
+		std::istringstream iss;		
+		std::istringstream iss2;
+		Glib::ustring process_name;
+		int PID;
+	    int PPID;
+
+		tokenize(*hal_task_list_it, ":", parsed_process);
+		
+		//When we get a line without all of our process parameters, skip it
+		if (parsed_process.size() < 3) {
+			std::cerr << "ERROR:: Bad formed hal line" << std::endl;
+			PRINTD("HalParser ERROR:: Bad formed hal line ");
+			continue;
+		}
+
+		// Get each process parameter into their proper variable type and look
+		// for errors without broken program.
+		// We use at() instead of [] becuase it provide us exceptions
+		try {
+			process_name = parsed_process.at(0);
+			iss.str (parsed_process.at(1));
+			iss >> PID;
+			iss2.str (parsed_process.at(2));
+			iss2 >> PPID;
+		} catch (std::out_of_range exception){
+			std::cerr << exception.what() << std::endl;
+		}
+
+		Process process_tmp;
+		process_tmp.set__PID(PID);
+		process_tmp.set__PPID(PPID);
+		process_tmp.set__name(process_name);
+		host.add_and_synchronize_process(process_tmp);		
+	}
+	host.print_processes();
+	host.delete_all_not_synchronized();
 }
 
 /** 
@@ -50,18 +121,18 @@ HalParser::~HalParser() {
  *                              task->pid,
  *                              task->parent->pid
  *
- */
+ * /
 void HalParser::parse_add_processes(VectorString & hal_task_list, Host & host) {
 
-//	VectorString::iterator hal_task_list_it;
-//	for(hal_task_list_it = hal_task_list.begin(); hal_task_list_it != hal_task_list.end(); ++hal_task_list_it) {
+	VectorString::iterator hal_task_list_it;
+	for(hal_task_list_it = hal_task_list.begin(); hal_task_list_it != hal_task_list.end(); ++hal_task_list_it) {
 	/* 
 	   We're going to loop processes reversed as hal_task_list goes from mayor 
 	   to minor PID and we want to parented processes to be able to find its 
 	   previously created parent
-	 */
-	VectorString::reverse_iterator hal_task_list_it;
-	for(hal_task_list_it = hal_task_list.rbegin(); hal_task_list_it != hal_task_list.rend(); ++hal_task_list_it) {
+	 * /
+//	VectorString::reverse_iterator hal_task_list_it;
+//	for(hal_task_list_it = hal_task_list.rbegin(); hal_task_list_it != hal_task_list.rend(); ++hal_task_list_it) {
 		VectorString parsed_process;
 		// TODO
 		// We use iss and iss2 because working with just one doesn't work 
@@ -111,7 +182,8 @@ void HalParser::parse_add_processes(VectorString & hal_task_list, Host & host) {
 	}
 
 }
-
+*/
+		
 /** 
  *  tokenize:	   
  *					Put into a vector @tokens tokens in same order of appeareance 

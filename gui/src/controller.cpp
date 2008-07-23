@@ -59,7 +59,7 @@ void Controller::action_host_connect() {
 	present_host->get_all_processes();
 }
 
-void Controller::action_host_refresh() {
+void Controller::action_host_synchronize() {
 	Gtk::Notebook::PageList::iterator current_page_it;
 	current_page_it = _pNotebookHosts->get_current();
       
@@ -67,7 +67,7 @@ void Controller::action_host_refresh() {
 	current_page = static_cast<NotebookPageHost *> (current_page_it->get_child());
 	Host * present_host;	
 	present_host = current_page->get_my_Host();
-	PRINTD("Controller:: refresh=" + present_host->get__hostname());
+	PRINTD("Controller:: synchronize=" + present_host->get__hostname());
 	present_host->get_all_processes();
 }
 

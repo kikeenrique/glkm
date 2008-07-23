@@ -39,6 +39,8 @@ class Process {
 	void set__PPID(int value);
 	inline const Glib::ustring get__name() const;
 	void set__name(Glib::ustring value);
+	inline const bool get__synchronized() const;
+	void set__synchronized(bool value);
 
   protected:
 	int _PID;
@@ -46,6 +48,8 @@ class Process {
 	Glib::ustring _name;
 	
 	std::vector<File *> files_opened;
+	
+	bool _synchronized;
 };
 inline const int Process::get__PID() const {
   return _PID;
@@ -57,6 +61,9 @@ inline const int Process::get__PPID() const {
 
 inline const Glib::ustring Process::get__name() const {
   return _name;
+}
+inline const bool Process::get__synchronized() const {
+  return _synchronized;
 }
 
 #endif // _PROCCES_HPP

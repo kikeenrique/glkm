@@ -153,10 +153,10 @@ MainWindow::MainWindow(){
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}	
-	_refPtrGlademmXml->get_widget("toolbutton_refresh", _pToolButton_Refresh);
-	if (_pToolButton_Refresh){
-		_pToolButton_Refresh->signal_clicked().connect( sigc::mem_fun(*this,	
-																   &MainWindow::on_clicked_toolbar_refresh) );
+	_refPtrGlademmXml->get_widget("toolbutton_synchronize", _pToolButton_Synchronize);
+	if (_pToolButton_Synchronize){
+		_pToolButton_Synchronize->signal_clicked().connect( sigc::mem_fun(*this,	
+																   &MainWindow::on_clicked_toolbar_synchronize) );
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}	
@@ -283,9 +283,9 @@ void MainWindow::on_clicked_toolbar_connect() {
 	c.action_host_connect();
 }
 
-void MainWindow::on_clicked_toolbar_refresh(){
-	PRINTD("on_clicked_toolbar_refresh");
+void MainWindow::on_clicked_toolbar_synchronize(){
+	PRINTD("on_clicked_toolbar_synchronize");
 	Controller& c = Controller::instance();
-	c.action_host_refresh();
+	c.action_host_synchronize();
 }
 

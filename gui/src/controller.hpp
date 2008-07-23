@@ -31,7 +31,7 @@ class Controller{
   public:
 	void action_host_selected();
 	void action_host_connect();
-	void action_host_refresh();
+	void action_host_synchronize();
 	static Controller & instance();
 	void set__pIconViewHosts(IconViewHosts * value);
 	void set__pNotebookHosts(NotebookHosts * value);

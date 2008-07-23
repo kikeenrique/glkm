@@ -1,0 +1,199 @@
+format 58
+
+classinstancecanvas 128008 classinstance_ref 138376 // server_lkm
+  xyz 16 6 2000 life_line_z 2000
+end
+classinstancecanvas 128392 classinstance_ref 138248 // * device_procmon
+  xyz 257 7 2005 life_line_z 2000
+end
+classinstance 128776 class_ref 129288 // string
+  name "sysfs_path"   xyz 459 6 2000 life_line_z 2000
+classinstance 129288 class_ref 169224 // VectorString
+  name "processes"   xyz 561 5 2000 life_line_z 2000
+classinstance 129544 class_ref 171144 // RefPtrFile
+  name "file"   xyz 703 287 2005 life_line_z 2000
+classinstance 129672 class_ref 170376 // File
+  name ""   xyz 796 285 2000 life_line_z 2000
+classinstance 130952 class_ref 172040 // RefPtrFileInputStream
+  name "file_istream"   xyz 853 284 2000 life_line_z 2000
+classinstance 131080 class_ref 172168 // RefPtrDataInputStream
+  name "data_istream"   xyz 1145 284 2005 life_line_z 2000
+classinstance 131208 class_ref 170504 // FileInputStream
+  name ""   xyz 1044 285 2010 life_line_z 2000
+classinstance 131336 class_ref 171656 // DataInputStream
+  name ""   xyz 1349 283 2010 life_line_z 2000
+classinstance 133640 class_ref 129288 // string
+  name "line"   xyz 1472 280 2000 life_line_z 2000
+fragment 134024 "loop"
+  xyzwh 32 627 0 1504 181
+end
+textcanvas 134152 "data_istream->read_line(line)"
+  xyzwh 43 645 2020 124 13
+fragment 134792 "opt"
+  xyzwh 37 666 2020 663 79
+end
+textcanvas 134920 "!line.empty()"
+  xyzwh 48 687 2025 65 13
+durationcanvas 128136 classinstance_ref 128008 // server_lkm:LinuxKernelMonitorServer
+  xyzwh 114 94 2005 11 797
+  overlappingdurationcanvas 129032
+    xyzwh 119 322 2010 9 434
+  end
+end
+durationcanvas 128520 classinstance_ref 128392 // * device_procmon:HalDeviceProxy
+  xyzwh 349 121 2010 6 64
+end
+durationcanvas 129800 classinstance_ref 129672 // :File
+  xyzwh 818 375 2010 6 33
+end
+durationcanvas 130056 classinstance_ref 128776 // sysfs_path:string
+  xyzwh 497 228 2010 11 27
+end
+durationcanvas 130312 classinstance_ref 129288 // processes:VectorString
+  xyzwh 623 270 2010 11 25
+end
+durationcanvas 130568 classinstance_ref 128776 // sysfs_path:string
+  xyzwh 499 196 2010 8 27
+end
+durationcanvas 131464 classinstance_ref 129544 // file:RefPtrFile
+  xyzwh 738 346 2010 9 25
+end
+durationcanvas 131720 classinstance_ref 130952 // file_istream:RefPtrFileInputStream
+  xyzwh 942 418 2010 8 27
+end
+durationcanvas 131976 classinstance_ref 131080 // data_istream:RefPtrDataInputStream
+  xyzwh 1239 509 2010 7 28
+end
+durationcanvas 132616 classinstance_ref 131336 // :DataInputStream
+  xyzwh 1396 532 2010 6 36
+end
+durationcanvas 133000 classinstance_ref 129544 // file:RefPtrFile
+  xyzwh 740 456 2010 6 26
+end
+durationcanvas 133256 classinstance_ref 129672 // :File
+  xyzwh 818 469 2010 6 36
+end
+durationcanvas 133768 classinstance_ref 133640 // line:string
+  xyzwh 1492 591 2010 11 25
+end
+durationcanvas 134280 classinstance_ref 129288 // processes:VectorString
+  xyzwh 624 690 2010 9 29
+end
+reflexivemsg 128264 asynchronous
+  to durationcanvas_ref 128136
+  yz 97 2015 msg operation_ref 225032 // "GetAllProcesses() : VectorString"
+  show_full_operations_definition default drawing_language default
+  label_xy 55 81
+msg 128648 synchronous
+  from durationcanvas_ref 128136
+  to durationcanvas_ref 128520
+  yz 122 2015 msg operation_ref 235016 // "get_property_string(in key : String) : String"
+  show_full_operations_definition default drawing_language default
+  args "\"linux.sysfs_path\""
+  label_xy 142 109
+msg 128904 return
+  from durationcanvas_ref 128520
+  to durationcanvas_ref 128136
+  yz 174 2020 explicitmsg "sysfs_path"
+  show_full_operations_definition default drawing_language default
+  label_xy 170 161
+reflexivemsg 129160 synchronous
+  to durationcanvas_ref 129032
+  yz 322 2025 msg operation_ref 229256 // "get_vectorstring_from_sys_file(in directory : string, in file : string, out result : VectorString) : bool"
+  show_full_operations_definition default drawing_language default
+  args "sysfs_path, processes"
+  label_xy 52 307
+msg 129928 synchronous
+  from durationcanvas_ref 129032
+  to durationcanvas_ref 129800
+  yz 376 2025 msg operation_ref 226440 // "create_for_path(in path : string) : RefPtr"
+  show_full_operations_definition default drawing_language default
+  args "sysfs_path"
+  label_xy 405 363
+msg 130184 synchronous
+  from durationcanvas_ref 128136
+  to durationcanvas_ref 130056
+  yz 230 2015 msg operation_ref 235144 // "operator+=(in str : string) : string"
+  show_full_operations_definition default drawing_language default
+  args "\"/task_list\""
+  label_xy 278 217
+msg 130440 synchronous
+  from durationcanvas_ref 128136
+  to durationcanvas_ref 130312
+  yz 272 3005 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 130696 synchronous
+  from durationcanvas_ref 128136
+  to durationcanvas_ref 130568
+  yz 199 3005 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 130824 return
+  from durationcanvas_ref 129800
+  to durationcanvas_ref 129032
+  yz 396 2025 explicitmsg "file"
+  show_full_operations_definition default drawing_language default
+  label_xy 464 383
+msg 131592 synchronous
+  from durationcanvas_ref 129032
+  to durationcanvas_ref 131464
+  yz 347 3005 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 131848 synchronous
+  from durationcanvas_ref 129032
+  to durationcanvas_ref 131720
+  yz 420 2025 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 132104 synchronous
+  from durationcanvas_ref 129032
+  to durationcanvas_ref 131976
+  yz 510 2025 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 132744 synchronous
+  from durationcanvas_ref 129032
+  to durationcanvas_ref 132616
+  yz 534 2025 msg operation_ref 228360 // "create(in base_stream : RefPtr) : RefPtr"
+  show_full_operations_definition default drawing_language default
+  args "file_istream"
+  label_xy 646 521
+msg 132872 return
+  from durationcanvas_ref 132616
+  to durationcanvas_ref 129032
+  yz 556 2030 explicitmsg "data_istream"
+  show_full_operations_definition default drawing_language default
+  label_xy 728 543
+msg 133128 synchronous
+  from durationcanvas_ref 129032
+  to durationcanvas_ref 133000
+  yz 457 2025 msg operation_ref 153992 // "operator->() : T_CppObject *"
+  show_full_operations_definition default drawing_language default
+  label_xy 401 444
+msg 133384 synchronous
+  from durationcanvas_ref 133000
+  to durationcanvas_ref 133256
+  yz 470 2030 msg operation_ref 227720 // "read() : RefPtr"
+  show_full_operations_definition default drawing_language default
+  label_xy 765 457
+msg 133512 return
+  from durationcanvas_ref 133256
+  to durationcanvas_ref 129032
+  yz 492 2035 explicitmsg "file_istream"
+  show_full_operations_definition default drawing_language default
+  label_xy 442 479
+msg 133896 synchronous
+  from durationcanvas_ref 129032
+  to durationcanvas_ref 133768
+  yz 593 2025 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 134408 synchronous
+  from durationcanvas_ref 129032
+  to durationcanvas_ref 134280
+  yz 693 2015 explicitmsg "push_back()"
+  show_full_operations_definition default drawing_language default
+  args "line"
+  label_xy 344 677
+selfreflexivemsg 135048
+  to durationcanvas_ref 128136
+  yz 883 2010 explicitmsg "processes"
+  show_full_operations_definition default drawing_language default
+  label_xy 130 869
+end

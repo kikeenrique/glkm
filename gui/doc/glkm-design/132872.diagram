@@ -1,81 +1,81 @@
 format 58
 
 classinstance 128008 class_ref 128092 // MainWindow
-  name ""   xyz 38 4 2000 life_line_z 2000
+  name ""   xyz 18 7 2000 life_line_z 2000
 classinstancecanvas 128392 classinstance_ref 130824 // s
-  xyz 195 4 2000 life_line_z 2000
+  xyz 215 5 2000 life_line_z 2000
 end
 classinstancecanvas 128776 classinstance_ref 131976 // _pNotebooHosts
-  xyz 322 52 2005 life_line_z 2000
+  xyz 338 49 2005 life_line_z 2000
 end
 classinstance 129288 class_ref 153864 // NotebookPageHost
-  name ""   xyz 505 53 2000 life_line_z 2000
+  name ""   xyz 539 48 2000 life_line_z 2000
 classinstancecanvas 129800 classinstance_ref 133384 // present_host
-  xyz 682 50 2000 life_line_z 2000
+  xyz 721 44 2000 life_line_z 2000
 end
 continuation 130184 "In use case show processes"
-  xyzwh 772 243 2000 151 30
+  xyzwh 806 241 2000 173 30
 note 130440 "TODO
 BECAREFUL
 Get current host should be a sub use case.
 It's going to repeat a lot and design/code should be syncronized."
-  color red  xyzwh 573 91 2000 137 135
+  color red  xyzwh 618 89 2000 137 135
 durationcanvas 128136 classinstance_ref 128008 // :MainWindow
-  xyzwh 69 63 2010 11 246
+  xyzwh 51 63 2010 11 246
 end
 durationcanvas 128520 classinstance_ref 128392 // s:Controller
-  xyzwh 222 93 2010 11 205
+  xyzwh 245 91 2010 11 205
 end
 durationcanvas 128904 classinstance_ref 128776 // _pNotebooHosts:NotebookHosts
-  xyzwh 401 107 2010 11 45
+  xyzwh 425 105 2010 11 45
 end
 durationcanvas 129416 classinstance_ref 129288 // :NotebookPageHost
-  xyzwh 552 179 2010 11 38
+  xyzwh 592 177 2010 11 38
 end
 durationcanvas 129928 classinstance_ref 129800 // present_host:Host
-  xyzwh 726 245 2010 11 26
+  xyzwh 768 243 2010 11 26
 end
 reflexivemsg 128264 asynchronous
   to durationcanvas_ref 128136
-  yz 63 2015 msg operation_ref 128008 // "on_clicked_toolbar_refresh() : void"
+  yz 63 2015 msg operation_ref 128008 // "on_clicked_toolbar_synchronize() : void"
   show_full_operations_definition default drawing_language default
-  label_xy 22 51
+  label_xy 63 45
 msg 128648 synchronous
   from durationcanvas_ref 128136
   to durationcanvas_ref 128520
-  yz 93 2015 msg operation_ref 212360 // "action_host_refresh() : void"
+  yz 91 2015 msg operation_ref 212360 // "action_host_synchronize() : void"
   show_full_operations_definition default drawing_language default
-  label_xy 102 81
+  label_xy 82 79
 msg 129032 synchronous
   from durationcanvas_ref 128520
   to durationcanvas_ref 128904
-  yz 107 2015 msg operation_ref 195464 // "get_current() : PageList::iterator"
+  yz 105 2015 msg operation_ref 195464 // "get_current() : PageList::iterator"
   show_full_operations_definition default drawing_language default
-  label_xy 286 95
+  label_xy 317 93
 msg 129160 return
   from durationcanvas_ref 128904
   to durationcanvas_ref 128520
-  yz 141 2015 explicitmsg "current_page"
+  yz 139 2015 explicitmsg "current_page"
   show_full_operations_definition default drawing_language default
-  label_xy 287 129
+  label_xy 318 127
 msg 129544 synchronous
   from durationcanvas_ref 128520
   to durationcanvas_ref 129416
-  yz 179 2015 msg operation_ref 204168 // "get_my_Host() : Host"
+  yz 177 2015 msg operation_ref 204168 // "get_my_Host() : Host"
   show_full_operations_definition default drawing_language default
-  label_xy 354 167
+  label_xy 385 165
 msg 129672 return
   from durationcanvas_ref 129416
   to durationcanvas_ref 128520
-  yz 206 2015 explicitmsg "present_host"
+  yz 204 2015 explicitmsg "present_host"
   show_full_operations_definition default drawing_language default
-  label_xy 358 194
+  label_xy 389 192
 msg 130056 synchronous
   from durationcanvas_ref 128520
   to durationcanvas_ref 129928
-  yz 245 2015 msg operation_ref 195720 // "get_all_processes() : void"
+  yz 243 2015 msg operation_ref 195720 // "get_all_processes() : void"
   show_full_operations_definition default drawing_language default
-  label_xy 409 233
+  label_xy 440 231
 line 130312 -_-_
   from ref 129928 z 1999 to ref 130184
 end

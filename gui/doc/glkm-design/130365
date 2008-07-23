@@ -1,6 +1,6 @@
 format 58
 "glkm" // glkm
-  revision 34
+  revision 44
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -28,7 +28,7 @@ format 58
   
   ncouples 1
   key "" value ""
-  usecaseview 128182 "Use Cases"
+  usecaseview 128182 "glkm case view"
     //use case diagram settings
     package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
     //sequence diagram settings
@@ -43,7 +43,7 @@ format 58
     //activity diagram settings
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default show_stereotype_properties default
-    usecasediagram 128310 "glkm Use Case Diagram"
+    usecasediagram 128310 "glkm use case diagram"
       package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
       size A4
     end
@@ -97,9 +97,9 @@ format 58
       //activity diagram settings
       package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
       show_infonote default drawing_language default show_stereotype_properties default
-      sequencediagram 129160 "select host"
+      sequencediagram 129160 "select host sequence diagram"
 	show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
-	overlapping_bars size A3-Landscape
+	overlapping_bars size A2-Landscape
       end
 
       classinstance 128008 "_pIconViewHosts"
@@ -182,10 +182,10 @@ format 58
       //activity diagram settings
       package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
       show_infonote default drawing_language default show_stereotype_properties default
-      sequencediagram 131720 "connect  to host"
+      sequencediagram 131720 "connect  to host sequence diagram"
 	show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
 	comment "make a DBus/HAL connection from local *model* host to remote host (or also local host)"
-	overlapping_bars size A2
+	overlapping_bars size A2-Landscape
       end
 
       classinstance 133384 "present_host"
@@ -280,9 +280,9 @@ ${inlines}
       //activity diagram settings
       package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
       show_infonote default drawing_language default show_stereotype_properties default
-      sequencediagram 128197 "show processes"
+      sequencediagram 128197 "show processes sequence diagram"
 	show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
-	overlapping_bars size A3-Landscape
+	overlapping_bars size A2-Landscape
       end
 
       classinstance 136456 "host._task_list"
@@ -292,9 +292,35 @@ ${inlines}
 	relations
 	  end
       end
+
+      classinstance 139656 "_lkm_client"
+	type class_ref 175496 // LinuxKernelMonitorClient
+	attributes
+	  end
+	relations
+	  end
+      end
+
+      sequencediagram 139016 "add_and_synchronize_process"
+	show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+	overlapping_bars size A2-Landscape
+      end
+
+      classinstance 140808 "host"
+	type class_ref 128121 // Host
+	attributes
+	  end
+	relations
+	  end
+      end
+
+      sequencediagram 139272 "delete_all_not_synchronized"
+	show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+	overlapping_bars size A3-Landscape
+      end
     end
 
-    usecase 130312 "refresh processes"
+    usecase 130312 "synchronize processes"
       //use case diagram settings
       package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
       //sequence diagram settings
@@ -309,7 +335,7 @@ ${inlines}
       //activity diagram settings
       package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
       show_infonote default drawing_language default show_stereotype_properties default
-      sequencediagram 132872 "refresh processes"
+      sequencediagram 132872 "synchronize processes sequence diagram"
 	show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
 	overlapping_bars size A4-Landscape
       end
@@ -375,29 +401,6 @@ ${inlines}
       //activity diagram settings
       package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
       show_infonote default drawing_language default show_stereotype_properties default
-    end
-  end
-
-  deploymentview 128220 "Abstract deployment"
-    //deployment diagram settings
-    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
-    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
-    deploymentdiagram 128348 "abstract deployment view"
-      package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
-      draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
-      size A4
-    end
-
-    deploymentnode 128092 "host_A"
-      stereotype "cpu"
-    end
-
-    deploymentnode 128220 "monitor"
-      stereotype "cpu"
-    end
-
-    deploymentnode 128348 "host_N"
-      stereotype "cpu"
     end
   end
 

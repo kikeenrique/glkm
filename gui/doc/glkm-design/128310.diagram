@@ -23,10 +23,10 @@ usecasecanvas 128776 usecase_ref 129160 // connect to host
   xyzwh 343 292 3005 64 32 label_xy 338 324
 end
 usecasecanvas 129032 usecase_ref 128008 // show processes
-  xyzwh 528 371 3005 64 32 label_xy 523 403
+  xyzwh 575 371 3005 64 32 label_xy 589 409
 end
-usecasecanvas 129672 usecase_ref 130312 // refresh processes
-  xyzwh 341 375 3005 64 32 label_xy 332 407
+usecasecanvas 129672 usecase_ref 130312 // synchronize processes
+  xyzwh 341 375 3005 64 32 label_xy 319 406
 end
 line 128008 --->
   from ref 128054 z 3004 to ref 128121
@@ -42,11 +42,14 @@ line 128648 --->
 line 128904 --->
   from ref 128054 z 3004 to ref 128776
 simplerelationcanvas 129160 simplerelation_ref 129160
-  from ref 128776 z 3004 stereotype "<<include>>" xyz 439 345 3000 to ref 129032
+  from ref 128776 z 3004 stereotype "<<include>>" xyz 462 344 3000 to ref 129032
 end
 line 129800 --->
   from ref 128054 z 3004 to ref 129672
 simplerelationcanvas 129928 simplerelation_ref 130312
-  from ref 129672 z 3004 stereotype "<<include>>" xyz 438 387 3000 to ref 129032
+  from ref 129672 z 3004 stereotype "<<include>>" xyz 461 387 3000 to ref 129032
+end
+simplerelationcanvas 130056 simplerelation_ref 128008
+  from ref 128249 z 3004 stereotype "<<include>>" xyz 457 493 3000 to ref 129032
 end
 end

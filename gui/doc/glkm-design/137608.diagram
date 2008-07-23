@@ -1,0 +1,252 @@
+format 58
+
+classinstancecanvas 128008 classinstance_ref 137608 // _refPtr_MainLoop
+  xyz 113 4 2000 life_line_z 2000
+end
+classinstancecanvas 128136 classinstance_ref 137736 // dispatcher
+  xyz 407 4 2000 life_line_z 2000
+end
+classinstancecanvas 128264 classinstance_ref 137864 // main
+  xyz 22 5 2000 life_line_z 2000
+end
+classinstance 128776 class_ref 163080 // MainLoop
+  name ""   xyz 328 4 2005 life_line_z 2000
+note 130184 "Get environment variables
+UDI
+HALD_DIRECT_ADDR"
+  xyzwh 119 94 2020 306 66
+classinstancecanvas 130568 classinstance_ref 137992 // * hald_connection
+  xyz 569 4 2005 life_line_z 2000
+end
+classinstancecanvas 130952 classinstance_ref 138120 // * hal_manager
+  xyz 757 4 2010 life_line_z 2005
+end
+classinstancecanvas 131336 classinstance_ref 138248 // * device_procmon
+  xyz 1124 344 2015 life_line_z 2005
+end
+fragment 132360 "loop"
+  xyzwh 719 550 2000 667 304
+end
+fragment 132488 "break"
+  xyzwh 734 641 2005 547 117
+end
+classinstance 132616 class_ref 169224 // VectorString
+  name "devices"   xyz 928 343 2015 life_line_z 2005
+classinstance 132872 class_ref 129213 // Path
+  name "udi"   xyz 1059 344 2000 life_line_z 2005
+textcanvas 133000 "it = devices.begin();
+it != devices.end();
+++it"
+  bg blue  xyzwh 728 570 2005 103 41
+textcanvas 133768 "udi.find(\"procmon\", 0) != DBus::String::npos"
+  bg blue  xyzwh 746 661 2010 227 13
+classinstancecanvas 134408 classinstance_ref 138376 // server_lkm
+  xyz 1237 195 2000 life_line_z 2000
+end
+classinstancecanvas 135560 classinstance_ref 138504 // filter
+  xyz 1471 195 2005 life_line_z 2000
+end
+durationcanvas 129160 classinstance_ref 128264 // main:main
+  xyzwh 47 69 2010 11 1166
+end
+durationcanvas 129288 classinstance_ref 128776 // :MainLoop
+  xyzwh 357 218 2010 8 34
+end
+durationcanvas 129672 classinstance_ref 128136 // dispatcher:BusDispatcher
+  xyzwh 473 273 2010 11 26
+end
+durationcanvas 129928 classinstance_ref 128008 // _refPtr_MainLoop:MainLoopRefPtr
+  xyzwh 201 182 2010 11 26
+end
+durationcanvas 130312 classinstance_ref 128136 // dispatcher:BusDispatcher
+  xyzwh 474 327 2010 9 25
+end
+durationcanvas 130696 classinstance_ref 130568 // * hald_connection:Connection
+  xyzwh 646 367 2010 11 26
+end
+durationcanvas 131080 classinstance_ref 130952 // * hal_manager:HalManagerProxy
+  xyzwh 841 412 2010 9 26
+end
+durationcanvas 131848 classinstance_ref 131336 // * device_procmon:HalDeviceProxy
+  xyzwh 1144 702 2010 9 35
+end
+durationcanvas 133128 classinstance_ref 132872 // udi:Path
+  xyzwh 1081 573 2010 8 25
+end
+durationcanvas 133896 classinstance_ref 131336 // * device_procmon:HalDeviceProxy
+  xyzwh 1144 906 2015 9 25
+end
+durationcanvas 134152 classinstance_ref 131336 // * device_procmon:HalDeviceProxy
+  xyzwh 1144 970 2015 9 26
+end
+durationcanvas 134536 classinstance_ref 134408 // server_lkm:LinuxKernelMonitorServer
+  xyzwh 1335 1013 2010 9 46
+end
+durationcanvas 134792 classinstance_ref 134408 // server_lkm:LinuxKernelMonitorServer
+  xyzwh 1335 1100 2010 9 33
+end
+durationcanvas 135048 classinstance_ref 128008 // _refPtr_MainLoop:MainLoopRefPtr
+  xyzwh 203 1211 2010 8 34
+end
+durationcanvas 135304 classinstance_ref 128776 // :MainLoop
+  xyzwh 356 1215 2010 9 34
+end
+durationcanvas 135688 classinstance_ref 130568 // * hald_connection:Connection
+  xyzwh 646 1044 2010 11 25
+end
+durationcanvas 135944 classinstance_ref 130952 // * hal_manager:HalManagerProxy
+  xyzwh 842 448 2015 8 348
+  overlappingdurationcanvas 132104
+    xyzwh 845 492 2020 11 43
+  end
+end
+durationcanvas 136072 classinstance_ref 132616 // devices:VectorString
+  xyzwh 982 457 2015 11 25
+end
+durationcanvas 136328 classinstance_ref 132872 // udi:Path
+  xyzwh 1080 606 2015 9 24
+end
+durationcanvas 136584 classinstance_ref 135560 // filter:MessageSlot
+  xyzwh 1518 1025 2010 11 25
+end
+msg 129416 synchronous
+  from durationcanvas_ref 129160
+  to durationcanvas_ref 129288
+  yz 221 2015 msg operation_ref 213896 // "create(in is_running : bool = false) : RefPtr"
+  show_full_operations_definition default drawing_language default
+  label_xy 173 209
+msg 129544 return
+  from durationcanvas_ref 129288
+  to durationcanvas_ref 129160
+  yz 241 2015 explicitmsg "_refPtr_MainLoop"
+  show_full_operations_definition default drawing_language default
+  label_xy 148 229
+msg 129800 synchronous
+  from durationcanvas_ref 129160
+  to durationcanvas_ref 129672
+  yz 273 2015 msg operation_ref 128078 // "BusDispatcher()"
+  show_full_operations_definition default drawing_language default
+  label_xy 208 260
+msg 130056 synchronous
+  from durationcanvas_ref 129160
+  to durationcanvas_ref 129928
+  yz 182 2015 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 130440 synchronous
+  from durationcanvas_ref 129160
+  to durationcanvas_ref 130312
+  yz 328 2015 msg operation_ref 128206 // "attach(in g : GMainContext) : void"
+  show_full_operations_definition default drawing_language default
+  args "NULL"
+  label_xy 221 315
+msg 130824 synchronous
+  from durationcanvas_ref 129160
+  to durationcanvas_ref 130696
+  yz 367 2015 msg operation_ref 130117 // "Connection(in address : char, in priv : bool = true)"
+  show_full_operations_definition default drawing_language default
+  args "address"
+  label_xy 281 354
+msg 131208 synchronous
+  from durationcanvas_ref 129160
+  to durationcanvas_ref 131080
+  yz 413 2015 msg operation_ref 221704 // "HalManagerProxy(out connection : Connection)"
+  show_full_operations_definition default drawing_language default
+  args "*hald_connection"
+  label_xy 343 400
+msg 131592 synchronous
+  from durationcanvas_ref 129160
+  to durationcanvas_ref 135944
+  yz 448 2015 msg operation_ref 226184 // "get_device_procmon() : HalDeviceProxy"
+  show_full_operations_definition default drawing_language default
+  label_xy 378 435
+msg 131720 return
+  from durationcanvas_ref 135944
+  to durationcanvas_ref 129160
+  yz 785 2015 explicitmsg "device_procmon"
+  show_full_operations_definition default drawing_language default
+  label_xy 393 772
+msg 131976 synchronous
+  from durationcanvas_ref 135944
+  to durationcanvas_ref 131848
+  yz 704 2020 msg operation_ref 220680 // "HalDeviceProxy(in connection : Connection, in udi : Path)"
+  show_full_operations_definition default drawing_language default
+  args "conn(), udi"
+  label_xy 932 691
+reflexivemsg 132232 synchronous
+  to durationcanvas_ref 132104
+  yz 492 3005 msg operation_ref 222216 // "find_device_by_capability(in capability : String) : VectorString"
+  show_full_operations_definition default drawing_language default
+  args "linux-kernel-monitor"
+  label_xy 917 483
+selfreflexivemsg 132744
+  to durationcanvas_ref 132104
+  yz 527 3010 explicitmsg "devices"
+  show_full_operations_definition default drawing_language default
+  label_xy 919 513
+msg 133256 synchronous
+  from durationcanvas_ref 135944
+  to durationcanvas_ref 133128
+  yz 574 2015 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 134024 synchronous
+  from durationcanvas_ref 129160
+  to durationcanvas_ref 133896
+  yz 907 2020 msg operation_ref 224648 // "addon_is_ready() : Bool"
+  show_full_operations_definition default drawing_language default
+  label_xy 573 894
+msg 134280 synchronous
+  from durationcanvas_ref 129160
+  to durationcanvas_ref 134152
+  yz 971 2020 msg operation_ref 224776 // "claim_interface(in name : String, in introspection_xml : String) : Bool"
+  show_full_operations_definition default drawing_language default
+  label_xy 576 958
+msg 134664 synchronous
+  from durationcanvas_ref 129160
+  to durationcanvas_ref 134536
+  yz 1014 2015 msg operation_ref 224392 // "LinuxKernelMonitorServer(in conn : Connection)"
+  show_full_operations_definition default drawing_language default
+  args "*hald_connection"
+  label_xy 580 1000
+msg 134920 synchronous
+  from durationcanvas_ref 129160
+  to durationcanvas_ref 134792
+  yz 1101 2015 msg operation_ref 230408 // "set__device(in value : HalDeviceProxy) : void"
+  show_full_operations_definition default drawing_language default
+  args "device_procmon"
+  label_xy 617 1088
+msg 135176 synchronous
+  from durationcanvas_ref 129160
+  to durationcanvas_ref 135048
+  yz 1212 2015 msg operation_ref 153992 // "operator->() : T_CppObject *"
+  show_full_operations_definition default drawing_language default
+  label_xy 71 1199
+msg 135432 synchronous
+  from durationcanvas_ref 135048
+  to durationcanvas_ref 135304
+  yz 1216 2015 msg operation_ref 213640 // "run() : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 317 1200
+msg 135816 synchronous
+  from durationcanvas_ref 134536
+  to durationcanvas_ref 135688
+  yz 1046 2015 msg operation_ref 133128 // "add_filter(out ms : MessageSlot) : bool"
+  show_full_operations_definition default drawing_language default
+  args "filter"
+  label_xy 1026 1031
+msg 136200 synchronous
+  from durationcanvas_ref 135944
+  to durationcanvas_ref 136072
+  yz 459 3010 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 136456 synchronous
+  from durationcanvas_ref 135944
+  to durationcanvas_ref 136328
+  yz 607 2020 explicitmsg "udi = *it"
+  show_full_operations_definition default drawing_language default
+  label_xy 1003 592
+msg 136712 synchronous
+  from durationcanvas_ref 134536
+  to durationcanvas_ref 136584
+  yz 1025 2020 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+end

@@ -1,6 +1,6 @@
 format 58
 "glkm-controller" // glkm::glkm-controller
-  revision 18
+  revision 21
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -44,6 +44,7 @@ format 58
     //activity diagram settings
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default show_stereotype_properties default
+    associated_deployment_view deploymentview_ref 128008 // glkm-controller deployment view
     classdiagram 130312 "glkm-controller"
       draw_all_relations yes hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
       size A4-Landscape
@@ -257,7 +258,7 @@ ${inlines}
 	
       end
 
-      operation 212360 "action_host_refresh"
+      operation 212360 "action_host_synchronize"
 	public explicit_return_type "void"
 	nparams 0
 	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
@@ -391,7 +392,6 @@ ${inlines}
 "
 	    classrelation_ref 148488 // _pHosts (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 142856 // Hosts
-	set_oper operation_ref 181256 // set__pHosts
       end
 
       classrelation 151432 // _pIconViewHosts (<unidirectional association>)

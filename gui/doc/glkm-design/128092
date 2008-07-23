@@ -1,6 +1,6 @@
 format 58
 "glkm-model" // glkm::glkm-model
-  revision 50
+  revision 56
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -105,22 +105,114 @@ ${inlines}
 	python_decl ""
 	idl_decl ""
       end
+
+      classrelation 184456 // main_window (<directional composition>)
+	relation 184072 *-->
+	  a role_name "main_window" multiplicity "1" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    classrelation_ref 184456 // main_window (<directional composition>)
+	  b multiplicity "1" parent class_ref 128092 // MainWindow
+      end
     end
 
-    class 128377 "File"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
+    class 128313 "DictVariable"
+      visibility package stereotype "typedef" base_type class_ref 128185 // map
+      nactuals 4
+      actual class class_ref 128185 // map
+        rank 0 value class_ref 129341 // String
+      actual class class_ref 128185 // map
+        rank 1 value class_ref 129469 // Variant
+      actual class class_ref 128185 // map
+        rank 2 explicit_value ""
+      actual class class_ref 128185 // map
+        rank 3 explicit_value ""
+      cpp_decl "${comment}typedef ${type} ${name};
 "
       java_decl ""
       php_decl ""
       python_2_2 python_decl ""
-      idl_decl ""
+      idl_decl "${comment}typedef ${type} ${name};
+"
+      explicit_switch_type ""
+      
+      classrelation 128313 // <realization>
+	relation 128313 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128313 // <realization>
+	  b parent class_ref 128185 // map
+      end
+    end
+
+    class 132165 "VectorString"
+      visibility package stereotype "typedef" base_type class_ref 132037 // vector
+      nactuals 1
+      actual class class_ref 132037 // vector
+        rank 0 value class_ref 129341 // String
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}typedef ${type} ${name};
+"
+      explicit_switch_type ""
+      
+      classrelation 133189 // <realization>
+	relation 133189 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 133189 // <realization>
+	  b parent class_ref 132037 // vector
+      end
+    end
+
+    class 132421 "HalDeviceProxyRefPtr"
+      visibility package stereotype "typedef" base_type class_ref 129597 // RefPtr
+      nactuals 1
+      actual class class_ref 129597 // RefPtr
+        rank 0 value class_ref 128189 // HalDeviceProxy
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}typedef ${type} ${name};
+"
+      explicit_switch_type ""
+      
+      classrelation 133445 // <realization>
+	relation 133445 -_-|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 133445 // <realization>
+	  b parent class_ref 129597 // RefPtr
+      end
+    end
+
+    class 130757 "HalController"
+      visibility public 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl "${comment}${@}${public}interface ${name}${extends} {
+${members}}
+"
+      php_decl "${comment}${visibility}interface ${name} {
+${members}}
+"
+      python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
+${members}};
+"
       explicit_switch_type ""
       
       associated_diagram classdiagram_ref 128121 // glkm-model class diagram
-      operation 128707 "File"
+      operation 129928 "HalController"
 	public explicit_return_type ""
 	nparams 0
 	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
@@ -134,7 +226,7 @@ ${inlines}
 	
       end
 
-      operation 128835 "~File"
+      operation 130056 "~HalController"
 	cpp_virtual public explicit_return_type ""
 	nparams 0
 	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
@@ -148,39 +240,13 @@ ${inlines}
 	
       end
 
-      classrelation 128761 // <aggregation>
-	relation_ref 128377 // <aggregation>
-      end
-
-      classrelation 128029 // inode (<unidirectional association>)
-	relation 128029 --->
-	  a role_name "inode" multiplicity "1" protected
-	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+      operation 128837 "get_all_processes"
+	public explicit_return_type "bool"
+	nparams 1
+	  param inout name "host" type class_ref 128121 // Host
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
 "
-	    classrelation_ref 128029 // inode (<unidirectional association>)
-	  b multiplicity "*" parent class_ref 128029 // Inode
-      end
-    end
-
-    class 128067 "Filesystem"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
-      operation 128963 "Filesystem"
-	public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -189,23 +255,10 @@ ${inlines}
 	
       end
 
-      operation 129091 "~Filesystem"
-	cpp_virtual public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      attribute 128029 "type"
-	protected explicit_type "string"
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+      attribute 128060 "_dispatcher"
+	protected type class_ref 130629 // BusDispatcher
+	multiplicity "1"
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
 	php_decl ""
@@ -213,17 +266,31 @@ ${inlines}
 	idl_decl ""
       end
 
-      classrelation 128067 // file_list (<directional composition>)
-	relation 128067 *-->
-	  a role_name "file_list" multiplicity "1..*" protected
-	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+      classrelation 132232 // _hal_manager (<unidirectional association>)
+	relation 132232 --->
+	  a role_name "_hal_manager" multiplicity "1" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128067 // file_list (<directional composition>)
-	  b multiplicity "1" parent class_ref 128377 // File
+	    classrelation_ref 132232 // _hal_manager (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 128061 // HalManagerProxy
       end
 
-      classrelation 128233 // <aggregation>
-	relation_ref 128105 // <aggregation>
+      classrelation 163336 // _connection (<unidirectional association>)
+	relation 162952 --->
+	  a role_name "_connection" multiplicity "1" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 163336 // _connection (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 128317 // Connection
+      end
+
+      classrelation 184712 // _lkm_client (<unidirectional association>)
+	relation 184200 --->
+	  a role_name "_lkm_client" multiplicity "1" private
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 184712 // _lkm_client (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 175496 // LinuxKernelMonitorClient
       end
     end
 
@@ -285,13 +352,12 @@ ${inlines}
 	
       end
 
-      operation 205832 "get_all_processes"
-	public explicit_return_type "bool"
-	nparams 1
-	  param inout name "host" type class_ref 128121 // Host
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+      operation 236168 "get_device_udi"
+	public return_type class_ref 129213 // Path
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -368,14 +434,6 @@ ${inlines}
 	
 	
 	
-      end
-
-      classrelation 167688 // <dependency>
-	relation 167304 -_->
-	  a default
-	    cpp default "#include in source"
-	    classrelation_ref 167688 // <dependency>
-	  b parent class_ref 159496 // HalParser
       end
     end
 
@@ -540,33 +598,50 @@ ${inlines}
       end
     end
 
-    class 130757 "HalController"
-      visibility public 
+    class 175496 "LinuxKernelMonitorClient"
+      visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
 ${inlines}
 "
-      java_decl "${comment}${@}${public}interface ${name}${extends} {
-${members}}
-"
-      php_decl "${comment}${visibility}interface ${name} {
-${members}}
-"
-      python_2_2 python_decl "class ${name}${inherit}:
-${docstring}${members}
-"
-      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
-${members}};
-"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
       explicit_switch_type ""
       
-      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
-      operation 129928 "HalController"
+      classrelation 184840 // <generalisation>
+	relation 184328 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 184840 // <generalisation>
+	  b parent class_ref 175624 // LinuxKernelMonitorC
+      end
+
+      classrelation 184200 // <generalisation>
+	relation 183816 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 184200 // <generalisation>
+	  b parent class_ref 128197 // IntrospectableProxy
+      end
+
+      classrelation 184072 // <generalisation>
+	relation 183688 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 184072 // <generalisation>
+	  b parent class_ref 129981 // ObjectProxy
+      end
+
+      operation 235656 "LinuxKernelMonitorClient"
 	public explicit_return_type ""
-	nparams 0
-	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
+	nparams 2
+	  param inout name "conn" type class_ref 128317 // Connection
+	  param in name "udi" type class_ref 129213 // Path
+	cpp_decl "	${comment}${inline}${name}${(}${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
 "
 	
@@ -575,21 +650,7 @@ ${members}};
 	
       end
 
-      operation 130056 "~HalController"
-	cpp_virtual public explicit_return_type ""
-	nparams 0
-	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 128837 "get_all_processes"
+      operation 205832 "get_all_processes"
 	public explicit_return_type "bool"
 	nparams 1
 	  param inout name "host" type class_ref 128121 // Host
@@ -604,33 +665,12 @@ ${members}};
 	
       end
 
-      attribute 128060 "_dispatcher"
-	protected type class_ref 130629 // BusDispatcher
-	multiplicity "1"
-	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-      end
-
-      classrelation 132232 // _hal_manager (<unidirectional association>)
-	relation 132232 --->
-	  a role_name "_hal_manager" multiplicity "1" protected
-	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 132232 // _hal_manager (<unidirectional association>)
-	  b multiplicity "1" parent class_ref 128061 // HalManagerProxy
-      end
-
-      classrelation 163336 // _connection (<unidirectional association>)
-	relation 162952 --->
-	  a role_name "_connection" multiplicity "1" protected
-	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 163336 // _connection (<unidirectional association>)
-	  b multiplicity "1" parent class_ref 128317 // Connection
+      classrelation 185096 // <dependency>
+	relation 184584 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 185096 // <dependency>
+	  b parent class_ref 159496 // HalParser
       end
     end
 
@@ -674,7 +714,7 @@ ${inlines}
 	
       end
 
-      operation 205704 "parse_add_processes"
+      operation 205704 "parse_synchronize_processes"
 	public explicit_return_type "void"
 	nparams 2
 	  param inout name "hal_task_list" type class_ref 132165 // VectorString
@@ -713,6 +753,122 @@ ${inlines}
 	    cpp default "#include in source"
 	    classrelation_ref 169992 // <dependency>
 	  b parent class_ref 128249 // Process
+      end
+    end
+
+    class 142856 "Hosts"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 166664 "Hosts"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 166536 "~Hosts"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 178568 "create_host"
+	public explicit_return_type "bool"
+	nparams 3
+	  param in name "hostname" type class_ref 132814 // ustring
+	  param in name "ip" type class_ref 132814 // ustring
+	  param in name "description" type class_ref 132814 // ustring
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 143752 "signal_Host_added"
+	public type class_ref 156424 // type_signal_Host_added
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      class 156424 "type_signal_Host_added"
+	visibility protected stereotype "typedef" base_type class_ref 156552 // signal
+	nactuals 8
+	actual class class_ref 156552 // signal
+	  rank 0 explicit_value "void"
+	actual class class_ref 156552 // signal
+	  rank 1 value class_ref 128121 // Host
+	actual class class_ref 156552 // signal
+	  rank 2 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 3 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 4 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 5 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 6 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 7 explicit_value ""
+	cpp_decl "${comment}typedef ${type} ${name};
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	comment "typedef sigc::signal<void, Host *> type_signal_Host_added;"
+	classrelation 166280 // <realization>
+	  relation 165896 -_-|>
+	    a public
+	      cpp default "${type}"
+	      classrelation_ref 166280 // <realization>
+	    b parent class_ref 156552 // signal
+	end
+      end
+
+      classrelation 144136 // _hosts (<directional composition>)
+	relation 144136 *-->
+	  stereotype "map"
+	  a role_name "_hosts" multiplicity "*" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}<${association}, ${type}> ${name}${value};
+"
+	    classrelation_ref 144136 // _hosts (<directional composition>)
+	  b multiplicity "1" parent class_ref 128121 // Host
+	  association_type class_ref 132814 // ustring
       end
     end
 
@@ -811,6 +967,35 @@ ${members}};
       end
 
       operation 195720 "get_all_processes"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 237576 "add_and_synchronize_process"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "process" type class_ref 128249 // Process
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 237448 "delete_all_not_synchronized"
 	public explicit_return_type "void"
 	nparams 0
 	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
@@ -961,7 +1146,39 @@ ${members}};
 	set_oper operation_ref 179976 // set__description
       end
 
-      class 160648 "type_signal_Process_added"
+      classrelation 128105 // _filesystems (<aggregation>)
+	relation 128105 o---
+	  a role_name "_filesystems" multiplicity "1..*" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}${type} * ${name}${value};
+"
+	    classrelation_ref 128105 // _filesystems (<aggregation>)
+	  b role_name "_host" multiplicity "*" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}${association}${type} * ${name}${value};
+"
+	    classrelation_ref 128233 // _host (<aggregation>)
+      end
+
+      classrelation 128121 // _task_list ()
+	relation 128121 *--> name ""
+	  stereotype "map"
+	  a role_name "_task_list" multiplicity "1..*" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}<${association}, ${type}> ${name}${value};
+"
+	    classrelation_ref 128121 // _task_list ()
+	  b multiplicity "1" parent class_ref 128249 // Process
+	  association_explicit_type "int"
+      end
+
+      classrelation 128060 // _hal_controller (<unidirectional association>)
+	relation 128060 --->
+	  a role_name "_hal_controller" multiplicity "1" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128060 // _hal_controller (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 130757 // HalController
+      end
+
+      class 160648 "type_signal_process_added"
 	visibility protected stereotype "typedef" base_type class_ref 156552 // signal
 	nactuals 8
 	actual class class_ref 156552 // signal
@@ -997,132 +1214,13 @@ ${members}};
 	end
       end
 
-      classrelation 128105 // _filesystems (<aggregation>)
-	relation 128105 o---
-	  a role_name "_filesystems" multiplicity "1..*" protected
-	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}${type} * ${name}${value};
-"
-	    classrelation_ref 128105 // _filesystems (<aggregation>)
-	  b role_name "_host" multiplicity "*" protected
-	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}${association}${type} * ${name}${value};
-"
-	    classrelation_ref 128233 // <aggregation>
-      end
-
-      classrelation 128121 // _task_list ()
-	relation 128121 *--> name ""
-	  stereotype "map"
-	  a role_name "_task_list" multiplicity "1..*" protected
-	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}<${association}, ${type}> ${name}${value};
-"
-	    classrelation_ref 128121 // _task_list ()
-	  b multiplicity "1" parent class_ref 128249 // Process
-	  association_explicit_type "int"
-      end
-
-      classrelation 128060 // _hal_controller (<unidirectional association>)
-	relation 128060 --->
-	  a role_name "_hal_controller" multiplicity "1" protected
-	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 128060 // _hal_controller (<unidirectional association>)
-	  b multiplicity "1" parent class_ref 130757 // HalController
-      end
-
-      classrelation 167560 // <dependency>
-	relation 167176 -_->
-	  stereotype "friend"
-	  a package
-	    cpp default "${type}"
-	    classrelation_ref 167560 // <dependency>
-	  b parent class_ref 159496 // HalParser
-      end
-
-      attribute 144904 "signal_Process_added"
-	public type class_ref 160648 // type_signal_Process_added
-	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-      end
-    end
-
-    class 142856 "Hosts"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      operation 166664 "Hosts"
-	public explicit_return_type ""
-	nparams 0
-	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 166536 "~Hosts"
-	cpp_virtual public explicit_return_type ""
-	nparams 0
-	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 178568 "create_host"
-	public explicit_return_type "bool"
-	nparams 3
-	  param in name "hostname" type class_ref 132814 // ustring
-	  param in name "ip" type class_ref 132814 // ustring
-	  param in name "description" type class_ref 132814 // ustring
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      attribute 143752 "signal_Host_added"
-	public type class_ref 156424 // type_signal_Host_added
-	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-      end
-
-      class 156424 "type_signal_Host_added"
+      class 176776 "type_signal_process_removed"
 	visibility protected stereotype "typedef" base_type class_ref 156552 // signal
 	nactuals 8
 	actual class class_ref 156552 // signal
 	  rank 0 explicit_value "void"
 	actual class class_ref 156552 // signal
-	  rank 1 value class_ref 128121 // Host
+	  rank 1 value class_ref 128249 // Process
 	actual class class_ref 156552 // signal
 	  rank 2 explicit_value ""
 	actual class class_ref 156552 // signal
@@ -1143,125 +1241,33 @@ ${inlines}
 	idl_decl ""
 	explicit_switch_type ""
 	
-	comment "typedef sigc::signal<void, Host *> type_signal_Host_added;"
-	classrelation 166280 // <realization>
-	  relation 165896 -_-|>
+	classrelation 186248 // <realization>
+	  relation 185736 -_-|>
 	    a public
 	      cpp default "${type}"
-	      classrelation_ref 166280 // <realization>
+	      classrelation_ref 186248 // <realization>
 	    b parent class_ref 156552 // signal
 	end
       end
 
-      classrelation 144136 // _hosts (<directional composition>)
-	relation 144136 *-->
-	  stereotype "map"
-	  a role_name "_hosts" multiplicity "*" protected
-	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}<${association}, ${type}> ${name}${value};
+      attribute 144904 "signal_process_added"
+	public type class_ref 160648 // type_signal_process_added
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
-	    classrelation_ref 144136 // _hosts (<directional composition>)
-	  b multiplicity "1" parent class_ref 128121 // Host
-	  association_type class_ref 132814 // ustring
-      end
-    end
-
-    class 128029 "Inode"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
-      operation 128573 "Inode"
-	public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
       end
 
-      operation 128701 "~Inode"
-	cpp_virtual public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+      attribute 154248 "signal_process_removed"
+	public type class_ref 176776 // type_signal_process_removed
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
-      end
-    end
-
-    class 128105 "Log"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
-      operation 128106 "Log"
-	public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 128234 "~Log"
-	public explicit_return_type ""
-	nparams 0
-	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 128362 "printd"
-	public explicit_return_type ""
-	nparams 2
-	  param in name "text" explicit_type "string"
-	  param in name "level" explicit_type "int"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
       end
     end
 
@@ -1466,6 +1472,49 @@ ${inlines}
 	set_of_attribute attribute_ref 128136 // _name
       end
 
+      operation 237704 "get__synchronized"
+	force_body_gen const cpp_inline public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}const ${type} ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return _synchronized;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	
+	idl_name_spec "get_${name}"
+	get_of_attribute attribute_ref 154120 // _synchronized
+      end
+
+      operation 237320 "set__synchronized"
+	force_body_gen public explicit_return_type "void"
+	nparams 1
+	  param in name "value" explicit_type "bool"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  _synchronized = ${p0};
+}
+"
+	cpp_name_spec "set_${name}"
+	
+	java_name_spec "set${Name}"
+	
+	php_name_spec "set${Name}"
+	
+	python_name_spec "set${Name}"
+	
+	idl_name_spec "set_${name}"
+	set_of_attribute attribute_ref 154120 // _synchronized
+      end
+
       attribute 128197 "_PID"
 	protected explicit_type "int"
 	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
@@ -1512,82 +1561,239 @@ ${inlines}
 	  b role_name "process_list" multiplicity "*" protected
 	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}<${association}${type} *> ${name}${value};
 "
-	    classrelation_ref 128761 // <aggregation>
+	    classrelation_ref 128761 // process_list (<aggregation>)
+      end
+
+      attribute 154120 "_synchronized"
+	protected explicit_type "bool"
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	get_oper operation_ref 237704 // get__synchronized
+	set_oper operation_ref 237320 // set__synchronized
       end
     end
 
-    class 128313 "DictVariable"
-      visibility package stereotype "typedef" base_type class_ref 128185 // map
-      nactuals 4
-      actual class class_ref 128185 // map
-        rank 0 value class_ref 129341 // String
-      actual class class_ref 128185 // map
-        rank 1 value class_ref 129469 // Variant
-      actual class class_ref 128185 // map
-        rank 2 explicit_value ""
-      actual class class_ref 128185 // map
-        rank 3 explicit_value ""
-      cpp_decl "${comment}typedef ${type} ${name};
+    class 128029 "Inode"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
 "
       java_decl ""
       php_decl ""
       python_2_2 python_decl ""
-      idl_decl "${comment}typedef ${type} ${name};
-"
+      idl_decl ""
       explicit_switch_type ""
       
-      classrelation 128313 // <realization>
-	relation 128313 -_-|>
-	  a public
-	    cpp default "${type}"
-	    classrelation_ref 128313 // <realization>
-	  b parent class_ref 128185 // map
+      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
+      operation 128573 "Inode"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128701 "~Inode"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
       end
     end
 
-    class 132165 "VectorString"
-      visibility package stereotype "typedef" base_type class_ref 132037 // vector
-      nactuals 1
-      actual class class_ref 132037 // vector
-        rank 0 value class_ref 129341 // String
-      cpp_decl "${comment}typedef ${type} ${name};
+    class 128377 "File"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
 "
       java_decl ""
       php_decl ""
       python_2_2 python_decl ""
-      idl_decl "${comment}typedef ${type} ${name};
-"
+      idl_decl ""
       explicit_switch_type ""
       
-      classrelation 133189 // <realization>
-	relation 133189 -_-|>
-	  a public
-	    cpp default "${type}"
-	    classrelation_ref 133189 // <realization>
-	  b parent class_ref 132037 // vector
+      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
+      operation 128707 "File"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128835 "~File"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      classrelation 128761 // process_list (<aggregation>)
+	relation_ref 128377 // <aggregation>
+      end
+
+      classrelation 128029 // inode (<unidirectional association>)
+	relation 128029 --->
+	  a role_name "inode" multiplicity "1" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128029 // inode (<unidirectional association>)
+	  b multiplicity "*" parent class_ref 128029 // Inode
       end
     end
 
-    class 132421 "HalDeviceProxyRefPtr"
-      visibility package stereotype "typedef" base_type class_ref 129597 // RefPtr
-      nactuals 1
-      actual class class_ref 129597 // RefPtr
-        rank 0 value class_ref 128189 // HalDeviceProxy
-      cpp_decl "${comment}typedef ${type} ${name};
+    class 128067 "Filesystem"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
 "
       java_decl ""
       php_decl ""
       python_2_2 python_decl ""
-      idl_decl "${comment}typedef ${type} ${name};
-"
+      idl_decl ""
       explicit_switch_type ""
       
-      classrelation 133445 // <realization>
-	relation 133445 -_-|>
-	  a public
-	    cpp default "${type}"
-	    classrelation_ref 133445 // <realization>
-	  b parent class_ref 129597 // RefPtr
+      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
+      operation 128963 "Filesystem"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129091 "~Filesystem"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 128029 "type"
+	protected explicit_type "string"
+	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 128067 // file_list (<directional composition>)
+	relation 128067 *-->
+	  a role_name "file_list" multiplicity "1..*" protected
+	    cpp default "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	    classrelation_ref 128067 // file_list (<directional composition>)
+	  b multiplicity "1" parent class_ref 128377 // File
+      end
+
+      classrelation 128233 // _host (<aggregation>)
+	relation_ref 128105 // <aggregation>
+      end
+    end
+
+    class 128105 "Log"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
+      operation 128106 "Log"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128234 "~Log"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128362 "printd"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "text" explicit_type "string"
+	  param in name "level" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
       end
     end
   end
@@ -2536,6 +2742,66 @@ ${members}
 ${namespace_end}"
       associated_classes
 	class_ref 159496 // HalParser
+      end
+    end
+
+    artifact 140040 "linux-kernel-monitor-client"
+      stereotype "source"
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif // ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 175496 // LinuxKernelMonitorClient
       end
     end
   end

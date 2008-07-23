@@ -1,6 +1,6 @@
 format 58
 "glkm-view" // glkm::glkm-view
-  revision 48
+  revision 53
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -341,7 +341,7 @@ ${inlines}
 	
       end
 
-      operation 128008 "on_clicked_toolbar_refresh"
+      operation 128008 "on_clicked_toolbar_synchronize"
 	protected explicit_return_type "void"
 	nparams 0
 	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
@@ -382,12 +382,12 @@ ${inlines}
 	  b multiplicity "1" parent class_ref 128040 // ToolButton
       end
 
-      classrelation 128136 // _pToolButton_Refresh (<unidirectional association>)
+      classrelation 128136 // _pToolButton_Synchronize (<unidirectional association>)
 	relation 128136 --->
-	  a role_name "_pToolButton_Refresh" multiplicity "1" protected
+	  a role_name "_pToolButton_Synchronize" multiplicity "1" protected
 	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 128136 // _pToolButton_Refresh (<unidirectional association>)
+	    classrelation_ref 128136 // _pToolButton_Synchronize (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 128040 // ToolButton
       end
 
@@ -767,7 +767,22 @@ ${inlines}
 	set_of_relation classrelation_ref 170120 // _pHost (<unidirectional association>)
       end
 
-      operation 209800 "on_Process_added"
+      operation 209800 "on_process_added"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "process" type class_ref 128249 // Process
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 237832 "on_process_removed"
 	public explicit_return_type "void"
 	nparams 1
 	  param in name "process" type class_ref 128249 // Process
@@ -791,6 +806,55 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
+      end
+
+      operation 242056 "find_parent_process"
+	protected explicit_return_type "bool"
+	nparams 2
+	  param in name "process" type class_ref 128249 // Process
+	  param in name "found_iter" type class_ref 133838 // iterator
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 240776 "find_process"
+	protected explicit_return_type "bool"
+	nparams 2
+	  param in name "process" type class_ref 128249 // Process
+	  param in name "found_iter" type class_ref 133838 // iterator
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 239368 "find_proccess_by_PID_from_here"
+	protected explicit_return_type "bool"
+	nparams 3
+	  param in name "process" type class_ref 128249 // Process
+	  param in name "from_iter" type class_ref 133838 // iterator
+	  param out name "found_iter" type class_ref 133838 // iterator
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
       end
 
       operation 128296 "on_treeview_row_activated"
@@ -887,7 +951,7 @@ ${inlines}
 	  
 	end
 
-	attribute 128021 "col_pid"
+	attribute 128021 "col_PID"
 	  public type class_ref 129576 // TreeModelColumnInt
 	  cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -899,6 +963,16 @@ ${inlines}
 
 	attribute 128149 "col_name"
 	  public type class_ref 128021 // TreeModelColumnUstring
+	  cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	end
+
+	attribute 152968 "col_PPID"
+	  public type class_ref 129576 // TreeModelColumnInt
 	  cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	  java_decl ""
@@ -965,6 +1039,7 @@ ${inlines}
 	  b multiplicity "1" parent class_ref 128121 // Host
 	set_oper operation_ref 211080 // set_pHost
       end
+
     end
 
     class 132744 "HostSelectDialog"

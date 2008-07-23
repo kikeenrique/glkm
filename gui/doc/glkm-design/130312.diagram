@@ -83,10 +83,10 @@ relationcanvas 128264 relation_ref 145416 // <directional aggregation>
 end
 relationcanvas 128776 relation_ref 148232 // <unidirectional association>
   geometry HVr
-  from ref 128392 z 1999 to point 430 414
+  from ref 128392 z 1999 to point 443 416
   line 137352 z 1999 to ref 128648
-  role_a_pos 307 400 3000 no_role_b
-  multiplicity_a_pos 307 422 3000 multiplicity_b_pos 416 205 3000
+  role_a_pos 331 401 3000 no_role_b
+  multiplicity_a_pos 331 424 3000 multiplicity_b_pos 429 229 3000
 end
 relationcanvas 130952 relation_ref 151176 // <unidirectional association>
   from ref 128392 z 1999 to ref 130824
@@ -95,8 +95,8 @@ relationcanvas 130952 relation_ref 151176 // <unidirectional association>
 end
 relationcanvas 133768 relation_ref 144136 // <directional composition>
   from ref 128648 z 1999 stereotype "<<map>>" xyz 157 487 3000 to ref 133640
-  role_a_pos 188 521 3000 no_role_b
-  multiplicity_a_pos 164 521 3000 multiplicity_b_pos 162 444 3000
+  role_a_pos 203 520 3000 no_role_b
+  multiplicity_a_pos 178 520 3000 multiplicity_b_pos 174 448 3000
 end
 relationcanvas 134664 relation_ref 160392 // <unidirectional association>
   geometry HVr
@@ -130,7 +130,7 @@ relationcanvas 135816 relation_ref 164104 // <dependency>
 end
 relationcanvas 137096 relation_ref 166024 // <dependency>
   geometry HVr
-  from ref 128392 z 1999 to point 430 558
+  from ref 128392 z 1999 to point 443 560
   line 137608 z 1999 to ref 133640
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
@@ -142,13 +142,13 @@ relationcanvas 138248 relation_ref 157448 // <unidirectional association>
 end
 relationcanvas 138376 relation_ref 153480 // <unidirectional association>
   from ref 135048 z 3004 to ref 132104
-  role_a_pos 690 404 3000 no_role_b
-  multiplicity_a_pos 770 426 3000 multiplicity_b_pos 688 373 3000
+  role_a_pos 683 403 3000 no_role_b
+  multiplicity_a_pos 772 426 3000 multiplicity_b_pos 688 373 3000
 end
 relationcanvas 138504 relation_ref 169736 // <unidirectional association>
   from ref 138120 z 2008 to ref 133640
-  role_a_pos 321 557 3000 no_role_b
-  multiplicity_a_pos 321 579 3000 multiplicity_b_pos 852 636 3000
+  role_a_pos 355 560 3000 no_role_b
+  multiplicity_a_pos 355 583 3000 multiplicity_b_pos 852 638 3000
 end
 line 136712 -_-_
   from ref 132104 z 2004 to ref 135944

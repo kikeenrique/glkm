@@ -1,0 +1,285 @@
+format 58
+
+classinstancecanvas 131592 classinstance_ref 140808 // host
+  xyz 113 9 2000 life_line_z 2000
+end
+classinstance 132232 class_ref 128185 // map
+  name "host._task_list"   xyz 526 7 2000 life_line_z 2000
+classinstance 132616 class_ref 148872 // iterator
+  name "process_iterator"   xyz 649 7 2000 life_line_z 2000
+fragment 132872 "alt"
+  xyzwh 12 206 0 1849 753
+end
+textcanvas 133000 "process_iterator == host._task_list.end()"
+  xyzwh 17 233 2010 209 13
+classinstance 133128 class_ref 128249 // Process
+  name "host._task_list[PID]"   xyz 899 7 2005 life_line_z 2000
+classinstance 134536 class_ref 128476 // TreeViewHost
+  name ""   xyz 1060 6 2000 life_line_z 2000
+fragment 135176 "else"
+  xyzwh 13 958 2000 1026 70
+end
+classinstance 135688 class_ref 128249 // Process
+  name "process"   xyz 795 6 2005 life_line_z 2000
+note 136200 "BECAREFUL
+PID is unique and linux kernel doesn't reuse them, so we have not to care about a replaced PID"
+  color orange  xyzwh 747 159 2000 175 129
+classinstance 136328 class_ref 160648 // type_signal_process_added
+  name "host.signal_process_added"   xyz 180 7 2000 life_line_z 2000
+classinstance 136840 class_ref 178056 // iterator
+  name "process_iter"   xyz 1300 331 2000 life_line_z 2000
+classinstance 137224 class_ref 129358 // TreeStore
+  name "*_refPtrTreeStore"   xyz 1441 331 2000 life_line_z 2000
+fragment 137736 "alt"
+  xyzwh 1020 619 1995 819 310
+end
+textcanvas 137864 "found"
+  xyzwh 1040 646 2020 38 19
+classinstance 137992 class_ref 179336 // TreeRow
+  name "row"   xyz 1617 331 2000 life_line_z 2000
+classinstance 138120 class_ref 179336 // TreeRow
+  name "childrow"   xyz 1702 330 2000 life_line_z 2000
+classinstance 140296 class_ref 128249 // Process
+  name "process"   xyz 1186 329 2000 life_line_z 2000
+durationcanvas 131720 classinstance_ref 131592 // host:Host
+  xyzwh 132 87 2005 11 912
+  overlappingdurationcanvas 134664
+    xyzwh 138 356 2020 11 40
+  end
+end
+durationcanvas 132360 classinstance_ref 132232 // host._task_list:map
+  xyzwh 575 162 2010 11 32
+end
+durationcanvas 133256 classinstance_ref 133128 // host._task_list[PID]:Process
+  xyzwh 970 254 2010 11 27
+end
+durationcanvas 134280 classinstance_ref 133128 // host._task_list[PID]:Process
+  xyzwh 970 293 2010 11 28
+end
+durationcanvas 134920 classinstance_ref 134536 // :TreeViewHost
+  xyzwh 1098 378 2010 11 515
+  overlappingdurationcanvas 137352
+    xyzwh 1104 554 2020 11 53
+  end
+end
+durationcanvas 135432 classinstance_ref 133128 // host._task_list[PID]:Process
+  xyzwh 970 986 2010 11 25
+end
+durationcanvas 135816 classinstance_ref 135688 // process:Process
+  xyzwh 839 108 2010 11 33
+end
+durationcanvas 136456 classinstance_ref 136328 // host.signal_process_added:type_signal_process_added
+  xyzwh 328 363 2010 11 26
+end
+durationcanvas 136968 classinstance_ref 136840 // process_iter:iterator
+  xyzwh 1353 511 2010 11 26
+end
+durationcanvas 138248 classinstance_ref 137224 // *_refPtrTreeStore:TreeStore
+  xyzwh 1516 716 2010 11 37
+end
+durationcanvas 138504 classinstance_ref 137992 // row:TreeRow
+  xyzwh 1650 670 2010 11 31
+end
+durationcanvas 138760 classinstance_ref 138120 // childrow:TreeRow
+  xyzwh 1748 769 2010 11 25
+end
+durationcanvas 139272 classinstance_ref 137992 // row:TreeRow
+  xyzwh 1650 640 2010 11 25
+end
+durationcanvas 139528 classinstance_ref 138120 // childrow:TreeRow
+  xyzwh 1748 823 2010 11 25
+end
+durationcanvas 139784 classinstance_ref 138120 // childrow:TreeRow
+  xyzwh 1748 854 2010 11 25
+end
+durationcanvas 140040 classinstance_ref 138120 // childrow:TreeRow
+  xyzwh 1748 882 2010 11 25
+end
+durationcanvas 140424 classinstance_ref 140296 // process:Process
+  xyzwh 1230 394 2010 11 30
+end
+durationcanvas 140680 classinstance_ref 140296 // process:Process
+  xyzwh 1230 479 2010 11 30
+end
+durationcanvas 140936 classinstance_ref 140296 // process:Process
+  xyzwh 1230 435 2010 11 29
+end
+reflexivemsg 131848 synchronous
+  to durationcanvas_ref 131720
+  yz 87 2015 msg operation_ref 237576 // "add_and_synchronize_process(inout process : Process) : void"
+  show_full_operations_definition default drawing_language default
+  args "process"
+  label_xy 150 73
+msg 132488 synchronous
+  from durationcanvas_ref 131720
+  to durationcanvas_ref 132360
+  yz 162 2015 msg operation_ref 183432 // "find(in x : key_type) : iterator"
+  show_full_operations_definition default drawing_language default
+  args "PID"
+  label_xy 336 149
+msg 132744 return
+  from durationcanvas_ref 132360
+  to durationcanvas_ref 131720
+  yz 183 2020 explicitmsg "process_iterator"
+  show_full_operations_definition default drawing_language default
+  label_xy 316 170
+msg 133384 synchronous
+  from durationcanvas_ref 131720
+  to durationcanvas_ref 133256
+  yz 254 2015 msg operation_ref 182920 // "operator=(in source : Process) : Process"
+  show_full_operations_definition default drawing_language default
+  args "process"
+  label_xy 505 241
+msg 134408 synchronous
+  from durationcanvas_ref 131720
+  to durationcanvas_ref 134280
+  yz 293 2015 msg operation_ref 237320 // "set__synchronized(in value : bool) : void"
+  show_full_operations_definition default drawing_language default
+  args "TRUE"
+  label_xy 489 280
+msg 135560 synchronous
+  from durationcanvas_ref 131720
+  to durationcanvas_ref 135432
+  yz 988 2015 msg operation_ref 237320 // "set__synchronized(in value : bool) : void"
+  show_full_operations_definition default drawing_language default
+  args "TRUE"
+  label_xy 489 975
+msg 135944 synchronous
+  from durationcanvas_ref 131720
+  to durationcanvas_ref 135816
+  yz 108 3005 msg operation_ref 128520 // "get__PID() : int"
+  show_full_operations_definition default drawing_language default
+  label_xy 463 95
+msg 136072 return
+  from durationcanvas_ref 135816
+  to durationcanvas_ref 131720
+  yz 130 3005 explicitmsg "PID"
+  show_full_operations_definition default drawing_language default
+  label_xy 482 117
+msg 136584 synchronous
+  from durationcanvas_ref 134664
+  to durationcanvas_ref 136456
+  yz 364 2030 msg operation_ref 203528 // "emit() : result_type"
+  show_full_operations_definition default drawing_language default
+  args "host._task_list[PID]"
+  label_xy 174 351
+msg 136712 asynchronous
+  from durationcanvas_ref 136456
+  to durationcanvas_ref 134920
+  yz 378 3005 msg operation_ref 209800 // "on_process_added(in process : Process) : void"
+  show_full_operations_definition default drawing_language default
+  args "host._task_list[PID]"
+  label_xy 613 365
+msg 137096 synchronous
+  from durationcanvas_ref 134920
+  to durationcanvas_ref 136968
+  yz 511 2015 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+reflexivemsg 137480 synchronous
+  to durationcanvas_ref 137352
+  yz 554 2025 msg operation_ref 242056 // "find_parent_process(in process : Process, in found_iter : iterator) : bool"
+  show_full_operations_definition default drawing_language default
+  args "process, process_iter"
+  label_xy 1116 541
+selfreflexivemsg 137608
+  to durationcanvas_ref 137352
+  yz 599 2025 explicitmsg "found"
+  show_full_operations_definition default drawing_language default
+  label_xy 1111 586
+msg 138376 synchronous
+  from durationcanvas_ref 134920
+  to durationcanvas_ref 138248
+  yz 716 2015 msg operation_ref 241416 // "append(in node : TreeNodeChildren) : iterator"
+  show_full_operations_definition default drawing_language default
+  args "row_children"
+  label_xy 1255 703
+msg 138632 synchronous
+  from durationcanvas_ref 134920
+  to durationcanvas_ref 138504
+  yz 670 3005 msg operation_ref 241672 // "children() : TreeNodeChildren"
+  show_full_operations_definition default drawing_language default
+  label_xy 1276 657
+msg 138888 synchronous
+  from durationcanvas_ref 134920
+  to durationcanvas_ref 138760
+  yz 769 2015 explicitmsg "operator = ()"
+  show_full_operations_definition default drawing_language default
+  args "childrow_iter"
+  label_xy 1362 756
+msg 139016 return
+  from durationcanvas_ref 138504
+  to durationcanvas_ref 134920
+  yz 690 3010 explicitmsg "row_children"
+  show_full_operations_definition default drawing_language default
+  label_xy 1268 677
+msg 139144 return
+  from durationcanvas_ref 138248
+  to durationcanvas_ref 134920
+  yz 742 2020 explicitmsg "childrow_iter"
+  show_full_operations_definition default drawing_language default
+  label_xy 1279 729
+msg 139400 synchronous
+  from durationcanvas_ref 134920
+  to durationcanvas_ref 139272
+  yz 640 3005 explicitmsg "operator = ()"
+  show_full_operations_definition default drawing_language default
+  args "process_iter"
+  label_xy 1234 627
+msg 139656 synchronous
+  from durationcanvas_ref 134920
+  to durationcanvas_ref 139528
+  yz 823 2015 msg operation_ref 241928 // "operator[](in column : TreeModelColumn) : TreeValueProxy"
+  show_full_operations_definition default drawing_language default
+  args "_ModelColumns.col_PID, PID"
+  label_xy 1335 810
+msg 139912 synchronous
+  from durationcanvas_ref 134920
+  to durationcanvas_ref 139784
+  yz 854 2015 msg operation_ref 241928 // "operator[](in column : TreeModelColumn) : TreeValueProxy"
+  show_full_operations_definition default drawing_language default
+  args "_ModelColumns.col_PPID, PPID"
+  label_xy 1331 841
+msg 140168 synchronous
+  from durationcanvas_ref 134920
+  to durationcanvas_ref 140040
+  yz 882 2020 msg operation_ref 241928 // "operator[](in column : TreeModelColumn) : TreeValueProxy"
+  show_full_operations_definition default drawing_language default
+  args "_ModelColumns.col_name, name"
+  label_xy 1330 869
+msg 140552 synchronous
+  from durationcanvas_ref 134920
+  to durationcanvas_ref 140424
+  yz 394 2015 msg operation_ref 128520 // "get__PID() : int"
+  show_full_operations_definition default drawing_language default
+  label_xy 1134 381
+msg 140808 synchronous
+  from durationcanvas_ref 134920
+  to durationcanvas_ref 140680
+  yz 479 2015 msg operation_ref 212232 // "get__PPID() : int"
+  show_full_operations_definition default drawing_language default
+  label_xy 1133 466
+msg 141064 synchronous
+  from durationcanvas_ref 134920
+  to durationcanvas_ref 140936
+  yz 435 3005 msg operation_ref 128648 // "get__name() : ustring"
+  show_full_operations_definition default drawing_language default
+  label_xy 1129 422
+msg 141192 return
+  from durationcanvas_ref 140424
+  to durationcanvas_ref 134920
+  yz 413 2020 explicitmsg "PID"
+  show_full_operations_definition default drawing_language default
+  label_xy 1153 400
+msg 141320 return
+  from durationcanvas_ref 140936
+  to durationcanvas_ref 134920
+  yz 453 3005 explicitmsg "name"
+  show_full_operations_definition default drawing_language default
+  label_xy 1148 440
+msg 141448 return
+  from durationcanvas_ref 140680
+  to durationcanvas_ref 134920
+  yz 498 2020 explicitmsg "PPID"
+  show_full_operations_definition default drawing_language default
+  label_xy 1149 485
+end

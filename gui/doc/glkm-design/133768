@@ -1,0 +1,666 @@
+format 58
+"giomm" // giomm
+  revision 2
+  modified_by 8 "enrgar"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  stereotype "library"
+  cpp_namespace "Gio"
+  classview 132616 "giomm class view"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    classdiagram 136328 "giomm class diagram"
+      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      size A2
+    end
+
+    class 170376 "File"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <giomm/file.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 177544 // <generalisation>
+	relation 177160 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 177544 // <generalisation>
+	  b parent class_ref 130126 // Interface
+      end
+
+      operation 226312 "~File"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 227848 "read"
+	public return_type class_ref 129614 // RefPtr
+	nparams 1
+	  param in name "cancellable" type class_ref 129614 // RefPtr
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::RefPtr<FileInputStream> 	read (const Glib::RefPtr<Cancellable>& cancellable)"
+      end
+
+      operation 227720 "read"
+	public return_type class_ref 129614 // RefPtr
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::RefPtr<FileInputStream> 	read ()"
+      end
+
+      operation 226952 "add_interface"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "gtype_implementer" explicit_type "GType"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 226440 "create_for_path"
+	class_operation public return_type class_ref 129614 // RefPtr
+	nparams 1
+	  param in name "path" type class_ref 129288 // string
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "static Glib::RefPtr<File> 	create_for_path (const std::string& path)"
+      end
+
+      operation 226568 "create_for_uri"
+	class_operation public return_type class_ref 129614 // RefPtr
+	nparams 1
+	  param in name "uri" type class_ref 129288 // string
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "static Glib::RefPtr<File> 	create_for_uri (const std::string& uri)"
+      end
+
+      operation 226696 "create_for_commandline_arg"
+	class_operation public return_type class_ref 129614 // RefPtr
+	nparams 1
+	  param in name "arg" type class_ref 129288 // string
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "static Glib::RefPtr<File> 	create_for_commandline_arg (const std::string& arg)"
+      end
+
+      operation 226824 "create_for_parse_name"
+	class_operation public return_type class_ref 129614 // RefPtr
+	nparams 1
+	  param in name "parse_name" type class_ref 132814 // ustring
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "static Glib::RefPtr<File> 	create_for_parse_name (const Glib::ustring& parse_name)"
+      end
+    end
+
+    class 170504 "FileInputStream"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <giomm/fileinputstream.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 177672 // <generalisation>
+	relation 177288 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 177672 // <generalisation>
+	  b parent class_ref 170632 // InputStream
+      end
+
+      classrelation 177800 // <generalisation>
+	relation 177416 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 177800 // <generalisation>
+	  b parent class_ref 170760 // Seekable
+      end
+
+      operation 227080 "~FileInputStream"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 170632 "InputStream"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <giomm/inputstream.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 179080 // <generalisation>
+	relation 178696 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 179080 // <generalisation>
+	  b parent class_ref 129998 // Object
+      end
+
+      operation 227336 "~InputStream"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 227464 "read"
+	public return_type class_ref 171912 // gssize
+	nparams 3
+	  param inout name "buffer" explicit_type "void"
+	  param in name "count" type class_ref 171784 // gsize
+	  param in name "cancellable" type class_ref 129614 // RefPtr
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}, ${t1} ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}, ${t1} ${p1}, const ${t2} & ${p2}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "gssize 	read (void* buffer, gsize count, const Glib::RefPtr<Cancellable>& cancellable)"
+      end
+
+      operation 227592 "read"
+	public return_type class_ref 171912 // gssize
+	nparams 2
+	  param inout name "buffer" explicit_type "void"
+	  param in name "count" type class_ref 171784 // gsize
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 170760 "Seekable"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <giomm/seekable.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 227208 "~Seekable"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      classrelation 178952 // <generalisation>
+	relation 178568 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 178952 // <generalisation>
+	  b parent class_ref 130126 // Interface
+      end
+    end
+
+    class 170888 "FileOutputStream"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 177928 // <generalisation>
+	relation 177544 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 177928 // <generalisation>
+	  b parent class_ref 170760 // Seekable
+      end
+    end
+
+    class 171016 "MemoryInputStream"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 178056 // <generalisation>
+	relation 177672 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 178056 // <generalisation>
+	  b parent class_ref 170760 // Seekable
+      end
+
+      classrelation 178312 // <generalisation>
+	relation 177928 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 178312 // <generalisation>
+	  b parent class_ref 170632 // InputStream
+      end
+    end
+
+    class 171272 "UnixInputStream"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 178440 // <generalisation>
+	relation 178056 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 178440 // <generalisation>
+	  b parent class_ref 170632 // InputStream
+      end
+    end
+
+    class 171400 "FilterInputStream"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 178568 // <generalisation>
+	relation 178184 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 178568 // <generalisation>
+	  b parent class_ref 170632 // InputStream
+      end
+
+      operation 228616 "~FilterInputStream"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 171528 "BufferedInputStream"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 178696 // <generalisation>
+	relation 178312 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 178696 // <generalisation>
+	  b parent class_ref 171400 // FilterInputStream
+      end
+
+      operation 228744 "~BufferedInputStream"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 228872 "BufferedInputStream"
+	protected explicit_return_type ""
+	nparams 1
+	  param in name "base_stream" type class_ref 129614 // RefPtr
+	cpp_decl "	${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+	comment " BufferedInputStream (const Glib::RefPtr<InputStream>& base_stream)"
+      end
+
+      operation 229000 "BufferedInputStream"
+	protected explicit_return_type ""
+	nparams 2
+	  param in name "base_stream" type class_ref 129614 // RefPtr
+	  param in name "size" type class_ref 171784 // gsize
+	cpp_decl "	${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+	comment "BufferedInputStream (const Glib::RefPtr<InputStream>& base_stream, gsize size)"
+      end
+    end
+
+    class 171656 "DataInputStream"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <giomm/datainputstream.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 178824 // <generalisation>
+	relation 178440 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 178824 // <generalisation>
+	  b parent class_ref 171528 // BufferedInputStream
+      end
+
+      operation 228232 "~DataInputStream"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 227976 "read_line"
+	public explicit_return_type "bool"
+	nparams 2
+	  param out name "line" type class_ref 129288 // string
+	  param in name "cancellable" type class_ref 129614 // RefPtr
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "bool 	read_line (std::string& line, const Glib::RefPtr<Cancellable>& cancellable)"
+      end
+
+      operation 228104 "read_line"
+	public explicit_return_type "bool"
+	nparams 1
+	  param out name "line" type class_ref 129288 // string
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 228360 "create"
+	class_operation public return_type class_ref 129614 // RefPtr
+	nparams 1
+	  param in name "base_stream" type class_ref 129614 // RefPtr
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "static Glib::RefPtr <DataInputStream> 	create (const Glib::RefPtr<InputStream>& base_stream)"
+      end
+
+      operation 228488 "DataInputStream"
+	protected explicit_return_type ""
+	nparams 1
+	  param in name "base_stream" type class_ref 129614 // RefPtr
+	cpp_decl "	${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+	comment "DataInputStream (const Glib::RefPtr<InputStream>& base_stream)"
+      end
+    end
+
+    class 172296 "Error"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 179464 // <generalisation>
+	relation 179080 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 179464 // <generalisation>
+	  b parent class_ref 135560 // Error
+      end
+    end
+
+    class 172424 "Initgio"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <giomm/init.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "//This class does NOT exist, this is a hack for bouml to generate dependecy on giomm/init.h"
+      operation 229128 "init"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+  end
+end

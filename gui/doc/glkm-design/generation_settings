@@ -4,7 +4,7 @@
   cpp_include_with_path
   cpp_root_relative_path
 
-  type_forms 20 // uml cpp java idl cpp_in cpp_out cpp_inout cpp_return
+  type_forms 19 // uml cpp java idl cpp_in cpp_out cpp_inout cpp_return
     "void" "void" "void" "void" "${type}" "${type} &" "${type}" "${type}"
     "any" "void *" "Object" "any" "const ${type}" "${type}" "${type} &" "${type}"
     "bool" "bool" "boolean" "boolean" "${type}" "${type} &" "${type} &" "${type}"
@@ -19,7 +19,6 @@
     "ulong" "unsigned long" "long" "unsigned long" "${type}" "${type} &" "${type} &" "${type}"
     "float" "float" "float" "float" "${type}" "${type} &" "${type} &" "${type}"
     "double" "double" "double" "double" "${type}" "${type} &" "${type} &" "${type}"
-    "string" "string" "String" "string" "${type}" "${type} &" "${type} &" "${type}"
     "GType" "GType" "GType" "GType" "${type}" "${type} *" "${type} *" "${type}"
     "GValue" "GValue" "GValue" "GValue" "${type}" "${type} *" "${type} *" "${type}"
     "GQuark" "GQuark" "GQuark" "GQuark" "${type}" "${type} *" "${type} *" "${type}"

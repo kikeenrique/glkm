@@ -1,29 +1,9 @@
-window_sizes 1672 994 309 1357 917 0
-diagrams
-  classdiagram_ref 128121 // glkm-model class diagram
-    976 695 100 13 420 926
-  classdiagram_ref 128092 // glkm-view class diagram
-    1085 733 100 1 420 756
-  classdiagram_ref 130312 // glkm-controller
-    1218 842 100 15 29 0
-  sequencediagram_ref 132872 // refresh processes
-    1085 595 100 15 0 0
-  active  sequencediagram_ref 128197 // show processes
-    1357 917 100 14 0 0
-end
+window_sizes 1672 994 339 1327 919 0
 show_stereotypes
-selected sequencediagram_ref 128197 // show processes
+selected operation_ref 242056 // find_parent_process
 open
+  usecase_ref 129160 // connect to host
   usecase_ref 128008 // show processes
-  class_ref 128061 // HalManagerProxy
-  class_ref 128189 // HalDeviceProxy
-  operation_ref 128837 // get_all_processes
-  class_ref 159496 // HalParser
-  attribute_ref 128106 // _hostname
-  classrelation_ref 167560 // <dependency>
-  operation_ref 212232 // get__PPID
-  classrelation_ref 166408 // <dependency>
-  class_ref 153864 // NotebookPageHost
-  class_ref 128476 // TreeViewHost
+  classrelation_ref 170120 // _pHost (<unidirectional association>)
 end
 end

@@ -1,0 +1,11 @@
+format 58
+
+statecanvas 128008 state_ref 128136 // syncronized
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 334 207 2000 83 33
+end
+statecanvas 128136 state_ref 128264 // not syncronized
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  xyzwh 476 208 2000 103 33
+end
+end

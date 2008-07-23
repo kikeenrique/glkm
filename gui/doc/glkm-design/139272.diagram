@@ -1,0 +1,146 @@
+format 58
+
+classinstancecanvas 131592 classinstance_ref 140808 // host
+  xyz 196 5 2000 life_line_z 4005
+end
+classinstance 132232 class_ref 128185 // map
+  name "host._task_list"   xyz 1016 4 2000 life_line_z 4005
+classinstance 132616 class_ref 148872 // iterator
+  name "process_iterator"   xyz 321 4 2000 life_line_z 1965
+fragment 132872 "alt"
+  xyzwh 59 211 1975 595 69
+end
+textcanvas 133000 "synchronized"
+  xyzwh 81 233 2010 90 16
+classinstance 134536 class_ref 128476 // TreeViewHost
+  name ""   xyz 1072 292 2000 life_line_z 4005
+classinstance 135688 class_ref 128249 // Process
+  name "(*process_iterator).second"   xyz 467 4 2000 life_line_z 1965
+fragment 136328 "loop"
+  xyzwh 3 130 1970 1642 539
+end
+textcanvas 136456 "process_iterator = host._task_list.begin
+process_iterator!= host._task_list.end
+++process_iterator"
+  xyzwh 8 147 3015 217 51
+fragment 136712 "else"
+  xyzwh 57 279 1985 1459 362
+end
+classinstance 136840 class_ref 176776 // type_signal_process_removed
+  name "host.signal_process_removed"   xyz 679 4 2005 life_line_z 4005
+textcanvas 137608 "!synchronized"
+  xyzwh 73 306 4010 87 17
+classinstance 138632 class_ref 178056 // iterator
+  name "process_iter"   xyz 1215 315 4005 life_line_z 4005
+classinstance 139528 class_ref 129358 // TreeStore
+  name "*_refPtrTreeStore"   xyz 1334 314 4005 life_line_z 4005
+fragment 140168 "alt"
+  xyzwh 1025 505 1990 464 65
+end
+textcanvas 140296 "found"
+  xyzwh 1040 528 4035 39 14
+durationcanvas 131720 classinstance_ref 131592 // host:Host
+  xyzwh 216 77 4010 10 625
+end
+durationcanvas 134920 classinstance_ref 134536 // :TreeViewHost
+  xyzwh 1111 342 4015 10 213
+  overlappingdurationcanvas 139272
+    xyzwh 1116 438 4030 10 59
+  end
+end
+durationcanvas 135816 classinstance_ref 135688 // (*process_iterator).second:Process
+  xyzwh 562 156 2010 8 34
+end
+durationcanvas 137352 classinstance_ref 135688 // (*process_iterator).second:Process
+  xyzwh 561 233 2010 9 23
+end
+durationcanvas 137736 classinstance_ref 132232 // host._task_list:map
+  xyzwh 1066 585 4015 9 23
+end
+durationcanvas 137992 classinstance_ref 136840 // host.signal_process_removed:type_signal_process_removed
+  xyzwh 839 336 4015 11 245
+end
+durationcanvas 138248 classinstance_ref 132616 // process_iterator:iterator
+  xyzwh 385 101 2010 10 25
+end
+durationcanvas 139016 classinstance_ref 138632 // process_iter:iterator
+  xyzwh 1268 393 4015 11 25
+end
+durationcanvas 139656 classinstance_ref 139528 // *_refPtrTreeStore:TreeStore
+  xyzwh 1410 527 4015 9 27
+end
+reflexivemsg 131848 synchronous
+  to durationcanvas_ref 131720
+  yz 77 2015 msg operation_ref 237448 // "delete_all_not_synchronized() : void"
+  show_full_operations_definition default drawing_language default
+  args "process"
+  label_xy 139 62
+msg 135944 synchronous
+  from durationcanvas_ref 131720
+  to durationcanvas_ref 135816
+  yz 157 3005 msg operation_ref 237704 // "get__synchronized() : bool"
+  show_full_operations_definition default drawing_language default
+  label_xy 347 144
+msg 136072 return
+  from durationcanvas_ref 135816
+  to durationcanvas_ref 131720
+  yz 179 3005 explicitmsg "synchronized"
+  show_full_operations_definition default drawing_language default
+  label_xy 362 165
+msg 137224 asynchronous
+  from durationcanvas_ref 137992
+  to durationcanvas_ref 134920
+  yz 342 4035 msg operation_ref 237832 // "on_process_removed(in process : Process) : void"
+  show_full_operations_definition default drawing_language default
+  args "process"
+  label_xy 897 330
+msg 137480 synchronous
+  from durationcanvas_ref 131720
+  to durationcanvas_ref 137352
+  yz 234 3005 msg operation_ref 237320 // "set__synchronized(in value : bool) : void"
+  show_full_operations_definition default drawing_language default
+  args "FALSE"
+  label_xy 327 221
+msg 137864 synchronous
+  from durationcanvas_ref 131720
+  to durationcanvas_ref 137736
+  yz 586 4020 msg operation_ref 237960 // "erase(in position : iterator) : void"
+  show_full_operations_definition default drawing_language default
+  args "process_iterator"
+  label_xy 585 574
+msg 138120 synchronous
+  from durationcanvas_ref 131720
+  to durationcanvas_ref 137992
+  yz 337 5015 msg operation_ref 203528 // "emit() : result_type"
+  show_full_operations_definition default drawing_language default
+  args "process"
+  label_xy 497 325
+msg 138376 synchronous
+  from durationcanvas_ref 131720
+  to durationcanvas_ref 138248
+  yz 102 3010 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 139144 synchronous
+  from durationcanvas_ref 134920
+  to durationcanvas_ref 139016
+  yz 393 4025 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+reflexivemsg 139400 synchronous
+  to durationcanvas_ref 139272
+  yz 438 4030 msg operation_ref 240776 // "find_process(in process : Process, in found_iter : iterator) : bool"
+  show_full_operations_definition default drawing_language default
+  args "process, process_iter"
+  label_xy 1126 425
+msg 139784 synchronous
+  from durationcanvas_ref 134920
+  to durationcanvas_ref 139656
+  yz 530 4025 msg operation_ref 239496 // "erase(in iter : iterator) : iterator"
+  show_full_operations_definition default drawing_language default
+  args "process_iter"
+  label_xy 1220 517
+selfreflexivemsg 140040
+  to durationcanvas_ref 139272
+  yz 489 4030 explicitmsg "found"
+  show_full_operations_definition default drawing_language default
+  label_xy 1131 475
+end

@@ -17,40 +17,45 @@ classinstancecanvas 133768 classinstance_ref 130824 // s
   xyz 561 147 2000 life_line_z 2010
 end
 fragment 136200 "alt"
-  xyzwh 746 360 2000 898 649
+  xyzwh 641 356 0 1722 680
 end
 classinstance 136328 class_ref 128121 // Host
-  name "_hosts[hostname]"   xyz 875 381 2000 life_line_z 2000
+  name "_hosts[hostname]"   xyz 909 382 2005 life_line_z 2000
 textcanvas 136712 "find() == _hosts.end()"
-  xyzwh 808 364 2020 116 23
-note 138120 "if hostname is not registered"
-  xyzwh 657 395 2025 75 60
+  xyzwh 656 382 2020 116 23
+note 138120 "if hostname is not found"
+  xyzwh 604 421 2025 124 66
 classinstancecanvas 138376 classinstance_ref 131976 // _pNotebooHosts
-  xyz 1003 381 2000 life_line_z 2000
+  xyz 1112 384 2000 life_line_z 2000
 end
 classinstancecanvas 140168 classinstance_ref 132104 // _refPtrGlademmXml2
-  mortal  xyz 1161 498 2005 life_line_z 2000
+  mortal  xyz 1251 513 2005 life_line_z 2000
 end
-note 140552 "create(GLADE_FILE, NotebookHostroot)
-bouml doesn't know how to represent this"
-  xyzwh 1267 576 2020 142 76
-note 141320 "get_widget_derived( \"notebook_hosts-hpaned\", tmp);"
-  xyzwh 1267 655 2000 246 51
 classinstancecanvas 141576 classinstance_ref 132232 // *tmp_pagehost
-  xyz 1351 499 2000 life_line_z 2000
+  xyz 1698 512 2000 life_line_z 2000
 end
 note 145800 "NotebookPageHost is a subcontainer of NotebookHosts"
-  xyzwh 1137 418 2005 172 50
+  xyzwh 1622 404 2005 205 53
 classinstancecanvas 155144 classinstance_ref 135304 // *tmp_treeviewhost
-  xyz 1462 711 2000 life_line_z 2000
+  xyz 1833 726 2000 life_line_z 2000
 end
 note 155912 "TODO
 Move this to async?"
   color red  xyzwh 218 313 2000 120 48
-note 157320 "connect signal and handler on \"Process_added\""
-  xyzwh 1434 875 0 162 53
+note 157320 "connect signal and handler"
+  xyzwh 1979 956 2000 165 35
+classinstance 158344 class_ref 160648 // type_signal_process_added
+  name "host.signal_process_added"   xyz 1931 697 2010 life_line_z 3010
+classinstance 158856 class_ref 132942 // Xml
+  name ""   xyz 1637 513 2000 life_line_z 2000
+classinstance 159496 class_ref 176776 // type_signal_process_removed
+  name "host.signal_process_removed"   xyz 2025 725 2000 life_line_z 2000
+classinstance 160008 class_ref 128185 // map
+  name "_hosts"   xyz 859 258 2000 life_line_z 2000
+classinstance 160392 class_ref 156424 // type_signal_Host_added
+  name "_pHosts.signal_Host_added"   xyz 933 361 2000 life_line_z 2000
 durationcanvas 128136 classinstance_ref 128008 // :MainWindow
-  xyzwh 80 65 2010 11 71
+  xyzwh 82 65 2010 11 71
 end
 durationcanvas 129800 classinstance_ref 129288 // _pHostSelectDialog:HostSelectDialog
   xyzwh 163 104 2010 11 27
@@ -65,58 +70,67 @@ durationcanvas 131848 classinstance_ref 129032 // _pIconViewHosts:IconViewHosts
   xyzwh 365 136 2010 11 27
 end
 durationcanvas 133896 classinstance_ref 133768 // s:Controller
-  xyzwh 580 226 2015 11 808
+  xyzwh 580 226 2015 11 840
 end
 durationcanvas 135304 classinstance_ref 129032 // _pIconViewHosts:IconViewHosts
   xyzwh 365 274 2010 11 40
 end
 durationcanvas 135688 classinstance_ref 132872 // _pHosts:Hosts
-  xyzwh 778 308 2015 11 724
-  overlappingdurationcanvas 135944
-    xyzwh 784 326 2020 11 31
-  end
-  overlappingdurationcanvas 156168
-    xyzwh 784 617 2025 11 39
-  end
+  xyzwh 778 308 2015 11 758
 end
 durationcanvas 136456 classinstance_ref 136328 // _hosts[hostname]:Host
-  xyzwh 929 446 2010 11 25
+  xyzwh 967 446 2010 11 25
 end
 durationcanvas 137096 classinstance_ref 136328 // _hosts[hostname]:Host
-  xyzwh 929 480 2010 11 25
+  xyzwh 967 476 2010 11 25
 end
 durationcanvas 137352 classinstance_ref 136328 // _hosts[hostname]:Host
-  xyzwh 929 513 2010 11 25
+  xyzwh 967 506 2010 11 25
 end
 durationcanvas 137608 classinstance_ref 136328 // _hosts[hostname]:Host
-  xyzwh 929 560 2010 11 25
+  xyzwh 967 537 2010 11 25
 end
 durationcanvas 153608 classinstance_ref 140168 // _refPtrGlademmXml2:RefPtrGladeXml
-  xyzwh 1180 682 2010 11 26
+  xyzwh 1348 698 2010 11 26
 end
 durationcanvas 153864 classinstance_ref 140168 // _refPtrGlademmXml2:RefPtrGladeXml
-  xyzwh 1180 719 2010 11 25
+  xyzwh 1348 734 2010 11 26
 end
 durationcanvas 154888 classinstance_ref 141576 // *tmp_pagehost:NotebookPageHost
-  xyzwh 1370 778 2010 11 55
-end
-durationcanvas 155656 classinstance_ref 138376 // _pNotebooHosts:NotebookHosts
-  xyzwh 1022 642 2010 11 312
-  overlappingdurationcanvas 152328
-    xyzwh 1028 653 2020 11 295
-    overlappingdurationcanvas 153096
-      xyzwh 1034 862 2030 11 25
-    end
-    overlappingdurationcanvas 153352
-      xyzwh 1034 907 2030 11 25
-    end
-  end
-end
-durationcanvas 157448 classinstance_ref 136328 // _hosts[hostname]:Host
-  xyzwh 929 820 2010 11 26
+  xyzwh 1790 782 2010 11 112
 end
 durationcanvas 158088 classinstance_ref 155144 // *tmp_treeviewhost:TreeViewHost
-  xyzwh 1481 783 2010 11 25
+  xyzwh 1918 787 2010 11 25
+end
+durationcanvas 158472 classinstance_ref 158344 // host.signal_process_added:type_signal_process_added
+  xyzwh 2079 830 3020 11 26
+end
+durationcanvas 158984 classinstance_ref 158856 // :Xml
+  xyzwh 1656 702 2010 11 25
+end
+durationcanvas 159240 classinstance_ref 158856 // :Xml
+  xyzwh 1656 746 2010 11 25
+end
+durationcanvas 159624 classinstance_ref 159496 // host.signal_process_removed:type_signal_process_removed
+  xyzwh 2185 875 2010 11 25
+end
+durationcanvas 160136 classinstance_ref 160008 // _hosts:map
+  xyzwh 888 319 2010 11 25
+end
+durationcanvas 160520 classinstance_ref 160392 // _pHosts.signal_Host_added:type_signal_Host_added
+  xyzwh 1072 585 2010 11 53
+end
+durationcanvas 160776 classinstance_ref 138376 // _pNotebooHosts:NotebookHosts
+  xyzwh 1199 621 2010 11 359
+  overlappingdurationcanvas 152328
+    xyzwh 1205 653 2020 11 321
+    overlappingdurationcanvas 153096
+      xyzwh 1211 902 2030 11 25
+    end
+    overlappingdurationcanvas 153352
+      xyzwh 1211 944 2030 11 25
+    end
+  end
 end
 reflexivemsg 128264 asynchronous
   to durationcanvas_ref 128136
@@ -155,13 +169,13 @@ msg 135432 synchronous
   to durationcanvas_ref 135304
   yz 274 2015 msg operation_ref 173448 // "get_selected_items() : ArrayHandle_TreePaths"
   show_full_operations_definition default drawing_language default
-  label_xy 471 262
+  label_xy 420 263
 msg 135560 return
   from durationcanvas_ref 135304
   to durationcanvas_ref 133896
   yz 293 2015 explicitmsg "item"
   show_full_operations_definition default drawing_language default
-  label_xy 507 281
+  label_xy 419 283
 msg 135816 synchronous
   from durationcanvas_ref 133896
   to durationcanvas_ref 135688
@@ -170,120 +184,140 @@ msg 135816 synchronous
   args "item.col_hostname,
 item.col_ip,
 item.col_description"
-  label_xy 626 262
-reflexivemsg 136072 synchronous
-  to durationcanvas_ref 135944
-  yz 326 2025 explicitmsg "hosts.find()"
-  show_full_operations_definition default drawing_language default
-  args "hostname"
-  label_xy 823 313
+  label_xy 596 295
 msg 136584 synchronous
   from durationcanvas_ref 135688
   to durationcanvas_ref 136456
-  yz 446 2015 msg operation_ref 128067 // "Host()"
+  yz 446 2015 unspecifiedmsg
   show_full_operations_definition default drawing_language default
-  label_xy 835 434
 msg 137224 synchronous
   from durationcanvas_ref 135688
   to durationcanvas_ref 137096
-  yz 480 2015 msg operation_ref 179720 // "set__hostname(in value : ustring) : void"
+  yz 476 2015 msg operation_ref 179720 // "set__hostname(in value : ustring) : void"
   show_full_operations_definition default drawing_language default
-  label_xy 816 466
+  label_xy 818 463
 msg 137480 synchronous
   from durationcanvas_ref 135688
   to durationcanvas_ref 137352
-  yz 513 2015 msg operation_ref 179848 // "set__ip(in value : ustring) : void"
+  yz 506 2015 msg operation_ref 179848 // "set__ip(in value : ustring) : void"
   show_full_operations_definition default drawing_language default
-  label_xy 826 503
+  label_xy 838 493
 msg 137736 synchronous
   from durationcanvas_ref 135688
   to durationcanvas_ref 137608
-  yz 560 2015 msg operation_ref 179976 // "set__description(in value : ustring) : void"
+  yz 537 2015 msg operation_ref 179976 // "set__description(in value : ustring) : void"
   show_full_operations_definition default drawing_language default
-  label_xy 815 547
+  label_xy 813 524
 msg 145032 return
   from durationcanvas_ref 135688
   to durationcanvas_ref 133896
-  yz 1019 2020 explicitmsg "created"
+  yz 1055 2020 explicitmsg "created"
   show_full_operations_definition default drawing_language default
-  label_xy 665 1004
+  label_xy 665 1040
 reflexivemsg 152456 synchronous
   to durationcanvas_ref 152328
   yz 653 2025 msg operation_ref 193288 // "add_host_page(inout host : Host) : void"
   show_full_operations_definition default drawing_language default
   args "host"
-  label_xy 1052 636
+  label_xy 1223 636
 reflexivemsg 153224 synchronous
   to durationcanvas_ref 153096
-  yz 862 2035 msg operation_ref 191752 // "append_page(inout child : Widget, in tab_label : ustring, in use_mnemonic : bool = false) : int"
+  yz 902 2035 msg operation_ref 191752 // "append_page(inout child : Widget, in tab_label : ustring, in use_mnemonic : bool = false) : int"
   show_full_operations_definition default drawing_language default
   args "*tmp_pagehost, host.get__hostname"
-  label_xy 1055 843
+  label_xy 1229 881
 reflexivemsg 153480 synchronous
   to durationcanvas_ref 153352
-  yz 907 2035 msg operation_ref 169224 // "show_all_children(in recursive : bool = true) : void"
+  yz 944 2035 msg operation_ref 169224 // "show_all_children(in recursive : bool = true) : void"
   show_full_operations_definition default drawing_language default
-  label_xy 1057 892
+  label_xy 1229 929
 msg 153736 synchronous
   from durationcanvas_ref 152328
   to durationcanvas_ref 153608
-  yz 682 2025 unspecifiedmsg
+  yz 698 2025 msg operation_ref 153992 // "operator->() : T_CppObject *"
   show_full_operations_definition default drawing_language default
+  label_xy 1249 685
 msg 153992 synchronous
   from durationcanvas_ref 152328
   to durationcanvas_ref 153864
-  yz 719 3005 unspecifiedmsg
+  yz 734 3005 msg operation_ref 153992 // "operator->() : T_CppObject *"
   show_full_operations_definition default drawing_language default
+  label_xy 1249 721
 msg 155016 synchronous
   from durationcanvas_ref 152328
   to durationcanvas_ref 154888
-  yz 778 3005 msg operation_ref 204040 // "set_my_Host(inout host : Host) : void"
+  yz 782 3005 msg operation_ref 204040 // "set_my_Host(inout host : Host) : void"
   show_full_operations_definition default drawing_language default
   args "host"
-  label_xy 1206 766
-reflexivemsg 156296 synchronous
-  to durationcanvas_ref 156168
-  yz 617 3010 explicitmsg "signal_Host_added.emit()"
-  show_full_operations_definition default drawing_language default
-  args "&_hosts[hostname]"
-  label_xy 804 599
-msg 156424 asynchronous
-  from durationcanvas_ref 156168
-  to durationcanvas_ref 155656
-  yz 645 3015 msg operation_ref 201224 // "on_Host_added(inout host : Host) : void"
-  show_full_operations_definition default drawing_language default
-  args "host"
-  label_xy 850 633
-msg 157576 synchronous
-  from durationcanvas_ref 154888
-  to durationcanvas_ref 157448
-  yz 821 3005 explicitmsg "signal_Process_added.connect()"
-  show_full_operations_definition default drawing_language default
-  args "*tmp_treeviewhost"
-  label_xy 1036 809
+  label_xy 1454 769
 msg 158216 synchronous
   from durationcanvas_ref 154888
   to durationcanvas_ref 158088
-  yz 783 2015 msg operation_ref 211080 // "set_pHost(in value : Host) : void"
+  yz 787 2015 msg operation_ref 211080 // "set_pHost(in value : Host) : void"
   show_full_operations_definition default drawing_language default
   args "host"
-  label_xy 1432 771
+  label_xy 1817 774
+msg 158600 synchronous
+  from durationcanvas_ref 154888
+  to durationcanvas_ref 158472
+  yz 831 3025 msg operation_ref 203400 // "connect(in slot : slot_type) : iterator"
+  show_full_operations_definition default drawing_language default
+  args "*tmp_treeviewhost::on_process_added"
+  label_xy 1814 818
+msg 159112 synchronous
+  from durationcanvas_ref 153608
+  to durationcanvas_ref 158984
+  yz 702 2015 msg operation_ref 192392 // "create(in filename : string, in root : ustring = Glib::ustring(), in domain : ustring = Glib::ustring()) : RefPtr"
+  show_full_operations_definition default drawing_language default
+  args "GLADE_FILE, NotebookHostroot"
+  label_xy 1402 689
+msg 159368 synchronous
+  from durationcanvas_ref 153864
+  to durationcanvas_ref 159240
+  yz 746 2015 msg operation_ref 192904 // "get_widget_derived(in name : ustring, out widget : T_Widget) : T_Widget"
+  show_full_operations_definition default drawing_language default
+  args "\"notebook_hosts-hpaned_tmp\", tmp"
+  label_xy 1358 733
+msg 159752 synchronous
+  from durationcanvas_ref 154888
+  to durationcanvas_ref 159624
+  yz 875 3015 msg operation_ref 203400 // "connect(in slot : slot_type) : iterator"
+  show_full_operations_definition default drawing_language default
+  args "*tmp_treeviewhost::on_process_removed"
+  label_xy 1861 862
+msg 160264 synchronous
+  from durationcanvas_ref 135688
+  to durationcanvas_ref 160136
+  yz 319 3005 msg operation_ref 183432 // "find(in x : key_type) : iterator"
+  show_full_operations_definition default drawing_language default
+  args "hostname"
+  label_xy 811 306
+msg 160648 synchronous
+  from durationcanvas_ref 135688
+  to durationcanvas_ref 160520
+  yz 589 3020 msg operation_ref 203528 // "emit() : result_type"
+  show_full_operations_definition default drawing_language default
+  args "&_hosts[hostname]"
+  label_xy 866 576
+msg 160904 asynchronous
+  from durationcanvas_ref 160520
+  to durationcanvas_ref 160776
+  yz 621 3005 msg operation_ref 201224 // "on_Host_added(inout host : Host) : void"
+  show_full_operations_definition default drawing_language default
+  args "host"
+  label_xy 1084 608
 line 138248 -_-_
   from ref 136712 z 2019 to ref 138120
 line 145928 -_-_
   from ref 145800 z 1999 to ref 141576
-line 154120 -_-_
-  from ref 153736 z 2019 to point 1186 660
-  line 154504 z 2019 to ref 140552
-line 154248 -_-_
-  from ref 153992 z 1999 to point 1182 699
-  line 154376 z 1999 to ref 141320
 line 154632 -_-_
   from ref 129032 z 1999 to ref 133256
 line 156936 -_-_
   from ref 134024 z 1999 to ref 155912
 line 157704 -_-_
   from ref 155144 z 1999 to ref 157320
-line 157832 -_-_
-  from ref 157320 z 1999 to ref 157576
+line 158728 -_-_
+  from ref 157320 z 1999 to ref 158600
+line 159880 -_-_
+  from ref 159752 z 1999 to ref 157320
 end

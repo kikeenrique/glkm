@@ -1,66 +1,52 @@
-format 56
+format 58
 "dbusmm" // dbusmm
-  revision 10
+  revision 15
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
-  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
   //use case diagram settings
-  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
   //sequence diagram settings
-  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
   //collaboration diagram settings
-  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
   //object diagram settings
-   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
   //component diagram settings
   package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
-  draw_component_as_icon default show_component_req_prov default show_component_rea default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
   //deployment diagram settings
   package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
-  draw_component_as_icon default show_component_req_prov default show_component_rea default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
   //state diagram settings
   package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
-  show_activities default region_horizontally default drawing_language default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
   //activity diagram settings
   package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
-  show_infonote default drawing_language default
+  show_infonote default drawing_language default show_stereotype_properties default
   
   stereotype "library"
   cpp_namespace "DBus"
   classview 128317 "dbusmm class view"
     //class diagram settings
-    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
     //collaboration diagram settings
-    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
     //object diagram settings
-     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
     //sequence diagram settings
-    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
     //state diagram settings
     package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
-    show_activities default region_horizontally default drawing_language default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
     //class settings
     //activity diagram settings
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
-    show_infonote default drawing_language default
+    show_infonote default drawing_language default show_stereotype_properties default
     classdiagram 128061 "dbusmm class diagram"
-      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
-      size A2
-    end
-
-    class 129213 "Path"
-      visibility package 
-      cpp_external cpp_decl "${name}
-
-#include <dbusmm/types.h>
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
+      draw_all_relations yes hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      size A1
     end
 
     class 131336 "RefCnt"
@@ -354,8 +340,38 @@ format 56
       
     end
 
-    class 128233 "InterfaceProxyTable"
-      visibility package stereotype "typedef" explicit_base_type "std::map<std::string, DBusmm::InterfaceProxy *>"
+    class 166280 "PropertyTable"
+      visibility package stereotype "typedef" explicit_base_type "std::map<std::string, PropertyData>"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "typedef std::map<std::string, PropertyData> DBus::PropertyTable"
+    end
+
+    class 166408 "MethodTable"
+      visibility package stereotype "typedef" explicit_base_type "std::map< std::string, Slot<Message, const CallMessage&> >"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "typedef std::map< std::string, Slot<Message, const CallMessage&> > DBus::MethodTable"
+    end
+
+    class 164360 "InterfaceAdaptorTable"
+      visibility package stereotype "typedef" explicit_base_type "std::map<std::string, DBusmm::InterfaceAdaptor *>"
       cpp_external cpp_decl "${name}
 
 #include <dbusmm/interface.h>
@@ -365,6 +381,62 @@ format 56
       python_2_2 python_decl ""
       idl_decl "${comment}typedef ${type} ${name};
 "
+      explicit_switch_type ""
+      
+    end
+
+    class 128233 "InterfaceProxyTable"
+      visibility package stereotype "typedef" explicit_base_type "std::map<std::string, DBus::InterfaceProxy *>"
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/interface.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}typedef ${type} ${name};
+"
+      explicit_switch_type ""
+      
+    end
+
+    class 164488 "ObjectAdaptorPList"
+      visibility package stereotype "typedef" explicit_base_type "std::list<ObjectAdaptor *>"
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/object.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 164616 "ObjectProxyPlist"
+      visibility package stereotype "typedef" explicit_base_type "std::list<ObjectProxy *>"
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/object.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 169096 "Bool"
+      visibility package stereotype "typedef" explicit_base_type "bool"
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/types.h>"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
       explicit_switch_type ""
       
     end
@@ -381,6 +453,294 @@ format 56
       idl_decl ""
       explicit_switch_type ""
       
+      operation 232200 "Variant"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 232456 "Variant"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "it" type class_ref 130885 // MessageIter
+	cpp_decl "	${comment}${inline}${name}${(}${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 232584 "operator ="
+	public return_type class_ref 129469 // Variant
+	nparams 1
+	  param in name "v" type class_ref 129469 // Variant
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 232712 "signature"
+	const public explicit_return_type "Signature"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual} const ${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline} const ${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 232840 "clear"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 232968 "reader"
+	const public return_type class_ref 130885 // MessageIter
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 233096 "writer"
+	public return_type class_ref 130885 // MessageIter
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 233224 "operator T"
+	const public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "template<typename T> DBus::Variant::operator T 	(  )  	const [inline]"
+      end
+
+      attribute 151816 "_msg"
+	private type class_ref 129477 // Message
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 129213 "Path"
+      visibility package stereotype "struct"
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/types.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}struct ${name} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      operation 231560 "Path"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 231816 "Path"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "s" type class_ref 129288 // string
+	cpp_decl "	${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 231944 "Path"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "c" explicit_type "char"
+	cpp_decl "	${comment}${inline}${name}${(}const ${t0} * ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} * ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 232072 "operator ="
+	public return_type class_ref 129213 // Path
+	nparams 1
+	  param inout name "s" type class_ref 129288 // string
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      classrelation 182920 // <generalisation>
+	relation 182536 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 182920 // <generalisation>
+	  b parent class_ref 129288 // string
+      end
+    end
+
+    class 173832 "Signature"
+      visibility package stereotype "struct"
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/types.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}struct ${name} {
+${members}};
+"
+      explicit_switch_type ""
+      
+      operation 233352 "Signature"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 233480 "Signature"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "s" type class_ref 129288 // string
+	cpp_decl "	${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 233608 "Signature"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "c" explicit_type "char"
+	cpp_decl "	${comment}${inline}${name}${(}const ${t0} * ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} * ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 233736 "operator ="
+	public return_type class_ref 173832 // Signature
+	nparams 1
+	  param inout name "s" type class_ref 129288 // string
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      classrelation 182792 // <generalisation>
+	relation 182408 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 182792 // <generalisation>
+	  b parent class_ref 129288 // string
+      end
     end
 
     class 128317 "Connection"
@@ -1178,13 +1538,10 @@ ${members}};
       end
 
       operation 129897 "_invoke_method"
-	cpp_virtual protected return_type class_ref 129477 // Message
+	abstract cpp_virtual protected return_type class_ref 129477 // Message
 	nparams 1
-	  param inout name "c" explicit_type "DBus::CallMessage [dbusmm::public]"
+	  param inout name "c" type class_ref 129605 // CallMessage
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
 "
 	
 	
@@ -1245,6 +1602,85 @@ ${members}};
       end
     end
 
+    class 131080 "PendingCall"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131080 // <dependency>
+	relation 131080 -_->
+	  stereotype "friend"
+	  a package
+	    cpp default "${type}"
+	    classrelation_ref 131080 // <dependency>
+	  b parent class_ref 128317 // Connection
+      end
+
+      operation 135176 "~PendingCall"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135304 "PendingCall"
+	stereotype "copy"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "source" type class_ref 131080 // PendingCall
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 164744 "Tag"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <dbusmm/object.h>
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 216328 "~Tag"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
     class 128581 "Interface"
       visibility package 
       cpp_external cpp_decl "${name}
@@ -1260,24 +1696,10 @@ ${members}};
       operation 130025 "Interface"
 	public explicit_return_type ""
 	nparams 1
-	  param in name "name" explicit_type "string"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+	  param in name "name" type class_ref 129288 // string
+	cpp_decl "	${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 130281 "name"
-	const public explicit_return_type "const std::string &"
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
   ${body}}
 "
 	
@@ -1298,6 +1720,30 @@ ${members}};
 	
 	
 	
+      end
+
+      operation 130281 "name"
+	const public return_type class_ref 129288 // string
+	nparams 0
+	cpp_decl "	const ${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 148104 "_name"
+	protected type class_ref 129288 // string
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
       end
     end
 
@@ -1324,9 +1770,119 @@ ${members}};
       classrelation 130117 // <generalisation>
 	relation 130117 ---|>
 	  a public
-	    cpp default "${type}"
+	    cpp virtual default "${type}"
 	    classrelation_ref 130117 // <generalisation>
 	  b parent class_ref 129093 // AdaptorBase
+      end
+
+      operation 218888 "InterfaceAdaptor"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "name" type class_ref 129288 // string
+	cpp_decl "	${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 219016 "dispatch_method"
+	public return_type class_ref 129477 // Message
+	nparams 1
+	  param in name "c" type class_ref 129605 // CallMessage
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 219144 "emit_signal"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "s" type class_ref 129725 // SignalMessage
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 219272 "get_property"
+	public return_type class_ref 129469 // Variant
+	nparams 1
+	  param in name "name" type class_ref 129288 // string
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 219400 "set_property"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "name" type class_ref 129288 // string
+	  param inout name "value" type class_ref 129469 // Variant
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 219528 "instrospect"
+	const cpp_virtual public return_type class_ref 166152 // IntrospectedInterface
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} * const  ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline} const  ${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 148232 "_method"
+	protected type class_ref 166408 // MethodTable
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 148360 "_properties"
+	protected type class_ref 166280 // PropertyTable
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
       end
     end
 
@@ -1456,8 +2012,22 @@ ${members}};
       end
     end
 
-    class 129093 "AdaptorBase"
+    class 166152 "IntrospectedInterface"
       visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+    end
+
+    class 129093 "AdaptorBase"
+      abstract visibility package 
       cpp_external cpp_decl "${name}
 
 #include <dbusmm/interface.h>
@@ -1468,6 +2038,67 @@ ${members}};
       idl_decl ""
       explicit_switch_type ""
       
+      operation 215816 "object"
+	abstract const cpp_virtual public return_type class_ref 129221 // ObjectAdaptor
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual} const ${type} *  ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 215432 "find_interface"
+	protected return_type class_ref 128709 // InterfaceAdaptor
+	nparams 1
+	  param in name "name" type class_ref 129288 // string
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 215560 "~AdaptorBase"
+	cpp_virtual protected explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 215688 "_emit_signal"
+	abstract cpp_virtual protected explicit_return_type "void"
+	nparams 1
+	  param inout name "s" type class_ref 129725 // SignalMessage
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      attribute 146056 "_interfaces"
+	protected type class_ref 164360 // InterfaceAdaptorTable
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
     end
 
     class 129221 "ObjectAdaptor"
@@ -1482,6 +2113,136 @@ ${members}};
       idl_decl ""
       explicit_switch_type ""
       
+      class 164872 "Continuation"
+	visibility protected 
+	cpp_external cpp_decl "${name}
+
+#include <dbusmm/object.h>
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	operation 217992 "writer"
+	  public return_type class_ref 130885 // MessageIter
+	  nparams 0
+	  cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	  cpp_def "${comment}${inline}${type} & ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	  
+	end
+
+	operation 218120 "tag"
+	  public return_type class_ref 164744 // Tag
+	  nparams 0
+	  cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	  cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	  
+	  
+	  
+	  
+	end
+
+	operation 218248 "Continuation"
+	  private explicit_return_type ""
+	  nparams 3
+	    param inout name "conn" type class_ref 128317 // Connection
+	    param in name "call" type class_ref 129605 // CallMessage
+	    param in name "tag" type class_ref 164744 // Tag
+	  cpp_decl "	${comment}${inline}${name}${(}${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} * ${p2}${)}${volatile}${throw};
+"
+	  cpp_def "${comment}${inline}${class}::${name}${(}${t0} & ${p0}, const ${t1} & ${p1}, const ${t2} & ${p2}${)}${volatile}${throw} {
+  ${body}}
+"
+	  
+	  
+	  
+	  
+	  comment "
+
+"
+	end
+
+	attribute 147208 "_conn"
+	  private type class_ref 128317 // Connection
+	  cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	end
+
+	attribute 147336 "_call"
+	  private type class_ref 129605 // CallMessage
+	  cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	end
+
+	attribute 147464 "_writer"
+	  private type class_ref 130885 // MessageIter
+	  cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	end
+
+	attribute 147592 "_return"
+	  private type class_ref 129861 // ReturnMessage
+	  cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	end
+
+	attribute 147720 "_tag"
+	  private type class_ref 164744 // Tag
+	  cpp_decl "	const ${comment}${static}${mutable}${volatile}${const}${type}  * ${name}${value};
+"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	end
+      end
+
+      class 166024 "ContinuationMap"
+	visibility protected stereotype "typedef" explicit_base_type "std::map< const Tag
+*, Continuation * >"
+	cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	comment "typedef std::map< const Tag
+*, Continuation * > 	ContinuationMap
+
+"
+      end
+
       classrelation 130629 // <generalisation>
 	relation 130629 ---|>
 	  a public
@@ -1493,9 +2254,212 @@ ${members}};
       classrelation 130757 // <generalisation>
 	relation 130757 ---|>
 	  a public
-	    cpp default "${type}"
+	    cpp virtual default "${type}"
 	    classrelation_ref 130757 // <generalisation>
 	  b parent class_ref 129093 // AdaptorBase
+      end
+
+      operation 215176 "ObjectAdaptor"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "conn" type class_ref 128317 // Connection
+	  param in name "path" type class_ref 129213 // Path
+	cpp_decl "	${comment}${inline}${name}${(}${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 215304 "~ObjectAdaptor"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 215944 "object"
+	const public return_type class_ref 129221 // ObjectAdaptor
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual} const ${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 216072 "from_path"
+	class_operation public return_type class_ref 129221 // ObjectAdaptor
+	nparams 1
+	  param in name "path" type class_ref 129213 // Path
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 216200 "from_path_prefix"
+	class_operation public return_type class_ref 164488 // ObjectAdaptorPList
+	nparams 1
+	  param in name "prefix" type class_ref 129288 // string
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 216456 "return_later"
+	protected explicit_return_type "void"
+	nparams 1
+	  param in name "tag" type class_ref 164744 // Tag
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 216584 "return_now"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "ret" type class_ref 164872 // Continuation
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 216712 "return_error"
+	protected explicit_return_type "void"
+	nparams 2
+	  param inout name "ret" type class_ref 164872 // Continuation
+	  param in name "error" type class_ref 128453 // Error
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}, const ${t1} ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}, const ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 216840 "find_continuation"
+	protected return_type class_ref 164872 // Continuation
+	nparams 1
+	  param in name "tag" type class_ref 164744 // Tag
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}const ${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}const ${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 218376 "_emit_signal"
+	private explicit_return_type "void"
+	nparams 1
+	  param inout name "s" type class_ref 129725 // SignalMessage
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 218504 "handle_message"
+	private explicit_return_type "bool"
+	nparams 1
+	  param in name "m" type class_ref 129477 // Message
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 218632 "register_obj"
+	private explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 218760 "unregister_obj"
+	private explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 147976 "_continuations"
+	protected type class_ref 166024 // ContinuationMap
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
       end
     end
 
@@ -1769,7 +2733,7 @@ ${members}};
         rank 1 value class_ref 129477 // Message
       cpp_external cpp_decl "${name}
 
-#include <dbusmm/conection.h>
+#include <dbusmm/connection.h>
 "
       java_decl ""
       php_decl ""
@@ -1907,8 +2871,39 @@ ${members}};
       end
     end
 
-    class 131080 "PendingCall"
-      visibility package 
+    class 173960 "Invalid"
+      visibility package stereotype "struct"
+      cpp_decl "${comment}${template}struct ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}struct ${name} {
+${members}};
+"
+      explicit_switch_type ""
+      
+    end
+
+    class 174088 "Struct"
+      visibility package stereotype "struct"
+      nformals 7
+      formal name "T1" type "class" explicit_default_value ""
+        explicit_extends ""
+      formal name "T2" type "class" default_value class_ref 173960 // Invalid
+        explicit_extends ""
+      formal name "T3" type "class" default_value class_ref 173960 // Invalid
+        explicit_extends ""
+      formal name "T4" type "class" default_value class_ref 173960 // Invalid
+        explicit_extends ""
+      formal name "T5" type "class" default_value class_ref 173960 // Invalid
+        explicit_extends ""
+      formal name "T6" type "class" default_value class_ref 173960 // Invalid
+        explicit_extends ""
+      formal name "T7" type "class" default_value class_ref 173960 // Invalid
+        explicit_extends ""
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
 ${inlines}
@@ -1919,37 +2914,31 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
-      classrelation 131080 // <dependency>
-	relation 131080 -_->
-	  stereotype "friend"
-	  a package
-	    cpp default "${type}"
-	    classrelation_ref 131080 // <dependency>
-	  b parent class_ref 128317 // Connection
-      end
+    end
 
-      operation 135176 "~PendingCall"
-	cpp_virtual public explicit_return_type ""
+    class 174216 "type"
+      visibility package stereotype "struct"
+      nformals 1
+      formal name "T" type "class" explicit_default_value ""
+        explicit_extends ""
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 233864 "sig"
+	class_operation public return_type class_ref 129288 // string
 	nparams 0
-	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+	nexceptions 1
+	  exception class_ref 129989 // ErrorInvalidArgs
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 135304 "PendingCall"
-	stereotype "copy"
-	public explicit_return_type ""
-	nparams 1
-	  param in name "source" type class_ref 131080 // PendingCall
-	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	

@@ -1,19 +1,25 @@
 ## Process this file with automake to produce Makefile.in
 
-## Created by Anjuta
-
 AM_CPPFLAGS = \
-	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
-	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
-	-DPACKAGE_DATA_DIR=\""$(datadir)"\" $(HALD_ADDON_LINUX_KERNEL_MONITOR_CFLAGS)
+        $(GTKMM_CFLAGS) \
+        $(LIBDBUSMM_CFLAGS) \
+        -DPROGRAMNAME_LOCALEDIR="${PROGRAMNAME_LOCALEDIR}" \
+        -DPACKAGE_LOCALE_DIR="$(prefix)/$(DATADIRNAME)/locale" \
+        -DPACKAGE_DATA_DIR="$(datadir)" \
+        -DPACKAGE_SRC_DIR="$(srcdir)" 
 
-AM_CFLAGS =\
-	 -Wall\
-	 -g
+AM_CFLAGS = \
+        $(GTKMM_CFLAGS) \
+        $(LIBDBUSMM_CFLAGS) \
+         -Wall -fstack-protector-all -rdynamic -ggdb -g
 
-bin_PROGRAMS = hald-addon-linux-kernel-monitor
+bin_PROGRAMS = linux-kernel-monitor \
+	launcher-glkm-daemon
 
-hald_addon_linux_kernel_monitor_SOURCES = \
+launcher_glkm_daemon_SOURCES = \
+	launcher_main.cpp
+
+linux_kernel_monitor_SOURCES = \
 	main.cc						\
 	linux-kernel-monitor-server-adaptor.hpp		\
 	linux-kernel-monitor-server.hpp			\
@@ -25,9 +31,10 @@ hald_addon_linux_kernel_monitor_SOURCES = \
 	utils.hpp
 
 
-hald_addon_linux_kernel_monitor_LDFLAGS = 
+linux_kernel_monitor_LDFLAGS = 
 
-hald_addon_linux_kernel_monitor_LDADD = $(HALD_ADDON_LINUX_KERNEL_MONITOR_LIBS)
+linux_kernel_monitor_LDADD = $(GTKMM_LIBS) \
+		       $(LIBDBUSMM_LIBS)
 
 linux-kernel-monitor-server-adaptor.hpp: 	../data/introspect-hal-device-linuxkernelmonitor.xml
 	dbusmm-xml2cpp $^ --adaptor=$@

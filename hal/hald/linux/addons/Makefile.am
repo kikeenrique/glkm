@@ -1,11 +1,11 @@
 ## Process this file with automake to produce Makefile.in
-## Created by Anjuta
 
-SUBDIRS = src po \
+SUBDIRS = src \
+	po \
 	data
 
-hald_addon_linux_kernel_monitordocdir = ${prefix}/doc/hald_addon_linux_kernel_monitor
-hald_addon_linux_kernel_monitordoc_DATA = \
+linux_kernel_monitordocdir = ${prefix}/doc/linux_kernel_monitor
+linux_kernel_monitordoc_DATA = \
 	README\
 	COPYING\
 	AUTHORS\
@@ -13,7 +13,7 @@ hald_addon_linux_kernel_monitordoc_DATA = \
 	INSTALL\
 	NEWS
 
-EXTRA_DIST = $(hald_addon_linux_kernel_monitordoc_DATA) 
+EXTRA_DIST = $(linux_kernel_monitordoc_DATA) 
 
 # Copy all the spec files. Of cource, only one is actually used.
 dist-hook:

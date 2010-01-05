@@ -40,14 +40,13 @@ int main(int argc, char* argv[])
 		std::cerr << "ERR UDI env not defined" << std::endl;
 //		return -2;
 	}
-
+	
 	const char * address;
 	address = getenv ("HALD_DIRECT_ADDR");
 	if (!address) {
 		std::cerr << "ERR HALD_DIRECT_ADDR env not defined" << std::endl;
 //		return -2;
 	}
-
 
 	MainLoopRefPtr _refPtr_MainLoop;
 	DBus::Glib::BusDispatcher dispatcher;

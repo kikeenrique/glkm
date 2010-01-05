@@ -255,7 +255,11 @@ static ssize_t procmon_read(struct file *file,	/* see include/linux/fs.h   */
 		sprintf(&devfs_buffer[devfs_buffer_size],
 			"<information>\n");
 
-	p_proccesmonitorized = find_task_by_pid(monitor_pid);
+	/* 
+	   find_task_by_vpid is used now because find_task_by_pid was deprecated. 
+	   More info about PID namespaces "PID namespaces in the 2.6.24 kernel: http://lwn.net/Articles/259217/"
+	*/
+	p_proccesmonitorized = find_task_by_vpid(monitor_pid);
 	if (p_proccesmonitorized!=NULL){
 		devfs_buffer_size += 
 			sprintf(&devfs_buffer[devfs_buffer_size],
@@ -313,7 +317,11 @@ static ssize_t procmon_write(struct file *file,	/* The file itself         */
 		if (sscanf(devfs_buffer, "%d", &monitor_pid) <= 0){
 			printk(KERN_INFO "ERROR!!!! Not valid PID input  --> procmon_write (/dev/procmon)\n");
 		} else {
-			p_proccesmonitorized = find_task_by_pid(monitor_pid);
+		        /* 
+			   find_task_by_vpid is used now because find_task_by_pid was deprecated. 
+			   More info about PID namespaces "PID namespaces in the 2.6.24 kernel: http://lwn.net/Articles/259217/"
+			*/		  
+			p_proccesmonitorized = find_task_by_vpid(monitor_pid);
 			if (p_proccesmonitorized==NULL){
 				printk(KERN_INFO "ERROR! Not PID found  --> procmon_write (/dev/procmon)\n");
 			} else {

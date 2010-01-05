@@ -1,4 +1,0 @@
-#udev rules for glkm module launch
-KERNEL=="procmon", SUBSYSTEM=="misc", SYMLINK+="glkm_procmon", MODE="0666" GROUP="glkm"
-KERNEL=="procmon", SUBSYSTEM=="misc",ACTION=="add" RUN+="/usr/bin/launcher-glkm-daemon"
-##KERNEL=="procmon", SUBSYSTEM=="misc",ACTION=="remove" RUN+="/usr/bin/glkm_remove"

@@ -76,6 +76,8 @@ void hal_util_compute_udi_valist (HalDeviceStore *store, gchar *dst, gsize dstsi
 
 void hal_util_compute_udi (HalDeviceStore *store, gchar *dst, gsize dstsize, const gchar *format, ...);
 
+void hal_util_validate_udi (gchar *udi, gsize size);
+
 gboolean hal_util_path_ascend (gchar *path);
 
 void hal_util_grep_discard_existing_data (void);
@@ -113,8 +115,6 @@ void hal_util_callout_device_add (HalDevice *d, HalCalloutsDone callback, gpoint
 void hal_util_callout_device_remove (HalDevice *d, HalCalloutsDone callback, gpointer userdata1, gpointer userdata2);
 void hal_util_callout_device_preprobe (HalDevice *d, HalCalloutsDone callback, gpointer userdata1, gpointer userdata2);
 
-gchar *hal_util_strdup_valid_utf8 (const char *str);
-
 void hal_util_hexdump (const void *buf, unsigned int size);
 
 gboolean hal_util_is_mounted_by_hald (const char *mount_point);
@@ -122,5 +122,7 @@ gboolean hal_util_is_mounted_by_hald (const char *mount_point);
 char *hal_util_readlink (const char *link);
 
 gboolean is_valid_interface_name (const char *name);
+
+void hal_util_decode_escape (const char* src, char* result, int maxlen);
 
 #endif /* UTIL_H */

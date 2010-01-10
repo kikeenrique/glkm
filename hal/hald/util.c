@@ -308,13 +308,14 @@ hal_util_get_string_from_file (const gchar *directory, const gchar *file)
 		//HAL_ERROR (("Cannot read from '%s'", path));
 		goto out;
 	}
-       
-	len = strlen (buf);
-	if (len>0)
-		buf[len-1] = '\0';
 
-	/* Clear remaining whitespace */
-	for (i = len - 2; i >= 0; --i) {
+	/* blank file, no data */
+	len = strlen (buf);
+	if (len == 0)
+		goto out;
+
+	/* clear remaining whitespace */
+	for (i = len - 1; i >= 0; --i) {
 		if (!g_ascii_isspace (buf[i]))
 			break;
 		buf[i] = '\0';
@@ -539,6 +540,26 @@ hal_util_compute_udi (HalDeviceStore *store, gchar *dst, gsize dstsize, const gc
 	va_start (args, format);
 	hal_util_compute_udi_valist (store, dst, dstsize, format, args);
 	va_end (args);
+}
+
+void
+hal_util_validate_udi (gchar *udi, gsize size) {
+
+	char end[size];
+
+	if (sscanf (udi, "/org/freedesktop/Hal/devices/%s", end) == 1) {
+		if (strstr(end, "/") != NULL) {
+			HAL_DEBUG (("UDI end contains invalid char '/': '%s'", udi));
+
+			g_strcanon (end, "_"
+		    			 "abcdefghijklmnopqrstuvwxyz"
+		    			 "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+		   	 		 "1234567890", '_');
+			g_snprintf (udi, size, "/org/freedesktop/Hal/devices/%s", end);
+
+			HAL_DEBUG (("Fixed UDI, replaced '/', new UDI: %s", udi));
+		}
+	} 
 }
 
 
@@ -1141,31 +1162,6 @@ out:
 	;
 }
 
-gchar *
-hal_util_strdup_valid_utf8 (const char *str)
-{
-	char *endchar;
-	char *newstr;
-	unsigned int count = 0;
-
-	if (str == NULL)
-		return NULL;
-
-	newstr = g_strdup (str);
-
-	while (!g_utf8_validate (newstr, -1, (const char **) &endchar)) {
-		*endchar = '?';
-		count++;
-	}
-	
-	if (strlen(newstr) == count) {
-		g_free (newstr);
-		return NULL;
-	} else {
-		return newstr;
-	}
-}
-
 void
 hal_util_hexdump (const void *mem, unsigned int size)
 {
@@ -1350,4 +1346,37 @@ is_valid_interface_name (const char *name) {
 
   	return TRUE;
 }
+
+static int
+hexdigit (char c)
+{
+	if (c >= '0' && c <= '9')
+		return c - '0';
+	if (c >= 'a' && c <= 'f')
+		return c - 'a';
+	if (c >= 'A' && c <= 'F')
+		return c - 'A';
+	HAL_ERROR (("'%c' is not a valid hex digit", c));
+	return 0;
+}
+
+/* Decode string with \xNN escapes */
+void
+hal_util_decode_escape (const char* src, char* result, int maxlen)
+{
+	int len;
+
+	if (src == NULL || maxlen == 0)
+		return;
+
+	for (len = 0; len < maxlen && *src; ++len) {
+		/* note that C's short-circuiting avoids reading past \0 */
+		if (*src == '\\' && src[1] == 'x' && isalnum (src[2]) && isalnum (src[3])) {
+			result[len] = (hexdigit(src[2]) << 4) | hexdigit(src[3]);
+			src += 4;
+		} else
+			result[len] = *src++;
+	}
+}
+
 

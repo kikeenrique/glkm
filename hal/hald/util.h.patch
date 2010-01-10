@@ -1,0 +1,29 @@
+--- util.h	2009-04-03 18:10:03.000000000 +0200
++++ /media/kmaximus/codigo/svn/pfc/trunk/hal/hald/util.h	2009-05-19 19:25:29.406052759 +0200
+@@ -4,6 +4,7 @@
+  * util.h - Various utilities
+  *
+  * Copyright (C) 2004 David Zeuthen, <david@fubar.dk>
++ * Copyright (C) 2008 Enrique Garcia, <kike+glkm@eldemonionegro.com>
+  *
+  * Licensed under the Academic Free License version 2.1
+  *
+@@ -39,6 +40,7 @@
+ 
+ #define HAL_NAME_MAX 256
+ #define HAL_PATH_MAX 512
++#define HAL_BUFF_MAX 512
+ 
+ gboolean hal_util_remove_trailing_slash (gchar *path);
+ 
+@@ -64,6 +66,10 @@
+ 
+ gboolean hal_util_set_double_from_file (HalDevice *d, const gchar *key, const gchar *directory, const gchar *file);
+ 
++GSList *hal_util_get_strlist_from_file (const gchar *directory, const gchar *file);
++
++gboolean hal_util_set_strlist_from_file (HalDevice *d, const gchar *key, const gchar *directory, const gchar *file);
++
+ void hal_util_make_udi_unique (HalDeviceStore *store, gchar *udi, gsize udisize, const char *original_udi);
+ 
+ void hal_util_compute_udi_valist (HalDeviceStore *store, gchar *dst, gsize dstsize, const gchar *format, va_list args);

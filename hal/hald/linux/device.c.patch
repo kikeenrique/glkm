@@ -1,0 +1,143 @@
+--- device.c	2009-02-26 12:10:17.000000000 +0100
++++ /media/kmaximus/codigo/svn/pfc/trunk/hal/hald/linux/device.c	2009-04-20 16:29:28.644870222 +0200
+@@ -1427,6 +1427,115 @@
+ /*--------------------------------------------------------------------------------------------------------------*/
+ 
+ static HalDevice *
++misc_add (const gchar *sysfs_path, const gchar *device_file, HalDevice *parent_dev, const gchar *parent_path)
++{
++	HalDevice *d;
++	const gchar *dev_id;
++	const gchar *dev_type;
++	gchar buf[64];
++
++        
++        d = NULL;
++
++	HAL_INFO (("misc_add: sysfs_path=%s device_file=%s parent_dev=0x%08x parent_path=%s", sysfs_path, device_file, parent_dev, parent_path));
++
++	if (device_file == NULL || device_file[0] == '\0')
++		goto out;       
++
++	d = hal_device_new ();
++	hal_device_property_set_string (d, "linux.sysfs_path", sysfs_path);
++	hal_device_property_set_string (d, "info.subsystem", "misc");
++	hal_device_property_set_string (d, "info.category", "misc");
++
++	hal_device_property_set_string (d, "misc.device", device_file);
++
++	if (parent_dev != NULL) {
++		hal_device_property_set_string (d, "info.parent", hal_device_get_udi (parent_dev));
++	} else {
++		hal_device_property_set_string (d, "info.parent", "/org/freedesktop/Hal/devices/computer");
++	}
++
++	hal_util_set_driver (d, "info.linux.driver", sysfs_path);
++
++	dev_id = hal_util_get_last_element (sysfs_path);
++	hal_device_property_set_string (d, "misc.id", dev_id);
++
++/*
++        dev_type has no real implications, so deprecate this code
++	related code is also commented out in "misc_compute_udi"
++	dev_type = hal_util_get_string_from_file (sysfs_path, "name");
++	if (dev_type) {
++		hal_device_property_set_string (d, "misc.type", dev_type);
++		g_snprintf (buf, sizeof (buf), "Misc %s Device (%s)", dev_type, dev_id);
++		hal_device_property_set_string (d, "info.product", buf);
++	} else {
++		hal_device_property_set_string (d, "info.product", "Misc Device (unknown)");
++	}
++	
++	This is a subsystem-specific property
++	hal_util_set_strlist_from_file (d, "misc.task_list", sysfs_path, "task_list");
++*/
++	hal_device_add_capability (d, "misc");
++
++	HAL_INFO (("misc_info: sysfs_path=%s device_file=%s dev_id=%s dev_type=%s", sysfs_path, device_file, dev_id, dev_type));
++
++
++out:
++	return d;
++}
++
++/*
++ This code is not needed by now and need further investigation to know what could
++ it be used for.
++
++static const gchar *
++misc_get_prober (HalDevice *d)
++{
++	const char *prober = NULL;
++
++	return prober;
++}
++
++static gboolean
++misc_post_probing (HalDevice *d)
++{
++	return TRUE;
++}
++*/
++
++static gboolean
++misc_compute_udi (HalDevice *d)
++{
++	gchar udi[256];
++	const char *type;
++
++	type = hal_device_property_get_string (d, "misc.type");
++
++/*	if (type) {
++		hald_compute_udi (udi, sizeof (udi),
++				  "/org/freedesktop/Hal/devices/misc_%s_%s",
++				  type,
++				  hal_device_property_get_string (d, "misc.id"));
++	} else {
++		hald_compute_udi (udi, sizeof (udi),
++				  "/org/freedesktop/Hal/devices/misc_%s",
++				  hal_device_property_get_string (d, "misc.id"));
++	}
++*/
++
++	hald_compute_udi (udi, sizeof (udi),
++			  "/org/freedesktop/Hal/devices/%s",
++			  hal_device_property_get_string (d, "misc.id"));
++	hal_device_set_udi (d, udi);
++	hal_device_property_set_string (d, "info.udi", udi);
++
++	return TRUE;
++}
++
++/*--------------------------------------------------------------------------------------------------------------*/
++
++
++static HalDevice *
+ mmc_add (const gchar *sysfs_path, const gchar *device_file, HalDevice *parent_dev, const gchar *parent_path)
+ {
+ 	HalDevice *d;
+@@ -4341,6 +4450,16 @@
+ 	.remove       = dev_remove
+ };
+ 
++static DevHandler dev_handler_misc = 
++{ 
++	.subsystem    = "misc",
++	.add          = misc_add,
++	//	.get_prober   = misc_get_prober,
++	//	.post_probing = misc_post_probing,
++	.compute_udi  = misc_compute_udi,
++	.remove       = dev_remove
++};
++
+ static DevHandler dev_handler_mmc = { 
+ 	.subsystem   = "mmc",
+ 	.add         = mmc_add,
+@@ -4616,6 +4735,7 @@
+ 	&dev_handler_mmc,
+ 	&dev_handler_memstick,
+ 	&dev_handler_memstick_host,
++	&dev_handler_misc,
+ 	&dev_handler_mmc_host,
+ 	&dev_handler_net,
+ 	&dev_handler_of_platform,

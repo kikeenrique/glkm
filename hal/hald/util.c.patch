@@ -1,0 +1,135 @@
+--- util.c	2009-04-03 18:10:03.000000000 +0200
++++ /media/kmaximus/codigo/svn/pfc/trunk/hal/hald/util.c	2009-05-19 19:31:43.528955248 +0200
+@@ -45,6 +45,9 @@
+ #include <dbus/dbus.h>
+ #include <dbus/dbus-glib.h>
+ 
++//Added to debug 
++#include <glib/gprintf.h>
++
+ #include "osspec.h"
+ #include "logger.h"
+ #include "hald.h"
+@@ -379,6 +382,122 @@
+ 	return ret;
+ }
+ 
++/** 
++ *  hal_util_get_strlist_from_file:  
++ *  @directory:          Directory, e.g. "/sys/class/misc"
++ *  @file:               File, e.g. "procmon"
++ *
++ *  Returns:             A stringlist with the content of file. 
++ *			 Each line is a string
++ *
++ *  Get a strlist value from a formatted text file.
++ *
++ *  Example: Given that the file /sys/class/misc/procmon contains
++ *  the lines
++ *
++ *    "init [1] - [0]"
++ *    "cron [1654] - [1]"
++ *    "hald [5820] - [1782]"
++ *
++ *  then hal_util_get_strlist_from_file ("/sys/class/misc", "procmon") 
++ *  will return a string list with the content of line.
++ */
++
++GSList *
++hal_util_get_strlist_from_file (const gchar *directory, const gchar *file)
++{
++	FILE *f;
++	static gchar buf[HAL_BUFF_MAX];
++	gchar path[HAL_PATH_MAX];
++//	gchar *result;
++	GSList *result=NULL;
++	gsize len;
++	gint i;
++	
++	f = NULL;
++	result = NULL;
++
++	g_snprintf (path, sizeof (path), "%s/%s", directory, file);
++
++	f = fopen (path, "rb");
++	if (f == NULL) {
++		//HAL_ERROR (("Cannot open '%s'", path));
++		goto out;
++	}
++
++	while (!feof(f)){
++		buf[0] = '\0';
++		if (fgets (buf, sizeof (buf), f) == NULL) {
++			//HAL_ERROR (("Cannot read from '%s'", path));
++			goto out;
++		}
++       
++		len = strlen (buf);
++		if (len>0)
++			buf[len-1] = '\0';
++
++		/* Clear remaining whitespace */
++		for (i = len - 2; i >= 0; --i) {
++			if (!g_ascii_isspace (buf[i]))
++				break;
++			buf[i] = '\0';
++		}
++		result = g_slist_prepend (result, g_strdup (buf));
++	}
++    
++out:
++    //TODO if out we need to free GSList
++    //	g_slist_free (buf);
++	if (f != NULL)
++		fclose (f);
++
++	return result;
++}
++
++/** 
++ *  hal_util_set_strlist_from_file:  
++ *  @d:                  Device object
++ *  @key:                Property name, e.g "misc.processlist"
++ *  @directory:          Directory, e.g. "/sys/class/misc"
++ *  @file:               File, e.g. "procmon"
++ *
++ *  Returns:             TRUE, if, and only if, the value could be
++ *                       extracted and the property was set
++ *
++ *  Get a strilist value from a formatted text file and assign it to
++ *  a property on a device object.
++ *
++ *  Example: Given that the file /sys/class/misc/procmon contains
++ *  the lines
++ *
++ *    "init [1] - [0]"
++ *    "cron [1654] - [1]"
++ *    "hald [5820] - [1782]"
++ *
++ *  then hal_util_set_strlist_from_file (d, "misc.processlist",
++ *  "/sys/class/misc", "procmon") will assign
++ *  the all string list to the property "misc.proccesslist" on d.
++ */
++gboolean hal_util_set_strlist_from_file (HalDevice *d, const gchar *key, const gchar *directory, const gchar *file){
++	GSList *buf;
++	gboolean ret;
++
++    	GSList *elem;
++
++	ret = FALSE;
++
++	if ((buf = hal_util_get_strlist_from_file (directory, file)) != NULL)
++		ret = hal_device_property_set_strlist (d, key, buf);
++
++	// free buf because hal_device_property_set_strlist copies data content.
++	for (elem = buf; elem != NULL; elem = g_slist_next (elem)) {
++		g_free (elem->data);
++	}    
++	g_slist_free (buf);
++    
++	return ret;
++}
++
+ void
+ hal_util_make_udi_unique (HalDeviceStore *store, gchar *udi, gsize udisize, const char *original_udi)
+ {

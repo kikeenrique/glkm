@@ -1,6 +1,6 @@
 format 58
 "glkm-view" // glkm::glkm-view
-  revision 53
+  revision 64
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -47,7 +47,7 @@ format 58
     associated_deployment_view deploymentview_ref 128092 // glkm-view deployment view
     classdiagram 128092 "glkm-view class diagram"
       draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-      size A1
+      size A1-Landscape
     end
 
     class 128092 "MainWindow"
@@ -68,6 +68,15 @@ ${inlines}
 	    cpp default "${type}"
 	    classrelation_ref 128590 // <generalisation>
 	  b parent class_ref 128718 // Window
+      end
+
+      classrelation 161928 // <dependency>
+	relation 161544 -_->
+	  stereotype "friend"
+	  a package
+	    cpp default "${type}"
+	    classrelation_ref 161928 // <dependency>
+	  b parent class_ref 147592 // Controller
       end
 
       operation 128040 "MainWindow"
@@ -98,28 +107,8 @@ ${inlines}
 	
       end
 
-      classrelation 133896 // _pHostSelectDialog (<unidirectional association>)
-	relation 133896 --->
-	  a role_name "_pHostSelectDialog" multiplicity "1" public
-	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 133896 // _pHostSelectDialog (<unidirectional association>)
-	  b multiplicity "1" parent class_ref 132744 // HostSelectDialog
-      end
-
       attribute 128168 "_refPtrGlademmXml"
 	protected type class_ref 133070 // RefPtrGladeXml
-	multiplicity "1"
-	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-      end
-
-      attribute 128296 "_ContextId"
-	protected explicit_type "uint"
 	multiplicity "1"
 	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -409,6 +398,15 @@ ${inlines}
 	  b multiplicity "1" parent class_ref 128348 // StatusBar
       end
 
+      classrelation 133896 // _pHostSelectDialog (<unidirectional association>)
+	relation 133896 --->
+	  a role_name "_pHostSelectDialog" multiplicity "1" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 133896 // _pHostSelectDialog (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 132744 // HostSelectDialog
+      end
+
       classrelation 133454 // _pAboutDialog (<unidirectional association>)
 	relation 133454 --->
 	  a role_name "_pAboutDialog" multiplicity "1" protected
@@ -418,14 +416,6 @@ ${inlines}
 	  b multiplicity "1" parent class_ref 128220 // AboutDialog
       end
 
-      classrelation 161928 // <dependency>
-	relation 161544 -_->
-	  a default
-	    cpp default "#include in source"
-	    classrelation_ref 161928 // <dependency>
-	  b parent class_ref 147592 // Controller
-      end
-
       classrelation 162056 // _pWindowDebug (<unidirectional association>)
 	relation 161672 --->
 	  a role_name "_pWindowDebug" multiplicity "1" protected
@@ -433,6 +423,29 @@ ${inlines}
 "
 	    classrelation_ref 162056 // _pWindowDebug (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 128718 // Window
+      end
+
+      operation 248584 "window_debug_on_delete_event"
+	protected explicit_return_type "bool"
+	nparams 1
+	  param out name "g" explicit_type "GdkEventAny"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      classrelation 192904 // <dependency>
+	relation 192136 -_->
+	  a package
+	    cpp default "#include in source"
+	    classrelation_ref 192904 // <dependency>
+	  b parent class_ref 147592 // Controller
       end
     end
 
@@ -487,7 +500,7 @@ ${inlines}
 	
       end
 
-      operation 201224 "on_Host_added"
+      operation 201224 "on_host_added"
 	public explicit_return_type "void"
 	nparams 1
 	  param inout name "host" type class_ref 128121 // Host
@@ -511,38 +524,6 @@ ${inlines}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
-      end
-
-      operation 188680 "on_my_page_added"
-	protected explicit_return_type "void"
-	nparams 2
-	  param out name "page" type class_ref 130382 // Widget
-	  param in name "page_num" explicit_type "guint"
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 188808 "on_my_page_removed"
-	protected explicit_return_type "void"
-	nparams 2
-	  param out name "page" type class_ref 130382 // Widget
-	  param in name "page_num" explicit_type "guint"
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
       end
 
       operation 193288 "add_host_page"
@@ -660,6 +641,27 @@ ${inlines}
 	
       end
 
+      operation 250376 "get__pTreeViewHost"
+	force_body_gen cpp_inline public return_type class_ref 128476 // TreeViewHost
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}const ${type} * ${name}${(}${)}${const}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}const ${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  return _pTreeViewHost;
+}
+"
+	cpp_name_spec "get_${name}"
+	final 
+	java_name_spec "get${Name}"
+	php_final 
+	php_name_spec "get${Name}"
+	
+	python_name_spec "get${Name}"
+	
+	idl_name_spec "get_${name}"
+	get_of_relation classrelation_ref 157704 // _pTreeViewHost (<unidirectional association>)
+      end
+
       attribute 142600 "_refPtrGlademmXml"
 	protected type class_ref 133070 // RefPtrGladeXml
 	multiplicity "1"
@@ -678,6 +680,25 @@ ${inlines}
 "
 	    classrelation_ref 157704 // _pTreeViewHost (<unidirectional association>)
 	  b multiplicity "1" parent class_ref 128476 // TreeViewHost
+	get_oper operation_ref 250376 // get__pTreeViewHost
+      end
+
+      classrelation 189448 // _pNotebookProcesses (<unidirectional association>)
+	relation 188808 --->
+	  a role_name "_pNotebookProcesses" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 189448 // _pNotebookProcesses (<unidirectional association>)
+	  b parent class_ref 180872 // NotebookProcesses
+      end
+
+      classrelation 192776 // _pHost (<unidirectional association>)
+	relation 192008 --->
+	  a role_name "_pHost" multiplicity "1" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 192776 // _pHost (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 128121 // Host
       end
     end
 
@@ -731,42 +752,6 @@ ${inlines}
 	
       end
 
-      operation 204296 "take_Host"
-	public return_type class_ref 128121 // Host
-	nparams 0
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 211080 "set_pHost"
-	force_body_gen public explicit_return_type "void"
-	nparams 1
-	  param in name "value" type class_ref 128121 // Host
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  _pHost = ${p0};
-}
-"
-	cpp_name_spec "set_${name}"
-	
-	java_name_spec "set${Name}"
-	
-	php_name_spec "set${Name}"
-	
-	python_name_spec "set${Name}"
-	
-	idl_name_spec "set_${name}"
-	set_of_relation classrelation_ref 170120 // _pHost (<unidirectional association>)
-      end
-
       operation 209800 "on_process_added"
 	public explicit_return_type "void"
 	nparams 1
@@ -812,10 +797,10 @@ ${inlines}
 	protected explicit_return_type "bool"
 	nparams 2
 	  param in name "process" type class_ref 128249 // Process
-	  param in name "found_iter" type class_ref 133838 // iterator
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	  param out name "found_iter" type class_ref 133838 // iterator
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${v0}, ${t1} & ${p1}${v1}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -828,10 +813,10 @@ ${inlines}
 	protected explicit_return_type "bool"
 	nparams 2
 	  param in name "process" type class_ref 128249 // Process
-	  param in name "found_iter" type class_ref 133838 // iterator
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	  param out name "found_iter" type class_ref 133838 // iterator
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${v0}, ${t1} & ${p1}${v1}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -843,12 +828,12 @@ ${inlines}
       operation 239368 "find_proccess_by_PID_from_here"
 	protected explicit_return_type "bool"
 	nparams 3
-	  param in name "process" type class_ref 128249 // Process
+	  param in name "PID" explicit_type "int"
 	  param in name "from_iter" type class_ref 133838 // iterator
 	  param out name "found_iter" type class_ref 133838 // iterator
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${v0}, const ${t1} & ${p1}${v1}, ${t2} & ${p2}${v2}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}, const ${t1} & ${p1}, ${t2} & ${p2}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -888,11 +873,11 @@ ${inlines}
 	
       end
 
-      operation 131662 "on_button_press_event"
+      operation 251528 "on_button_press_event"
 	cpp_virtual protected explicit_return_type "bool"
 	nparams 1
-	  param inout name "ev" explicit_type "GdkEventButton"
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
+	  param out name "ev" explicit_type "GdkEventButton"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -904,6 +889,34 @@ ${inlines}
       end
 
       operation 131534 "on_menu_popup_refresh"
+	protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 251656 "on_menu_popup_expand_all"
+	protected explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 251784 "on_menu_popup_contract_all"
 	protected explicit_return_type "void"
 	nparams 0
 	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
@@ -1030,16 +1043,31 @@ ${inlines}
 	  b multiplicity "1" parent class_ref 132686 // MenuItem
       end
 
-      classrelation 170120 // _pHost (<unidirectional association>)
-	relation 169736 --->
-	  a role_name "_pHost" multiplicity "1" protected
+      classrelation 195592 // _pMenuitem_ExpandAll (<unidirectional association>)
+	relation 194696 --->
+	  a role_name "_pMenuitem_ExpandAll" multiplicity "1" protected
 	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 170120 // _pHost (<unidirectional association>)
-	  b multiplicity "1" parent class_ref 128121 // Host
-	set_oper operation_ref 211080 // set_pHost
+	    classrelation_ref 195592 // _pMenuitem_ExpandAll (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 132686 // MenuItem
       end
 
+      classrelation 195720 // _pMenuitem_ContractAll (<unidirectional association>)
+	relation 194824 --->
+	  a role_name "_pMenuitem_ContractAll" multiplicity "1" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 195720 // _pMenuitem_ContractAll (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 132686 // MenuItem
+      end
+
+      classrelation 196872 // <dependency>
+	relation 195976 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 196872 // <dependency>
+	  b parent class_ref 147592 // Controller
+      end
     end
 
     class 132744 "HostSelectDialog"
@@ -1148,7 +1176,7 @@ ${inlines}
 
       classrelation 134024 // _pIconViewHosts (<unidirectional association>)
 	relation 134024 --->
-	  a role_name "_pIconViewHosts" multiplicity "1" public
+	  a role_name "_pIconViewHosts" multiplicity "1" protected
 	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
 	    classrelation_ref 134024 // _pIconViewHosts (<unidirectional association>)
@@ -1175,8 +1203,9 @@ ${inlines}
 
       classrelation 150024 // <dependency>
 	relation 149768 -_->
-	  a default
-	    cpp default "#include in source"
+	  stereotype "friend"
+	  a package
+	    cpp default "${type}"
 	    classrelation_ref 150024 // <dependency>
 	  b parent class_ref 147592 // Controller
       end
@@ -1566,11 +1595,11 @@ ${inlines}
       operation 130894 "StatusBar"
 	public explicit_return_type ""
 	nparams 2
-	  param in name "cobject" explicit_type "BaseObjectType"
+	  param inout name "cobject" explicit_type "BaseObjectType"
 	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
-	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
+	cpp_decl "	${comment}${inline}${name}${(}${t0} * ${p0}${v0}, const ${t1} & ${p1}${v1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${throw} {
   ${body}}
 "
 	
@@ -1582,7 +1611,7 @@ ${inlines}
       operation 129998 "~StatusBar"
 	cpp_virtual public explicit_return_type ""
 	nparams 0
-	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
   ${body}}
@@ -1595,27 +1624,11 @@ ${inlines}
 
       operation 131022 "push_item"
 	public explicit_return_type "void"
-	nparams 2
-	  param in name "text" type class_ref 132814 // ustring
-	  param in name "context_id" explicit_type "uint"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 131150 "push_item"
-	public explicit_return_type "void"
 	nparams 1
-	  param in name "context_id" explicit_type "uint"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+	  param in name "text" type class_ref 132814 // ustring
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -1626,11 +1639,10 @@ ${inlines}
 
       operation 131278 "pop_item"
 	public explicit_return_type "void"
-	nparams 1
-	  param in name "context_id" explicit_type "uint"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${abstract};
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -1651,17 +1663,6 @@ ${inlines}
       end
 
       attribute 128462 "_context_id"
-	protected explicit_type "uint"
-	multiplicity "1"
-	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-      end
-
-      attribute 128590 "_count"
 	protected explicit_type "uint"
 	multiplicity "1"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
@@ -2155,6 +2156,240 @@ ${inlines}
 	    cpp default "${type}"
 	    classrelation_ref 146696 // <realization>
 	  b parent class_ref 146184 // list
+      end
+    end
+
+    class 180872 "NotebookProcesses"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "Already trackable as inherits from Gtk::Notebook"
+      classrelation 188936 // <generalisation>
+	relation 188424 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 188936 // <generalisation>
+	  b parent class_ref 128008 // Notebook
+      end
+
+      operation 244744 "NotebookProcesses"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "cobject" explicit_type "BaseObjectType"
+	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	cpp_decl "	${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 244872 "~NotebookProcesses"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 245000 "on_process_monitor_begin"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "process" type class_ref 128249 // Process
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 247432 "on_process_monitor_end"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "process" type class_ref 128249 // Process
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 155400 "_refPtrGlademmXml"
+	protected type class_ref 133070 // RefPtrGladeXml
+	multiplicity "1"
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 245384 "add_process_page"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "process" type class_ref 128249 // Process
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      classrelation 190344 // <aggregation>
+	relation 189576 o---
+	  a role_name "" protected
+	    classrelation_ref 190344 // <aggregation>
+	  b role_name "" protected
+	    classrelation_ref 193160 // <aggregation>
+      end
+
+      classrelation 190216 // <dependency>
+	relation 189448 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 190216 // <dependency>
+	  b parent class_ref 181000 // NotebookPageProcess
+      end
+    end
+
+    class 181000 "NotebookPageProcess"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 189576 // <generalisation>
+	relation 188936 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 189576 // <generalisation>
+	  b parent class_ref 151560 // HPaned
+      end
+
+      operation 245512 "NotebookPageProcess"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "cobject" explicit_type "BaseObjectType"
+	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	cpp_decl "	${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 245640 "~NotebookPageProcess"
+	cpp_virtual public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 245768 "get_my_process"
+	public return_type class_ref 128249 // Process
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 245896 "set_my_process"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "process" type class_ref 128249 // Process
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      attribute 155528 "_refPtrGlademmXml"
+	protected type class_ref 133070 // RefPtrGladeXml
+	multiplicity "1"
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 193160 // <aggregation>
+	relation_ref 189576 // <aggregation>
+      end
+
+      operation 248840 "on_process_updated"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "process" type class_ref 128249 // Process
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
       end
     end
   end
@@ -2734,6 +2969,126 @@ ${members}
 ${namespace_end}"
       associated_classes
 	class_ref 153864 // NotebookPageHost
+      end
+    end
+
+    artifact 141192 "notebook-processes"
+      stereotype "source"
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif // ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 180872 // NotebookProcesses
+      end
+    end
+
+    artifact 141320 "notebook-page-process"
+      stereotype "source"
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif // ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 181000 // NotebookPageProcess
       end
     end
   end

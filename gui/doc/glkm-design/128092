@@ -1,10 +1,10 @@
-format 58
+format 70
 "glkm-model" // glkm::glkm-model
-  revision 56
+  revision 63
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
-  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
   //use case diagram settings
   package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
   //sequence diagram settings
@@ -32,7 +32,7 @@ format 58
   key "" value ""
   classview 128121 "glkm-model class view"
     //class diagram settings
-    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
     //collaboration diagram settings
     show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
     //object diagram settings
@@ -48,7 +48,7 @@ format 58
     show_infonote default drawing_language default show_stereotype_properties default
     associated_deployment_view deploymentview_ref 128067 // glkm-model deployment view
     classdiagram 128121 "glkm-model class diagram"
-      draw_all_relations yes hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations yes hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
       size A2-Landscape
     end
 
@@ -813,8 +813,8 @@ ${inlines}
 	
       end
 
-      attribute 143752 "signal_Host_added"
-	public type class_ref 156424 // type_signal_Host_added
+      attribute 143752 "signal_host_added"
+	public type class_ref 156424 // type_signal_host_added
 	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
@@ -823,7 +823,7 @@ ${inlines}
 	idl_decl ""
       end
 
-      class 156424 "type_signal_Host_added"
+      class 156424 "type_signal_host_added"
 	visibility protected stereotype "typedef" base_type class_ref 156552 // signal
 	nactuals 8
 	actual class class_ref 156552 // signal
@@ -850,7 +850,7 @@ ${inlines}
 	idl_decl ""
 	explicit_switch_type ""
 	
-	comment "typedef sigc::signal<void, Host *> type_signal_Host_added;"
+	comment "typedef sigc::signal<void, Host *> type_signal_host_added;"
 	classrelation 166280 // <realization>
 	  relation 165896 -_-|>
 	    a public
@@ -1112,6 +1112,21 @@ ${members}};
 	set_of_attribute attribute_ref 140296 // _description
       end
 
+      operation 248712 "print_processes"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "debug operation"
+      end
+
       attribute 128106 "_hostname"
 	protected type class_ref 132814 // ustring
 	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
@@ -1250,6 +1265,80 @@ ${members}};
 	end
       end
 
+      class 182152 "type_signal_process_monitor_begin"
+	visibility protected stereotype "typedef" base_type class_ref 156552 // signal
+	nactuals 8
+	actual class class_ref 156552 // signal
+	  rank 0 explicit_value "void"
+	actual class class_ref 156552 // signal
+	  rank 1 value class_ref 128249 // Process
+	actual class class_ref 156552 // signal
+	  rank 2 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 3 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 4 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 5 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 6 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 7 explicit_value ""
+	cpp_decl "${comment}typedef ${type} ${name};
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	comment "typedef sigc::signal<void, Process *> type_signal_process_monitor_begin;"
+	classrelation 191496 // <realization>
+	  relation 190728 -_-|>
+	    a public
+	      cpp default "${type}"
+	      classrelation_ref 191496 // <realization>
+	    b parent class_ref 156552 // signal
+	end
+      end
+
+      class 182280 "type_signal_process_monitor_end"
+	visibility protected stereotype "typedef" base_type class_ref 156552 // signal
+	nactuals 8
+	actual class class_ref 156552 // signal
+	  rank 0 explicit_value "void"
+	actual class class_ref 156552 // signal
+	  rank 1 value class_ref 128249 // Process
+	actual class class_ref 156552 // signal
+	  rank 2 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 3 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 4 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 5 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 6 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 7 explicit_value ""
+	cpp_decl "${comment}typedef ${type} ${name};
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	comment "typedef sigc::signal<void, Process *> type_signal_process_monitor_end;"
+	classrelation 191624 // <realization>
+	  relation 190856 -_-|>
+	    a public
+	      cpp default "${type}"
+	      classrelation_ref 191624 // <realization>
+	    b parent class_ref 156552 // signal
+	end
+      end
+
       attribute 144904 "signal_process_added"
 	public type class_ref 160648 // type_signal_process_added
 	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
@@ -1262,6 +1351,26 @@ ${members}};
 
       attribute 154248 "signal_process_removed"
 	public type class_ref 176776 // type_signal_process_removed
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 156680 "signal_process_monitor_begin"
+	public type class_ref 182152 // type_signal_process_monitor_begin
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 156808 "signal_process_monitor_end"
+	public type class_ref 182152 // type_signal_process_monitor_begin
 	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
@@ -1551,6 +1660,18 @@ ${inlines}
 	set_oper operation_ref 196232 // set__name
       end
 
+      attribute 154120 "_synchronized"
+	protected explicit_type "bool"
+	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	get_oper operation_ref 237704 // get__synchronized
+	set_oper operation_ref 237320 // set__synchronized
+      end
+
       classrelation 128633 // files_opened (<aggregation>)
 	relation 128377 o---
 	  stereotype "vector"
@@ -1564,16 +1685,50 @@ ${inlines}
 	    classrelation_ref 128761 // process_list (<aggregation>)
       end
 
-      attribute 154120 "_synchronized"
-	protected explicit_type "bool"
+      class 183432 "type_signal_process_updated"
+	visibility protected stereotype "typedef" base_type class_ref 156552 // signal
+	nactuals 8
+	actual class class_ref 156552 // signal
+	  rank 0 explicit_value "void"
+	actual class class_ref 156552 // signal
+	  rank 1 value class_ref 128249 // Process
+	actual class class_ref 156552 // signal
+	  rank 2 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 3 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 4 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 5 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 6 explicit_value ""
+	actual class class_ref 156552 // signal
+	  rank 7 explicit_value ""
+	cpp_decl "${comment}typedef ${type} ${name};
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	
+	classrelation 193288 // <realization>
+	  relation 192392 -_-|>
+	    a public
+	      cpp default "${type}"
+	      classrelation_ref 193288 // <realization>
+	    b parent class_ref 156552 // signal
+	end
+      end
+
+      attribute 157960 "signal_process_updated"
+	public type class_ref 183432 // type_signal_process_updated
 	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
 	php_decl ""
 	python_decl ""
 	idl_decl ""
-	get_oper operation_ref 237704 // get__synchronized
-	set_oper operation_ref 237320 // set__synchronized
       end
     end
 
@@ -1786,6 +1941,62 @@ ${inlines}
 	  param in name "text" explicit_type "string"
 	  param in name "level" explicit_type "int"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
+
+    class 185736 "SslGabriel"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      associated_diagram classdiagram_ref 128121 // glkm-model class diagram
+      operation 254472 "SslGabriel"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 254600 "~SslGabriel"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 254728 "launch"
+	public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
@@ -2802,6 +3013,66 @@ ${members}
 ${namespace_end}"
       associated_classes
 	class_ref 175496 // LinuxKernelMonitorClient
+      end
+    end
+
+    artifact 142472 "sel-gabriel"
+      stereotype "source"
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif // ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 185736 // SslGabriel
       end
     end
   end

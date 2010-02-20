@@ -1,14 +1,20 @@
-format 58
+format 66
 
 classcanvas 128008 class_ref 173576 // Client
   class_drawing_mode default show_context_mode default show_stereotype_properties default
-  xyz 172 292 2000
+  xyz 166 349 2000
 end
 usecasecanvas 128136 usecase_ref 131464 // Get All Processes
   xyzwh 522 337 3005 64 32 label_xy 507 369
 end
 usecasecanvas 128264 usecase_ref 131592 // Start
   xyzwh 342 225 3005 64 32 label_xy 362 257
+end
+usecasecanvas 128776 usecase_ref 132744 // Get_Process_Files
+  xyzwh 523 407 3005 64 32 label_xy 512 439
+end
+usecasecanvas 128904 usecase_ref 132872 // Get_Process_File
+  xyzwh 517 484 3005 64 32 label_xy 508 516
 end
 line 128392 --->
   from ref 128008 z 1999 to ref 128264
@@ -17,4 +23,8 @@ line 128520 --->
 simplerelationcanvas 128648 simplerelation_ref 131464
   from ref 128136 z 3004 stereotype "<<include>>" xyz 451 271 3000 to ref 128264
 end
+line 129032 --->
+  from ref 128008 z 3006 to ref 128776
+line 129160 --->
+  from ref 128008 z 3006 to ref 128904
 end

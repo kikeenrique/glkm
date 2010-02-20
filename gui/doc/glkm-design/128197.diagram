@@ -1,193 +1,202 @@
 format 58
 
-classinstancecanvas 128008 classinstance_ref 130824 // s
+classinstancecanvas 128008 classinstance_ref 130824 // c
   xyz 10 5 2000 life_line_z 2000
 end
 classinstancecanvas 128520 classinstance_ref 133512 // hal_controller
-  xyz 261 21 2005 life_line_z 2030
+  xyz 281 77 2005 life_line_z 2030
 end
 classinstance 129288 class_ref 175624 // LinuxKernelMonitorC
-  name ""   xyz 644 74 2000 life_line_z 4030
+  name ""   xyz 663 131 2000 life_line_z 4030
 classinstance 129416 class_ref 132165 // VectorString
-  name "task_list"   xyz 782 77 2000 life_line_z 4030
+  name "task_list"   xyz 801 134 2000 life_line_z 4030
 classinstance 129544 class_ref 159496 // HalParser
-  name ""   xyz 923 76 2000 life_line_z 1955
+  name ""   xyz 942 133 2000 life_line_z 1955
 textcanvas 130312 "it = task_list.begin
 it!= task_list.end
 ++it"
-  xyzwh 89 281 2010 107 39
+  xyzwh 890 333 2010 107 39
 fragment 130440 "loop"
-  color lightyellow xyzwh 68 249 1955 1379 425
+  color transparent xyzwh 878 305 1945 589 438
 end
 classinstance 132232 class_ref 132165 // VectorString
-  name "parsed_process"   mortal  xyz 1139 251 1995 life_line_z 1960
+  name "parsed_process"   mortal  xyz 1158 307 1995 life_line_z 1960
 fragment 132616 "continue"
-  color mediumyellow xyzwh 95 377 4050 977 55
+  color transparent xyzwh 907 432 4050 213 54
 end
 textcanvas 132744 "parsed_process < 3"
-  xyzwh 104 399 5035 130 16
+  xyzwh 916 453 5035 130 16
 note 132872 "without messages.
 Transform string parsed_process
 into Process params
 "
-  xyzwh 1013 140 5040 164 86
-note 134536 "TODO
-return values"
-  color red  xyzwh 193 931 2020 218 53
+  xyzwh 1032 197 5040 164 86
 classinstancecanvas 136968 classinstance_ref 133384 // present_host
-  xyz 116 6 2005 life_line_z 1955
+  xyz 143 5 2005 life_line_z 1955
 end
 classinstancecanvas 139016 classinstance_ref 139656 // _lkm_client
-  xyz 391 54 2000 life_line_z 2005
+  xyz 410 108 2000 life_line_z 2005
 end
 classinstance 142472 class_ref 128249 // Process
-  name "process_tmp"   xyz 1323 250 2000 life_line_z 2000
-durationcanvas 128136 classinstance_ref 128008 // s:Controller
-  xyzwh 41 58 2010 10 809
+  name "process_tmp"   xyz 1342 306 2000 life_line_z 2000
+fragment 144008 "try"
+  color verylightorange xyzwh 910 495 1950 214 45
+end
+textcanvas 144136 "parsing can lead to exceptions"
+  xyzwh 915 516 2020 160 13
+fragment 144648 "alt"
+  xyzwh 89 71 1940 1401 780
+end
+textcanvas 144776 "_hal_controller != NULL"
+  xyzwh 96 94 2005 100 44
+durationcanvas 128136 classinstance_ref 128008 // c:Controller
+  xyzwh 41 56 2010 9 809
 end
 durationcanvas 128648 classinstance_ref 128520 // hal_controller:HalController
-  xyzwh 333 83 4040 9 682
+  xyzwh 354 134 4040 8 688
 end
 durationcanvas 130056 classinstance_ref 129544 // :HalParser
-  xyzwh 950 216 2000 10 673
+  xyzwh 970 272 2000 9 673
   overlappingdurationcanvas 131976
-    xyzwh 955 347 4045 11 25
+    xyzwh 974 404 4045 11 25
   end
 end
 durationcanvas 132360 classinstance_ref 132232 // parsed_process:VectorString
-  xyzwh 1217 304 2005 10 311
+  xyzwh 1236 361 2005 10 311
 end
 durationcanvas 137352 classinstance_ref 136968 // present_host:Host
-  xyzwh 164 60 2005 10 718
+  xyzwh 191 57 2005 10 775
   overlappingdurationcanvas 141960
-    xyzwh 169 693 2015 10 35
+    xyzwh 197 748 2015 9 37
   end
   overlappingdurationcanvas 142216
-    xyzwh 169 551 2015 10 45
+    xyzwh 197 607 2015 9 46
   end
 end
 durationcanvas 139272 classinstance_ref 139016 // _lkm_client:LinuxKernelMonitorClient
-  xyzwh 487 104 2010 9 640
+  xyzwh 507 162 2010 8 641
 end
 durationcanvas 139656 classinstance_ref 129416 // task_list:VectorString
-  xyzwh 838 129 4040 10 29
+  xyzwh 857 187 4040 10 29
 end
 durationcanvas 139912 classinstance_ref 129288 // :LinuxKernelMonitorC
-  xyzwh 700 154 4040 10 46
+  xyzwh 719 210 4040 10 46
 end
 durationcanvas 142600 classinstance_ref 142472 // process_tmp:Process
-  xyzwh 1377 447 2010 9 23
+  xyzwh 1400 543 2010 9 23
 end
 durationcanvas 143112 classinstance_ref 142472 // process_tmp:Process
-  xyzwh 1377 477 2010 10 23
+  xyzwh 1400 573 2010 10 23
 end
 durationcanvas 143368 classinstance_ref 142472 // process_tmp:Process
-  xyzwh 1377 505 2010 10 23
+  xyzwh 1400 601 2010 10 23
 end
 durationcanvas 143752 classinstance_ref 142472 // process_tmp:Process
-  xyzwh 1376 529 2010 11 25
+  xyzwh 1399 626 2010 11 25
 end
 reflexivemsg 132104 synchronous
   to durationcanvas_ref 131976
-  yz 347 2020 msg operation_ref 208648 // "tokenize(in str_orig : String, in delimiters : String, out tokens : VectorString) : void"
+  yz 404 2020 msg operation_ref 208648 // "tokenize(in str_orig : String, in delimiters : String, out tokens : VectorString) : void"
   show_full_operations_definition default drawing_language default
   args "*it, DELIMITER, parsed_process"
-  label_xy 955 334
+  label_xy 974 389
 msg 132488 synchronous
   from durationcanvas_ref 130056
   to durationcanvas_ref 132360
-  yz 308 3005 unspecifiedmsg
+  yz 364 3005 unspecifiedmsg
   show_full_operations_definition default drawing_language default
 msg 137224 synchronous
   from durationcanvas_ref 128136
   to durationcanvas_ref 137352
-  yz 61 2015 msg operation_ref 195720 // "get_all_processes() : void"
+  yz 57 2015 msg operation_ref 195720 // "get_all_processes() : void"
   show_full_operations_definition default drawing_language default
-  label_xy 54 45
+  label_xy 53 40
 msg 138760 synchronous
   from durationcanvas_ref 137352
   to durationcanvas_ref 128648
-  yz 88 4055 msg operation_ref 128837 // "get_all_processes(inout host : Host) : bool"
+  yz 135 4055 msg operation_ref 128837 // "get_all_processes(inout host : Host) : bool"
   show_full_operations_definition default drawing_language default
   args "*this"
-  label_xy 191 74
+  label_xy 215 121
 msg 138888 return
   from durationcanvas_ref 128648
   to durationcanvas_ref 137352
-  yz 754 4045 unspecifiedmsg
+  yz 811 4045 explicitmsg "allright"
   show_full_operations_definition default drawing_language default
+  label_xy 260 797
 msg 139400 synchronous
   from durationcanvas_ref 128648
   to durationcanvas_ref 139272
-  yz 110 4060 msg operation_ref 205832 // "get_all_processes(inout host : Host) : bool"
+  yz 167 4060 msg operation_ref 205832 // "get_all_processes(inout host : Host) : bool"
   show_full_operations_definition default drawing_language default
   args "host"
-  label_xy 351 96
+  label_xy 370 153
 msg 139528 return
   from durationcanvas_ref 139272
   to durationcanvas_ref 128648
-  yz 734 4050 unspecifiedmsg
+  yz 791 4050 explicitmsg "allright"
   show_full_operations_definition default drawing_language default
+  label_xy 416 777
 msg 139784 synchronous
   from durationcanvas_ref 139272
   to durationcanvas_ref 139656
-  yz 133 4045 unspecifiedmsg
+  yz 190 4045 unspecifiedmsg
   show_full_operations_definition default drawing_language default
 msg 140040 synchronous
   from durationcanvas_ref 139272
   to durationcanvas_ref 139912
-  yz 158 4045 msg operation_ref 235912 // "GetAllProcesses() : VectorString"
+  yz 214 4045 msg operation_ref 235912 // "GetAllProcesses() : VectorString"
   show_full_operations_definition default drawing_language default
-  label_xy 554 142
+  label_xy 574 198
 msg 140168 return
   from durationcanvas_ref 139912
   to durationcanvas_ref 139272
-  yz 187 4045 explicitmsg "task_list"
+  yz 243 4045 explicitmsg "task_list"
   show_full_operations_definition default drawing_language default
-  label_xy 558 170
+  label_xy 577 226
 msg 140424 synchronous
   from durationcanvas_ref 139272
   to durationcanvas_ref 130056
-  yz 218 4070 msg operation_ref 205704 // "parse_synchronize_processes(inout hal_task_list : VectorString, inout host : Host) : void"
+  yz 275 4070 msg operation_ref 205704 // "parse_synchronize_processes(inout hal_task_list : VectorString, inout host : Host) : void"
   show_full_operations_definition default drawing_language default
   args "task_list, host"
-  label_xy 559 204
+  label_xy 578 261
 msg 142088 synchronous
   from durationcanvas_ref 130056
   to durationcanvas_ref 141960
-  yz 693 4045 msg operation_ref 237448 // "delete_all_not_synchronized() : void"
+  yz 749 4045 msg operation_ref 237448 // "delete_all_not_synchronized() : void"
   show_full_operations_definition default drawing_language default
-  label_xy 485 681
+  label_xy 509 738
 msg 142344 synchronous
   from durationcanvas_ref 130056
   to durationcanvas_ref 142216
-  yz 551 4045 msg operation_ref 237576 // "add_and_synchronize_process(inout process : Process) : void"
+  yz 607 4045 msg operation_ref 237576 // "add_and_synchronize_process(inout process : Process) : void"
   show_full_operations_definition default drawing_language default
   args "process_tmp"
-  label_xy 445 538
+  label_xy 469 595
 msg 142728 synchronous
   from durationcanvas_ref 130056
   to durationcanvas_ref 142600
-  yz 449 2015 unspecifiedmsg
+  yz 546 2015 unspecifiedmsg
   show_full_operations_definition default drawing_language default
 msg 143240 synchronous
   from durationcanvas_ref 130056
   to durationcanvas_ref 143112
-  yz 478 5045 msg operation_ref 196104 // "set__PID(in value : int) : void"
+  yz 575 5045 msg operation_ref 196104 // "set__PID(in value : int) : void"
   show_full_operations_definition default drawing_language default
-  label_xy 1137 464
+  label_xy 1156 561
 msg 143496 synchronous
   from durationcanvas_ref 130056
   to durationcanvas_ref 143368
-  yz 506 5045 msg operation_ref 128776 // "set__PPID(in value : int) : void"
+  yz 603 5045 msg operation_ref 128776 // "set__PPID(in value : int) : void"
   show_full_operations_definition default drawing_language default
-  label_xy 1133 492
+  label_xy 1152 589
 msg 143880 synchronous
   from durationcanvas_ref 130056
   to durationcanvas_ref 143752
-  yz 531 5050 msg operation_ref 196232 // "set__name(in value : ustring) : void"
+  yz 627 5050 msg operation_ref 196232 // "set__name(in value : ustring) : void"
   show_full_operations_definition default drawing_language default
-  label_xy 1131 517
+  label_xy 1150 613
 line 135944 -_-_
   from ref 130440 z 2029 to ref 132744
 line 136072 -_-_
@@ -204,4 +213,8 @@ line 136712 -_-_
   from ref 132744 z 4049 to ref 132616
 line 143624 -_-_
   from ref 132872 z 5039 to ref 143240
+line 144520 -_-_
+  from ref 144136 z 1949 to ref 144008
+line 144904 -_-_
+  from ref 144776 z 1999 to ref 144648
 end

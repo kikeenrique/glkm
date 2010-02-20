@@ -1,6 +1,6 @@
 format 58
 "gtkmm" // gtkmm
-  revision 24
+  revision 27
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -463,6 +463,36 @@ ${inlines}
 	    classrelation_ref 131534 // <generalisation>
 	  b parent class_ref 130638 // Container
       end
+
+      operation 243208 "get_selection"
+	const public return_type class_ref 129614 // RefPtr
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::RefPtr<const TreeSelection> 	get_selection () const"
+      end
+
+      operation 243336 "get_selection"
+	public return_type class_ref 129614 // RefPtr
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::RefPtr<TreeSelection> 	get_selection ()"
+      end
     end
 
     class 129230 "TreeModel"
@@ -712,6 +742,127 @@ ${inlines}
 	    cpp default "${type}"
 	    classrelation_ref 132814 // <generalisation>
 	  b parent class_ref 129998 // Object
+      end
+
+      class 184584 "ListHandle_Path"
+	visibility package stereotype "typedef" base_type class_ref 143112 // ListHandle
+	cpp_external cpp_decl "${name}
+
+#include <gtkmm/treeselection.h>
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl "${comment}typedef ${type} ${name};
+"
+	explicit_switch_type ""
+	
+	comment "typedef Glib::ListHandle<
+TreeModel::Path, TreePath_Traits > 	ListHandle_Path"
+      end
+
+      operation 250248 "count_selected_rows"
+	const public explicit_return_type "int"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 253192 "get_model"
+	const public return_type class_ref 129614 // RefPtr
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::RefPtr<const TreeModel> 	get_model () const"
+      end
+
+      operation 253320 "get_model"
+	public return_type class_ref 129614 // RefPtr
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "Glib::RefPtr<TreeModel> 	get_model ()"
+      end
+
+      operation 252936 "get_selected"
+	public return_type class_ref 133838 // iterator
+	nparams 1
+	  param inout name "model" type class_ref 129614 // RefPtr
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "TreeModel::iterator 	get_selected (Glib::RefPtr<TreeModel>& model)"
+      end
+
+      operation 253064 "get_selected"
+	public return_type class_ref 133838 // iterator
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 249992 "get_selected_rows"
+	const public return_type class_ref 184584 // ListHandle_Path
+	nparams 1
+	  param inout name "model" type class_ref 129614 // RefPtr
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "ListHandle_Path 	get_selected_rows (Glib::RefPtr<TreeModel>& model)"
+      end
+
+      operation 250120 "get_selected_rows"
+	const public return_type class_ref 184584 // ListHandle_Path
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
       end
     end
 

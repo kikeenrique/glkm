@@ -2,14 +2,14 @@ format 58
 
 classcanvas 128005 class_ref 128133 // TextBuffer
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1331 749 2000
+  xyz 1429 729 2000
 end
 note 128008 "Keep an eye on Treemodel::iterator that its base class it's declared as text.
 Bouml doesn't supply Children::iterator as an iterator option."
-  xyzwh 2079 208 2000 122 119
+  xyzwh 2177 202 2000 122 119
 classcanvas 128021 class_ref 128149 // Menu
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 662 1809 2000
+  xyz 792 1799 2000
 end
 classcanvas 128040 class_ref 128040 // ToolButton
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
@@ -21,11 +21,11 @@ classcanvas 128078 class_ref 128590 // Main
 end
 classcanvas 128136 class_ref 128008 // Notebook
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1528 1547 2000
+  xyz 1665 1550 2000
 end
 classcanvas 128149 class_ref 128277 // MenuShell
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 744 1559 2000
+  xyz 781 1561 2000
 end
 classcanvas 128168 class_ref 128168 // ToolItem
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
@@ -41,11 +41,11 @@ classcanvas 128334 class_ref 128846 // AboutDialog
 end
 classcanvas 128392 class_ref 132616 // IconView
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1213 1548 2000
+  xyz 1311 1548 2000
 end
 classcanvas 128462 class_ref 128974 // StatusBar
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 768 1904 2000
+  xyz 889 1905 2000
 end
 classcanvas 128552 class_ref 128296 // CheckMenuItem
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
@@ -53,11 +53,11 @@ classcanvas 128552 class_ref 128296 // CheckMenuItem
 end
 classcanvas 128590 class_ref 129102 // TreeView
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1122 1549 2000
+  xyz 1165 1550 2000
 end
 classcanvas 128718 class_ref 129230 // TreeModel
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1675 427 2000
+  xyz 1773 420 2000
 end
 classcanvas 128776 class_ref 136456 // Object_Class
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
@@ -65,19 +65,19 @@ classcanvas 128776 class_ref 136456 // Object_Class
 end
 classcanvas 128846 class_ref 129358 // TreeStore
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1429 711 2000
+  xyz 1527 704 2000
 end
 classcanvas 128936 class_ref 128424 // Path
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 2010 418 2000
+  xyz 2108 411 2000
 end
 classcanvas 128974 class_ref 129486 // TreeSelection
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1216 749 2000
+  xyz 1105 710 2000
 end
 classcanvas 129032 class_ref 137224 // ListStore
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1585 822 2000
+  xyz 1684 815 2000
 end
 classcanvas 129102 class_ref 129742 // trackable
   draw_all_relations default hide_attributes yes hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
@@ -85,11 +85,11 @@ classcanvas 129102 class_ref 129742 // trackable
 end
 classcanvas 129192 class_ref 128552 // TreePath
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1787 332 2000
+  xyz 1885 325 2000
 end
 classcanvas 129320 class_ref 128680 // TreeViewColumn
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1089 843 2000
+  xyz 1024 870 2000
 end
 classcanvas 129486 class_ref 130382 // Widget
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
@@ -105,7 +105,7 @@ classcanvas 129614 class_ref 130510 // Object
 end
 classcanvas 129704 class_ref 129064 // ColumnRecord
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1992 473 2004
+  xyz 2090 466 2004
 end
 classcanvas 129742 class_ref 129998 // Object
   draw_all_relations default hide_attributes yes hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
@@ -137,7 +137,7 @@ classcanvas 130440 class_ref 141320 // ResponseType
 end
 classcanvas 130472 class_ref 129704 // TreeDragSource
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1487 542 2000
+  xyz 1585 535 2000
 end
 classcanvas 130510 class_ref 130638 // Container
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
@@ -161,7 +161,7 @@ note 130568 "enum ResponseType
   xyzwh 171 332 2000 197 198
 classcanvas 130600 class_ref 129832 // TreeDragDest
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1629 540 2000
+  xyz 1727 533 2000
 end
 classcanvas 130766 class_ref 130766 // Bin
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
@@ -205,31 +205,35 @@ classcanvas 132232 class_ref 179336 // TreeRow
 end
 classcanvas 132302 class_ref 131406 // Box
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 956 1552 2000
+  xyz 993 1554 2000
 end
 classcanvas 132488 class_ref 179592 // TreeValueProxy
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
   xyz 1084 1056 2000
 end
+classcanvas 132616 class_ref 184584 // ListHandle_Path
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 1337 874 2004
+end
 classcanvas 132686 class_ref 131534 // TextView
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1029 1552 2000
+  xyz 1072 1553 2000
 end
 classcanvas 132942 class_ref 131662 // HBox
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 780 1809 2000
+  xyz 901 1810 2000
 end
 classcanvas 133326 class_ref 131790 // VBox
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 852 1809 2000
+  xyz 973 1810 2000
 end
 classcanvas 133582 class_ref 131918 // ButtonBox
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 930 1809 2000
+  xyz 1051 1810 2000
 end
 classcanvas 133838 class_ref 132046 // TreeSortable
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1783 541 2000
+  xyz 1881 534 2000
 end
 classcanvas 134222 class_ref 130126 // Interface
   draw_all_relations default hide_attributes yes hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
@@ -237,11 +241,11 @@ classcanvas 134222 class_ref 130126 // Interface
 end
 classcanvas 134734 class_ref 132174 // Selection
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1407 826 2000
+  xyz 1505 819 2000
 end
 classcanvas 134990 class_ref 132302 // Toolbar
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 854 1554 2000
+  xyz 891 1556 2000
 end
 classcanvas 135246 class_ref 132430 // ImageMenuItem
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
@@ -269,7 +273,7 @@ classcanvas 136270 class_ref 133582 // TreeIterBase
 end
 classcanvas 136654 class_ref 133198 // Children
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1910 346 2004
+  xyz 2008 339 2004
 end
 classcanvas 137166 class_ref 133710 // iterator
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
@@ -277,7 +281,7 @@ classcanvas 137166 class_ref 133710 // iterator
 end
 classcanvas 137422 class_ref 133838 // iterator
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 1989 366 2004
+  xyz 2087 359 2004
 end
 relationcanvas 128133 relation_ref 128517 // <generalisation>
   from ref 128005 z 1999 to ref 129742
@@ -486,6 +490,8 @@ relationcanvas 132558 relation_ref 131534 // <generalisation>
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 end
+line 132744 ---+
+  from ref 132616 z 1999 to ref 128974
 relationcanvas 132814 relation_ref 131662 // <generalisation>
   from ref 132686 z 1999 to ref 130510
   no_role_a no_role_b

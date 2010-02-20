@@ -1,10 +1,10 @@
-format 58
+format 70
 "glkm-controller" // glkm::glkm-controller
-  revision 21
+  revision 31
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
-  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
   //use case diagram settings
   package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
   //sequence diagram settings
@@ -30,7 +30,7 @@ format 58
   cpp_src_dir "src-glkm/"
   classview 129160 "glkm-controller"
     //class diagram settings
-    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
     //collaboration diagram settings
     show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
     //object diagram settings
@@ -46,176 +46,8 @@ format 58
     show_infonote default drawing_language default show_stereotype_properties default
     associated_deployment_view deploymentview_ref 128008 // glkm-controller deployment view
     classdiagram 130312 "glkm-controller"
-      draw_all_relations yes hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-      size A4-Landscape
-    end
-
-    class 144904 "Subject"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
-      operation 175368 "~Subject"
-	cpp_virtual public explicit_return_type ""
-	nparams 0
-	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 175112 "attach"
-	cpp_virtual public explicit_return_type "void"
-	nparams 1
-	  param inout name "observer" type class_ref 145032 // Observer
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 175496 "detach"
-	cpp_virtual public explicit_return_type "void"
-	nparams 1
-	  param inout name "observer" type class_ref 145032 // Observer
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 175624 "notify"
-	cpp_virtual public explicit_return_type "void"
-	nparams 0
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 193928 "notify"
-	cpp_virtual public explicit_return_type "void"
-	nparams 1
-	  param inout name "arg" type class_ref 155272 // Argument
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 175240 "Subject"
-	protected explicit_return_type ""
-	nparams 0
-	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      classrelation 145544 // _observers (<directional aggregation>)
-	relation 145416 o-->
-	  stereotype "set"
-	  a role_name "_observers" multiplicity "*" private
-	    cpp default "	${comment}${static}${mutable}${volatile}${const}${stereotype}<${association}${type} *> ${name}${value};
-"
-	    classrelation_ref 145544 // _observers (<directional aggregation>)
-	  b multiplicity "1" parent class_ref 145032 // Observer
-      end
-    end
-
-    class 145032 "Observer"
-      abstract visibility package stereotype "interface"
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
-"
-      java_decl "${comment}${@}${public}interface ${name}${extends} {
-${members}}
-"
-      php_decl "${comment}${visibility}interface ${name} {
-${members}}
-"
-      python_2_2 python_decl ""
-      idl_decl "${comment}${abstract}${local}interface ${name}${inherit} {
-${members}};
-"
-      explicit_switch_type ""
-      
-      operation 174856 "~Observer"
-	cpp_virtual public explicit_return_type ""
-	nparams 0
-	cpp_decl "	${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw};
-"
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 174984 "update"
-	abstract cpp_virtual public explicit_return_type "void"
-	nparams 1
-	  param inout name "s" type class_ref 144904 // Subject
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${abstract};
-"
-	
-	
-	
-	
-      end
-
-      operation 193672 "update"
-	abstract cpp_virtual public explicit_return_type "void"
-	nparams 2
-	  param inout name "s" type class_ref 144904 // Subject
-	  param inout name "arg" type class_ref 155272 // Argument
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}, ${t1} * ${p1}${)}${const}${volatile}${throw}${abstract};
-"
-	
-	
-	
-	
-      end
+      draw_all_relations yes hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
+      size A3-Landscape
     end
 
     class 147592 "Controller"
@@ -230,6 +62,20 @@ ${inlines}
       idl_decl ""
       explicit_switch_type ""
       
+      operation 178440 "instance"
+	class_operation public return_type class_ref 147592 // Controller
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
       operation 176904 "action_host_selected"
 	public explicit_return_type "void"
 	nparams 0
@@ -272,12 +118,12 @@ ${inlines}
 	
       end
 
-      operation 178440 "instance"
-	class_operation public return_type class_ref 147592 // Controller
+      operation 246024 "action_process_selected"
+	public explicit_return_type "void"
 	nparams 0
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} & ${name}${(}${)}${const}${volatile}${throw}${abstract};
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} & ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
   ${body}}
 "
 	
@@ -286,36 +132,28 @@ ${inlines}
 	
       end
 
-      operation 181640 "set__pIconViewHosts"
-	force_body_gen public explicit_return_type "void"
-	nparams 1
-	  param in name "value" type class_ref 132488 // IconViewHosts
-	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw};
+      operation 244616 "init_host_added"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  _pIconViewHosts = ${p0};
-}
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
 "
-	cpp_name_spec "set_${name}"
 	
-	java_name_spec "set${Name}"
 	
-	php_name_spec "set${Name}"
 	
-	python_name_spec "set${Name}"
 	
-	idl_name_spec "set_${name}"
-	set_of_relation classrelation_ref 151432 // _pIconViewHosts (<unidirectional association>)
       end
 
-      operation 195336 "set__pNotebookHosts"
+      operation 244488 "set__pMainWindow"
 	force_body_gen public explicit_return_type "void"
 	nparams 1
-	  param in name "value" type class_ref 150280 // NotebookHosts
+	  param in name "value" type class_ref 128092 // MainWindow
 	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${t0} * ${p0}${)}${const}${volatile}${throw}${staticnl}{
-  _pNotebookHosts = ${p0};
+  _pMainWindow = ${p0};
 }
 "
 	cpp_name_spec "set_${name}"
@@ -327,7 +165,7 @@ ${inlines}
 	python_name_spec "set${Name}"
 	
 	idl_name_spec "set_${name}"
-	set_of_relation classrelation_ref 160776 // _pNotebookHosts (<unidirectional association>)
+	set_of_relation classrelation_ref 188552 // _pMainWindow (<unidirectional association>)
       end
 
       attribute 139144 "singleton"
@@ -394,24 +232,30 @@ ${inlines}
 	  b multiplicity "1" parent class_ref 142856 // Hosts
       end
 
-      classrelation 151432 // _pIconViewHosts (<unidirectional association>)
-	relation 151176 --->
-	  a role_name "_pIconViewHosts" multiplicity "1" private
+      classrelation 188552 // _pMainWindow (<unidirectional association>)
+	relation 188040 --->
+	  a role_name "_pMainWindow" multiplicity "1" private
 	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	    classrelation_ref 151432 // _pIconViewHosts (<unidirectional association>)
-	  b multiplicity "1" parent class_ref 132488 // IconViewHosts
-	set_oper operation_ref 181640 // set__pIconViewHosts
+	    classrelation_ref 188552 // _pMainWindow (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 128092 // MainWindow
+	set_oper operation_ref 244488 // set__pMainWindow
       end
 
-      classrelation 160776 // _pNotebookHosts (<unidirectional association>)
-	relation 160392 --->
-	  a role_name "_pNotebookHosts" private
-	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 160776 // _pNotebookHosts (<unidirectional association>)
+      classrelation 188808 // <dependency>
+	relation 188296 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 188808 // <dependency>
 	  b parent class_ref 150280 // NotebookHosts
-	set_oper operation_ref 195336 // set__pNotebookHosts
+      end
+
+      classrelation 151432 // <dependency>
+	relation 151176 -_->
+	  a package
+	    cpp default "#include in source"
+	    classrelation_ref 151432 // <dependency>
+	  b multiplicity "1" parent class_ref 132488 // IconViewHosts
       end
 
       classrelation 164488 // <dependency>
@@ -429,20 +273,30 @@ ${inlines}
 	    classrelation_ref 166408 // <dependency>
 	  b parent class_ref 128121 // Host
       end
-    end
 
-    class 155272 "Argument"
-      visibility package 
-      cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      
+      classrelation 188680 // <dependency>
+	relation 188168 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 188680 // <dependency>
+	  b parent class_ref 132744 // HostSelectDialog
+      end
+
+      classrelation 193032 // <dependency>
+	relation 192264 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 193032 // <dependency>
+	  b parent class_ref 128348 // StatusBar
+      end
+
+      classrelation 194440 // <dependency>
+	relation 193544 -_->
+	  a default
+	    cpp default "#include in source"
+	    classrelation_ref 194440 // <dependency>
+	  b parent class_ref 128476 // TreeViewHost
+      end
     end
   end
 
@@ -454,70 +308,6 @@ ${inlines}
       package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
       draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
       size A2
-    end
-
-    artifact 131592 "observer"
-      stereotype "source"
-      cpp_h "/*
- * gui
- * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
- * 
- * gui is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * gui is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License along
- * with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-
-#ifndef ${NAMESPACE}_${NAME}_HPP
-#define ${NAMESPACE}_${NAME}_HPP
-
-${comment}
-${includes}
-${declarations}
-${namespace_start}
-${definition}
-${namespace_end}
-
-#endif // ${NAMESPACE}_${NAME}_HPP
-"
-      cpp_src "/*
- * gui
- * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
- * 
- * gui is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by the
- * Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * 
- * gui is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License along
- * with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-
-${comment}
-${includes}
-${namespace_start}
-${members}
-${namespace_end}"
-      associated_classes
-	class_ref 145032 // Observer
-	class_ref 144904 // Subject
-	class_ref 155272 // Argument
-      end
     end
 
     artifact 132744 "controller"

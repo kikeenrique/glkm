@@ -1,6 +1,6 @@
 format 58
 "glkm" // glkm
-  revision 44
+  revision 62
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -59,29 +59,6 @@ format 58
       
     end
 
-    usecase 128310 "monitor process"
-      stereotype "realization"
-      //use case diagram settings
-      package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
-      //sequence diagram settings
-      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
-      //collaboration diagram settings
-      show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
-      //object diagram settings
-       write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
-      //state diagram settings
-      package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
-      show_activities default region_horizontally default drawing_language default show_stereotype_properties default
-      //activity diagram settings
-      package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
-      show_infonote default drawing_language default show_stereotype_properties default
-      simplerelation 128029
-	-_->
-	  stereotype "include"
-	  on usecase_ref 128029 // show process
-      end
-    end
-
     usecase 128121 "select host"
       //use case diagram settings
       package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
@@ -99,7 +76,7 @@ format 58
       show_infonote default drawing_language default show_stereotype_properties default
       sequencediagram 129160 "select host sequence diagram"
 	show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
-	overlapping_bars size A2-Landscape
+	overlapping_bars size A1-Landscape
       end
 
       classinstance 128008 "_pIconViewHosts"
@@ -126,7 +103,7 @@ format 58
 	  end
       end
 
-      classinstance 130824 "s"
+      classinstance 130824 "c"
 	type class_ref 147592 // Controller
 	attributes
 	  end
@@ -134,7 +111,7 @@ format 58
 	  end
       end
 
-      classinstance 131976 "_pNotebooHosts"
+      classinstance 131976 "_pMainWindow->_pNotebooHosts"
 	type class_ref 150280 // NotebookHosts
 	attributes
 	  end
@@ -158,7 +135,7 @@ format 58
 	  end
       end
 
-      classinstance 135304 "*tmp_treeviewhost"
+      classinstance 135304 "tmp_pagehost->tmp_treeviewhost"
 	type class_ref 128476 // TreeViewHost
 	attributes
 	  end
@@ -249,20 +226,6 @@ format 58
 	  stereotype "include"
 	  on usecase_ref 128008 // show processes
       end
-
-      class 161800 "_p"
-	visibility package 
-	cpp_decl "${comment}${template}class ${name}${inherit} {
-${members}};
-${inlines}
-"
-	java_decl ""
-	php_decl ""
-	python_2_2 python_decl ""
-	idl_decl ""
-	explicit_switch_type ""
-	
-      end
     end
 
     usecase 128008 "show processes"
@@ -285,6 +248,14 @@ ${inlines}
 	overlapping_bars size A2-Landscape
       end
 
+      classinstance 140808 "host"
+	type class_ref 128121 // Host
+	attributes
+	  end
+	relations
+	  end
+      end
+
       classinstance 136456 "host._task_list"
 	type class_ref 128185 // map
 	attributes
@@ -304,14 +275,6 @@ ${inlines}
       sequencediagram 139016 "add_and_synchronize_process"
 	show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
 	overlapping_bars size A2-Landscape
-      end
-
-      classinstance 140808 "host"
-	type class_ref 128121 // Host
-	attributes
-	  end
-	relations
-	  end
       end
 
       sequencediagram 139272 "delete_all_not_synchronized"
@@ -362,6 +325,11 @@ ${inlines}
       //activity diagram settings
       package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
       show_infonote default drawing_language default show_stereotype_properties default
+      sequencediagram 140552 "select process sequence diagram"
+	show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+	overlapping_bars size A2-Landscape
+      end
+
       simplerelation 128008
 	-_->
 	  stereotype "include"
@@ -386,7 +354,7 @@ ${inlines}
       show_infonote default drawing_language default show_stereotype_properties default
     end
 
-    usecase 128157 "show process information"
+    usecase 128310 "monitor process"
       //use case diagram settings
       package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
       //sequence diagram settings
@@ -401,6 +369,11 @@ ${inlines}
       //activity diagram settings
       package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
       show_infonote default drawing_language default show_stereotype_properties default
+      simplerelation 128029
+	-_->
+	  stereotype "include"
+	  on usecase_ref 128029 // show process
+      end
     end
   end
 

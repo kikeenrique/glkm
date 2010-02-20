@@ -1,4 +1,4 @@
-format 58
+format 66
 
 classinstancecanvas 128008 classinstance_ref 138376 // server_lkm
   xyz 16 6 2000 life_line_z 2000
@@ -25,59 +25,59 @@ classinstance 131336 class_ref 171656 // DataInputStream
 classinstance 133640 class_ref 129288 // string
   name "line"   xyz 1472 280 2000 life_line_z 2000
 fragment 134024 "loop"
-  xyzwh 32 627 0 1504 181
+  xyzwh 9 627 1995 1504 181
 end
 textcanvas 134152 "data_istream->read_line(line)"
-  xyzwh 43 645 2020 124 13
+  xyzwh 20 645 2020 152 15
 fragment 134792 "opt"
-  xyzwh 37 666 2020 663 79
+  xyzwh 15 664 2020 663 79
 end
 textcanvas 134920 "!line.empty()"
-  xyzwh 48 687 2025 65 13
+  xyzwh 25 687 2025 65 13
 durationcanvas 128136 classinstance_ref 128008 // server_lkm:LinuxKernelMonitorServer
-  xyzwh 114 94 2005 11 797
+  xyzwh 35 94 2005 11 797
   overlappingdurationcanvas 129032
-    xyzwh 119 322 2010 9 434
+    xyzwh 41 322 2010 11 434
   end
 end
 durationcanvas 128520 classinstance_ref 128392 // * device_procmon:HalDeviceProxy
-  xyzwh 349 121 2010 6 64
+  xyzwh 276 121 2010 11 64
 end
 durationcanvas 129800 classinstance_ref 129672 // :File
-  xyzwh 818 375 2010 6 33
+  xyzwh 815 375 2010 11 33
 end
 durationcanvas 130056 classinstance_ref 128776 // sysfs_path:string
-  xyzwh 497 228 2010 11 27
+  xyzwh 501 228 2010 11 27
 end
 durationcanvas 130312 classinstance_ref 129288 // processes:VectorString
-  xyzwh 623 270 2010 11 25
+  xyzwh 618 270 2010 11 25
 end
 durationcanvas 130568 classinstance_ref 128776 // sysfs_path:string
-  xyzwh 499 196 2010 8 27
+  xyzwh 501 196 2010 11 27
 end
 durationcanvas 131464 classinstance_ref 129544 // file:RefPtrFile
-  xyzwh 738 346 2010 9 25
+  xyzwh 735 346 2010 11 25
 end
 durationcanvas 131720 classinstance_ref 130952 // file_istream:RefPtrFileInputStream
-  xyzwh 942 418 2010 8 27
+  xyzwh 935 418 2010 11 27
 end
 durationcanvas 131976 classinstance_ref 131080 // data_istream:RefPtrDataInputStream
-  xyzwh 1239 509 2010 7 28
+  xyzwh 1234 509 2010 11 28
 end
 durationcanvas 132616 classinstance_ref 131336 // :DataInputStream
-  xyzwh 1396 532 2010 6 36
+  xyzwh 1391 532 2010 11 36
 end
 durationcanvas 133000 classinstance_ref 129544 // file:RefPtrFile
-  xyzwh 740 456 2010 6 26
+  xyzwh 735 456 2010 11 26
 end
 durationcanvas 133256 classinstance_ref 129672 // :File
-  xyzwh 818 469 2010 6 36
+  xyzwh 815 469 2010 11 36
 end
 durationcanvas 133768 classinstance_ref 133640 // line:string
-  xyzwh 1492 591 2010 11 25
+  xyzwh 1495 591 2010 11 25
 end
 durationcanvas 134280 classinstance_ref 129288 // processes:VectorString
-  xyzwh 624 690 2010 9 29
+  xyzwh 618 690 2010 11 29
 end
 reflexivemsg 128264 asynchronous
   to durationcanvas_ref 128136

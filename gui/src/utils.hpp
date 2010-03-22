@@ -30,20 +30,23 @@
 #include <gtkmm/treemodelcolumn.h>
 #include <gtkmm/liststore.h>
 #include <gtkmm/treemodel.h>
+#include <gtkmm/builder.h>
 
 #include <glibmm/refptr.h>
 #include <glibmm/ustring.h>
 
 #include <gdkmm/pixbuf.h>
 
-#include <libglademm/xml.h>
 
 #include <dbusmm/types.h>
+
+/* For testing propose use the local (not installed) glade file */
+#define GLADE_FILE  PACKAGE_DATA_DIR"/glkmbuilder.glade"
 
 
 typedef std::vector<DBus::String> VectorString;
 typedef std::map<DBus::String, DBus::Variant> DictVariable;
-typedef Glib::RefPtr<Gnome::Glade::Xml> RefPtrGladeXml;
+typedef Glib::RefPtr<Gtk::Builder> RefPtrBuilder;
 typedef Glib::RefPtr<Gtk::TextBuffer> RefPtrTextBuffer;
 typedef Glib::RefPtr<Gtk::TreeSelection> RefPtrTreeSelection;
 typedef Glib::RefPtr<Gtk::TreeStore> RefPtrTreeStore;

@@ -43,7 +43,7 @@ bool Hosts::create_host(const Glib::ustring & hostname, const Glib::ustring & ip
 		_hosts[hostname].set__ip(ip);
 		_hosts[hostname].set__description(description);
 		created = true;
-		signal_Host_added.emit(&_hosts[hostname]);
+		signal_host_added.emit(&_hosts[hostname]);
 		PRINTD("Hosts:: Host added " + _hosts[hostname].get__hostname());
 	}
 

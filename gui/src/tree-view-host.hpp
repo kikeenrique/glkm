@@ -1,4 +1,4 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
+ /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
  * gui
  * Copyright (C) Enrique García Álvarez 2007 <kike+glkm@eldemonionegro.com>
@@ -28,23 +28,23 @@
 
 #include "utils.hpp"
 
-class Host;
+//class Host;
 class Process;
 
 class TreeViewHost : public Gtk::TreeView {
 
   public:
-	TreeViewHost(BaseObjectType* cobject, const RefPtrGladeXml & refGlade);
+	TreeViewHost(BaseObjectType* cobject, const RefPtrBuilder & refBuilder);
 	virtual ~TreeViewHost();
 
-	Host * take_Host();
-	void set__pHost(Host * value);
+//	Host * take_Host();
+//	void set__pHost(Host * value);
 
 	void on_process_added(const Process & process);
 	void on_process_removed(const Process & process);
 
   protected:
-	RefPtrGladeXml _refPtrGlademmXml;
+	RefPtrBuilder _refPtrBuilder;
 
 	bool find_parent_process(const Process & process,
 				  Gtk::TreeModel::iterator & found_iter);
@@ -55,16 +55,19 @@ class TreeViewHost : public Gtk::TreeView {
 					   Gtk::TreeModel::iterator & found_iter);
 
 	//Signal handlers:
-	void on_treeview_row_activated(const Gtk::TreeModel::Path & path, 
+/*	void on_treeview_row_activated(const Gtk::TreeModel::Path & path, 
 			  		       Gtk::TreeViewColumn * column);
 	void on_selected_row_callback(const Gtk::TreeModel::iterator & iter);
-
+*/
 	// Override Signal handler:
 	// Alternatively, use signal_button_press_event().connect_notify()
 	virtual bool on_button_press_event(GdkEventButton *ev);
 
+
 	//Signal handler for popup menu items:
 	void on_menu_popup_refresh();
+	void on_menu_popup_expand_all();
+	void on_menu_popup_contract_all();
 
 	//Tree model columns:
 	class ModelColumns : public Gtk::TreeModel::ColumnRecord {
@@ -73,20 +76,25 @@ class TreeViewHost : public Gtk::TreeView {
 			add(col_PID);
 			add(col_name);
 			add(col_PPID);
+			add(col_bool);			
 		}
 		TreeModelColumnInt col_PID;
 		TreeModelColumnUstring col_name;
 		TreeModelColumnInt col_PPID;
+		Gtk::TreeModelColumn<bool>  col_bool;
 	};
 
-	ModelColumns			_ModelColumns;
+//	ModelColumns			_ModelColumns;
 	RefPtrTreeStore			_refPtrTreeStore;
 	RefPtrTreeSelection		_refPtrTreeSelection;
 
 	Gtk::Menu*			_pMenu_Popup_TreeView_Host;
 	Gtk::MenuItem*			_pMenuitem_Refresh;
-
-	Host * _pHost;
+	Gtk::MenuItem *			_pMenuitem_ExpandAll;
+	Gtk::MenuItem *			_pMenuitem_ContractAll;
+public:
+	ModelColumns			_ModelColumns;
+//	Host * _pHost;
 };
 
 #endif //_TREE_VIEW_HOST_HPP

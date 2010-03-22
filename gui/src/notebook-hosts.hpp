@@ -31,15 +31,17 @@ class NotebookPageHost;
 //Already trackable as inherits from Gtk::Notebook
 class NotebookHosts : public Gtk::Notebook {
   public:
-	NotebookHosts(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
+	NotebookHosts(BaseObjectType * cobject, const RefPtrBuilder & refBuilder);
 	virtual ~NotebookHosts();
-	void on_Host_added(Host * host);
+
+	void on_host_added(Host * host);
 	
   protected:
-  	RefPtrGladeXml _refPtrGlademmXml;
+  	RefPtrBuilder _refPtrBuilder;
 
-	void on_my_page_added(Gtk::Widget * page, guint page_num);
-	void on_my_page_removed(Gtk::Widget * page, guint page_num);
+//	void on_my_page_added(Gtk::Widget * page, guint page_num);
+//	void on_my_page_removed(Gtk::Widget * page, guint page_num);
+	
 	void add_host_page(Host & host);
 };
 

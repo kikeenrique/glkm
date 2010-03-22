@@ -18,20 +18,20 @@
  */
 
 
-#include <iostream>
-#include <sstream>
+//#include <iostream>
+//#include <sstream>
 
-#include "config.h"
 #include "status-bar.hpp"
 
+#include "config.h"
 #include "debug.hpp"
 
-StatusBar::StatusBar(BaseObjectType * cobject, const RefPtrGladeXml & refGlade):
+StatusBar::StatusBar(BaseObjectType * cobject, const RefPtrBuilder & refBuilder):
 	Gtk::Statusbar(cobject),
-	_refGlademmXml(refGlade),
-	_count(1)
+	_refPtrBuilder(refBuilder)
+//	_count(1)
 {
-	_context_id = get_context_id("Statusbar example");
+	_context_id = get_context_id("glkm gui statusbar");
 }
 
 StatusBar::~StatusBar()
@@ -39,6 +39,18 @@ StatusBar::~StatusBar()
 	//Null
 }
 
+void StatusBar::push_item(const Glib::ustring& text)
+{
+//TODO	g_snprintf(text, 20, "Item %d", m_count++);
+	push(text, _context_id);
+}
+
+void StatusBar::pop_item()
+{ 
+	pop(_context_id);
+}
+
+/*
 void StatusBar::push_item(const Glib::ustring& text, unsigned int context_id)
 {
 //TODO	g_snprintf(text, 20, "Item %d", m_count++);
@@ -59,3 +71,4 @@ void StatusBar::pop_item(unsigned int context_id)
 { 
 	pop(context_id);
 }
+*/

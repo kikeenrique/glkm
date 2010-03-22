@@ -24,30 +24,34 @@
 #include "config.h"
 #include "debug.hpp"
 
-HostSelectDialog::HostSelectDialog(BaseObjectType * cobject, const RefPtrGladeXml & refGlade):
+HostSelectDialog::HostSelectDialog(BaseObjectType * cobject, const RefPtrBuilder & refBuilder):
 	Gtk::Dialog(cobject),
-	_refPtrGlademmXml(refGlade)
+	_refPtrBuilder(refBuilder)
 {
 	/* Actioning close button doesn't work by itself, needs a gobernant signal 
 	 to http://mail.gnome.org/archives/gtkmm-list/2007-January/msg00305.html */
 	signal_response().connect( sigc::mem_fun(*this, &HostSelectDialog::on_signal_response));
 
 	//Icon View Hosts list
-	_refPtrGlademmXml->get_widget_derived("host_select_dialog-iconview", _pIconViewHosts);
+	_refPtrBuilder->get_widget_derived("host_select_dialog-iconview", _pIconViewHosts);
 	if (_pIconViewHosts){
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}
 
  	//Buttons Accept and Cancel
-	_refPtrGlademmXml->get_widget("host_select_dialog-button_accept", _pButtonAccept);
+	_refPtrBuilder->get_widget("host_select_dialog-button_accept", _pButtonAccept);
 	if (_pButtonAccept){
 		_pButtonAccept->signal_clicked().connect( sigc::mem_fun(*this,	
 																   &HostSelectDialog::on_clicked_button_accept) );
+		Controller& c = Controller::instance();
+		_pButtonAccept->signal_clicked().connect( sigc::mem_fun(c,	
+																   &Controller::action_host_selected) );
+
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}	
-	_refPtrGlademmXml->get_widget("host_select_dialog-button_cancel", _pButtonCancel);
+	_refPtrBuilder->get_widget("host_select_dialog-button_cancel", _pButtonCancel);
 	if (_pButtonCancel){
 		_pButtonCancel->signal_clicked().connect( sigc::mem_fun(*this,	
 																   &HostSelectDialog::on_clicked_button_cancel) );
@@ -55,11 +59,7 @@ HostSelectDialog::HostSelectDialog(BaseObjectType * cobject, const RefPtrGladeXm
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
 	}
 
-	//TODO
-	//This seems not the better place to put this code.
-	//Set pointer in Controller that permits access to IconViewHosts 
-	Controller& c = Controller::instance();
-	c.set__pIconViewHosts(_pIconViewHosts);
+
 }
 
 HostSelectDialog::~HostSelectDialog() {
@@ -122,11 +122,6 @@ void HostSelectDialog::on_signal_response(int response_id)
 
 void HostSelectDialog::on_clicked_button_accept() {
 	PRINTD("on_clicked_button_accept");
-
-	//Tell controller that a new host have been selected
-	Controller& c = Controller::instance();
-	c.action_host_selected();
-
 	hide();
 }
 

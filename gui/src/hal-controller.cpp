@@ -28,8 +28,19 @@
 
 HalController::HalController():
 	_dispatcher()
-{
-//TODO further investigation 
+{	
+
+	
+	std::string address = Glib::getenv ("DBUS_SYSTEM_BUS_ADDRESS");
+	if ( address.empty() ){
+		// DBUS_SYSTEM_BUS_ADDRESS not defined
+		if ( !Glib::setenv ("DBUS_SYSTEM_BUS_ADDRESS", "unix:abstract=/tmp/gabriel") ){
+			//Error DBUS_SYSTEM_BUS_ADDRESS imposible to define
+		}
+	}
+
+	
+//TODO further investigation. Connection needs to be explicitly closed??
 //      signal(SIGTERM, sigc::mem_fun( *this, &HalController::niam) );
 //      signal(SIGINT, sigc::mem_fun( *this, &HalController::niam));
 	DBus::default_dispatcher = &_dispatcher;
@@ -41,8 +52,9 @@ HalController::HalController():
 	catch (const DBus::Error& exception){
 		std::cerr << "HalController(): Connection" << std::endl;
 		std::cerr << exception.what() << std::endl;
-    		std::cerr << exception.name() << std::endl;
-       		std::cerr << exception.message() << std::endl;
+    	std::cerr << exception.name() << std::endl;
+       	std::cerr << exception.message() << std::endl;
+		throw;
 	}
 
 	/*
@@ -63,8 +75,8 @@ HalController::HalController():
 	catch (const DBus::Error& exception){
 		std::cerr << "HalController() : LinuxKernelMonitorClient" << std::endl;
 		std::cerr << exception.what() << std::endl;
-    		std::cerr << exception.name() << std::endl;
-       		std::cerr << exception.message() << std::endl;
+    	std::cerr << exception.name() << std::endl;
+       	std::cerr << exception.message() << std::endl;
 	}
 
 
@@ -77,5 +89,6 @@ HalController::~HalController() {
 }
 
 bool HalController::get_all_processes(Host & host) {
+    //TODO manage  _lkm_client==NULL
 	return _lkm_client->get_all_processes(host);
 }

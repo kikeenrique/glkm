@@ -18,27 +18,39 @@
  */
 
 #include "controller.hpp"
+#include "main-window.hpp"
 #include "hosts.hpp"
-#include "icon-view-hosts.hpp"
 #include "notebook-hosts.hpp"
+#include "icon-view-hosts.hpp"
 #include "notebook-page-host.hpp"
 #include "host.hpp"
+#include "host-select-dialog.hpp"
+#include "status-bar.hpp"
+#include "tree-view-host.hpp"
 
 #include "config.h"
 #include "debug.hpp"
 
+Controller & Controller::instance(){
+	return singleton;
+}
+
+/*
+ *
+ */
 void Controller::action_host_selected() {
 	// Get host user selected
-	ListTreeModelPath selected = _pIconViewHosts->get_selected_items();
+	IconViewHosts * _pIconViewHosts_local = _pMainWindow->_pHostSelectDialog->_pIconViewHosts;
+	ListTreeModelPath selected = _pIconViewHosts_local->get_selected_items();
         
 	if(!selected.empty()){
 		const Gtk::TreeModel::Path& path = *selected.begin();
-		Gtk::TreeModel::iterator iter = _pIconViewHosts->_refPtrListStore->get_iter(path);
+		Gtk::TreeModel::iterator iter = _pIconViewHosts_local->_refPtrListStore->get_iter(path);
 		Gtk::TreeModel::Row row = *iter;
 		//Get column col_XX value 
-		const Glib::ustring hostname = row[_pIconViewHosts->_ModelColumns.col_hostname];
-		const Glib::ustring ip = row[_pIconViewHosts->_ModelColumns.col_ip];
-		const Glib::ustring description = row[_pIconViewHosts->_ModelColumns.col_description];
+		const Glib::ustring hostname = row[_pIconViewHosts_local->_ModelColumns.col_hostname];
+		const Glib::ustring ip = row[_pIconViewHosts_local->_ModelColumns.col_ip];
+		const Glib::ustring description = row[_pIconViewHosts_local->_ModelColumns.col_description];
 
 		PRINTD("Selected: hostname=" + hostname);
 		_pHosts->create_host(hostname, ip, description);
@@ -46,23 +58,38 @@ void Controller::action_host_selected() {
 
 }
 
+
+/*
+ *
+ */
 void Controller::action_host_connect() {
+	NotebookHosts * _pNotebookHosts_local = _pMainWindow->_pNotebookHosts;
+	
 	Gtk::Notebook::PageList::iterator current_page_it;
-	current_page_it = _pNotebookHosts->get_current();
+	current_page_it = _pNotebookHosts_local->get_current();
       
 	NotebookPageHost * current_page;
 	current_page = static_cast<NotebookPageHost *> (current_page_it->get_child());
 	Host * present_host;
 	present_host = current_page->get_my_Host();
 	PRINTD("Controller:: connect=" + present_host->get__hostname());
+
+	StatusBar *	_pStatusBar_local = _pMainWindow->_pStatusBar;
+	_pStatusBar_local->push_item("connecting...");
 	present_host->connect();
+	_pStatusBar_local->push_item("connected !");
 	present_host->get_all_processes();
 }
 
+
+/*
+ *
+ */
 void Controller::action_host_synchronize() {
+	NotebookHosts * _pNotebookHosts_local = _pMainWindow->_pNotebookHosts;
 	Gtk::Notebook::PageList::iterator current_page_it;
-	current_page_it = _pNotebookHosts->get_current();
-      
+	current_page_it = _pNotebookHosts_local->get_current();
+	      
 	NotebookPageHost * current_page;
 	current_page = static_cast<NotebookPageHost *> (current_page_it->get_child());
 	Host * present_host;	
@@ -71,20 +98,78 @@ void Controller::action_host_synchronize() {
 	present_host->get_all_processes();
 }
 
-Controller & Controller::instance(){
-	return singleton;
+
+/*
+ *
+ */
+void Controller::action_processes_selected() {
+//	NotebookHosts * _pNotebookHosts_local = _pMainWindow->_pNotebookHosts;
+	Gtk::Notebook::PageList::iterator current_page_it;
+	current_page_it = _pMainWindow->_pNotebookHosts->get_current();
+	NotebookPageHost * current_page;
+	current_page = static_cast<NotebookPageHost *> (current_page_it->get_child());
+	
+	TreeViewHost * _pTreeViewHost_local = current_page->get__pTreeViewHost();
+	RefPtrTreeSelection refptr_treeselection = _pTreeViewHost_local->get_selection();
+	
+	PRINTD("Controller:: get selected row");
+/*	Gtk::TreeSelection::ListHandle_Path selected = refptr_treeselection->get_selected_rows();
+	
+	Gtk::TreeSelection::ListHandle_Path::iterator selected_iterator = selected.begin();
+
+	Host * present_host;	
+	present_host = current_page->get_my_Host();
+	
+	for (;selected_iterator != selected.end(); selected_iterator++){
+		Gtk::TreeStore::Path path = *selected_iterator;
+		Gtk::TreeStore::iterator iter = _pTreeViewHost_local->get_model()->get_iter(path);
+		if(iter) {
+			Gtk::TreeStore::Row row = *iter;
+			std::cout << "Row activated: PID=" << row[_pTreeViewHost_local->_ModelColumns.col_PID] << ", Name="
+			<< row[_pTreeViewHost_local->_ModelColumns.col_name] << std::endl;
+		}
+*/
+	Gtk::TreeModel::iterator selected_iterator = refptr_treeselection->get_selected();
+	
+	Host * present_host;	
+	present_host = current_page->get_my_Host();
+
+	if(selected_iterator) {
+		Gtk::TreeModel::Row row = *selected_iterator;
+		//Do something with the row.
+		int PID = row[_pTreeViewHost_local->_ModelColumns.col_PID];
+		//ustring name = row[_pTreeViewHost_local->_ModelColumns.col_name];
+		std::cout << "Row activated: PID=" << PID << ", Name="
+		<< row[_pTreeViewHost_local->_ModelColumns.col_name] << std::endl;
+
+		Process process;
+
+		present_host->get_process(PID, process);
+		present_host->signal_process_monitor_begin.emit(&process);
+	}
+
+//		Process process;
+//		present_host->get_process(row[_pTreeViewHost_local->_ModelColumns.col_PID], &process);
+//		process.signal_process_monitor_begin.emit();
+
 }
 
-void Controller::set__pIconViewHosts(IconViewHosts * value) {
-	_pIconViewHosts = value;
-}
 
-void Controller::set__pNotebookHosts(NotebookHosts * value) {
-	_pNotebookHosts = value;
+/*
+ *
+ */
+void Controller::init_host_added() {
+	NotebookHosts * _pNotebookHosts_local = _pMainWindow->_pNotebookHosts;
 	//_pHost exists because its created in Controller constructor
-	_pHosts->signal_Host_added.connect(sigc::mem_fun(*_pNotebookHosts,
-													 &NotebookHosts::on_Host_added) );
+	_pHosts->signal_host_added.connect(sigc::mem_fun(*_pNotebookHosts_local,
+													 &NotebookHosts::on_host_added) );
 }
+
+
+void Controller::set__pMainWindow(MainWindow * value) {
+	_pMainWindow = value;
+}
+
 
 Controller Controller::singleton;
 

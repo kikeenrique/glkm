@@ -22,6 +22,8 @@
 
 #include <glibmm/ustring.h>
 
+#include <sigc++/signal.h>
+
 #include <vector>
 
 class File;
@@ -50,7 +52,12 @@ class Process {
 	std::vector<File *> files_opened;
 	
 	bool _synchronized;
+	typedef sigc::signal<void, Process> type_signal_process_updated;
+
+  public:
+	type_signal_process_updated signal_process_updated;
 };
+
 inline const int Process::get__PID() const {
   return _PID;
 }

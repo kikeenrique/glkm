@@ -22,23 +22,32 @@
 
 #include <gtkmm/paned.h>
 
+#include "tree-view-host.hpp"
 #include "utils.hpp"
 
 class Host;
-class TreeViewHost;
-
+//class TreeViewHost;
+class NotebookProcesses;
 
 class NotebookPageHost : public Gtk::HPaned {
   public:
-	NotebookPageHost(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
+	NotebookPageHost(BaseObjectType * cobject, const RefPtrBuilder & refBuilder);
 	virtual ~NotebookPageHost();
 
 	Host * get_my_Host();
 	void set_my_Host(Host & host);
+	inline TreeViewHost * get__pTreeViewHost();
 
   protected:
-	RefPtrGladeXml _refPtrGlademmXml;
+	RefPtrBuilder _refPtrBuilder;
 	TreeViewHost * _pTreeViewHost;
+	NotebookProcesses * _pNotebookProcesses;
+
+	Host * _pHost;
 };
+
+inline TreeViewHost * NotebookPageHost::get__pTreeViewHost(){
+  return _pTreeViewHost;
+}
 
 #endif // _NOTEBOOK_PAGE_HOST_HPP

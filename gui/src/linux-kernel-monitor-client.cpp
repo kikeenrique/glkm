@@ -43,6 +43,7 @@ LinuxKernelMonitorClient::LinuxKernelMonitorClient(DBus::Connection & conn, cons
  */
 bool LinuxKernelMonitorClient::get_all_processes(Host & host) {
 
+	bool allright = true;
 	PRINTD ("LinuxKernelMonitorClient() get_all_processes");
 	VectorString task_list;
 	try {
@@ -51,7 +52,13 @@ bool LinuxKernelMonitorClient::get_all_processes(Host & host) {
 		std::cerr << exception.what() << std::endl;
    		std::cerr << exception.name() << std::endl;
 		std::cerr << exception.message() << std::endl;
+		allright = false;
 	}
-	HalParser h;
-	h.parse_synchronize_processes (task_list, host);
+	
+	if (allright) {
+		HalParser h;
+		h.parse_synchronize_processes (task_list, host);
+	}
+	
+	return allright;
 }

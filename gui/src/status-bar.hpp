@@ -27,18 +27,20 @@
 
 class StatusBar: public Gtk::Statusbar {
   public:
-	StatusBar(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
+	StatusBar(BaseObjectType * cobject, const RefPtrBuilder & refBuilder);
 	virtual ~StatusBar();
 	
-	void push_item(const Glib::ustring & text, unsigned int context_id);
-	void push_item(unsigned int context_id);
-	void pop_item(unsigned int context_id);
+	void push_item(const Glib::ustring & text);
+	void pop_item();
+//	void push_item(const Glib::ustring & text, unsigned int context_id);
+//	void push_item(unsigned int context_id);
+//	void pop_item(unsigned int context_id);
 	
   protected:
-	RefPtrGladeXml _refGlademmXml;
+	RefPtrBuilder _refPtrBuilder;
 
 	unsigned int	_context_id;
-	unsigned int	_count;
+//	unsigned int	_count;
 };
 
 #endif // _STATUS_BAR_HPP

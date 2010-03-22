@@ -18,18 +18,15 @@
 
 
 #include <iostream>
-
+#include <giomm/appinfo.h>
 #include "config.h"
-#ifdef HAVE_LIBGNOME
-#include <libgnome/gnome-url.h>
-#endif // HAVE_LIBGNOME
 
 #include "about-dialog.hpp"
 #include "debug.hpp"
 
-AboutDialog::AboutDialog(BaseObjectType* cobject, const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+AboutDialog::AboutDialog(BaseObjectType* cobject, const RefPtrBuilder& refBuilder)
 	:Gtk::AboutDialog(cobject),
-	_refPtrGlademmXml(refGlade)
+	_refPtrBuilder(refBuilder)
 {
 	/* Actioning close button doesn't work by itself, needs a gobernant signal 
 	 to http://mail.gnome.org/archives/gtkmm-list/2007-January/msg00305.html */
@@ -100,10 +97,26 @@ void AboutDialog::on_signal_response(int response_id)
 void AboutDialog::on_activate_link_url(Gtk::AboutDialog& about_dialog, const Glib::ustring& link)
 {
 	PRINTD("on_activate_link_url");
+
+	if (Gio::AppInfo::launch_default_for_uri(link)){
+		PRINTD("activate_link ok");
+	}else{
+		PRINTD("activate_link BAD");
+	}
+	
+/*
+var file = File.new_for_path ("C:\\Windows\\explorer.exe");
+var handler = file.query_default_handler (null);
+var list = new List<File> ();
+list.append (file);
+var result = handler.launch (list, null);
+*/
+	
 #ifdef HAVE_LIBGNOME
 	GError *error = NULL;
 
-    if (gnome_url_show(link.c_str(), &error)){
+	//	gtk_show_uri()
+	if (gnome_url_show(link.c_str(), &error)){
 		PRINTD("activate_link ok");
 	}else{
 		PRINTD("activate_link BAD");
@@ -122,6 +135,13 @@ void AboutDialog::on_activate_email_url(Gtk::AboutDialog& about_dialog, const Gl
 	Glib::ustring link="mailto:"+email;
 
 	PRINTD("on_activate_email_url");
+
+	if (Gio::AppInfo::launch_default_for_uri(link)){
+		PRINTD("activate_email ok");
+	}else{
+		PRINTD("activate_email BAD");
+	}
+
 #ifdef HAVE_LIBGNOME
 	GError *error = NULL;
 

@@ -20,21 +20,27 @@
 #ifndef _CONTROLLER_HPP
 #define _CONTROLLER_HPP
 
-
+class MainWindow;
 class Hosts;
-class IconViewHosts;
 class NotebookHosts;
+class IconViewHosts;
 class NotebookPageHost;
 class Host;
+class HostSelectDialog;
+class StatusBar;
+class TreeViewHost;
 
 class Controller{
   public:
+	static Controller & instance();
+	
 	void action_host_selected();
 	void action_host_connect();
 	void action_host_synchronize();
-	static Controller & instance();
-	void set__pIconViewHosts(IconViewHosts * value);
-	void set__pNotebookHosts(NotebookHosts * value);
+	void action_processes_selected();
+
+	void init_host_added();
+	void set__pMainWindow(MainWindow * value);
 
   private:
 	static Controller singleton;
@@ -43,8 +49,7 @@ class Controller{
 	Controller & operator=(const Controller & source);
 
 	Hosts *		_pHosts;
-	IconViewHosts * _pIconViewHosts;
-	NotebookHosts * _pNotebookHosts;
+	MainWindow *    _pMainWindow;
 };
 
 #endif // _CONTROLLER_HPP

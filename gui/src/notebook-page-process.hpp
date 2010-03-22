@@ -1,7 +1,7 @@
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
  * gui
- * Copyright (C) Enrique García Álvarez 2007 <kike+glkm@eldemonionegro.com>
+ * Copyright (C) Enrique García Álvarez 2008 <kike+glkm@eldemonionegro.com>
  * 
  * gui is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
@@ -17,25 +17,30 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _ABOUTDIALOG_HPP
-#define _ABOUTDIALOG_HPP
+#ifndef _NOTEBOOK_PAGE_PROCESS_HPP_
+#define _NOTEBOOK_PAGE_PROCESS_HPP_
 
-#include <gtkmm/aboutdialog.h>
-#include <glibmm/ustring.h>
+#include <gtkmm/paned.h>
+
 #include "utils.hpp"
 
-class AboutDialog : public Gtk::AboutDialog {
+class Process;
+//class NotebookProcesses;
+
+class NotebookPageProcess : public Gtk::HPaned {
   public:
-	AboutDialog(BaseObjectType * cobject, const RefPtrBuilder & refBuilder);
-	virtual ~AboutDialog();
+	NotebookPageProcess(BaseObjectType * cobject, const RefPtrBuilder & refBuilder);
+	virtual ~NotebookPageProcess();
+
+	Process * get_my_process();
+	void set_my_process(Process & process);
+
+	void on_process_updated();
 
   protected:
 	RefPtrBuilder _refPtrBuilder;
-	//Signal handlers:
-	void on_signal_response(int response_id);
-		
-	void on_activate_link_url(Gtk::AboutDialog& about_dialog, const Glib::ustring& link);
-	void on_activate_email_url(Gtk::AboutDialog& about_dialog, const Glib::ustring& email);
+
+//	NotebookProcesses * _pNotebookProcesses;
 };
 
-#endif //_ABOUTDIALOG_HPP
+#endif // _NOTEBOOK_PAGE_PROCESS_HPP_

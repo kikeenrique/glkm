@@ -24,7 +24,10 @@
 #include <libintl.h>
 #endif
 
+#include <string>
+
 #include "main-window.hpp"
+
 #include "debug.hpp"
 
 #ifdef DEBUG
@@ -42,10 +45,37 @@ int main (int	argc, char	*argv[])
 	domain(GETTEXT_PACKAGE);
 	*/
 #endif
+	
 	Gtk::Main kit(argc, argv);
-	MainWindow main_window;
 
-	kit.run(main_window);
+	RefPtrBuilder _refPtrBuilder;
+#ifdef GLIBMM_EXCEPTIONS_ENABLED
+	try {
+		_refPtrBuilder = Gtk::Builder::create_from_file(GLADE_FILE);
+	}
+	catch(const Glib::FileError& exception) {
+		std::cerr << "FileError: " << exception.what() << std::endl;
+		throw;
+	}
+	catch(const Gtk::BuilderError& exception){
+		std::cerr << "BuilderError: " << exception.what() << std::endl;
+		throw;
+	}
+#else
+	std::auto_ptr<Glib::Error> error;
+	_refPtrBuilder = Gtk::Builder::create_from_file(GLADE_FILE, "", "", error);
+	if (error.get()){
+		std::cerr << error->what() << std::endl;
+		return 1;
+	}
+#endif //GLIBMM_EXCEPTIONS_ENABLED
+
+	MainWindow* main_window;
+	
+	_refPtrBuilder->get_widget_derived("main_window", main_window);
+
+
+	kit.run(*main_window);
 
 	//Bye bye!!
 	return 0;

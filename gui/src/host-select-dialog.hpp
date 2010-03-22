@@ -25,21 +25,23 @@
 #include "utils.hpp"
 
 class IconViewHosts;
-class Controller;
 
 class HostSelectDialog : public Gtk::Dialog {
-  public:
-	HostSelectDialog(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
-	virtual ~HostSelectDialog();
 
-	IconViewHosts * _pIconViewHosts;
+  friend class Controller;
+
+  public:
+	HostSelectDialog(BaseObjectType * cobject, const RefPtrBuilder & refBuilder);
+	virtual ~HostSelectDialog();
 	
   protected:
-	RefPtrGladeXml _refPtrGlademmXml;
+	RefPtrBuilder _refPtrBuilder;
 
 	void on_signal_response(int response_id);
 	void on_clicked_button_accept();
 	void on_clicked_button_cancel();
+
+	IconViewHosts * _pIconViewHosts;
 
 	Gtk::Button * _pButtonAccept;
 	Gtk::Button * _pButtonCancel;

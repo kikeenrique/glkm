@@ -24,11 +24,11 @@
 #include "config.h"
 #include "debug.hpp"
 
-IconViewHosts::IconViewHosts(BaseObjectType * cobject, const RefPtrGladeXml & refGlade):
+IconViewHosts::IconViewHosts(BaseObjectType * cobject, const RefPtrBuilder & refBuilder):
 	Gtk::IconView(cobject),
-	_refPtrGlademmXml(refGlade)
+	_refPtrBuilder(refBuilder)
 {
-	_refPtrGlademmXml->get_widget_derived("host_select_dialog-textview", _TextViewHosts);
+	_refPtrBuilder->get_widget_derived("host_select_dialog-textview", _TextViewHosts);
 	if (_TextViewHosts){
 	} else{
 		std::cerr << "** ERROR ** Maybe an error loading glade file?" << std::endl;
@@ -91,9 +91,9 @@ void IconViewHosts::on_selection_changed() {
 	}
 }
 
-IconViewHosts::TextViewHosts::TextViewHosts(BaseObjectType * cobject, const RefPtrGladeXml & refGlade)
+IconViewHosts::TextViewHosts::TextViewHosts(BaseObjectType * cobject, const RefPtrBuilder & refBuilder)
 	:Gtk::TextView(cobject),
-	 _refPtrGlademmXml(refGlade) 
+	 _refPtrBuilder(refBuilder)
 {
 	_refPtrTextBuffer = get_buffer();
 	show_all_children();

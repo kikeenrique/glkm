@@ -28,24 +28,23 @@
 
 #include "utils.hpp"
 
-class StatusBar;
-class AboutDialog;
 class HostSelectDialog;
+class StatusBar;
 class NotebookHosts;
+class AboutDialog;
 class Controller;
 
 class MainWindow : public Gtk::Window
 {
-public:
-	MainWindow();
+
+  friend class Controller;
+
+  public:
+	MainWindow(BaseObjectType * cobject, const RefPtrBuilder & refBuilder);
 	virtual ~MainWindow();
 
-	HostSelectDialog * _pHostSelectDialog;
-
-protected:
-	RefPtrGladeXml _refPtrGlademmXml;
-
-	unsigned int		_ContextId;
+  protected:
+	RefPtrBuilder _refPtrBuilder;
 
 	//	      Menu File
 	void on_imagemenuitem_quit_activated();
@@ -90,8 +89,11 @@ protected:
 	StatusBar *		_pStatusBar;
 	
 	//		SubWindows
+	HostSelectDialog *      _pHostSelectDialog;
 	AboutDialog *		_pAboutDialog;
+
 	Gtk::Window *		_pWindowDebug;
+	bool window_debug_on_delete_event(GdkEventAny * g);
 };
 
 #endif //_MAIN_WINDOW_HPP

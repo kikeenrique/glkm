@@ -32,9 +32,9 @@
 #include "debug.hpp"
 
 TextViewDebug::TextViewDebug (BaseObjectType* cobject, 
-							  const Glib::RefPtr<Gnome::Glade::Xml>& refGlade)
+							  const RefPtrBuilder & refBuilder)
 	:Gtk::TextView(cobject),
-	 _refPtrGlademmXml(refGlade)
+	 _refPtrBuilder(refBuilder)
 {
 	//Create the text buffer
 	fill_buffer();
@@ -49,13 +49,14 @@ TextViewDebug::~TextViewDebug()
 
 void TextViewDebug::debug_print(const Glib::ustring& text)
 {
-	_position = _refPtrTextBuffer->insert(_position, "[" + get_timestamp() + "] " + text + "\n");
+	//miprintf(L_TR, "%s.%s.%s. %s",__FILE__,__LINE__,__PRETTY_FUNCTION__, s2);
+	_position = _refPtrTextBuffer->insert(_position, "[" + Glib::ustring::compose("%1:%2:",__FILE__,__LINE__) + get_timestamp() + "] " + text + "\n");
 }
 
 void TextViewDebug::debug_print(const char* text)
 {
 	Glib::ustring tmp(text);
-	_position = _refPtrTextBuffer->insert(_position, "[" + get_timestamp() + "] " + tmp + "\n");
+	_position = _refPtrTextBuffer->insert(_position, "[" + Glib::ustring::compose("%1:%2:",__FILE__,__LINE__) + get_timestamp() + "] " + tmp + "\n");
 }
 
 void TextViewDebug::debug_print(const int & number)

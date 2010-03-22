@@ -1,16 +1,14 @@
 ## Process this file with automake to produce Makefile.in
 
-AM_CFLAGS =\
-	 -Wall
-
 AM_CPPFLAGS = \
 	$(GLKM_CFLAGS) \
 	$(LIBDBUSMM_CFLAGS) \
 	$(LIBGNOME_CFLAGS) \
 	$(LIBSIGCMM_CFLAGS) \
+	$(GIOMM_CFLAGS) \
 	-DPROGRAMNAME_LOCALEDIR="${PROGRAMNAME_LOCALEDIR}" \
 	-DPACKAGE_LOCALE_DIR="$(prefix)/$(DATADIRNAME)/locale" \
-	-DPACKAGE_DATA_DIR="$(datadir)" \
+	-DPACKAGE_DATA_DIR='"$(datadir)"' \
 	-DPACKAGE_SRC_DIR="$(srcdir)" 
 
 bin_PROGRAMS = \
@@ -18,6 +16,7 @@ bin_PROGRAMS = \
 
 glkm_SOURCES = \
 	main.cpp \
+	sigsegv.c \
 	debug.hpp \
 	debug.cpp \
 	utils.hpp \
@@ -49,8 +48,6 @@ glkm_SOURCES = \
 	hosts.cpp \
 	filesystem.hpp \
 	filesystem.cpp \
-	observer.hpp \
-	observer.cpp \
 	controller.hpp \
 	controller.cpp \
 	notebook-hosts.hpp \
@@ -60,17 +57,23 @@ glkm_SOURCES = \
 	hal-parser.hpp \
 	hal-parser.cpp \
 	linux-kernel-monitor-client.hpp \
-	linux-kernel-monitor-client.cpp
+	linux-kernel-monitor-client.cpp \
+	notebook-processes.hpp \
+	notebook-processes.cpp \
+	notebook-page-process.hpp \
+	notebook-page-process.cpp
 
-#glkm_CFLAGS= \
-#	$(GLKM_CFLAGS) 	$(AM_CFLAGS)	$(LIBGNOME_CFLAGS)
+glkm_CFLAGS= \
+	$(GLKM_CFLAGS) 	$(AM_CFLAGS)	$(LIBGNOME_CFLAGS) -fstack-protector-all
+
 #glkm_CPPFLAGS= \
 #	$(GLKM_CPPFLAGS)	$(AM_CPPFLAGS)
 glkm_LDADD = \
 	$(GLKM_LIBS) \
 	$(LIBGNOME_LIBS) \
 	$(LIBDBUSMM_LIBS) \
-	$(LIBSIGCMM_LIBS)
+	$(LIBSIGCMM_LIBS) \
+    $(GIOMM_LIBS)
 
 #glkm_LDFLAGS = \
 #	$(GLKM_LDFLAGS)

@@ -59,16 +59,35 @@ void Host::connect (){
 	//connected means hal_controler != NULL
 	if (_hal_controller==NULL){
 		PRINTD ("Host:: beginning hal connection ");
-		_hal_controller = new HalController ();
+		
+
+		try {
+			_hal_controller = new HalController ();
+		}
+		catch (const DBus::Error& exception){
+			std::cerr << "Host(): Connection" << std::endl;
+			std::cerr << exception.what() << std::endl;
+	   		std::cerr << exception.name() << std::endl;
+       		std::cerr << exception.message() << std::endl;
+			PRINTD ("Host:: error connecting to host" + _hostname);
+		}
 	} else {
 		PRINTD ("Host:: already connected " + _hostname);
 	}
 }
 
 void Host::get_all_processes() {
-	bool result;
+
 	PRINTD ("Host:: getting processes " + _hostname);
-	result = _hal_controller->get_all_processes(*this);
+
+	if (_hal_controller) {
+		bool gotten_all = _hal_controller->get_all_processes(*this);
+		if (!gotten_all) {
+			PRINTD ("Host:: Some problems occur while getting all processes");
+		}
+	} else {
+		PRINTD ("Host:: nothing done, not existent hal connection to " + _hostname);
+	}
 }
 
 void Host::add_and_synchronize_process(Process & process) {
@@ -114,6 +133,39 @@ void Host::delete_all_not_synchronized() {
 
 }
 
+bool Host::get_process(int PID, Process & process){
+	bool ret=true;
+
+	// Search for element with a value of PID and returns an iterator to it
+	// if found. Otherwise it returns an iterator to map::end (the
+	// element past the end of the container).
+	std::map<int, Process>::iterator process_iterator;
+	process_iterator = _task_list.find(PID);
+	if ( process_iterator == _task_list.end() ) {
+		//Process does not exists 
+		ret = false;
+	} else {
+		//Process exists so we just mark it as synchonized
+		PRINTD("Host:: get_process " + _task_list[PID].get__name());
+		process = _task_list[PID];
+	}
+
+	return ret;
+}
+
+void Host::set__hostname(Glib::ustring value) {
+  _hostname = value;
+}
+
+void Host::set__ip(Glib::ustring value) {
+  _ip = value;
+}
+
+void Host::set__description(Glib::ustring value) {
+  _description = value;
+}
+
+//debug operation
 void Host::print_processes() {
 	std::cout << "Host::print_processes() " << std::endl;
 	std::map<int, Process>::iterator process_iterator;
@@ -130,24 +182,4 @@ void Host::print_processes() {
 					<< sync 
 					<< "]" << std::endl;
 	}
-}
-
-bool Host::get_process(int PID, Process & process){
-	bool ret=true;
-
-	//REWORK this creates task_list[PID] even if process with PID does not exists
-//	process=task_list[PID];
-	return ret;
-}
-
-void Host::set__hostname(Glib::ustring value) {
-  _hostname = value;
-}
-
-void Host::set__ip(Glib::ustring value) {
-  _ip = value;
-}
-
-void Host::set__description(Glib::ustring value) {
-  _description = value;
 }

@@ -35,11 +35,11 @@ class Hosts{
 	bool create_host(const Glib::ustring & hostname, const Glib::ustring & ip, const Glib::ustring & description);
 
   protected:
-	typedef sigc::signal<void, Host *> type_signal_Host_added;
+	typedef sigc::signal<void, Host *> type_signal_host_added;
 	std::map<Glib::ustring, Host> _hosts;
 
   public:
-	type_signal_Host_added signal_Host_added;
+	type_signal_host_added signal_host_added;
 };
 
 #endif // _HOSTS_HPP

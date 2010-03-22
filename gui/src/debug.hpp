@@ -85,14 +85,14 @@
  */
 class TextViewDebug : public Gtk::TextView {
   public:
-	TextViewDebug(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
+	TextViewDebug(BaseObjectType * cobject, const RefPtrBuilder & refBuilder);
 	virtual ~TextViewDebug();
 	void debug_print(const Glib::ustring& text);
 	void debug_print(const char* text);
 	void debug_print(const int & number);
 
   protected:
-	RefPtrGladeXml _refPtrGlademmXml;
+	RefPtrBuilder _refPtrBuilder;
 
 	//Text model buffer:
 	virtual void fill_buffer();  

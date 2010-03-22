@@ -30,12 +30,12 @@
 
 class IconViewHosts : public Gtk::IconView {
   public:
-	IconViewHosts(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
+	IconViewHosts(BaseObjectType * cobject, const RefPtrBuilder & refBuilder);
 
 	virtual ~IconViewHosts();
 	
   protected:
-  	RefPtrGladeXml _refPtrGlademmXml;
+  	RefPtrBuilder _refPtrBuilder;
 	virtual void on_item_activated(const Gtk::TreeModel::Path & path);
 	virtual void on_selection_changed();
 
@@ -45,7 +45,7 @@ class IconViewHosts : public Gtk::IconView {
 	  public:
 		ModelColumns(){
 			add(col_hostname);
-			add(col_ip);			
+			add(col_ip);	
 			add(col_description);
 			add(col_pixbuf);
 		}
@@ -60,10 +60,10 @@ class IconViewHosts : public Gtk::IconView {
 
 	class TextViewHosts : public Gtk::TextView {
 	  public:
-		TextViewHosts(BaseObjectType * cobject, const RefPtrGladeXml & refGlade);
+		TextViewHosts(BaseObjectType * cobject, const RefPtrBuilder & refBuilder);
 		virtual ~TextViewHosts();
 	  protected:
-		RefPtrGladeXml _refPtrGlademmXml;
+		RefPtrBuilder _refPtrBuilder;
 		RefPtrTextBuffer _refPtrTextBuffer;
 	  public:
 		void show_hostname(const Glib::ustring & hostname);

@@ -1,18 +1,19 @@
-window_sizes 1672 1001 366 1296 838 83
+window_sizes 1678 996 366 1302 827 83
 diagrams
   classdiagram_ref 130312 // glkm-controller
     1040 735 100 17 0 0
   sequencediagram_ref 131720 // connect  to host sequence diagram
     1296 838 90 16 420 613
   active  classdiagram_ref 128121 // glkm-model class diagram
-    1296 838 81 16 245 0
+    1302 827 71 16 96 0
   usecasediagram_ref 137480 // hal-addon use case diagram
     1036 670 100 2 0 0
   sequencediagram_ref 137608 // start sequence diagram
     1296 838 100 2 0 0
 end
 show_stereotypes
-selected usecasediagram_ref 137480 // hal-addon use case diagram
+selected 
+package_ref 129 // glkm-design
 open
   usecase_ref 129160 // connect to host
   class_ref 142856 // Hosts
@@ -30,8 +31,7 @@ open
   class_ref 181000 // NotebookPageProcess
   usecase_ref 131592 // Start
   usecase_ref 131464 // Get All Processes
-  
-package_ref 130312 // hal-addon
+  deploymentview_ref 129160 // hal-addon
   class_ref 167560 // LinuxKernelMonitorS
 end
 end

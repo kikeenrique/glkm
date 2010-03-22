@@ -1,6 +1,6 @@
-format 70
+format 72
 "glkm-model" // glkm::glkm-model
-  revision 63
+  revision 64
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -1892,6 +1892,7 @@ ${inlines}
       classrelation 128233 // _host (<aggregation>)
 	relation_ref 128105 // <aggregation>
       end
+
     end
 
     class 128105 "Log"
@@ -2007,6 +2008,7 @@ ${inlines}
 	
       end
     end
+
   end
 
   deploymentview 128067 "glkm-model deployment view"

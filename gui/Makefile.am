@@ -16,10 +16,12 @@ INTLTOOL_FILES = \
 	intltool-extract.in \
 	intltool-merge.in \
 	intltool-update.in
-	
+
 EXTRA_DIST = \
 	autogen.sh \
 	$(INTLTOOL_FILES)
+
+ACLOCAL_AMFLAGS = -I config-aux
 
 DISTCHECK_CONFIGURE_FLAGS =
 
@@ -30,7 +32,7 @@ DISTCHECK_CONFIGURE_FLAGS =
 #			cp -p $$specfile $(distdir); \
 #		fi \
 #	done
-	
+
 
 DISTCLEANFILES =  \
 	intltool-extract \

@@ -83,10 +83,150 @@ http://live.gnome.org/GnomeGoals/AppIcon</comment>
 </comment>
     </item>
     <item>
-      <attribute id="1213744355" priority="0" done="0" start_date="733211" enddate="99999999" notify="0" endtime="-60" last_edited="1213744355"/>
+      <attribute id="1213744355" priority="0" done="1" start_date="733211" completed_date="733246" notify="0" last_edited="1216842371"/>
       <summary>window debug needs taking care of menu check</summary>
       <comment>window debug needs taking care of menu check.
 Look for "on_close" signal and add a handler that unchecks checkmenu item</comment>
+    </item>
+    <item>
+      <attribute id="1217263438" priority="1" done="0" start_date="733251" enddate="99999999" notify="0" endtime="-60" last_edited="1217284490"/>
+      <summary>Add better host selection</summary>
+      <comment>Add better host selection.
+So we could get real multihost monitoring.
+</comment>
+    </item>
+    <item>
+      <attribute id="1217284525" priority="1" done="0" start_date="733252" enddate="99999999" notify="0" endtime="-60" last_edited="1217284525"/>
+      <summary>avoid setting from command line DBUS_SYSTEM_BUS_ADDRESS</summary>
+      <comment>
+Figure out how to avoid setting  
+        export DBUS_SYSTEM_BUS_ADDRESS="unix:abstract=/tmp/gabriel"
+before running gui.
+</comment>
+    </item>
+    <item>
+      <attribute id="1240215018" priority="1" done="0" start_date="733517" enddate="99999999" notify="0" endtime="-60" last_edited="1240215032"/>
+      <summary>Migrating from libglade to GtkBuilder</summary>
+      <comment>This should be taken into account because code is to be deprecated
+
+More info:
+http://library.gnome.org/devel/gtk/stable/gtk-migrating-GtkBuilder.html</comment>
+    </item>
+    <item>
+      <attribute id="1244307870" priority="1" done="0" start_date="733564" enddate="99999999" notify="0" endtime="-60" last_edited="1244307870"/>
+      <summary>Rework/Add warning DBUS_SYSTEM_BUS_ADDRESS</summary>
+      <comment>Rework easy use of DBUS_SYSTEM_BUS_ADDRESS and/or add warning about DBUS_SYSTEM_BUS_ADDRESS.
+It's really obfuscated. </comment>
+    </item>
+    <item>
+      <attribute id="1251755756" priority="2" done="1" start_date="733650" completed_date="733691" notify="0" last_edited="1255286529"/>
+      <summary>Cintur&#xF3;n de seguridad, ABS y ESP para codigo fuente</summary>
+      <comment>-fstack-protector-all
+
+http://www.securitybydefault.com/2009/08/cinturon-de-seguridad-abs-y-esp-para-tu.html</comment>
+    </item>
+    <item>
+      <attribute id="1255286630" priority="1" done="1" start_date="733691" completed_date="733691" notify="0" last_edited="1255286734"/>
+      <summary>Add __FILE__, __LINE__, etc macros to debug code</summary>
+      <comment>3.7.1 Standard Predefined Macros
+
+The standard predefined macros are specified by the C and/or C++ language standards, so they are available with all compilers that implement those standards. Older compilers may not provide all of them. Their names all start with double underscores.
+
+__FILE__
+This macro expands to the name of the current input file, in the form of a C string constant. This is the path by which the preprocessor opened the file, not the short name specified in `#include' or as the input file name argument. For example, "/usr/local/include/myheader.h" is a possible expansion of this macro.
+__LINE__
+This macro expands to the current input line number, in the form of a decimal integer constant. While we call it a predefined macro, it's a pretty strange macro, since its "definition" changes with each new line of source code.
+__FILE__ and __LINE__ are useful in generating an error message to report an inconsistency detected by the program; the message can state the source line at which the inconsistency was detected. For example,
+
+&#xA0;	
+fprintf (stderr, "Internal error: "
+                 "negative string length "
+                 "%d at %s, line %d.",
+         length, __FILE__, __LINE__);
+
+An `#include' directive changes the expansions of __FILE__ and __LINE__ to correspond to the included file. At the end of that file, when processing resumes on the input file that contained the `#include' directive, the expansions of __FILE__ and __LINE__ revert to the values they had before the `#include' (but __LINE__ is then incremented by one as processing moves to the line after the `#include').
+
+A `#line' directive changes __LINE__, and may change __FILE__ as well. See section 6. Line Control.
+
+C99 introduces __func__, and GCC has provided __FUNCTION__ for a long time. Both of these are strings containing the name of the current function (there are slight semantic differences; see the GCC manual). Neither of them is a macro; the preprocessor does not know the name of the current function. They tend to be useful in conjunction with __FILE__ and __LINE__, though.
+
+__DATE__
+This macro expands to a string constant that describes the date on which the preprocessor is being run. The string constant contains eleven characters and looks like "Feb 12 1996". If the day of the month is less than 10, it is padded with a space on the left.
+__TIME__
+This macro expands to a string constant that describes the time at which the preprocessor is being run. The string constant contains eight characters and looks like "23:59:01".
+__STDC__
+In normal operation, this macro expands to the constant 1, to signify that this compiler conforms to ISO Standard C. If GNU CPP is used with a compiler other than GCC, this is not necessarily true; however, the preprocessor always conforms to the standard, unless the `-traditional' option is used.
+This macro is not defined if the `-traditional' option is used.
+
+On some hosts, the system compiler uses a different convention, where __STDC__ is normally 0, but is 1 if the user specifies strict conformance to the C Standard. GNU CPP follows the host convention when processing system header files, but when processing user files __STDC__ is always 1. This has been reported to cause problems; for instance, some versions of Solaris provide X Windows headers that expect __STDC__ to be either undefined or 1. See section 12. Invocation.
+
+__STDC_VERSION__
+This macro expands to the C Standard's version number, a long integer constant of the form yyyymmL where yyyy and mm are the year and month of the Standard version. This signifies which version of the C Standard the compiler conforms to. Like __STDC__, this is not necessarily accurate for the entire implementation, unless GNU CPP is being used with GCC.
+The value 199409L signifies the 1989 C standard as amended in 1994, which is the current default; the value 199901L signifies the 1999 revision of the C standard. Support for the 1999 revision is not yet complete.
+
+This macro is not defined if the `-traditional' option is used, nor when compiling C++ or Objective-C.
+
+__STDC_HOSTED__
+This macro is defined, with value 1, if the compiler's target is a hosted environment. A hosted environment has the complete facilities of the standard C library available.
+__cplusplus
+This macro is defined when the C++ compiler is in use. You can use __cplusplus to test whether a header is compiled by a C compiler or a C++ compiler. This macro is similar to __STDC_VERSION__, in that it expands to a version number. A fully conforming implementation of the 1998 C++ standard will define this macro to 199711L. The GNU C++ compiler is not yet fully conforming, so it uses 1 instead. We hope to complete our implementation in the near future.</comment>
+    </item>
+    <item>
+      <attribute id="1255286928" priority="1" done="1" start_date="733691" completed_date="733691" notify="0" last_edited="1255286951"/>
+      <summary>Add stack trace code for debugging cores</summary>
+      <comment>http://www.tlug.org.za/wiki/index.php/Obtaining_a_stack_trace_in_C_upon_SIGSEGV</comment>
+    </item>
+    <item>
+      <attribute id="1240221142" priority="0" done="1" start_date="733517" completed_date="733852" notify="0" last_edited="1269190234"/>
+      <summary>gnome3 checkings</summary>
+      <comment>TODO
+
+# Determine whether to compile or not with GNOME 3 compilation warnings.
+# This introduces some compatibility flags.
+AC_ARG_ENABLE([gnome3compat-mode], 
+	      [AC_HELP_STRING([--enable-gnome3compat-mode],
+			      [build with debug settings (no optimization, test coverage)] )],
+	      [AM_CFLAGS="$AM_CFLAGS -DG_DISABLE_DEPRECATED -DG_DISABLE_SINGLE_INCLUDES
+	      -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED  
+	      -DGDK_DISABLE_SINGLE_INCLUDES -DGTK_DISABLE_SINGLE_INCLUDES" AM_CPPFLAGS="$AM_CPPFLAGS -DDEBUG" enable_gnome3compat=yes],
+	      [enable_debug=no])
+AC_MSG_CHECKING(whether to compile or not with DEBUG settings)
+if test "x$enable_gnome3compat" = "xyes"; then
+	AC_MSG_RESULT(yes)
+	# remove optimization settings from CFLAGS
+	CXXFLAGS=[`echo "$CXXFLAGS" | $SED -e 's/-O[0-9]*//g'`]
+	CFLAGS=[`echo "$CFLAGS" | $SED -e 's/-O[0-9]*//g'`]
+	AC_SUBST([AM_CFLAGS])
+	AC_SUBST([AM_CXXFLAGS])
+	AC_DEFINE([DEBUG], 
+		  [],
+		  [build with debug settings (no optimization, test coverage)])
+else
+	AC_MSG_RESULT(no)
+fi
+
+More info:
+http://www.mail-archive.com/debian-gtk-gnome@lists.debian.org/msg13600.html
+</comment>
+    </item>
+    <item>
+      <attribute id="1255293434" priority="1" done="0" start_date="733691" enddate="99999999" notify="0" endtime="-60" last_edited="1269190340"/>
+      <summary>Estudiar test unitarios para GUI</summary>
+      <comment>http://fedorahosted.org/dogtail/
+http://sourceforge.net/apps/mediawiki/cppunit/index.php?title=Main_Page
+http://www.boost.org/doc/libs/1_42_0/libs/test/doc/html/index.html</comment>
+    </item>
+    <item>
+      <attribute id="1240214966" priority="1" done="1" start_date="733517" completed_date="733852" notify="0" last_edited="1269193808"/>
+      <summary>libgnome and libgnomeui Must Die!</summary>
+      <comment>This should be taken into account because is code to be deprecated.
+gtk-show-uri should be used instead of gnome-url
+
+More info:
+http://live.gnome.org/LibgnomeMustDie
+http://library.gnome.org/devel/gtk/unstable/gtk-Filesystem-utilities.html#gtk-show-uri
+http://www.mail-archive.com/debian-gtk-gnome@lists.debian.org/msg13600.html
+</comment>
     </item>
   </category>
   <item>
@@ -96,17 +236,17 @@ Look for "on_close" signal and add a handler that unchecks checkmenu item</comme
   </item>
   <category title="glkm-kernel-module" place="2">
     <item>
-      <attribute id="1209050649" priority="1" done="0" start_date="733156" enddate="99999999" notify="0" endtime="-60" last_edited="1209050649"/>
-      <summary>Add timestamp to output info</summary>
-      <comment>Add a timestamp on each debug output.
-</comment>
-    </item>
-    <item>
       <attribute id="1213738198" priority="1" done="0" start_date="733210" enddate="99999999" notify="0" endtime="-60" last_edited="1213738198"/>
       <summary>individuals and dynamicals entries and atribbutes with my kernel</summary>
       <comment>This kernel module code maybe will help to create individuals and dynamicals entries and atribbutes with my kernel module
 
 svn checkout http://eeepc-linux.googlecode.com/svn/trunk/ eeepc-linux-read-only</comment>
+    </item>
+    <item>
+      <attribute id="1209050649" priority="1" done="1" start_date="733156" completed_date="733246" notify="0" last_edited="1216842397"/>
+      <summary>Add timestamp to output info</summary>
+      <comment>Add a timestamp on each debug output.
+</comment>
     </item>
   </category>
   <category title="glkm-utils" place="3">

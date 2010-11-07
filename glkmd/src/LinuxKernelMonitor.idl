@@ -1,0 +1,10 @@
+#ifndef __ECHO_IDL__
+#define __ECHO_IDL__
+
+interface LinuxKernelMonitor {
+  typedef sequence< string > StringList;  // Same type as CORBA::ObjectIdList
+
+  StringList GetAllProcesses();
+};
+
+#endif  // __ECHO_IDL__

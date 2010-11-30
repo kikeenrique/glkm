@@ -15,28 +15,29 @@
 #include <iostream>
 #include "LinuxKernelMonitor.hpp"
 
+
 static CORBA::Object_ptr getObjectReference(CORBA::ORB_ptr orb);
 
 static void test_op_GetAllProcesses(LinuxKernelMonitor_ptr e)
 {
-    //  CORBA::String_var src = (const char*) "Hello!";
-
     LinuxKernelMonitor::StringList_var dest = e->GetAllProcesses();
-    for (CORBA::ULong i=0; i<10; i++)
+    for (CORBA::ULong i=0; i<dest->length(); i++)
     {
         //        (*process_list_rt)[i] = CORBA::string_dup(test.c_str()); 
-        std::cout << "The object replied, \"" << i << " " << (char*)dest[i] << "\"." << std::endl;
+        std::cout << "The object replied, [" << i << "] \"" << (char*)dest[i]
+            << "\"." << std::endl;
     }
 
 }
 
 int main(int argc, char** argv)
 {
-
+    CORBA::ORB_var orb;
     try
     {
-        CORBA::ORB_var orb = CORBA::ORB_init(argc, argv);
+        orb = CORBA::ORB_init(argc, argv);
 /*
+         
         if( argc != 2 )
         {
             std::cerr << "usage:  eg2_clt <object reference>" << std::endl;
@@ -62,9 +63,7 @@ int main(int argc, char** argv)
             std::cout << "Calling GetAllProcesses... " << std::endl;
             test_op_GetAllProcesses(object_ref);
         }
-
-
-        orb->destroy();
+//        sleep(3);
     }
     catch(CORBA::TRANSIENT&)
     {
@@ -86,6 +85,23 @@ int main(int argc, char** argv)
         std::cerr << "  line: " << fe.line() << std::endl;
         std::cerr << "  mesg: " << fe.errmsg() << std::endl;
     }
+
+    // End CORBA
+	if (!CORBA::is_nil(orb))
+    {
+		try
+        {
+            orb->shutdown(false);
+			orb->destroy();
+			std::cout << "Ending CORBA..." << std::endl;
+		}
+        catch (const CORBA::Exception& e)
+		{
+			std::cout << "ORB destroy failed:" << e._name() << std::endl;
+			return 1;
+		}
+   }
+
     return 0;
 }
 

@@ -8,7 +8,7 @@
 ###########################################################################
 #
 # Autor:
-#	Enrique Garcia Alvarez (kikeenrique@users.sourceforge.net)
+#	Enrique Garcia Alvarez (kike+glkm_@_eldemonionegro.com)
 # License:
 # 	GNU General Public License (http://www.gnu.org/copyleft/gpl.html)
 #
@@ -20,7 +20,8 @@
 
 
 PROCMON_VERSION = 0.2.0alpha
-PROCMON_MODULE = procmon_dev
+#PROCMON_MODULE = procmon_dev
+PROCMON_MODULE = nl_procmon
 ENABLE_PROCMON_MODULE=y
 
 SHELL = /bin/sh

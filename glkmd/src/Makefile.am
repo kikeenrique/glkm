@@ -5,18 +5,7 @@ AM_CPPFLAGS = \
 	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" $(GLKM_DAEMON_CFLAGS)
 
-AM_CFLAGS = \
-	 -Wall \
-	 -fstack-protector-all \
-	 -g
-
-bin_PROGRAMS = glkm_daemon \
-	glkmd_test_client
-
-glkmd_test_client_SOURCES = \
-	LinuxKernelMonitor.hpp\
-	LinuxKernelMonitor.cpp \
-	glkmd_test_client.cpp
+bin_PROGRAMS = glkm_daemon
 
 glkm_daemon_SOURCES = \
 	LinuxKernelMonitor.hpp \
@@ -33,9 +22,7 @@ glkm_daemon_SOURCES = \
 	MessageNetlinkGlkm.hpp \
 	MessageNetlinkGlkm.cpp
 
-glkm_daemon_LDFLAGS = 
-
-glkmd_test_client_LDADD = $(GLKM_DAEMON_LIBS)
+#glkm_daemon_LDFLAGS = 
 
 glkm_daemon_LDADD = $(GLKM_DAEMON_LIBS)
 

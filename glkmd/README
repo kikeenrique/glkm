@@ -1,0 +1,17 @@
+# HOW TO RUN
+
+#Daemon
+./glkm_daemon -ORBInitRef NameService=corbaloc:iiop:127.0.0.1/NameService
+
+#Client
+./glkmd_test_client -ORBInitRef NameService=corbaloc:iiop:127.0.0.1/NameService
+
+
+
+#COMMON ISSUES
+This messages when a client ends are normal, they are only shown if traces are
+activated in server. They are normal omniorb library exception to handle 
+ending clients.
+
+    omniORB: (3) 2010-11-14 22:07:12.069712: Orderly connection shutdown: giop:tcp:192.168.0.14:50355
+    omniORB: (3) 2010-11-14 22:07:12.069761: throw giopStream::CommFailure from giopImpl12.cc:1374(0,NO,COMM_FAILURE_UnMarshalArguments)

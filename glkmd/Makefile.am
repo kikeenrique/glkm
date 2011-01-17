@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 ## Created by Anjuta
 
-SUBDIRS = src po
+SUBDIRS = src test
 
 glkm_daemondocdir = ${prefix}/doc/glkm_daemon
 glkm_daemondoc_DATA = \

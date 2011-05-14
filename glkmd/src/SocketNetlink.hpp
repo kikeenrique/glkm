@@ -22,12 +22,12 @@
 
 extern "C"
 {
-#include <sys/socket.h>
-#include <linux/netlink.h>
+  #include <sys/socket.h>
+  #include <linux/netlink.h>
 }
 
 #ifndef NETLINK_GLKM
-#define NETLINK_GLKM  20
+#define NETLINK_GLKM  24
 #endif
 
 class MessageNetlink;
@@ -37,12 +37,12 @@ class SocketNetlink
 {
 public:
     SocketNetlink(const unsigned int &protocol);
-	~SocketNetlink();
+    ~SocketNetlink();
 
-	bool isValid();
+    bool isValid();
 
-	ssize_t send(const MessageNetlink& m);
-	ssize_t recv(MessageNetlink& m);
+    ssize_t send(const MessageNetlink& m);
+    ssize_t recv(MessageNetlink& m);
 protected:
 
 private:
@@ -50,8 +50,8 @@ private:
     SocketNetlink(const SocketNetlink&);
 
     int m_fd;
-	bool m_valid;
-	struct sockaddr_nl m_local;
+    bool m_valid;
+    struct sockaddr_nl m_nladdr;
 };
 
 /*

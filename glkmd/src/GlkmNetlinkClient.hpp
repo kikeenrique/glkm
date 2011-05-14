@@ -28,11 +28,11 @@
 class GlkmNetlinkClient
 {
 public:
-	GlkmNetlinkClient();
-	std::vector<std::string> GetAllProcesses();
+    GlkmNetlinkClient();
+    void GetAllProcesses(std::vector<std::string> &processes);
 
 protected:
-	SocketNetlink m_socketnl;
+    SocketNetlink m_socketnl;
 private:
 
 };

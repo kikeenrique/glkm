@@ -29,6 +29,8 @@ class LinuxKernelMonitor_i:
         virtual ~LinuxKernelMonitor_i();
         GlkmNetlinkClient m_glkmNetClient;
 
+        LinuxKernelMonitor::StringList* GetAllProcesses_TEST();
+        
     public:
         // standard constructor
         LinuxKernelMonitor_i();

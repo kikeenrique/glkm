@@ -1,10 +1,10 @@
-dnl   
+dnl
 dnl	configure.ac
-dnl   
-dnl	Copyright (C) Enrique García Álvarez 2007 <kike + glkm @ eldemonionegro.com>
+dnl
+dnl	Copyright (C) Enrique García Álvarez 2007-2011 <kike + glkm @ eldemonionegro.com>
 dnl
 dnl	configure.ac is free software
-dnl   
+dnl
 dnl	You may redistribute it and/or modify it under the terms of the
 dnl	GNU General Public License, as published by the Free Software
 dnl	Foundation; either version 2 of the License, or (at your option)
@@ -20,7 +20,7 @@ dnl	along with configure.ac.  If not, write to:
 dnl		The Free Software Foundation, Inc.,
 dnl		51 Franklin Street, Fifth Floor
 dnl		Boston, MA  02110-1301, USA.
-dnl   
+dnl
 
 
 dnl Process this file with autoconf to produce a configure script.
@@ -43,6 +43,9 @@ AC_CONFIG_MACRO_DIR([config-aux])
 OMNIORB_REQUIRED=4.1.3
 AC_SUBST([OMNIORB_REQUIRED])
 
+LIBNETLINK_REQUIRED=3.0
+AC_SUBST([LIBNETLINK_REQUIRED])
+
 GOOGLETEST_REQUIRED=1.5.0
 AC_SUBST([GOOGLETEST_REQUIRED])
 
@@ -51,7 +54,7 @@ AC_SUBST([GOOGLETEST_REQUIRED])
 ################################################################################
 AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
 
-# Read ahead about OLD_CXXFLAGS, it also applies here 
+# Read ahead about OLD_CXXFLAGS, it also applies here
 OLD_CFLAGS=$CFLAGS
 AC_PROG_CPP
 AC_PROG_CC
@@ -63,7 +66,7 @@ AC_PROG_CC_STDC
 # store current user given compiler flags to avoid default setup via AC_PROG_CXX
 # Unfortunately, it is not only checking if the user has set the variable to
 # provide additional compiler information. In case the variable is specified,
-# nothing happens to it. But if not present, the check sets the variable 
+# nothing happens to it. But if not present, the check sets the variable
 # automatically to '-g -O2'
 # see http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.63/
 #  html_node/C_002b_002b-Compiler.html#index-AC_005fPROG_005fCXX-808
@@ -79,7 +82,7 @@ AC_LANG([C++])
 
 AC_PATH_PROG([PKGCONFIG_CONFIG], [pkg-config],[no])
 if test x$PKGCONFIG_CONFIG = xno; then
-	AC_MSG_ERROR([Please install the pkg-config package from \ 
+	AC_MSG_ERROR([Please install the pkg-config package from \
 	              http://www.freedesktop.org/software/pkgconfig/])
 fi
 
@@ -103,9 +106,14 @@ AC_SUBST([PROGRAMNAME_LOCALEDIR])
 ################################################################################
 AC_SEARCH_LIBS([strerror],[cposix])
 
-PKG_CHECK_MODULES([GLKM_DAEMON], [omniORB4 omniConnectionMgmt4 omniDynamic4])
+PKG_CHECK_MODULES([GLKM_DAEMON], [omniORB4 omniConnectionMgmt4 omniDynamic4 libnl-3.0])
 AC_SUBST([GLKM_DAEMON_CFLAGS])
 AC_SUBST([GLKM_DAEMON_LIBS])
+
+#PKG_CHECK_MODULES([LIBNETLINK], [libnl-2.0])
+#AC_SUBST([LIBNETLINK_CFLAGS])
+#AC_SUBST([LIBNETLINK_LIBS])
+
 
 m4_include(tmp/gtest.m4)
 #GTEST_LIB_CHECK([$GOOGLETEST_REQUIRED], AC_MSG_WARN([YAY]), AC_MSG_WARN([NON])
@@ -126,9 +134,9 @@ AC_CONFIG_HEADERS([config.h])
 LT_PREREQ([2.2.6])
 LT_INIT()
 
-# Determine whether to compile or not with debug settings. 
+# Determine whether to compile or not with debug settings.
 # Essentially this just disables compiler optimizations.
-AC_ARG_ENABLE([debug-mode], 
+AC_ARG_ENABLE([debug-mode],
               [AS_HELP_STRING([--enable-debug-mode],[build with debug settings (no optimization, test coverage) ])],
               [enable_debug=yes],
               [enable_debug=no])
@@ -142,13 +150,13 @@ if test "x$enable_debug" = "xyes"; then
     AM_CXXFLAGS="[`echo "$AM_CXXFLAGS" | $SED -e 's/-O[0-9]*//g'`]"
 
     #Add our compilation settings
-    AM_CPPFLAGS="$AM_CPPFLAGS -DDEBUG" 
+    AM_CPPFLAGS="$AM_CPPFLAGS -DDEBUG"
 	AM_CXXFLAGS="$AM_CXXFLAGS -rdynamic -ggdb -g -O0"
     AM_CXXFLAGS="$AM_CXXFLAGS -Wall -Wno-uninitialized -fstack-protector-all"
 
 	AC_SUBST([AM_CFLAGS])
 	AC_SUBST([AM_CXXFLAGS])
-	AC_DEFINE([DEBUG], 
+	AC_DEFINE([DEBUG],
               [],
               [build with debug settings (no optimization, test coverage)])
 else
@@ -206,7 +214,8 @@ echo "<$PACKAGE_NAME> will be compiled with the following features:"
 echo "  DEBUG mode   : $enable_debug"
 echo ""
 echo "Required version libraries:"
-echo "	OMNIORB    : $OMNIORB_REQUIRED"
+echo "  OMNIORB    : $OMNIORB_REQUIRED"
+echo "  LIBNETLINK : $LIBNETLINK_REQUIRED"
 echo "	GOOGLETEST : $GOOGLETEST_REQUIRED"
 echo ""
 echo "The following options will be passed to the compiler:"

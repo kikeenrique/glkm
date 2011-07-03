@@ -1,10 +1,10 @@
-format 58
+format 72
 "gtkmm" // gtkmm
-  revision 27
+  revision 28
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
-  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
   //use case diagram settings
   package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
   //sequence diagram settings
@@ -30,7 +30,7 @@ format 58
   cpp_namespace "Gtk"
   classview 128206 "gtkmm class view"
     //class diagram settings
-    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
     //collaboration diagram settings
     show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
     //object diagram settings
@@ -45,7 +45,7 @@ format 58
     package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
     show_infonote default drawing_language default show_stereotype_properties default
     classdiagram 128334 "gtkmm class diagram"
-      draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
       size A1
     end
 
@@ -3182,5 +3182,157 @@ ${inlines}
       explicit_switch_type ""
       
     end
+
+    class 515592 "Builder"
+      visibility package 
+      cpp_external cpp_decl "${name}
+
+#include <gtkmm/builder.h>"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 489992 // <generalisation>
+	relation 489736 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 489992 // <generalisation>
+	  b parent class_ref 129998 // Object
+      end
+
+      operation 1270280 "Builder"
+	public explicit_return_type ""
+	nparams 0
+	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
+"
+	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 1270408 "gobj"
+	public explicit_return_type "GtkBuilder"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 1270536 "gobj_copy"
+	const public explicit_return_type "GtkBuilder"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${type} * ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} * ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 1270664 "get_widget"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "name" type class_ref 132814 // ustring
+	  param out name "widget" explicit_type "T_Widget"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} *& ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "template<class T_Widget >
+void 	get_widget (const Glib::ustring& name, T_Widget*& widget)
+ 	Get a widget from the Builder file. "
+      end
+
+      operation 1270792 "get_widget_derived"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "name" type class_ref 132814 // ustring
+	  param out name "widget" explicit_type "T_Widget"
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, ${t1} *& ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "template<class T_Widget >
+void 	get_widget_derived (const Glib::ustring& name, T_Widget*& widget)
+ 	This provides a pointer to a widget whose details are specified in the GtkBuilder file, but which is implemented by your own derived class. "
+      end
+
+      operation 1270920 "create"
+	class_operation public return_type class_ref 129614 // RefPtr
+	nparams 0
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "static Glib::RefPtr< Builder > 	create ()
+ 	Creates a new builder object. "
+      end
+
+      operation 1271048 "create_from_file"
+	class_operation public return_type class_ref 129614 // RefPtr
+	nparams 1
+	  param in name "filename" type class_ref 129288 // string
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "static Glib::RefPtr< Builder > 	create_from_file (const std::string& filename)
+ 	Parses a file containing a GtkBuilder UI definition. "
+      end
+
+      operation 1271176 "create_from_file"
+	class_operation public return_type class_ref 129614 // RefPtr
+	nparams 2
+	  param in name "filename" type class_ref 129288 // string
+	  param in name "object_id" type class_ref 132814 // ustring
+	cpp_decl "	${comment}${friend}${static}${inline}${virtual}${type} ${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${type} ${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+	comment "static Glib::RefPtr< Builder > 	create_from_file (const std::string& filename, const Glib::ustring& object_id)
+ 	Parses a file containing a GtkBuilder UI definition, building only the requested object. "
+      end
+    end
   end
+
 end

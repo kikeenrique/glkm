@@ -1,4 +1,4 @@
-format 58
+format 72
 
 classinstance 128008 class_ref 128092 // MainWindow
   name ""   xyz 17 4 2000 life_line_z 2000
@@ -28,7 +28,7 @@ note 138120 "if hostname is not found"
 classinstancecanvas 138376 classinstance_ref 131976 // _pMainWindow->_pNotebooHosts
   xyz 1065 383 2000 life_line_z 2000
 end
-classinstancecanvas 140168 classinstance_ref 132104 // _refPtrGlademmXml2
+classinstancecanvas 140168 classinstance_ref 132104 // _refPtrBuilder2
   mortal  xyz 1225 514 2005 life_line_z 2000
 end
 classinstancecanvas 141576 classinstance_ref 132232 // *tmp_pagehost
@@ -43,7 +43,7 @@ note 157320 "connect signal and handler"
   xyzwh 2018 662 2000 165 35
 classinstance 158344 class_ref 160648 // type_signal_process_added
   name "host.signal_process_added"   xyz 1926 766 2010 life_line_z 3010
-classinstance 158856 class_ref 132942 // Xml
+classinstance 158856 class_ref 515592 // Builder
   name ""   xyz 1636 512 2000 life_line_z 2000
 classinstance 159496 class_ref 176776 // type_signal_process_removed
   name "host.signal_process_removed"   xyz 2068 735 2000 life_line_z 2000
@@ -58,88 +58,88 @@ classinstance 161288 class_ref 182280 // type_signal_process_monitor_end
 classinstance 161928 class_ref 180872 // NotebookProcesses
   name "tmp_pagehost->_pNotebookProcesses"   xyz 2266 706 2000 life_line_z 2000
 durationcanvas 128136 classinstance_ref 128008 // :MainWindow
-  xyzwh 51 64 2010 10 72
+  xyzwh 48 64 2010 11 72
 end
 durationcanvas 129800 classinstance_ref 129288 // _pHostSelectDialog:HostSelectDialog
-  xyzwh 68 104 2010 11 27
+  xyzwh 136 104 2010 11 27
 end
 durationcanvas 130568 classinstance_ref 129288 // _pHostSelectDialog:HostSelectDialog
-  xyzwh 68 234 2010 11 96
+  xyzwh 136 234 2010 11 96
   overlappingdurationcanvas 130824
-    xyzwh 74 269 2020 11 31
+    xyzwh 142 269 2020 11 31
   end
 end
 durationcanvas 131848 classinstance_ref 129032 // _pIconViewHosts:IconViewHosts
-  xyzwh 265 154 2010 7 41
+  xyzwh 320 154 2010 11 41
 end
 durationcanvas 133896 classinstance_ref 133768 // c:Controller
-  xyzwh 531 223 2015 7 843
+  xyzwh 536 223 2015 11 843
 end
 durationcanvas 135304 classinstance_ref 129032 // _pIconViewHosts:IconViewHosts
-  xyzwh 263 273 2010 11 40
+  xyzwh 320 273 2010 11 40
 end
 durationcanvas 135688 classinstance_ref 132872 // _pHosts:Hosts
-  xyzwh 781 307 2015 7 759
+  xyzwh 794 307 2015 11 759
 end
 durationcanvas 136456 classinstance_ref 136328 // _hosts[hostname]:Host
-  xyzwh 972 444 2010 10 25
+  xyzwh 967 444 2010 11 25
 end
 durationcanvas 137096 classinstance_ref 136328 // _hosts[hostname]:Host
-  xyzwh 972 475 2010 10 25
+  xyzwh 967 475 2010 11 25
 end
 durationcanvas 137352 classinstance_ref 136328 // _hosts[hostname]:Host
-  xyzwh 972 505 2010 10 25
+  xyzwh 967 505 2010 11 25
 end
 durationcanvas 137608 classinstance_ref 136328 // _hosts[hostname]:Host
-  xyzwh 972 536 2010 10 25
+  xyzwh 967 536 2010 11 25
 end
-durationcanvas 153608 classinstance_ref 140168 // _refPtrGlademmXml2:RefPtrGladeXml
-  xyzwh 1244 695 2010 11 29
+durationcanvas 153608 classinstance_ref 140168 // _refPtrBuilder2:RefPtrBuilder
+  xyzwh 1292 695 2010 11 29
 end
-durationcanvas 153864 classinstance_ref 140168 // _refPtrGlademmXml2:RefPtrGladeXml
-  xyzwh 1246 731 2010 7 29
+durationcanvas 153864 classinstance_ref 140168 // _refPtrBuilder2:RefPtrBuilder
+  xyzwh 1292 731 2010 11 29
 end
 durationcanvas 154888 classinstance_ref 141576 // *tmp_pagehost:NotebookPageHost
-  xyzwh 1729 787 2010 11 175
+  xyzwh 1793 787 2010 11 175
 end
 durationcanvas 158472 classinstance_ref 158344 // host.signal_process_added:type_signal_process_added
-  xyzwh 2074 830 3020 11 26
+  xyzwh 2057 830 3020 11 26
 end
-durationcanvas 158984 classinstance_ref 158856 // :Xml
+durationcanvas 158984 classinstance_ref 158856 // :Builder
   xyzwh 1655 702 2010 11 25
 end
-durationcanvas 159240 classinstance_ref 158856 // :Xml
+durationcanvas 159240 classinstance_ref 158856 // :Builder
   xyzwh 1655 744 2010 11 36
 end
 durationcanvas 159624 classinstance_ref 159496 // host.signal_process_removed:type_signal_process_removed
-  xyzwh 2229 874 2010 10 25
+  xyzwh 2209 874 2010 11 25
 end
 durationcanvas 160136 classinstance_ref 160008 // _hosts:map
-  xyzwh 889 318 2010 10 25
+  xyzwh 886 318 2010 11 25
 end
 durationcanvas 160520 classinstance_ref 160392 // _pHosts.signal_host_added:type_signal_host_added
-  xyzwh 1085 585 2010 11 53
+  xyzwh 1072 585 2010 11 53
 end
 durationcanvas 160776 classinstance_ref 138376 // _pMainWindow->_pNotebooHosts:NotebookHosts
-  xyzwh 1085 619 2010 9 360
+  xyzwh 1181 619 2010 11 360
   overlappingdurationcanvas 152328
-    xyzwh 1089 651 2020 11 321
+    xyzwh 1187 651 2020 11 321
     overlappingdurationcanvas 153096
-      xyzwh 1095 900 2030 11 25
+      xyzwh 1193 900 2030 11 25
     end
     overlappingdurationcanvas 153352
-      xyzwh 1095 942 2030 11 25
+      xyzwh 1193 942 2030 11 25
     end
   end
 end
 durationcanvas 161416 classinstance_ref 161160 // host.signal_process_begin:type_signal_process_monitor_begin
-  xyzwh 2599 917 2010 11 25
+  xyzwh 2580 917 2010 11 25
 end
 durationcanvas 161672 classinstance_ref 161288 // host.signal_process_end:type_signal_process_monitor_end
-  xyzwh 2778 951 2010 11 25
+  xyzwh 2761 951 2010 11 25
 end
-durationcanvas 162184 classinstance_ref 140168 // _refPtrGlademmXml2:RefPtrGladeXml
-  xyzwh 1244 667 2010 11 26
+durationcanvas 162184 classinstance_ref 140168 // _refPtrBuilder2:RefPtrBuilder
+  xyzwh 1292 667 2010 11 26
 end
 reflexivemsg 128264 asynchronous
   to durationcanvas_ref 128136
@@ -154,19 +154,19 @@ msg 129928 asynchronous
   label_xy 122 92
 reflexivemsg 130696 asynchronous
   to durationcanvas_ref 130568
-  yz 235 2015 msg operation_ref 160776 // "on_clicked_button_accept() : void"
+  yz 239 2015 msg operation_ref 160776 // "on_clicked_button_accept() : void"
   show_full_operations_definition default drawing_language default
-  label_xy 314 222
+  label_xy 155 220
 reflexivemsg 130952 synchronous
   to durationcanvas_ref 130824
   yz 269 2025 msg operation_ref 170888 // "hide() : void"
   show_full_operations_definition default drawing_language default
-  label_xy 333 258
+  label_xy 163 255
 reflexivemsg 131976 asynchronous
   to durationcanvas_ref 131848
   yz 154 2015 msg operation_ref 159368 // "on_item_activated(in path : Path) : void"
   show_full_operations_definition default drawing_language default
-  label_xy 388 139
+  label_xy 333 140
 msg 135432 synchronous
   from durationcanvas_ref 133896
   to durationcanvas_ref 135304
@@ -263,16 +263,16 @@ msg 158600 synchronous
 msg 159112 synchronous
   from durationcanvas_ref 153608
   to durationcanvas_ref 158984
-  yz 702 2015 msg operation_ref 192392 // "create(in filename : string, in root : ustring = Glib::ustring(), in domain : ustring = Glib::ustring()) : RefPtr"
+  yz 702 2015 msg operation_ref 1271176 // "create_from_file(in filename : string, in object_id : ustring) : RefPtr"
   show_full_operations_definition default drawing_language default
-  args "GLADE_FILE, NotebookHostroot"
-  label_xy 1389 689
+  args "GLADE_FILE, \"notebook_hosts-hpaned\""
+  label_xy 1345 685
 msg 159368 synchronous
   from durationcanvas_ref 153864
   to durationcanvas_ref 159240
-  yz 746 2015 msg operation_ref 192904 // "get_widget_derived(in name : ustring, out widget : T_Widget) : T_Widget"
+  yz 746 2015 msg operation_ref 1270792 // "get_widget_derived(in name : ustring, out widget : T_Widget) : void"
   show_full_operations_definition default drawing_language default
-  args "\"notebook_hosts-hpaned_tmp\", tmp_pagehost"
+  args "\"notebook_hosts-hpaned\", tmp_pagehost"
   label_xy 1344 733
 msg 159752 synchronous
   from durationcanvas_ref 154888
@@ -321,12 +321,6 @@ msg 161800 synchronous
   show_full_operations_definition default drawing_language default
   args "tmp_pagehost->_pNotebookProcesses::on_process_monitor_end"
   label_xy 2062 938
-msg 162056 return
-  from durationcanvas_ref 159240
-  to durationcanvas_ref 152328
-  yz 767 3010 explicitmsg "tmp_pagehost"
-  show_full_operations_definition default drawing_language default
-  label_xy 1396 754
 msg 162312 synchronous
   from durationcanvas_ref 152328
   to durationcanvas_ref 162184

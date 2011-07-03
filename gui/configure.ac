@@ -1,52 +1,50 @@
-dnl   
-dnl	configure.ac
-dnl   
-dnl	Copyright (C) Enrique García Álvarez 2007 <kike + glkm @ eldemonionegro.com>
 dnl
-dnl	configure.ac is free software
-dnl   
-dnl	You may redistribute it and/or modify it under the terms of the
-dnl	GNU General Public License, as published by the Free Software
-dnl	Foundation; either version 2 of the License, or (at your option)
-dnl	any later version.
+dnl    configure.ac
 dnl
-dnl	configure.ac is distributed in the hope that it will be useful,
-dnl	but WITHOUT ANY WARRANTY; without even the implied warranty of
-dnl	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-dnl	See the GNU General Public License for more details.
+dnl    Copyright (C) Enrique García Álvarez 2007-2011 <kike + glkm @ eldemonionegro.com>
 dnl
-dnl	You should have received a copy of the GNU General Public License
-dnl	along with configure.ac.  If not, write to:
-dnl		The Free Software Foundation, Inc.,
-dnl		51 Franklin Street, Fifth Floor
-dnl		Boston, MA  02110-1301, USA.
-dnl   
+dnl    configure.ac is free software
+dnl
+dnl    You may redistribute it and/or modify it under the terms of the
+dnl    GNU General Public License, as published by the Free Software
+dnl    Foundation; either version 2 of the License, or (at your option)
+dnl    any later version.
+dnl
+dnl    configure.ac is distributed in the hope that it will be useful,
+dnl    but WITHOUT ANY WARRANTY; without even the implied warranty of
+dnl    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+dnl    See the GNU General Public License for more details.
+dnl
+dnl    You should have received a copy of the GNU General Public License
+dnl    along with configure.ac.  If not, write to:
+dnl        The Free Software Foundation, Inc.,
+dnl        51 Franklin Street, Fifth Floor
+dnl        Boston, MA  02110-1301, USA.
+dnl
 
 
 dnl Process this file with autoconf to produce a configure script.
 ################################################################################
-#		Prelude.
+#        Prelude.
 ################################################################################
+AC_PREREQ([2.68])
 
-AC_PREREQ(2.65)
-
-#  AC_DEFUN([PACKAGE_NAME], [glkm])
 m4_define([glkm_major_version],[0])
 m4_define([glkm_minor_version],[2])
 m4_define([glkm_micro_version],[3])
-#m4_define([glkm_version],m4_defn([glkm_major_version]).m4_defn([glkm_minor_version]).m4_defn([glkm_micro_version]))
 m4_define([glkm_version],[glkm_major_version.glkm_minor_version.glkm_micro_version])
 
 AC_INIT([GNOME LINUX Kernel Monitor],[m4_defn([glkm_version])],[http://eldemonionegro.com/glkm/newticket],[glkm])
+m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 
 AC_CONFIG_AUX_DIR([config-aux])
 AC_CONFIG_MACRO_DIR([config-aux])
 
-GTKMM_REQUIRED=2.12
+GTKMM_REQUIRED=3.0
 #LIBGLADEMM_REQUIRED=2.6
 LIBGNOME_REQUIRED=2.20
 LIBDBUSMM_REQUIRED=0.5.0
-LIBSIGCMM_REQUIRED=2.0.18
+LIBSIGCMM_REQUIRED=2.2.9
 GIOMM_REQUIRED=2.22.1
 AC_SUBST([GTKMM_REQUIRED])
 #AC_SUBST([LIBGLADEMM_REQUIRED])
@@ -55,24 +53,40 @@ AC_SUBST([LIBDBUSMM_REQUIRED])
 AC_SUBST([GIOMM_REQUIRED])
 
 ################################################################################
-#		Checks for programs.
+#        Checks for programs.
 ################################################################################
+AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
 
-# DEPRECATED since autoconf 2.50 
-# AM_INIT_AUTOMAKE([AC_PACKAGE_NAME], [AC_PACKAGE_VERSION])
-AM_INIT_AUTOMAKE([gnu dist-bzip2 -Wall -Werror])
-
-AC_PROG_CXX
+# Read ahead about OLD_CXXFLAGS, it also applies here
+OLD_CFLAGS=$CFLAGS
+AC_PROG_CPP
 AC_PROG_CC
-AC_PROG_CC_STDC
-AM_PROG_CC_C_O
+CFLAGS=$OLD_CFLAGS
 
-# AC_LANG(C++)
+#AM_PROG_CC_C_O
+AC_PROG_CC_STDC
+
+# store current user given compiler flags to avoid default setup via AC_PROG_CXX
+# Unfortunately, it is not only checking if the user has set the variable to
+# provide additional compiler information. In case the variable is specified,
+# nothing happens to it. But if not present, the check sets the variable
+# automatically to '-g -O2'
+# see http://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.63/
+#  html_node/C_002b_002b-Compiler.html#index-AC_005fPROG_005fCXX-808
+OLD_CXXFLAGS=$CXXFLAGS
+# check for C++ preprocessor and compiler and the library compiler
+# (might change the compiler flags)
+AC_PROG_CXXCPP
+AC_PROG_CXX
+# reset compiler flags to initial flags
+CXXFLAGS=$OLD_CXXFLAGS
+
+AC_LANG([C++])
 
 AC_PATH_PROG([PKGCONFIG_CONFIG], [pkg-config],[no])
 if test x$PKGCONFIG_CONFIG = xno; then
-	AC_MSG_ERROR([Please install the pkg-config package from \ 
-	              http://www.freedesktop.org/software/pkgconfig/])
+    AC_MSG_ERROR([Please install the pkg-config package from \
+                  http://www.freedesktop.org/software/pkgconfig/])
 fi
 
 # TODO - Future use maybe?
@@ -86,9 +100,8 @@ fi
 #
 #  AM_GCONF_SOURCE_2
 
-
 ################################################################################
-#		Checks for Internationalization.
+#        Checks for Internationalization.
 ################################################################################
 IT_PROG_INTLTOOL([0.40.0])
 AM_PO_SUBDIRS
@@ -101,15 +114,13 @@ AM_GLIB_GNU_GETTEXT
 PROGRAMNAME_LOCALEDIR=[${datadir}/locale]
 AC_SUBST([PROGRAMNAME_LOCALEDIR])
 
-
 ################################################################################
-#		Checks for libraries.
+#        Checks for libraries.
 ################################################################################
 
 # gtkmm
 # libglademm
-#PKG_CHECK_MODULES([GLKM], [gtkmm-2.4 >= $GTKMM_REQUIRED libglademm-2.4 >= $LIBGLADEMM_REQUIRED])
-PKG_CHECK_MODULES([GLKM], [gtkmm-2.4 >= $GTKMM_REQUIRED])
+PKG_CHECK_MODULES([GLKM], [gtkmm-3.0 >= $GTKMM_REQUIRED])
 AC_SUBST([GLKM_CFLAGS])
 AC_SUBST([GLKM_LIBS])
 
@@ -131,87 +142,134 @@ AC_SUBST([LIBSIGCMM_LIBS])
 # Determine whether to compile or not with support for GNOME libraries 
 #(i.e libgnome and libgnomeui)
 AC_ARG_ENABLE([gnome],
-	      [AS_HELP_STRING([--disable-gnome],[build with GNOME support (default=disabled)])], 
-	      [enable_gnome=yes],
-	      [enable_gnome=no])
+        [AS_HELP_STRING([--disable-gnome],[build with GNOME support (default=disabled)])],
+        [enable_gnome=yes],
+        [enable_gnome=no])
 AC_MSG_CHECKING(whether to compile with support for GNOME libraries)
 if test "x$enable_gnome" = "xyes"; then
-	AC_MSG_RESULT(yes)
-	PKG_CHECK_MODULES(LIBGNOME, [libgnome-2.0 >= $LIBGNOME_REQUIRED])
-	AC_SUBST([LIBGNOME_CFLAGS])
-	AC_SUBST([LIBGNOME_LIBS])
-	AC_DEFINE([HAVE_LIBGNOME], [], [Compile with libgnome support])
+        AC_MSG_RESULT(yes)
+        PKG_CHECK_MODULES(LIBGNOME, [libgnome-2.0 >= $LIBGNOME_REQUIRED])
+        AC_SUBST([LIBGNOME_CFLAGS])
+        AC_SUBST([LIBGNOME_LIBS])
+        AC_DEFINE([HAVE_LIBGNOME], [], [Compile with libgnome support])
 else
-	AC_MSG_RESULT(no)
+        AC_MSG_RESULT(no)
 fi
 
 ################################################################################
-#		Checks for header files.
+#        Checks for header files.
 ################################################################################
-
 AC_HEADER_STDC
+AC_HEADER_STDBOOL
+AC_CHECK_HEADERS([libintl.h])
 
 ################################################################################
-#		Checks for typedefs, structures, and compiler characteristics.
+#        Checks for typedefs, structures, and compiler characteristics.
 ################################################################################
-
 AC_CONFIG_HEADERS([config.h])
-
-AM_MAINTAINER_MODE
+#Disable maintainer mode, see http://www.gnu.org/software/hello/manual/automake/maintainer_002dmode.html
+#AM_MAINTAINER_MODE
 LT_PREREQ([2.2.6])
 LT_INIT()
 
 # GNOME_COMPILE_WARNINGS(maximum)
 
-# Determine whether to compile or not with debug settings. 
+# Determine whether to compile or not with debug settings.
 # Essentially this just disables compiler optimizations.
-AC_ARG_ENABLE([debug-mode], 
-	      [AS_HELP_STRING([--enable-debug-mode],[build with debug settings (no optimization, test coverage) ])],
-	      [AM_CFLAGS="$AM_CFLAGS -DDEBUG -rdynamic -ggdb -g -Wall" AM_CPPFLAGS="$AM_CPPFLAGS -DDEBUG" enable_debug=yes],
-	      [enable_debug=no])
+AC_ARG_ENABLE([debug-mode],
+              [AS_HELP_STRING([--enable-debug-mode],[build with debug settings (no optimization, test coverage) ])],
+              [enable_debug=yes],
+              [enable_debug=no])
 AC_MSG_CHECKING(whether to compile or not with DEBUG settings)
+
 if test "x$enable_debug" = "xyes"; then
-	AC_MSG_RESULT(yes)
-	# remove optimization settings from CFLAGS
-	CXXFLAGS=[`echo "$CXXFLAGS" | $SED -e 's/-O[0-9]*//g'`]
-	CFLAGS=[`echo "$CFLAGS" | $SED -e 's/-O[0-9]*//g'`]
-	AC_SUBST([AM_CFLAGS])
-	AC_SUBST([AM_CXXFLAGS])
-	AC_DEFINE([DEBUG], 
-		  [],
-		  [build with debug settings (no optimization, test coverage)])
+        AC_MSG_RESULT(yes)
+
+        # remove optimization settings from CFLAGS
+        AM_CFLAGS="[`echo "$AM_CFLAGS" | $SED -e 's/-O[0-9]*//g'`]"
+        AM_CXXFLAGS="[`echo "$AM_CXXFLAGS" | $SED -e 's/-O[0-9]*//g'`]"
+
+        #Add our compilation settings
+        AM_CPPFLAGS="$AM_CPPFLAGS -DDEBUG"
+        AM_CXXFLAGS="$AM_CXXFLAGS -rdynamic -ggdb -g -O0"
+        AM_CXXFLAGS="$AM_CXXFLAGS -Wall -Wno-uninitialized -fstack-protector-all"
+        
+        AC_SUBST([AM_CFLAGS])
+        AC_SUBST([AM_CXXFLAGS])
+        AC_DEFINE([DEBUG],
+                [],
+                [build with debug settings (no optimization, test coverage)])
 else
-	AC_MSG_RESULT(no)
+        AC_MSG_RESULT(no)
+
+        AM_CXXFLAGS="$AM_CXXFLAGS -Wall -Wno-uninitialized -fstack-protector-all -O2"
+        AC_SUBST([AM_CXXFLAGS])
 fi
 
 
 # Determine whether to compile or not with GNOME 3 compilation warnings.
 # This introduces some compatibility flags.
 AC_ARG_ENABLE([gnome3-compat-mode],
-			  [AS_HELP_STRING([--enable-gnome3-compat-mode],[build with gnome3 warnings ])],
-			  [AM_CFLAGS="$AM_CFLAGS -DG_DISABLE_DEPRECATED -DG_DISABLE_SINGLE_INCLUDES -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGDK_DISABLE_SINGLE_INCLUDES -DGTK_DISABLE_SINGLE_INCLUDES" 
-			   AM_CXXFLAGS="$AM_CXXFLAGS -DG_DISABLE_DEPRECATED -DG_DISABLE_SINGLE_INCLUDES -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGDK_DISABLE_SINGLE_INCLUDES -DGTK_DISABLE_SINGLE_INCLUDES" 
-			   enable_gnome3_compat=yes],
-			  [enable_gnome3_compat=no])
+              [AS_HELP_STRING([--enable-gnome3-compat-mode],[build with gnome3 warnings ])],
+              [AM_CFLAGS="$AM_CFLAGS -DG_DISABLE_DEPRECATED -DG_DISABLE_SINGLE_INCLUDES -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGDK_DISABLE_SINGLE_INCLUDES -DGTK_DISABLE_SINGLE_INCLUDES"
+               AM_CXXFLAGS="$AM_CXXFLAGS -DG_DISABLE_DEPRECATED -DG_DISABLE_SINGLE_INCLUDES -DGDK_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED -DGDK_DISABLE_SINGLE_INCLUDES -DGTK_DISABLE_SINGLE_INCLUDES"
+               enable_gnome3_compat=yes],
+              [enable_gnome3_compat=no])
 AC_MSG_CHECKING(whether to compile or not with GNOME3 settings)
 if test "x$enable_gnome3_compat" = "xyes"; then
-	AC_MSG_RESULT(yes)
-	AC_SUBST([AM_CFLAGS])
-	AC_SUBST([AM_CXXFLAGS])
-	AC_DEFINE([GNOME3_COMPAT_MODE],
-			  [],
-			  [build with gnome3 warnings])
+        AC_MSG_RESULT(yes)
+        AC_SUBST([AM_CFLAGS])
+        AC_SUBST([AM_CXXFLAGS])
+        AC_DEFINE([GNOME3_COMPAT_MODE],
+                [],
+                [build with gnome3 warnings])
 else
-	AC_MSG_RESULT(no)
+        AC_MSG_RESULT(no)
 fi
 
-################################################################################
-#		Checks for library functions.
-################################################################################
+AC_ARG_ENABLE(gcov,
+              [AS_HELP_STRING([--enable-gcov],[turn on code coverage analysis tools])],
+              [enable_gcov=yes],
+              [enable_gcov=no])
+AC_MSG_CHECKING(whether to compile or not with code coverage settings)
 
+# Check for --enable-gcov and add appropriate flags for gcc
+# Note that these extra switches are NOT applied to the loader
+if test "x$enable_gcov" = "xyes"; then
+        AC_MSG_RESULT(yes)
+        # Turn off optimization so code coverage tool
+        # can get accurate line numbers
+        AM_CFLAGS="[`echo "$AM_CFLAGS" | $SED -e 's/-O[0-9]*//g'`]"
+        AM_CXXFLAGS="[`echo "$AM_CXXFLAGS" | $SED -e 's/-O[0-9]*//g'`]"
+        
+        #Add our compilation settings
+        AM_CPPFLAGS="$AM_CPPFLAGS -DGCOV"
+        AM_CXXFLAGS="$AM_CXXFLAGS -fprofile-arcs -ftest-coverage"
+        
+        AC_SUBST([AM_CFLAGS])
+        AC_SUBST([AM_CXXFLAGS])
+        AC_DEFINE([GCOV],
+                  [],
+                  [build with gcov settings (test coverage)])
+else
+        AC_MSG_RESULT(no)
+        AC_SUBST([AM_CXXFLAGS])
+fi
+
+AC_TYPE_SIZE_T
+AC_FUNC_MALLOC
+AC_FUNC_REALLOC
 
 ################################################################################
-#		Output files
+#        Checks for library functions.
+################################################################################
+AC_C_INLINE
+
+AC_CHECK_FUNCS([memset])
+AC_CHECK_FUNCS([setenv])
+
+################################################################################
+#        Output files
 ################################################################################
 
 
@@ -238,35 +296,38 @@ src/Makefile
 AC_OUTPUT
 
 ################################################################################
-#		Developer info
+#        Developer info
 ################################################################################
-
 echo ""
 echo "======================================================================"
 echo ""
 echo "<$PACKAGE_NAME> configuration:"
-echo " C compiler			: $CC"
-echo " C++ compiler			: $CXX"
-echo " Prefix				: $prefix"
-echo " AM_CFLAGS		: $AM_CFLAGS"
-##echo " AM_CPPFLAGS	: $AM_CPPFLAGS"
-echo " CFLAGS				: $CFLAGS"
-echo " CPPFLAGS			: $CPPFLAGS"
-echo " CXXFLAGS			: $CXXFLAGS"
-##echo " AM_CXXFLAGS	: $AM_CXXFLAGS"
-echo " CXXCOMPILE			: $CXXCOMPILE"
-echo " CXXLINK			: $CXXLINK"
+echo " C compiler       : $CC"
+echo " Prefix           : $prefix"
+echo " AM_CPPFLAGS      : $AM_CPPFLAGS"
+echo " CPPFLAGS         : $CPPFLAGS"
+echo " CXXCPP           : $CXXCPP"
+echo " AM_CFLAGS        : $AM_CFLAGS"
+echo " OLD_CFLAGS       : $OLD_CFLAGS"
+echo " CFLAGS           : $CFLAGS"
+echo " C++ compiler     : $CXX"
+echo " AM_CXXFLAGS      : $AM_CXXFLAGS"
+echo " CXXFLAGS         : $CXXFLAGS"
+echo " CXXCOMPILE       : $CXXCOMPILE"
+echo " CXXLINK          : $CXXLINK"
+echo " LDFLAGS          : $LDFLAGS"
+echo " LIBS             : $LIBS"
+echo " LIBS             : $GCOV"
 echo ""
-echo " DEFS				: $DEFS"
-echo " LDFLAGS			: $LDFLAGS"
-echo " LIBS				: $LIBS"
+echo " DEFS             : $DEFS"
 echo ""
-echo " LIBINTL			: $LIBINTL"
+echo " LIBINTL          : $LIBINTL"
 echo ""
 echo "<$PACKAGE_NAME> will be compiled with the following features:"
-echo "  GNOME library support   : $enable_gnome"
-echo "  DEBUG mode   : $enable_debug"
-echo "  GNOME3 compatiblity mode   : $enable_gnome3_compat"
+echo "  GNOME library support       : $enable_gnome"
+echo "  DEBUG mode                  : $enable_debug"
+echo "  GNOME3 compatiblity mode    : $enable_gnome3_compat"
+echo "  GCOV code coverage          : $enable_gcov"
 echo ""
 echo "The following options will be passed to the compiler:"
 echo "  GTKMM_REQUIRED: $GTKMM_REQUIRED"
@@ -296,4 +357,3 @@ echo "  LIBGNOME_LIBS: $LIBGNOME_LIBS"
 echo ""
 echo "======================================================================"
 echo ""
-

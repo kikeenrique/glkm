@@ -23,6 +23,10 @@
 #include "GlkmNetlinkClient.hpp"
 #include "MessageNetlink.hpp"
 
+/**
+ * @brief ...
+ *
+ **/
 GlkmNetlinkClient::GlkmNetlinkClient()
                 : m_socketnl (NETLINK_GLKM)
 {
@@ -34,19 +38,27 @@ GlkmNetlinkClient::GlkmNetlinkClient()
         }
 }
 
+/**
+ * @brief ...
+ *
+ * @param processes ...
+ * @return void
+ **/
 void GlkmNetlinkClient::GetAllProcesses (std::vector<std::string> &processes)
 {
         std::cout << "GlkmNetlinkClient::GetAllProcesses [BEGIN]" << std::endl;
         //Prepare message payload and send
         MessageNetlink messageOut (NETLINK_GLKM_MSG_GetAllProcesses);
-//messageOut.addAttr()
-        ssize_t len_send = m_socketnl.send (messageOut);
+//         int len_send = m_socketnl.send (messageOut);
+         int len_send = m_socketnl.send_auto (messageOut);
+
         if (len_send >= 0)
         {
                 std::cout << "GlkmNetlinkClient::GetAllProcesses send Message OK len:" << len_send << std::endl;
                 MessageNetlink messageIn (NETLINK_GLKM_MSG_GetAllProcesses);
                 //receive answer and check for errors
-                ssize_t len_recv = m_socketnl.recv (messageIn);
+                int len_recv = m_socketnl.recv (messageIn);
+
                 if (len_recv >= 0)
                 {
                         std::cout << "GlkmNetlinkClient::GetAllProcesses recv Message OK len:" << len_recv << std::endl;
@@ -63,5 +75,10 @@ void GlkmNetlinkClient::GetAllProcesses (std::vector<std::string> &processes)
                 std::cerr << "GlkmNetlinkClient::GetAllProcesses send Message ERROR" << std::endl;
                 std::cerr << errno << ":" << strerror (errno) << std::endl;
         }
+
         std::cout << "GlkmNetlinkClient::GetAllProcesses [END]" << std::endl;
 }
+
+
+
+

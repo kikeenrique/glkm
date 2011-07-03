@@ -1,10 +1,10 @@
-format 58
+format 72
 "glkm-view" // glkm::glkm-view
-  revision 64
+  revision 66
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
-  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
   //use case diagram settings
   package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
   //sequence diagram settings
@@ -30,7 +30,7 @@ format 58
   cpp_src_dir "src-glkm/"
   classview 128092 "glkm-view class view"
     //class diagram settings
-    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+    draw_all_relations default hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
     //collaboration diagram settings
     show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
     //object diagram settings
@@ -46,7 +46,7 @@ format 58
     show_infonote default drawing_language default show_stereotype_properties default
     associated_deployment_view deploymentview_ref 128092 // glkm-view deployment view
     classdiagram 128092 "glkm-view class diagram"
-      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations no hide_attributes default hide_operations default hide_getset_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_relation_visibility default show_infonote default shadow default show_stereotype_properties default
       size A1-Landscape
     end
 
@@ -81,10 +81,12 @@ ${inlines}
 
       operation 128040 "MainWindow"
 	public explicit_return_type ""
-	nparams 0
-	cpp_decl "	${comment}${inline}${name}${(}${)}${volatile}${throw};
+	nparams 2
+	  param in name "cobject" explicit_type "BaseObjectType"
+	  param in name "refBuilder" type class_ref 133070 // RefPtrBuilder
+	cpp_decl "	${comment}${inline}${name}${(}${t0} * ${p0}${v0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
-	cpp_def "${comment}${inline}${class}::${name}${(}${)}${volatile}${throw} {
+	cpp_def "${comment}${inline}${class}::${name}${(}const ${t0} & ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
   ${body}}
 "
 	
@@ -107,8 +109,8 @@ ${inlines}
 	
       end
 
-      attribute 128168 "_refPtrGlademmXml"
-	protected type class_ref 133070 // RefPtrGladeXml
+      attribute 128168 "_refPtrBuilder"
+	protected type class_ref 133070 // RefPtrBuilder
 	multiplicity "1"
 	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -474,7 +476,7 @@ ${inlines}
 	public explicit_return_type ""
 	nparams 2
 	  param in name "cobject" explicit_type "BaseObjectType"
-	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	  param in name "refBuilder" type class_ref 133070 // RefPtrBuilder
 	cpp_decl "	${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
@@ -515,8 +517,8 @@ ${inlines}
 	
       end
 
-      attribute 141448 "_refPtrGlademmXml"
-	protected type class_ref 133070 // RefPtrGladeXml
+      attribute 141448 "_refPtrBuilder"
+	protected type class_ref 133070 // RefPtrBuilder
 	multiplicity "1"
 	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -586,7 +588,7 @@ ${inlines}
 	public explicit_return_type ""
 	nparams 2
 	  param in name "cobject" explicit_type "BaseObjectType"
-	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	  param in name "refBuilder" type class_ref 133070 // RefPtrBuilder
 	cpp_decl "	${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
@@ -662,8 +664,8 @@ ${inlines}
 	get_of_relation classrelation_ref 157704 // _pTreeViewHost (<unidirectional association>)
       end
 
-      attribute 142600 "_refPtrGlademmXml"
-	protected type class_ref 133070 // RefPtrGladeXml
+      attribute 142600 "_refPtrBuilder"
+	protected type class_ref 133070 // RefPtrBuilder
 	multiplicity "1"
 	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -726,7 +728,7 @@ ${inlines}
 	public explicit_return_type ""
 	nparams 2
 	  param in name "cobject" explicit_type "BaseObjectType"
-	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	  param in name "refBuilder" type class_ref 133070 // RefPtrBuilder
 	cpp_decl "	${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
@@ -782,8 +784,8 @@ ${inlines}
 	
       end
 
-      attribute 128718 "_refPtrGlademmXml"
-	protected type class_ref 133070 // RefPtrGladeXml
+      attribute 128718 "_refPtrBuilder"
+	protected type class_ref 133070 // RefPtrBuilder
 	multiplicity "1"
 	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -1094,7 +1096,7 @@ ${inlines}
 	public explicit_return_type ""
 	nparams 2
 	  param in name "cobject" explicit_type "BaseObjectType"
-	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	  param in name "refBuilder" type class_ref 133070 // RefPtrBuilder
 	cpp_decl "	${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
@@ -1120,8 +1122,8 @@ ${inlines}
 	
       end
 
-      attribute 131336 "_refPtrGlademmXml"
-	protected type class_ref 133070 // RefPtrGladeXml
+      attribute 131336 "_refPtrBuilder"
+	protected type class_ref 133070 // RefPtrBuilder
 	multiplicity "1"
 	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -1235,7 +1237,7 @@ ${inlines}
 	public explicit_return_type ""
 	nparams 2
 	  param in name "cobject" explicit_type "BaseObjectType"
-	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	  param in name "refBuilder" type class_ref 133070 // RefPtrBuilder
 	cpp_decl "	${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
@@ -1261,8 +1263,8 @@ ${inlines}
 	
       end
 
-      attribute 131464 "_refPtrGlademmXml"
-	protected type class_ref 133070 // RefPtrGladeXml
+      attribute 131464 "_refPtrBuilder"
+	protected type class_ref 133070 // RefPtrBuilder
 	multiplicity "1"
 	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -1420,7 +1422,7 @@ ${inlines}
 	  public explicit_return_type ""
 	  nparams 2
 	    param in name "cobject" explicit_type "BaseObjectType"
-	    param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	    param in name "refGlade" type class_ref 133070 // RefPtrBuilder
 	  cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
 	  cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
@@ -1446,8 +1448,8 @@ ${inlines}
 	  
 	end
 
-	attribute 137608 "_refPtrGlademmXml"
-	  protected type class_ref 133070 // RefPtrGladeXml
+	attribute 137608 "_refPtrBuilder"
+	  protected type class_ref 133070 // RefPtrBuilder
 	  multiplicity "1"
 	  cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -1596,7 +1598,7 @@ ${inlines}
 	public explicit_return_type ""
 	nparams 2
 	  param inout name "cobject" explicit_type "BaseObjectType"
-	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	  param in name "refBuilder" type class_ref 133070 // RefPtrBuilder
 	cpp_decl "	${comment}${inline}${name}${(}${t0} * ${p0}${v0}, const ${t1} & ${p1}${v1}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${throw} {
@@ -1651,8 +1653,8 @@ ${inlines}
 	
       end
 
-      attribute 128334 "_refPtrGlademmXml"
-	protected type class_ref 133070 // RefPtrGladeXml
+      attribute 128334 "_refPtrBuilder"
+	protected type class_ref 133070 // RefPtrBuilder
 	multiplicity "1"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -1698,7 +1700,7 @@ ${inlines}
 	public explicit_return_type ""
 	nparams 2
 	  param in name "cobject" explicit_type "BaseObjectType"
-	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	  param in name "refBuilder" type class_ref 133070 // RefPtrBuilder
 	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
@@ -1724,8 +1726,8 @@ ${inlines}
 	
       end
 
-      attribute 128206 "_refPtrGlademmXml"
-	protected type class_ref 133070 // RefPtrGladeXml
+      attribute 128206 "_refPtrBuilder"
+	protected type class_ref 133070 // RefPtrBuilder
 	multiplicity "1"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -1807,7 +1809,7 @@ ${inlines}
 	public explicit_return_type ""
 	nparams 2
 	  param in name "cobject" explicit_type "BaseObjectType"
-	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	  param in name "refBuilder" type class_ref 133070 // RefPtrBuilder
 	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
@@ -1878,8 +1880,8 @@ ${inlines}
 	
       end
 
-      attribute 128005 "_refPtrGlademmXml"
-	protected type class_ref 133070 // RefPtrGladeXml
+      attribute 128005 "_refPtrBuilder"
+	protected type class_ref 133070 // RefPtrBuilder
 	multiplicity "1"
 	cpp_decl "    ${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -1915,11 +1917,11 @@ ${inlines}
       end
     end
 
-    class 133070 "RefPtrGladeXml"
+    class 133070 "RefPtrBuilder"
       visibility protected stereotype "typedef" base_type class_ref 129614 // RefPtr
       nactuals 1
       actual class class_ref 129614 // RefPtr
-        rank 0 value class_ref 132942 // Xml
+        rank 0 value class_ref 515592 // Builder
       cpp_decl "${comment}typedef ${type} ${name};
 "
       java_decl ""
@@ -2184,7 +2186,7 @@ ${inlines}
 	public explicit_return_type ""
 	nparams 2
 	  param in name "cobject" explicit_type "BaseObjectType"
-	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	  param in name "refBuilder" type class_ref 133070 // RefPtrBuilder
 	cpp_decl "	${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
@@ -2240,8 +2242,8 @@ ${inlines}
 	
       end
 
-      attribute 155400 "_refPtrGlademmXml"
-	protected type class_ref 133070 // RefPtrGladeXml
+      attribute 155400 "_refPtrBuilder"
+	protected type class_ref 133070 // RefPtrBuilder
 	multiplicity "1"
 	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -2307,7 +2309,7 @@ ${inlines}
 	public explicit_return_type ""
 	nparams 2
 	  param in name "cobject" explicit_type "BaseObjectType"
-	  param in name "refGlade" type class_ref 133070 // RefPtrGladeXml
+	  param in name "refBuilder" type class_ref 133070 // RefPtrBuilder
 	cpp_decl "	${comment}${inline}${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw};
 "
 	cpp_def "${comment}${inline}${class}::${name}${(}${t0} * ${p0}, const ${t1} & ${p1}${)}${volatile}${throw} {
@@ -2362,8 +2364,8 @@ ${inlines}
 	
       end
 
-      attribute 155528 "_refPtrGlademmXml"
-	protected type class_ref 133070 // RefPtrGladeXml
+      attribute 155528 "_refPtrBuilder"
+	protected type class_ref 133070 // RefPtrBuilder
 	multiplicity "1"
 	cpp_decl "	${comment}${static}${mutable}${volatile}${const}${type} ${name}${value};
 "

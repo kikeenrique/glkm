@@ -74,7 +74,7 @@ void IconViewHosts::on_item_activated(const Gtk::TreeModel::Path & path) {
 }
 
 void IconViewHosts::on_selection_changed() {
-	typedef std::list<Gtk::TreeModel::Path> type_list_paths;
+	typedef std::vector<Gtk::TreeModel::Path> type_list_paths;
 	type_list_paths selected = get_selected_items();
 	
 	if(!selected.empty()){

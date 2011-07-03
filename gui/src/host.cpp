@@ -38,8 +38,8 @@ Host::Host(const Host & source) :
 	_hostname(source._hostname),
 	_ip(source._ip),
 	_description(source._description),
-	_hal_controller(source._hal_controller),
-	_filesystems(source._filesystems)
+	_filesystems(source._filesystems),
+    _hal_controller(source._hal_controller)
 {
 	PRINTD ("Host() copy ");
 }

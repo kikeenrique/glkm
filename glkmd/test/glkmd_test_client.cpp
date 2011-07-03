@@ -87,19 +87,19 @@ int main(int argc, char** argv)
     }
 
     // End CORBA
-	if (!CORBA::is_nil(orb))
+    if (!CORBA::is_nil(orb))
     {
-		try
+        try
         {
             orb->shutdown(false);
-			orb->destroy();
-			std::cout << "Ending CORBA..." << std::endl;
-		}
+            orb->destroy();
+            std::cout << "Ending CORBA..." << std::endl;
+        }
         catch (const CORBA::Exception& e)
-		{
-			std::cout << "ORB destroy failed:" << e._name() << std::endl;
-			return 1;
-		}
+        {
+            std::cout << "ORB destroy failed:" << e._name() << std::endl;
+            return 1;
+        }
    }
 
     return 0;

@@ -41,7 +41,8 @@
 #include <dbusmm/types.h>
 
 /* For testing propose use the local (not installed) glade file */
-#define GLADE_FILE  PACKAGE_DATA_DIR"/glkmbuilder.glade"
+//#define GLADE_FILE  PACKAGE_DATA_DIR"/glkmbuilder.glade"
+#define GLADE_FILE  Glib::getenv ("GLKM_GLADE")
 
 
 typedef std::vector<DBus::String> VectorString;
@@ -56,6 +57,6 @@ typedef Glib::RefPtr<Gtk::ListStore> RefPtrListStore;
 typedef Gtk::TreeModelColumn<std::string> TreeModelColumnString;
 typedef Glib::RefPtr<Gdk::Pixbuf> RefPtrPixbuf;
 typedef Gtk::TreeModelColumn<RefPtrPixbuf> TreeModelColumnRefPtrPixbuf;
-typedef std::list<Gtk::TreeModel::Path> ListTreeModelPath;
+typedef std::vector<Gtk::TreeModel::Path> ListTreeModelPath;
 
 #endif // _UTILS_HPP

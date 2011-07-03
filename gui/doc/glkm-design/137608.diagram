@@ -1,4 +1,4 @@
-format 66
+format 72
 
 classinstancecanvas 128008 classinstance_ref 137608 // _refPtr_MainLoop
   xyz 113 4 2000 life_line_z 2000
@@ -47,67 +47,67 @@ classinstancecanvas 135560 classinstance_ref 138504 // filter
   xyz 1429 892 2005 life_line_z 2000
 end
 durationcanvas 129160 classinstance_ref 128264 // main:main
-  xyzwh 41 69 2010 11 1166
+  xyzwh 46 69 2010 11 1166
 end
 durationcanvas 129288 classinstance_ref 128776 // :MainLoop
   xyzwh 353 218 2010 11 34
 end
 durationcanvas 129672 classinstance_ref 128136 // dispatcher:BusDispatcher
-  xyzwh 426 273 2010 11 26
+  xyzwh 466 273 2010 11 26
 end
 durationcanvas 129928 classinstance_ref 128008 // _refPtr_MainLoop:MainLoopRefPtr
-  xyzwh 132 182 2010 11 26
+  xyzwh 194 182 2010 11 26
 end
 durationcanvas 130312 classinstance_ref 128136 // dispatcher:BusDispatcher
-  xyzwh 426 327 2010 11 25
+  xyzwh 466 327 2010 11 25
 end
 durationcanvas 130696 classinstance_ref 130568 // * hald_connection:Connection
-  xyzwh 588 367 2010 11 26
+  xyzwh 639 367 2010 11 26
 end
 durationcanvas 131080 classinstance_ref 130952 // * hal_manager:HalManagerProxy
-  xyzwh 776 412 2010 11 26
+  xyzwh 834 412 2010 11 26
 end
 durationcanvas 131848 classinstance_ref 131336 // * device_procmon:HalDeviceProxy
-  xyzwh 1194 702 2010 11 35
+  xyzwh 1188 702 2010 11 35
 end
 durationcanvas 133128 classinstance_ref 132872 // udi:Path
-  xyzwh 1069 573 2010 11 25
+  xyzwh 1070 573 2010 11 25
 end
 durationcanvas 133896 classinstance_ref 131336 // * device_procmon:HalDeviceProxy
-  xyzwh 1194 906 2015 11 25
+  xyzwh 1188 906 2015 11 25
 end
 durationcanvas 134152 classinstance_ref 131336 // * device_procmon:HalDeviceProxy
-  xyzwh 1194 970 2015 11 26
+  xyzwh 1188 970 2015 11 26
 end
 durationcanvas 134536 classinstance_ref 134408 // server_lkm:LinuxKernelMonitorServer
-  xyzwh 1304 1013 2010 11 46
+  xyzwh 1298 1013 2010 11 46
 end
 durationcanvas 134792 classinstance_ref 134408 // server_lkm:LinuxKernelMonitorServer
-  xyzwh 1304 1100 2010 11 33
+  xyzwh 1298 1100 2010 11 33
 end
 durationcanvas 135048 classinstance_ref 128008 // _refPtr_MainLoop:MainLoopRefPtr
-  xyzwh 132 1211 2010 11 34
+  xyzwh 194 1211 2010 11 34
 end
 durationcanvas 135304 classinstance_ref 128776 // :MainLoop
   xyzwh 353 1215 2010 11 34
 end
 durationcanvas 135688 classinstance_ref 130568 // * hald_connection:Connection
-  xyzwh 588 1044 2010 11 25
+  xyzwh 639 1044 2010 11 25
 end
 durationcanvas 135944 classinstance_ref 130952 // * hal_manager:HalManagerProxy
-  xyzwh 776 448 2015 11 348
+  xyzwh 834 448 2015 11 348
   overlappingdurationcanvas 132104
-    xyzwh 782 492 2020 11 43
+    xyzwh 840 492 2020 11 43
   end
 end
 durationcanvas 136072 classinstance_ref 132616 // devices:VectorString
-  xyzwh 978 457 2015 11 25
+  xyzwh 976 457 2015 11 25
 end
 durationcanvas 136328 classinstance_ref 132872 // udi:Path
-  xyzwh 1069 606 2015 11 24
+  xyzwh 1070 606 2015 11 24
 end
 durationcanvas 136584 classinstance_ref 135560 // filter:MessageSlot
-  xyzwh 1472 1025 2010 11 25
+  xyzwh 1470 1025 2010 11 25
 end
 msg 129416 synchronous
   from durationcanvas_ref 129160

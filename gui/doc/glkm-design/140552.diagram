@@ -1,4 +1,4 @@
-format 58
+format 72
 
 classinstancecanvas 128008 classinstance_ref 130824 // c
   xyz 59 4 2000 life_line_z 2000
@@ -18,9 +18,9 @@ classinstance 130952 class_ref 181000 // NotebookPageProcess
   name "tmp_pageprocess"   xyz 1546 450 2010 life_line_z 2000
 classinstance 131336 class_ref 182152 // type_signal_process_monitor_begin
   name "process.signal_process_monitor_begin"   xyz 798 449 2010 life_line_z 2000
-classinstance 133512 class_ref 133070 // RefPtrGladeXml
+classinstance 133512 class_ref 133070 // RefPtrBuilder
   name "_refPtrGlademmXml2"   mortal  xyz 1281 447 2010 life_line_z 2000
-classinstance 133640 class_ref 132942 // Xml
+classinstance 133640 class_ref 515592 // Builder
   name ""   xyz 1488 411 2015 life_line_z 2000
 classinstance 135944 class_ref 183432 // type_signal_process_updated
   name "process.signal_process_updated"   xyz 1591 408 2000 life_line_z 2000
@@ -40,55 +40,55 @@ textcanvas 137992 "selected_iterator!=NULL"
 classinstance 138248 class_ref 179208 // Row
   name ""   xyz 925 4 2000 life_line_z 2000
 durationcanvas 128648 classinstance_ref 128008 // c:Controller
-  xyzwh 90 73 2010 10 827
+  xyzwh 85 73 2010 11 827
 end
 durationcanvas 128776 classinstance_ref 128136 // _pMainWindow->_pNotebooHosts:NotebookHosts
-  xyzwh 249 106 2010 8 38
+  xyzwh 233 106 2010 11 39
 end
 durationcanvas 129288 classinstance_ref 128392 // current_page:NotebookPageHost
-  xyzwh 398 280 2010 6 40
+  xyzwh 386 280 2010 11 40
 end
 durationcanvas 129928 classinstance_ref 129672 // _pTreeViewHost:TreeViewHost
-  xyzwh 522 166 2010 6 39
+  xyzwh 510 166 2010 11 39
 end
 durationcanvas 131080 classinstance_ref 128520 // present_host:Host
-  xyzwh 822 396 2010 8 37
+  xyzwh 817 396 2010 11 39
 end
 durationcanvas 131592 classinstance_ref 131336 // process.signal_process_monitor_begin:type_signal_process_monitor_begin
-  xyzwh 997 501 2010 8 44
+  xyzwh 973 501 2010 11 44
 end
 durationcanvas 132104 classinstance_ref 130824 // _pNotebookProcesses:NotebookProcesses
-  xyzwh 1215 519 2010 11 332
+  xyzwh 1202 519 2010 11 332
   overlappingdurationcanvas 133768
-    xyzwh 1221 568 2020 10 251
+    xyzwh 1208 568 2020 11 251
     overlappingdurationcanvas 134024
-      xyzwh 1226 754 2030 11 25
+      xyzwh 1214 754 2030 11 25
     end
     overlappingdurationcanvas 134280
-      xyzwh 1226 787 2030 11 25
+      xyzwh 1214 787 2030 11 25
     end
   end
 end
-durationcanvas 134536 classinstance_ref 133512 // _refPtrGlademmXml2:RefPtrGladeXml
-  xyzwh 1380 578 2010 8 29
+durationcanvas 134536 classinstance_ref 133512 // _refPtrGlademmXml2:RefPtrBuilder
+  xyzwh 1362 578 2010 11 29
 end
-durationcanvas 134792 classinstance_ref 133512 // _refPtrGlademmXml2:RefPtrGladeXml
-  xyzwh 1380 602 2010 8 31
+durationcanvas 134792 classinstance_ref 133512 // _refPtrGlademmXml2:RefPtrBuilder
+  xyzwh 1362 602 2010 11 31
 end
-durationcanvas 135048 classinstance_ref 133512 // _refPtrGlademmXml2:RefPtrGladeXml
-  xyzwh 1379 637 2010 10 29
+durationcanvas 135048 classinstance_ref 133512 // _refPtrGlademmXml2:RefPtrBuilder
+  xyzwh 1362 637 2010 11 29
 end
-durationcanvas 135304 classinstance_ref 133640 // :Xml
-  xyzwh 1509 606 2010 8 29
+durationcanvas 135304 classinstance_ref 133640 // :Builder
+  xyzwh 1507 606 2010 11 29
 end
-durationcanvas 135560 classinstance_ref 133640 // :Xml
-  xyzwh 1510 646 2010 6 57
+durationcanvas 135560 classinstance_ref 133640 // :Builder
+  xyzwh 1507 646 2010 11 57
 end
 durationcanvas 136072 classinstance_ref 135944 // process.signal_process_updated:type_signal_process_updated
-  xyzwh 1759 709 2010 9 28
+  xyzwh 1739 709 2010 11 28
 end
 durationcanvas 137224 classinstance_ref 136968 // refptr_treeselection:TreeSelection
-  xyzwh 643 215 2010 9 37
+  xyzwh 630 215 2010 11 37
 end
 msg 128904 synchronous
   from durationcanvas_ref 128648
@@ -181,21 +181,17 @@ msg 135176 synchronous
 msg 135432 synchronous
   from durationcanvas_ref 134792
   to durationcanvas_ref 135304
-  yz 611 2015 msg operation_ref 192392 // "create(in filename : string, in root : ustring = Glib::ustring(), in domain : ustring = Glib::ustring()) : RefPtr"
+  yz 611 2015 msg operation_ref 1271048 // "create_from_file(in filename : string) : RefPtr"
   show_full_operations_definition default drawing_language default
-  label_xy 1432 598
+  args "GLADE_FILE,\"notebook_hosts-notebook_processes-vbox\""
+  label_xy 1398 597
 msg 135688 synchronous
   from durationcanvas_ref 135048
   to durationcanvas_ref 135560
-  yz 647 2015 msg operation_ref 192904 // "get_widget_derived(in name : ustring, out widget : T_Widget) : T_Widget"
+  yz 647 2015 msg operation_ref 1270792 // "get_widget_derived(in name : ustring, out widget : T_Widget) : void"
   show_full_operations_definition default drawing_language default
+  args "\"notebook_hosts-notebook_processes-vbox\",tmp_pageprocess"
   label_xy 1397 634
-msg 135816 return
-  from durationcanvas_ref 135560
-  to durationcanvas_ref 133768
-  yz 688 2025 explicitmsg "tmp_pageprocess"
-  show_full_operations_definition default drawing_language default
-  label_xy 1313 675
 msg 136200 synchronous
   from durationcanvas_ref 133768
   to durationcanvas_ref 136072

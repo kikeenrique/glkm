@@ -1,9 +1,9 @@
 ################################################################################
 #               Prelude.
 ################################################################################
-AC_PREREQ([2.61])
+AC_PREREQ(2.65)
 
-AC_INIT([linux-kernel-monitor], [0.3], [http://eldemonionegro.com/glkm/newticket], [linux-kernel-monitor])
+AC_INIT([linux-kernel-monitor],[0.3],[http://eldemonionegro.com/glkm/newticket],[linux-kernel-monitor])
 
 AC_CONFIG_AUX_DIR([config-aux])
 AC_CONFIG_MACRO_DIR([config-aux/m4])
@@ -19,9 +19,16 @@ AC_SUBST([LIBDBUSMM_REQUIRED])
 
 AM_INIT_AUTOMAKE([gnu dist-bzip2 -Wall -Werror])
 
-AC_ISC_POSIX
+AC_SEARCH_LIBS([strerror],[cposix])
 AC_PROG_CXX
-AM_PROG_CC_STDC
+AC_PROG_CC
+AC_DIAGNOSE([obsolete],[AM_PROG_CC_STDC:
+	your code should no longer depend upon `am_cv_prog_cc_stdc', but upon
+	`ac_cv_prog_cc_stdc'.  Remove this warning and the assignment when
+	you adjust the code.  You can also remove the above call to
+	AC_PROG_CC if you already called it elsewhere.])
+am_cv_prog_cc_stdc=$ac_cv_prog_cc_stdc
+
 AC_HEADER_STDC
 
 AC_PATH_PROG([PKGCONFIG_CONFIG], [pkg-config],[no])
@@ -72,7 +79,7 @@ AC_HEADER_STDC
 AC_CONFIG_HEADERS([config.h])
 
 AM_MAINTAINER_MODE
-AM_PROG_LIBTOOL
+LT_INIT
 
 ################################################################################
 #               Checks for library functions.

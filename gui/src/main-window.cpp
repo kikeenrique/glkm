@@ -304,4 +304,5 @@ void MainWindow::on_clicked_toolbar_synchronize(){
 bool  MainWindow::window_debug_on_delete_event(GdkEventAny * g) {
 	_pCheckMenuItemViewDebug->set_active(false);
 	PRINTD("window_debug_on_delete_event");
+    return true;
 }

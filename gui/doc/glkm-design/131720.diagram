@@ -1,151 +1,151 @@
-format 58
+format 72
 
 classinstance 128008 class_ref 128092 // MainWindow
-  name ""   xyz 3 5 2000 life_line_z 2000
+  name ""   xyz 3.1 5.3 2000 life_line_z 2000
 classinstancecanvas 128392 classinstance_ref 130824 // c
-  xyz 94 5 2000 life_line_z 2000
+  xyz 93.5 5.3 2000 life_line_z 2000
 end
-classinstancecanvas 128776 classinstance_ref 131976 // _pNotebooHosts
-  xyz 328 149 2005 life_line_z 2000
+classinstancecanvas 128776 classinstance_ref 131976 // _pMainWindow->_pNotebooHosts
+  xyz 328.1 149.9 2005 life_line_z 2000
 end
 classinstancecanvas 129288 classinstance_ref 133384 // present_host
-  xyz 715 122 2000 life_line_z 5050
+  xyz 701.7 122.6 2000 life_line_z 5050
 end
 classinstancecanvas 129928 classinstance_ref 133512 // hal_controller
-  xyz 831 349 2000 life_line_z 4045
+  xyz 831.2 349.9 2000 life_line_z 4045
 end
 classinstancecanvas 130824 classinstance_ref 133640 // _hal_manager
-  xyz 1300 352 2005 life_line_z 4040
+  xyz 1299.9 352.6 2005 life_line_z 4040
 end
 classinstance 131208 class_ref 128317 // Connection
-  name "_connection"   xyz 1004 352 2005 life_line_z 4040
+  name "_connection"   xyz 1004.4 351.6 2005 life_line_z 4040
 classinstancecanvas 131592 classinstance_ref 133768 // _dispatcher
-  xyz 1145 352 2010 life_line_z 4040
+  xyz 1144.8 352.6 2010 life_line_z 4040
 end
 classinstancecanvas 133256 classinstance_ref 134024 // 
-  xyz 1837 547 4055 life_line_z 4040
+  xyz 1837 547.1 4055 life_line_z 4040
 end
 classinstancecanvas 133896 classinstance_ref 133896 // devices
-  mortal  xyz 1713 548 4060 life_line_z 10160
+  mortal  xyz 1713.4 548 4060 life_line_z 10160
 end
 fragment 134536 "loop"
-  xyzwh 1231 907 1990 671 153
+  xyzwh 1231.4 907.7 1990 671 153
 end
 textcanvas 134664 "it =devices.begin
 it!= devices.end
 ++it"
   xyzwh 1253 932 4040 116 49
 note 135304 "udi = *it"
-  xyzwh 1435 925 4055 63 35
+  xyzwh 1435.4 925.8 4055 63 35
 fragment 137864 "alt"
-  xyzwh 681 323 1970 1367 949
+  xyzwh 681.6 323.3 1970 1367 949
 end
 textcanvas 137992 "!connected"
-  xyzwh 678 368 5065 65 16
+  xyzwh 678 367 5065 65 16
 classinstance 142728 class_ref 153864 // NotebookPageHost
-  name "current_page"   xyz 455 113 2010 life_line_z 2000
+  name "current_page"   xyz 456.2 112.5 2010 life_line_z 2000
 classinstance 144520 class_ref 129853 // InterfaceProxy
-  name ""   xyz 1544 548 2000 life_line_z 2000
+  name ""   xyz 1543.6 548 2000 life_line_z 2000
 classinstance 144648 class_ref 129981 // ObjectProxy
   name ""   xyz 1635 548 2000 life_line_z 2000
 note 146184 "create as many devices as found that own our property.
 This should be just our fake device."
-  xyzwh 1149 799 4045 148 87
+  xyzwh 1148.8 799.8 4045 148 87
 note 147976 "TODO
 Take a look for timeouts"
-  color red  xyzwh 1453 443 2005 139 61
+  color red  xyzwh 1453.8 443.7 2005 139 61
 classinstance 148232 class_ref 128476 // TreeViewHost
-  name "_pTreeViewHost"   xyz 571 155 2000 life_line_z 2000
+  name "_pTreeViewHost"   xyz 571.2 155.3 2000 life_line_z 2000
 continuation 149128 "In use case show processes"
-  xyzwh 926 1336 2000 178 30
+  xyzwh 925.6 1336 2000 178 30
 classinstancecanvas 149768 classinstance_ref 139656 // _lkm_client
-  xyz 1864 361 2000 life_line_z 2000
+  xyz 1864.6 361.7 2000 life_line_z 2000
 end
 fragment 150536 "try"
-  color verylightorange xyzwh 714 402 1975 1316 849
+  color verylightorange xyzwh 713.9 402.4 1975 1316 849
 end
 fragment 150664 "try"
-  color verylightorange xyzwh 865 489 2005 338 80
+  color verylightorange xyzwh 864.7 489.2 2005 338 80
 end
 fragment 150792 "try"
-  xyzwh 868 1148 2005 1122 61
+  xyzwh 868.2 1148.2 2005 1122 61
 end
 classinstance 151304 class_ref 128348 // StatusBar
-  name ""   xyz 260 6 2000 life_line_z 2000
+  name ""   xyz 260 6.2 2000 life_line_z 2000
 durationcanvas 128136 classinstance_ref 128008 // :MainWindow
-  xyzwh 37 81 2010 10 65
+  xyzwh 34 81 2010 11 65
 end
-durationcanvas 128904 classinstance_ref 128776 // _pNotebooHosts:NotebookHosts
-  xyzwh 417 209 2010 10 49
+durationcanvas 128904 classinstance_ref 128776 // _pMainWindow->_pNotebooHosts:NotebookHosts
+  xyzwh 444 209 2010 11 49
 end
 durationcanvas 130184 classinstance_ref 129928 // hal_controller:HalController
-  xyzwh 904 425 4060 10 766
+  xyzwh 893 425 4060 11 766
 end
 durationcanvas 130952 classinstance_ref 130824 // _hal_manager:HalManagerProxy
-  xyzwh 1386 594 4050 8 485
+  xyzwh 1375 594 4050 11 485
   overlappingdurationcanvas 133000
-    xyzwh 1389 845 4060 11 44
+    xyzwh 1381 845 4060 11 44
   end
   overlappingdurationcanvas 145544
-    xyzwh 1389 712 4060 11 25
+    xyzwh 1381 712 4060 11 25
   end
   overlappingdurationcanvas 145800
-    xyzwh 1389 749 4060 11 25
+    xyzwh 1381 749 4060 11 25
   end
 end
 durationcanvas 131720 classinstance_ref 131592 // _dispatcher:BusDispatcher
-  xyzwh 1218 463 4050 5 31
+  xyzwh 1206 463 4050 11 31
 end
 durationcanvas 133384 classinstance_ref 133256 // :HalDeviceProxy
-  xyzwh 1881 979 4050 7 39
+  xyzwh 1875 979 4050 11 39
 end
 durationcanvas 143112 classinstance_ref 142728 // current_page:NotebookPageHost
-  xyzwh 550 272 2010 0 55
+  xyzwh 534 272 2010 11 55
 end
-durationcanvas 143496 classinstance_ref 129288 // present_host:Host
-  xyzwh 765 332 5060 8 910
+durationcanvas 143496 classinstance_ref 129288 // present_host:Host_dbus
+  xyzwh 758 332 5060 11 910
 end
 durationcanvas 143752 classinstance_ref 131592 // _dispatcher:BusDispatcher
-  xyzwh 1217 428 4050 8 29
+  xyzwh 1206 428 4050 11 29
 end
 durationcanvas 144008 classinstance_ref 131208 // _connection:Connection
-  xyzwh 1068 505 4050 10 50
+  xyzwh 1061 505 4050 11 50
   overlappingdurationcanvas 144264
-    xyzwh 1073 524 4060 11 25
+    xyzwh 1067 524 4060 11 25
   end
 end
 durationcanvas 144776 classinstance_ref 144520 // :InterfaceProxy
-  xyzwh 1585 616 2010 5 28
+  xyzwh 1578 616 2010 11 28
 end
 durationcanvas 145032 classinstance_ref 144648 // :ObjectProxy
-  xyzwh 1671 677 2010 5 29
+  xyzwh 1665 677 2010 11 29
 end
 durationcanvas 145288 classinstance_ref 133896 // devices:VectorString
-  xyzwh 1770 802 10170 7 268
+  xyzwh 1761 801 10170 11 268
 end
 durationcanvas 148360 classinstance_ref 148232 // _pTreeViewHost:TreeViewHost
-  xyzwh 655 288 2010 8 28
+  xyzwh 643 287 2010 11 28
 end
-durationcanvas 148872 classinstance_ref 129288 // present_host:Host
-  xyzwh 765 1330 5060 7 40
+durationcanvas 148872 classinstance_ref 129288 // present_host:Host_dbus
+  xyzwh 758 1330 5060 11 40
 end
 durationcanvas 149384 classinstance_ref 130824 // _hal_manager:HalManagerProxy
-  xyzwh 1387 1088 4050 5 46
+  xyzwh 1375 1088 4050 11 46
 end
 durationcanvas 150024 classinstance_ref 149768 // _lkm_client:LinuxKernelMonitorClient
-  xyzwh 1967 1101 2010 0 175
+  xyzwh 1949 1101 2010 11 175
   overlappingdurationcanvas 151048
-    xyzwh 1964 1166 2020 7 26
+    xyzwh 1955 1166 2020 11 26
   end
 end
 durationcanvas 151432 classinstance_ref 151304 // :StatusBar
-  xyzwh 286 138 2010 10 24
+  xyzwh 285 138 2010 11 24
 end
 durationcanvas 151688 classinstance_ref 151304 // :StatusBar
-  xyzwh 286 1286 2010 10 33
+  xyzwh 285 1286 2010 11 33
 end
 durationcanvas 152072 classinstance_ref 128392 // c:Controller
-  xyzwh 125 85 2010 10 1263
+  xyzwh 119 85 2010 11 1263
 end
 reflexivemsg 128264 asynchronous
   to durationcanvas_ref 128136
@@ -186,7 +186,7 @@ msg 131848 synchronous
   label_xy 992 460
 reflexivemsg 133128 synchronous
   to durationcanvas_ref 133000
-  yz 844 4065 msg operation_ref 195848 // "find_device_by_capability(in capability : String) : VectorString"
+  yz 845 4065 msg operation_ref 195848 // "find_device_by_capability(in capability : String) : VectorString"
   show_full_operations_definition default drawing_language default
   args "LINUX_KERNEL_MONITOR"
   label_xy 1393 832
@@ -199,7 +199,7 @@ msg 133512 synchronous
   label_xy 1527 971
 selfreflexivemsg 133768
   to durationcanvas_ref 133000
-  yz 880 5045 explicitmsg "devices"
+  yz 881 5045 explicitmsg "devices"
   show_full_operations_definition default drawing_language default
   label_xy 1408 865
 msg 135176 return
@@ -266,7 +266,7 @@ msg 145416 synchronous
   show_full_operations_definition default drawing_language default
 reflexivemsg 145672 synchronous
   to durationcanvas_ref 145544
-  yz 711 4065 explicitmsg "connect_signal()"
+  yz 712 4065 explicitmsg "connect_signal()"
   show_full_operations_definition default drawing_language default
   args "HalManagerProxy,
 DeviceAdded,
@@ -283,7 +283,7 @@ on_device_removed"
 msg 148488 synchronous
   from durationcanvas_ref 143112
   to durationcanvas_ref 148360
-  yz 293 5055 msg operation_ref 204296 // "take_Host() : Host"
+  yz 293 5055 explicitmsg "<deleted operation>"
   show_full_operations_definition default drawing_language default
   label_xy 557 278
 msg 149000 synchronous

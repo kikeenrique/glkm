@@ -33,7 +33,7 @@
     "map" "map" "" "" ""
     "" "" "" "" ""
   
-  classes_stereotypes 13 // uml cpp java php python idl
+  classes_stereotypes 14 // uml cpp java php python idl
     "class" "class" "class" "class" "class" "valuetype"
     "interface" "class" "interface" "interface" "class" "interface"
     "exception" "class" "class" "class" "class" "exception"
@@ -47,6 +47,7 @@
     "entity" "class" "class" "class" "class" "valuetype"
     "actor" "ignored" "ignored" "ignored" "ignored" "ignored"
     "@interface" "ignored" "@interface" "ignored" "ignored" "ignored"
+    "stereotype" "ignored" "ignored" "ignored" "ignored" "ignored"
   
   cpp_enum_default_type_forms "${type}" "${type} &" "${type} &" "${type}" // in out inout return
   other_cpp_types_default_type_forms "const ${type} &" "${type} &" "${type} &" "${type}" // in out inout return
@@ -265,6 +266,10 @@ ${docstring}${members}
 " // multiplicity != 1
   python_default_operation_definition "${@}${static}${abstract}def ${name}${(}${)}:
 ${docstring}${body}
+"
+  python_default_initoperation_definition "${@}${static}${abstract}def ${name}${(}${p0}${v0}${)}:
+${docstring}super(${class}, ${p0}).__init__()
+${body}
 "
   python_get "get${Name}"
   python_set "set${Name}"

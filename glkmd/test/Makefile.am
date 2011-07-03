@@ -12,4 +12,4 @@ bin_PROGRAMS = glkmd_test_client
 glkmd_test_client_SOURCES = \
 	glkmd_test_client.cpp
 
-glkmd_test_client_LDADD = $(GLKM_DAEMON_LIBS) $(top_builddir)/src/LinuxKernelMonitor.o
+glkmd_test_client_LDADD = $(LIBOMNIORB_LIBS) $(top_builddir)/src/LinuxKernelMonitor.o

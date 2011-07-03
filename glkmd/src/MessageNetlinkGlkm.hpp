@@ -17,31 +17,18 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _GLKMNETLINKCLIENT_HPP_
-#define _GLKMNETLINKCLIENT_HPP_
+#ifndef _MESSAGENETLINKGLKM_HPP_
+#define _MESSAGENETLINKGLKM_HPP_
 
-#include <string>
-#include <vector>
-
-#include "SocketNetlink.hpp"
-
-/**
- * @brief ...
- **/
-
-class GlkmNetlinkClient
+class MessageNetlinkGlkm
 {
 
 public:
-        GlkmNetlinkClient();
-        void GetAllProcesses (std::vector<std::string> &processes);
 
 protected:
-        SocketNetlink m_socketnl;
 
 private:
 
 };
 
-#endif // _GLKMNETLINKCLIENT_HPP_
-
+#endif // _MESSAGENETLINKGLKM_HPP_

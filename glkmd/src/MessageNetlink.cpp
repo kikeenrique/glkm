@@ -21,19 +21,14 @@
 #include <iostream>
 #include <cerrno>
 #include <cstring>
-#include <sys/socket.h>
-#include <linux/netlink.h>
+// #include <sys/socket.h>
+#include <netlink/netlink.h>
+#include <netlink/msg.h>
+#include <netlink/attr.h>
 
 #include "MessageNetlink.hpp"
 
-enum nl_glkm_attr
-{
-        NLB_UNSPEC,
-        NLB_SIZE,               /* size of the message */
-        NLB_NUM,                /* number of messages */
-        NLB_PID,                /* destination port id for unicast */
-        __NLB_MAX
-};
+
 
 #define NLA_ALIGNTO     4
 #define NLA_ALIGN(len)  (((len) + NLA_ALIGNTO - 1) & ~(NLA_ALIGNTO - 1))
@@ -46,20 +41,32 @@ enum nl_glkm_attr
         (((void *) (nlh)) + NLMSG_ALIGN((nlh)->nlmsg_len))
 
 /**
- * MessageNetlink - constructor
- * @type:
- * @flags:
+ * @brief constructor
  *
- */
+ * @param type ...
+ * @param flags ...
+ **/
 MessageNetlink::MessageNetlink (const nl_msg_types_glkm &type,
                                 const unsigned int &flags)
 {
         std::cout << "MessageNetlink::MessageNetlink [BEGIN]" << std::endl;
 
-        int size = MAX_NETLINK_BUFFER;
+        /*
+         * Info taken from <linux/netlink.h>
+         * #define NLM_F_REQUEST        1   / * It is request message.   * /
+         * #define NLM_F_MULTI     2   / * Multipart message, terminated by NLMSG_DONE * /
+         * #define NLM_F_ACK       4   / * Reply with ack, with zero or error code * /
+         * #define NLM_F_ECHO      8   / * Echo this request        * /
+         */
+        int flags_used=NLM_F_REQUEST|NLM_F_ACK;
+        if (flags!=0)
+        {
+                flags_used=flags;
+        }
+        m_type=type;
+        m_message = nlmsg_alloc_simple(m_type,flags_used);
 
-        m_header = (struct nlmsghdr *) calloc (sizeof (struct nlmsghdr) + size, 1);
-        if (!m_header)
+        if (!m_message)
         {
                 std::cerr << errno << ":" << strerror (errno) << std::endl;
                 //check calloc error
@@ -68,182 +75,161 @@ MessageNetlink::MessageNetlink (const nl_msg_types_glkm &type,
                 //return NULL;
         }
 
-        m_header->nlmsg_len = NLMSG_LENGTH (0);
-        m_header->nlmsg_flags = NLM_F_REQUEST | NLM_F_ACK | flags;
-        add_MsgType (type);
-        int nlb_size = 10;
-        add_MsgData (NLB_SIZE, (void *) &nlb_size, sizeof (nlb_size));
+        add_AttributeU32ToMsg (NLGLKM_SIZE, MAX_NETLINK_BUFFER);
+
         std::cout << "MessageNetlink::MessageNetlink [END]" << std::endl;
 }
 
 
 /**
- * ~MessageNetlink - destructor
+ * @brief destructor
  *
- */
+ **/
 MessageNetlink::~MessageNetlink()
 {
-        if (m_header)
-        {
-                free (m_header);
-        }
+        nlmsg_free (m_message);
 }
 
 
 /**
  * length -
  *
+ * @return
  */
-size_t MessageNetlink::length() const
+// size_t MessageNetlink::length() const
+// {
+//         return nlmsg_total_size( nlmsg_datalen( nlmsg_hdr(m_message));
+// }
+
+
+/**
+ * @brief ...
+ *
+ * @return nl_msg*
+ **/
+nl_msg * MessageNetlink::get_nlmsg()
 {
-//    int size=MAX_NETLINK_BUFFER;
-//    return (sizeof(struct nlmsghdr) + size);
-        return m_header->nlmsg_len;
+        return m_message;
 }
 
 
 /**
- * get_buf -
+ * @brief ...
  *
- * /
-void * MessageNetlink::get_buf() const
+ * @return const nl_msg*
+ **/
+const nl_msg * MessageNetlink::get_nlmsg() const
 {
-}
-*/
-
-/**
- * get_msghdr -
- *
- */
-/*const msghdr * MessageNetlink::get_msghdr() const
-{
-    return &m_msghdr;
-}*/
-
-
-/**
- * get_nlmsghdr -
- *
- */
-const nlmsghdr * MessageNetlink::get_nlmsghdr() const
-{
-        const nlmsghdr *copy = m_header;
+        const nl_msg *copy = m_message;
         return copy;
 }
 
 
 /**
  * set_buf -
- * @buf:
- * @len:
+ * @arg buf:
+ * @arg len:
  *
+ * @return
  */
-void MessageNetlink::set_buf (void *buf, const size_t &len)
-{
-        std::cout << "MessageNetlink::set_buf [BEGIN]" << std::endl;
-
-        if (m_header)
-        {
-                free (m_header);
-                m_header = NULL;
-        }
-
-        int size = MAX_NETLINK_BUFFER;
-
-        m_header = (struct nlmsghdr *) calloc (sizeof (struct nlmsghdr) + size, 1);
-        if (!m_header)
-        {
-                std::cerr << errno << ":" << strerror (errno) << std::endl;
-                //check calloc error
-                //perror("calloc");
-                //exit(EXIT_FAILURE);
-                //return NULL;
-        }
-        /*
-            char *bufbk=(char*)buf;
-            for (uint i=0; i<=len; i++)
-            {
-        //        printf("%02X", buf[i]);
-                std::cout << std::hex << bufbk[i];
-            }
-            std::cout << std::endl;
-        */
-        memcpy ( (void *) m_header, buf, len);
-
-        std::cout << "MessageNetlink::set_buf [END] copied " << len << std::endl;
-
-}
+// void MessageNetlink::set_buf (void *buf, const size_t &len)
+// {
+//         std::cout << "MessageNetlink::set_buf [BEGIN]" << std::endl;
+//
+//         if (m_header)
+//         {
+//                 free (m_header);
+//                 m_header = NULL;
+//         }
+//
+//         int size = MAX_NETLINK_BUFFER;
+//
+//         m_header = (struct nlmsghdr *) calloc (sizeof (struct nlmsghdr) + size, 1);
+//         if (!m_header)
+//         {
+//                 std::cerr << errno << ":" << strerror (errno) << std::endl;
+//                 //check calloc error
+//                 //perror("calloc");
+//                 //exit(EXIT_FAILURE);
+//                 //return NULL;
+//         }
+//         /*
+//             char *bufbk=(char*)buf;
+//             for (uint i=0; i<=len; i++)
+//             {
+//         //        printf("%02X", buf[i]);
+//                 std::cout << std::hex << bufbk[i];
+//             }
+//             std::cout << std::endl;
+//         */
+//         memcpy ( (void *) m_header, buf, len);
+//
+//         std::cout << "MessageNetlink::set_buf [END] copied " << len << std::endl;
+//
+// }
 
 
 /**
- * operation_GetAllProcesses -
- * @processes:
+ * @brief ...
  *
- */
+ * @param processes ...
+ * @return void
+ **/
 void MessageNetlink::operation_GetAllProcesses (std::vector<std::string> &processes)
 {
-        struct nlmsgerr *err = (struct nlmsgerr *) NLMSG_DATA (m_header);
-        if ( (m_header->nlmsg_type == NLMSG_ERROR) &&
-                        (err->error != 0))
-        {
-                std::cerr << errno << ":" << strerror (errno) << std::endl;
-                //check  error
-                //perror("");
-                exit (EXIT_FAILURE);
-                //return NULL;
-        }
-        else
-        {
-
-        }
+//         struct nlmsgerr *err = (struct nlmsgerr *) NLMSG_DATA (m_header);
+//         if ( (m_header->nlmsg_type == NLMSG_ERROR) &&
+//                         (err->error != 0))
+//         {
+//                 std::cerr << errno << ":" << strerror (errno) << std::endl;
+//                 //check  error
+//                 //perror("");
+//                 exit (EXIT_FAILURE);
+//                 //return NULL;
+//         }
+//         else
+//         {
+//
+//         }
 }
 
+
 /**
- * add_MsgType - constructor
- * @type:
+ * @brief ...
  *
- */
-bool MessageNetlink::add_MsgType (const nl_msg_types_glkm &type)
+ * @param type ...
+ * @return bool
+ **/
+bool MessageNetlink::add_AttributeU32ToMsg (const nl_glkm_attr &type, const unsigned int &value)
 {
         bool rt = true;
-        m_header->nlmsg_type = type;
+        std::cout << "MessageNetlink::add_AttributeU32ToMsg value:" << value << std::endl;
+        
+        if (nla_put_u32 (m_message, type, value) < 0)
+        {
+                std::cerr << errno << ":" << strerror (errno) << std::endl;
+        }
+
         return rt;
 }
 
 
 /**
- * add - constructor
- * @type:
- * @data:
- * @alen:
+ * @brief ...
  *
- */
+ * @param type ...
+ * @param data ...
+ * @param alen ...
+ * @return bool
+ **/
 bool MessageNetlink::add_MsgData (const int &type,
-                                  const void *data,
+                                  void *data,
                                   const int &alen)
 {
         bool rt = true;
-        struct nlattr *attr = (struct nlattr *) NLMSG_TAIL (m_header);
-        int len = NLA_LENGTH (alen);
+        nlmsg_append (m_message, data, alen, 0);
 
-        attr->nla_type = type;
-        attr->nla_len  = len;
-        memcpy (NLA_DATA (attr), data, alen);
-        m_header->nlmsg_len = NLMSG_ALIGN (m_header->nlmsg_len) + NLA_ALIGN (len);
         return rt;
-
-        /*
-        void
-        libnetlink_addattr(struct nlmsghdr *nlh, int type, const void *data, int alen)
-        {
-            struct nlattr *attr = NLMSG_TAIL(nlh);
-            int len = NLA_LENGTH(alen);
-
-            attr->nla_type    = type;
-            attr->nla_len    = len;
-            memcpy(NLA_DATA(attr), data, alen);
-            nlh->nlmsg_len = NLMSG_ALIGN(nlh->nlmsg_len) + NLA_ALIGN(len);
-        }
-        */
 }
+
 

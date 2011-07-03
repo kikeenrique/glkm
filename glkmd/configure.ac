@@ -1,33 +1,33 @@
 dnl
-dnl	configure.ac
+dnl    configure.ac
 dnl
-dnl	Copyright (C) Enrique García Álvarez 2007-2011 <kike + glkm @ eldemonionegro.com>
+dnl    Copyright (C) Enrique García Álvarez 2007-2011 <kike + glkm @ eldemonionegro.com>
 dnl
-dnl	configure.ac is free software
+dnl    configure.ac is free software
 dnl
-dnl	You may redistribute it and/or modify it under the terms of the
-dnl	GNU General Public License, as published by the Free Software
-dnl	Foundation; either version 2 of the License, or (at your option)
-dnl	any later version.
+dnl    You may redistribute it and/or modify it under the terms of the
+dnl    GNU General Public License, as published by the Free Software
+dnl    Foundation; either version 2 of the License, or (at your option)
+dnl    any later version.
 dnl
-dnl	configure.ac is distributed in the hope that it will be useful,
-dnl	but WITHOUT ANY WARRANTY; without even the implied warranty of
-dnl	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-dnl	See the GNU General Public License for more details.
+dnl    configure.ac is distributed in the hope that it will be useful,
+dnl    but WITHOUT ANY WARRANTY; without even the implied warranty of
+dnl    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+dnl    See the GNU General Public License for more details.
 dnl
-dnl	You should have received a copy of the GNU General Public License
-dnl	along with configure.ac.  If not, write to:
-dnl		The Free Software Foundation, Inc.,
-dnl		51 Franklin Street, Fifth Floor
-dnl		Boston, MA  02110-1301, USA.
+dnl    You should have received a copy of the GNU General Public License
+dnl    along with configure.ac.  If not, write to:
+dnl        The Free Software Foundation, Inc.,
+dnl        51 Franklin Street, Fifth Floor
+dnl        Boston, MA  02110-1301, USA.
 dnl
 
 
 dnl Process this file with autoconf to produce a configure script.
 ################################################################################
-#		Prelude.
+#        Prelude.
 ################################################################################
-AC_PREREQ([2.67])
+AC_PREREQ([2.68])
 
 m4_define([glkmd_major_version],[0])
 m4_define([glkmd_minor_version],[1])
@@ -50,7 +50,7 @@ GOOGLETEST_REQUIRED=1.5.0
 AC_SUBST([GOOGLETEST_REQUIRED])
 
 ################################################################################
-#		Checks for programs.
+#        Checks for programs.
 ################################################################################
 AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
 
@@ -82,13 +82,13 @@ AC_LANG([C++])
 
 AC_PATH_PROG([PKGCONFIG_CONFIG], [pkg-config],[no])
 if test x$PKGCONFIG_CONFIG = xno; then
-	AC_MSG_ERROR([Please install the pkg-config package from \
-	              http://www.freedesktop.org/software/pkgconfig/])
+    AC_MSG_ERROR([Please install the pkg-config package from \
+                  http://www.freedesktop.org/software/pkgconfig/])
 fi
 
 
 ################################################################################
-#		Checks for Internationalization.
+#        Checks for Internationalization.
 ################################################################################
 IT_PROG_INTLTOOL([0.35.0])
 AM_PO_SUBDIRS
@@ -102,17 +102,17 @@ PROGRAMNAME_LOCALEDIR=[${datadir}/locale]
 AC_SUBST([PROGRAMNAME_LOCALEDIR])
 
 ################################################################################
-#		Checks for libraries.
+#        Checks for libraries.
 ################################################################################
 AC_SEARCH_LIBS([strerror],[cposix])
 
-PKG_CHECK_MODULES([GLKM_DAEMON], [omniORB4 omniConnectionMgmt4 omniDynamic4 libnl-3.0])
-AC_SUBST([GLKM_DAEMON_CFLAGS])
-AC_SUBST([GLKM_DAEMON_LIBS])
+PKG_CHECK_MODULES([LIBOMNIORB], [omniORB4 omniConnectionMgmt4 omniDynamic4])
+AC_SUBST([LIBOMNIORB_CFLAGS])
+AC_SUBST([LIBOMNIORB_LIBS])
 
-#PKG_CHECK_MODULES([LIBNETLINK], [libnl-2.0])
-#AC_SUBST([LIBNETLINK_CFLAGS])
-#AC_SUBST([LIBNETLINK_LIBS])
+PKG_CHECK_MODULES([LIBNETLINK], [libnl-3.0])
+AC_SUBST([LIBNETLINK_CFLAGS])
+AC_SUBST([LIBNETLINK_LIBS])
 
 
 #m4_include(tmp/gtest.m4)
@@ -120,13 +120,13 @@ AC_SUBST([GLKM_DAEMON_LIBS])
 #GTEST_LIB_CHECK([1.5.0])
 
 ################################################################################
-#		Checks for header files.
+#        Checks for header files.
 ################################################################################
 AC_HEADER_STDC
-
+AC_HEADER_STDBOOL
 
 ################################################################################
-#		Checks for typedefs, structures, and compiler characteristics.
+#        Checks for typedefs, structures, and compiler characteristics.
 ################################################################################
 AC_CONFIG_HEADERS([config.h])
 #Disable maintainer mode, see http://www.gnu.org/software/hello/manual/automake/maintainer_002dmode.html
@@ -143,7 +143,7 @@ AC_ARG_ENABLE([debug-mode],
 AC_MSG_CHECKING(whether to compile or not with DEBUG settings)
 
 if test "x$enable_debug" = "xyes"; then
-	AC_MSG_RESULT(yes)
+    AC_MSG_RESULT(yes)
 
     # remove optimization settings from CFLAGS
     AM_CFLAGS="[`echo "$AM_CFLAGS" | $SED -e 's/-O[0-9]*//g'`]"
@@ -151,28 +151,33 @@ if test "x$enable_debug" = "xyes"; then
 
     #Add our compilation settings
     AM_CPPFLAGS="$AM_CPPFLAGS -DDEBUG"
-	AM_CXXFLAGS="$AM_CXXFLAGS -rdynamic -ggdb -g -O0"
+    AM_CXXFLAGS="$AM_CXXFLAGS -rdynamic -ggdb -g -O0"
     AM_CXXFLAGS="$AM_CXXFLAGS -Wall -Wno-uninitialized -fstack-protector-all"
 
-	AC_SUBST([AM_CFLAGS])
-	AC_SUBST([AM_CXXFLAGS])
-	AC_DEFINE([DEBUG],
+    AC_SUBST([AM_CFLAGS])
+    AC_SUBST([AM_CXXFLAGS])
+    AC_DEFINE([DEBUG],
               [],
               [build with debug settings (no optimization, test coverage)])
 else
-	AC_MSG_RESULT(no)
+    AC_MSG_RESULT(no)
 
     AM_CXXFLAGS="$AM_CXXFLAGS -Wall -Wno-uninitialized -fstack-protector-all -O2"
     AC_SUBST([AM_CXXFLAGS])
 fi
 
-################################################################################
-#		Checks for library functions.
-################################################################################
-
+AC_TYPE_SIZE_T
 
 ################################################################################
-#		Output files
+#        Checks for library functions.
+################################################################################
+AC_C_INLINE
+
+AC_CHECK_FUNCS([memset])
+AC_CHECK_FUNCS([strerror])
+
+################################################################################
+#        Output files
 ################################################################################
 AC_CONFIG_FILES([
 Makefile
@@ -184,7 +189,7 @@ test/Makefile
 AC_OUTPUT
 
 ################################################################################
-#		Developer info
+#        Developer info
 ################################################################################
 echo ""
 echo "======================================================================"
@@ -216,15 +221,17 @@ echo ""
 echo "Required version libraries:"
 echo "  OMNIORB    : $OMNIORB_REQUIRED"
 echo "  LIBNETLINK : $LIBNETLINK_REQUIRED"
-echo "	GOOGLETEST : $GOOGLETEST_REQUIRED"
+echo "  GOOGLETEST : $GOOGLETEST_REQUIRED"
 echo ""
 echo "The following options will be passed to the compiler:"
-echo "	GLKM_DAEMON_CFLGAGS : $GLKM_DAEMON_CFLAGS"
-echo "	GLKM_DAEMON_CXXFLAGS: $GLKM_DAEMON_LIBS"
-echo "	GOOGLETEST_CPPFLAGS : $GTEST_CPPFLAGS"
-echo "	GOOGLETEST_CXXFLAGS : $GTEST_CXXFLAGS"
-echo "	GOOGLETEST_LDFLAGS  : $GTEST_LDFLAGS"
-echo "	GOOGLETEST_LIBS     : $GTEST_LIBS"
+echo "  LIBOMNIORB_CFLAGS   : $LIBOMNIORB_CFLAGS"
+echo "  LIBOMNIORB_LIBS     : $LIBOMNIORB_LIBS"
+echo "  LIBNETLINK_CFLAGS   : $LIBNETLINK_CFLAGS"
+echo "  LIBNETLINK_LIBS     : $LIBNETLINK_LIBS"
+echo "  GOOGLETEST_CPPFLAGS : $GTEST_CPPFLAGS"
+echo "  GOOGLETEST_CXXFLAGS : $GTEST_CXXFLAGS"
+echo "  GOOGLETEST_LDFLAGS  : $GTEST_LDFLAGS"
+echo "  GOOGLETEST_LIBS     : $GTEST_LIBS"
 echo ""
 echo "  GETTEXT_PACKAGE: $GETTEXT_PACKAGE"
 echo "  PROGRAMNAME_LOCALEDIR: $PROGRAMNAME_LOCALEDIR"

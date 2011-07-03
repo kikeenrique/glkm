@@ -2,17 +2,17 @@
 /*
  * glkmd
  * Copyright (C) Enrique Garcia 2010 <kike+glkm@eldemonionegro.com>
- * 
+ *
  * glkmd is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * glkmd is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -20,177 +20,230 @@
 #include <iostream>
 #include <cerrno>
 #include <cstring>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <linux/netlink.h>
+// #include <sys/types.h>
+// #include <sys/socket.h>
+#include <netlink/netlink.h>
+#include <netlink/msg.h>
 
 #include "SocketNetlink.hpp"
 #include "MessageNetlink.hpp"
 
+#define TASK_COMM_LEN 16
+void print_nla_to_string(struct nlattr *value)
+{
+        std::string rt;
+        switch(value->nla_type)
+        {
+                case NLA_UNSPEC:
+                        rt="UNSPEC";
+                        break;
+                case NLA_U8:
+                        rt="U8";
+                        break;
+                case NLA_U16:
+                        rt="U16";
+                        break;
+                case NLA_U32:
+                {
+                        uint res=nla_get_u32(value);
+                        rt="U32";
+                        std::cout << "print_nla_to_string attrlen:" << value->nla_len << " attrtype:"
+                                  << rt << "(" << value->nla_type << "):" << res << std::endl;
+                        break;
+                }
+                case NLA_U64:
+                        rt="U64";
+                        break;
+                case NLA_STRING:
+                {
+//                         char res[TASK_COMM_LEN];
+                        char *res=nla_get_string(value);
+                        rt="STRING";
+                        std::cout << "print_nla_to_string attrlen:" << value->nla_len << " attrtype:"
+                                  << rt << "(" << value->nla_type << "):" << std::string(res) << std::endl;
+                        
+                        break;
+                }
+                case NLA_FLAG:
+                        rt="FLAG";
+                        break;
+                        rt="";
+                case NLA_MSECS:
+                        rt="MSECS";
+                        break;
+                case NLA_NESTED:
+                        rt="NESTED";
+                        break;
+/*                case NLA_NESTED_COMPAT:
+                        rt="NESTED_COMPAT";
+                        break;
+                case NLA_NUL_STRING:
+                        rt="NUL_STRING";
+                        break;
+                case NLA_BINARY:
+                        rt="BINARY";
+                        break;*/
+                case __NLA_TYPE_MAX:
+                        rt="TYPE_MAX";
+                        break;
+        }
+}
 
 /**
- * SocketNetlink - Bind a descriptor to their sockets structures
- * @protocol: 
+ * @brief SocketNetlink - Bind a descriptor to their sockets structures
  *
  * FIXME: since we are working with broadcast netlink sockets, group
  * should be passed as parameter!!
+ *
+ * @param protocol ...
  */
-SocketNetlink::SocketNetlink(const unsigned int &protocol)
+/**
+ *
+ **/
+SocketNetlink::SocketNetlink (const unsigned int &protocol)
 {
-    std::cout << "SocketNetlink::SocketNetlink [BEGIN]" << std::endl;
-    m_valid=true;
+        std::cout << "SocketNetlink::SocketNetlink [BEGIN]" << std::endl;
+        m_valid=true;
 
-    // using SOCK_RAW , but NETLINK obviates this parameter
-    m_fd = socket(AF_NETLINK, SOCK_RAW, protocol);
-    if (m_fd < 0)
-    {
-        std::cerr << errno << ":" << strerror(errno) << std::endl;
-        m_valid=false;
-//        return -1;
-    }
-    else
-    {
-        memset(&m_nladdr, 0, sizeof(struct sockaddr_nl));
-        m_nladdr.nl_family = AF_NETLINK;
-        //Destination process ==> pid = process(pid)
-        //Destination kernel ==> pid = 0
-        m_nladdr.nl_pid = 0;
-        //    m_nladdr.nl_pid = getpid();
-        //Destination kernel nl_groups = 0
-        m_nladdr.nl_groups = 0;
-        //    m_nladdr.nl_groups = groups;
+        m_nlsock = nl_socket_alloc();
 
-        int ret;
-        ret = bind(m_fd, (struct sockaddr *) &m_nladdr, sizeof(m_nladdr));
-        if (ret < 0)
+        if (nl_connect (m_nlsock, protocol) < 0)
         {
-            std::cerr << errno << ":" << strerror(errno) << std::endl;
-            if (m_fd >= 0)
-            {
-                close(m_fd);
-            }
-            m_valid=false;
-            //        return -1;
+                std::cerr << errno << ":" << strerror (errno) << std::endl;
+                m_valid=false;
+                //        return -1;
         }
-    }
-    std::cout << "SocketNetlink::SocketNetlink [END]" << std::endl;
+        else
+        {
+        }
 
-/*    int
-libnetlink_create_socket(int id, unsigned int groups)
-{
-    int ret;
-    struct sockaddr_nl m_nladdr;
-
-    m_fd = socket(AF_NETLINK, SOCK_RAW, id);
-    if (m_fd < 0)
-        return -1;
-
-    memset(&m_nladdr, 0, sizeof(struct sockaddr_nl));
-    m_nladdr.nl_family = AF_NETLINK;
-    m_nladdr.nl_groups = groups;
-
-    ret = bind(m_fd, (struct sockaddr *) &m_nladdr, sizeof(m_nladdr));
-    if (ret < 0)
-    {
-        m_valid=false;
-        return -1;
-    }
-
-    return fd;
-}
-*/
+        std::cout << "SocketNetlink::SocketNetlink [END]" << std::endl;
 }
 
 
 /**
- * ~SocketNetlink - Bind a descriptor to their sockets structures
- */
+ * @brief Bind a descriptor to their sockets structures
+ *
+ **/
 SocketNetlink::~SocketNetlink()
 {
-    if (m_fd >= 0)
-    {
-        close(m_fd);
-    }
+        nl_socket_free (m_nlsock);
 }
 
 
-/**
- * valid - 
- *
- */
 bool SocketNetlink::isValid()
+/**
+ * @brief ...
+ *
+ * @return bool
+ **/
 {
-    return m_valid;
+        return m_valid;
 }
 
 
 /**
- * send - Bind a descriptor to their sockets structures
- * @m: 
+ * @brief Bind a descriptor to their sockets structures
  *
- */
-ssize_t SocketNetlink::send(const MessageNetlink& message)
+ * @param message ...
+ * @return int
+ **/
+int SocketNetlink::send (MessageNetlink& message)
 {
-    std::cout << "SocketNetlink::send [BEGIN]" << std::endl;
-    if (!isValid())
-    {
-        std::cout << "SocketNetlink::send [END-ERROR]" << std::endl;
-        return -1;
-    }
+        std::cout << "SocketNetlink::send [BEGIN]" << std::endl;
 
-    std::cout << "SocketNetlink::send [END]" << std::endl;
-    return ::send(m_fd, message.get_nlmsghdr(), message.length(), 0);
+        if (!isValid())
+        {
+                std::cout << "SocketNetlink::send [END-ERROR]" << std::endl;
+                return -1;
+        }
 
-/* DO NOT WORK
-    / *
-     struct msghdr {
-         void    *   msg_name;   // Socket name
-         int     msg_namelen;    // Length of name
-         struct iovec *  msg_iov;    //Data blocks
-         __kernel_size_t msg_iovlen; // Number of blocks
-         void    *   msg_control;    // Per protocol magic (eg BSD file descriptor passing)
-         __kernel_size_t msg_controllen; // Length of cmsg list
-         unsigned    msg_flags;
-     };
-    * /
+        std::cout << "SocketNetlink::send [END]" << std::endl;
 
-    struct iovec iov;
-    iov.iov_base = (void *)message.get_nlmsghdr();
-    iov.iov_len = message.length();
-
-    struct msghdr msg;
-    msg.msg_name = (void *)&(m_nladdr);
-    msg.msg_namelen = sizeof(m_nladdr);
-    msg.msg_iov = &iov;
-    msg.msg_iovlen = 1;
-
-    std::cout << "SocketNetlink::send [END]" << std::endl;
-    return ::sendmsg(m_fd, &msg, 0);
-*/
+        return nl_send (m_nlsock, message.get_nlmsg());
 }
 
 
 /**
- * recv - Bind a descriptor to their sockets structures
- * @m: 
+ * @brief Bind a descriptor to their sockets structures
  *
- */
-ssize_t SocketNetlink::recv(MessageNetlink& m)
+ * @param message ...
+ * @return int
+ **/
+int SocketNetlink::send_auto (MessageNetlink& message)
 {
-    std::cout << "SocketNetlink::recv [BEGIN]" << std::endl;
-    if (!isValid())
-    {
-        std::cout << "SocketNetlink::recv [END-ERROR]" << std::endl;
-        return -1;
-    }
+        std::cout << "SocketNetlink::send_auto [BEGIN]" << std::endl;
 
-    int size=MAX_NETLINK_BUFFER;
-    char data[size];
-    int len=0;
+        if (!isValid())
+        {
+                std::cout << "SocketNetlink::send_auto [END-ERROR]" << std::endl;
+                return -1;
+        }
 
-    len=::recv(m_fd, (void *)data, size, 0);
+        std::cout << "SocketNetlink::send_auto [END]" << std::endl;
 
-    m.set_buf((void *)data,len);
-    std::cout << "SocketNetlink::recv [END] len:" << len << std::endl;
-    return len;
+        return nl_send_auto (m_nlsock, message.get_nlmsg());
+}
+
+
+/**
+ * @brief Bind a descriptor to their sockets structures
+ *
+ * @param m ...
+ * @return int
+ **/
+int SocketNetlink::recv (MessageNetlink& m)
+{
+        std::cout << "SocketNetlink::recv [BEGIN]" << std::endl;
+
+        if (!isValid())
+        {
+                std::cout << "SocketNetlink::recv [END-ERROR]" << std::endl;
+                return -1;
+        }
+
+        unsigned char *buf = NULL;
+        struct nlmsghdr *hdr = NULL;
+        struct sockaddr_nl peer;
+        memset (&peer,0,sizeof (peer));
+        int len=0;
+        struct ucred *creds = NULL;
+
+        if (false)
+        {
+                len = nl_recvmsgs_default (m_nlsock);
+        }
+        else
+        {
+                len = nl_recv (m_nlsock, &peer, &buf, &creds);              
+                hdr = (struct nlmsghdr *) buf;
+                while (nlmsg_ok (hdr, len))
+                {
+                        std::cout << "SocketNetlink::recv len:" << len << std::endl;
+                        //BEGIN Process message here...
+                        struct nlattr *hdra = nlmsg_attrdata(hdr, 0);
+                        int remaining = nlmsg_attrlen(hdr, 0);
+
+                        while (nla_ok(hdra, remaining))
+                        {
+                                //BEGIN parse attribute here...
+                                print_nla_to_string(hdra);
+                                /*
+                                int attrlen=nla_len(hdra);
+                                int attrtype=nla_type(hdra);
+                                std::cout << "SocketNetlink::recv attrlen:" << attrlen << " attrtype:"
+                                          << nla_to_string(attrtype) << "(" << attrtype << ")" << std::endl;
+                                          */
+                                //END parse attribute here...
+                                hdra = nla_next(hdra, &remaining);
+                        };
+                        //END Process message here...
+
+                        hdr = nlmsg_next (hdr, &len);
+                }
+//         m.set_buf((void *)data,len);
+        }
+        std::cout << "SocketNetlink::recv [END]" << std::endl;
+
+        return len;
 }

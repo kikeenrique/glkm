@@ -49,7 +49,7 @@ fi
 	}
 }
 
-(grep "^AM_PROG_LIBTOOL" $srcdir/configure.ac >/dev/null) && {
+(grep "^LT_INIT" $srcdir/configure.ac >/dev/null) && {
 	(libtool --version) < /dev/null > /dev/null 2>&1 || {
 		echo
 		echo "**Error**: You must have \`libtool' installed."
@@ -103,7 +103,7 @@ case $CC in
 		am_opt=--include-deps;;
 esac
 
-configure_files="`find $srcdir -name '{arch}' -prune -o -name '_darcs' -prune -o -name '.??*' -prune -o -name configure.ac -print -o -name configure.in -print`"
+configure_files="`find $srcdir -path $srcdir/CVS -prune -o -name configure.ac -print`"
 
 for configure_ac in $configure_files
 do 
@@ -111,8 +111,8 @@ do
 	if test -f $dr/NO-AUTO-GEN; then
 		echo skipping $dr -- flagged as no auto-gen
 	else
-		echo processing $dr 
-		( 
+		echo processing $dr
+		(
 		cd $dr
 
 		 aclocalinclude="$ACLOCAL_FLAGS"
@@ -127,13 +127,13 @@ do
 		fi
 		if grep "^IT_PROG_INTLTOOL" configure.ac >/dev/null; then
 			echo "Running intltoolize..."
-		intltoolize --copy --force --automake
+			intltoolize --copy --force --automake
 		fi
 		if grep "^AM_PROG_XML_I18N_TOOLS" configure.ac >/dev/null; then
 			echo "Running xml-i18n-toolize..."
 			xml-i18n-toolize --copy --force --automake
 		fi
-		if grep "^AM_PROG_LIBTOOL" configure.ac >/dev/null; then
+		if grep "^LT_INIT" configure.ac >/dev/null; then
 			if test -z "$NO_LIBTOOLIZE" ; then 
 				echo "Running libtoolize..."
 				libtoolize --force --copy
@@ -141,19 +141,20 @@ do
 		fi
 		echo "Running aclocal $aclocalinclude ..."
 		aclocal $aclocalinclude
-		if grep "^AM_CONFIG_HEADER" configure.ac >/dev/null; then
+		if grep "^A[CM]_CONFIG_HEADER" configure.ac >/dev/null; then
 			echo "Running autoheader..."
 			autoheader
 		fi
 		echo "Running automake --gnu $am_opt ..."
-		automake --add-missing --gnu --copy $am_opt
+		automake --add-missing --gnu --copy -Wobsolete -Woverride $am_opt
 		echo "Running autoconf ..."
 		autoconf
 		)
 	fi
 done
 
-conf_flags="--enable-maintainer-mode"
+#conf_flags="--enable-maintainer-mode"
+conf_flags="$conf_flags --enable-debug-mode"
 
 if test x$NOCONFIGURE = x; then
 	echo Running $srcdir/configure $conf_flags "$@" ...

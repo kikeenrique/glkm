@@ -3,7 +3,7 @@
 AM_CPPFLAGS = \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
-	-DPACKAGE_DATA_DIR=\""$(datadir)"\" $(GLKM_DAEMON_CFLAGS)
+	-DPACKAGE_DATA_DIR=\""$(datadir)"\" $(LIBOMNIORB_CFLAGS)
 
 bin_PROGRAMS = glkm_daemon
 
@@ -24,7 +24,7 @@ glkm_daemon_SOURCES = \
 
 #glkm_daemon_LDFLAGS = 
 
-glkm_daemon_LDADD = $(GLKM_DAEMON_LIBS)
+glkm_daemon_LDADD = $(LIBOMNIORB_LIBS) $(LIBNETLINK_LIBS)
 
 #corba_idl_HEADERS = \
 #glkm_daemon_HEADERS = \

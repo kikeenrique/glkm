@@ -51,8 +51,8 @@
  *	 
  */
 HalManagerProxy::HalManagerProxy(DBus::Connection& connection ) :
+    DBus::ObjectProxy(connection, "/org/freedesktop/Hal/Manager", "org.freedesktop.Hal"),
 	DBus::InterfaceProxy("org.freedesktop.Hal.Manager"),
-	DBus::ObjectProxy(connection, "/org/freedesktop/Hal/Manager", "org.freedesktop.Hal"),
 	_device(NULL)
 {
 	connect_signal(HalManagerProxy, DeviceAdded, on_device_added);

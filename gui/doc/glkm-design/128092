@@ -1,6 +1,6 @@
 format 72
 "glkm-model" // glkm::glkm-model
-  revision 64
+  revision 67
   modified_by 8 "enrgar"
   // class settings
   //class diagram settings
@@ -1184,15 +1184,6 @@ ${members}};
 	  association_explicit_type "int"
       end
 
-      classrelation 128060 // _hal_controller (<unidirectional association>)
-	relation 128060 --->
-	  a role_name "_hal_controller" multiplicity "1" protected
-	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
-"
-	    classrelation_ref 128060 // _hal_controller (<unidirectional association>)
-	  b multiplicity "1" parent class_ref 130757 // HalController
-      end
-
       class 160648 "type_signal_process_added"
 	visibility protected stereotype "typedef" base_type class_ref 156552 // signal
 	nactuals 8
@@ -1892,7 +1883,6 @@ ${inlines}
       classrelation 128233 // _host (<aggregation>)
 	relation_ref 128105 // <aggregation>
       end
-
     end
 
     class 128105 "Log"
@@ -2009,6 +1999,56 @@ ${inlines}
       end
     end
 
+    class 522120 "Host_corba"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 496648 // <generalisation>
+	relation 496392 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 496648 // <generalisation>
+	  b parent class_ref 128121 // Host
+      end
+    end
+
+    class 522248 "Host_dbus"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 496776 // <generalisation>
+	relation 496520 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 496776 // <generalisation>
+	  b parent class_ref 128121 // Host
+      end
+
+      classrelation 497032 // _hal_controller (<unidirectional association>)
+	relation 496776 --->
+	  a role_name "_hal_controller" multiplicity "1" protected
+	    cpp default "	${comment}${static}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 497032 // _hal_controller (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 130757 // HalController
+      end
+    end
   end
 
   deploymentview 128067 "glkm-model deployment view"
@@ -2237,6 +2277,126 @@ ${namespace_end}"
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 "
+    end
+
+    artifact 149000 "host_dbus"
+      stereotype "source"
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif // ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 522248 // Host_dbus
+      end
+    end
+
+    artifact 149128 "host_corba"
+      stereotype "source"
+      cpp_h "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef ${NAMESPACE}_${NAME}_HPP
+#define ${NAMESPACE}_${NAME}_HPP
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+
+#endif // ${NAMESPACE}_${NAME}_HPP
+"
+      cpp_src "/*
+ * gui
+ * Copyright (C) Enrique Garcia Alvarez 2007-2008 <kike+glkm@eldemonionegro.com>
+ * 
+ * gui is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * gui is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_classes
+	class_ref 522120 // Host_corba
+      end
     end
 
     artifact 128323 "process"
@@ -2816,7 +2976,7 @@ ${module_end}
       associated_classes
 	class_ref 132165 // VectorString
 	class_ref 128313 // DictVariable
-	class_ref 133070 // RefPtrGladeXml
+	class_ref 133070 // RefPtrBuilder
 	class_ref 128005 // RefPtrTextBuffer
 	class_ref 128131 // RefPtrTreeSelection
 	class_ref 128003 // RefPtrTreeStore

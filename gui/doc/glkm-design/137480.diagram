@@ -1,4 +1,4 @@
-format 66
+format 72
 
 classcanvas 128008 class_ref 173576 // Client
   class_drawing_mode default show_context_mode default show_stereotype_properties default

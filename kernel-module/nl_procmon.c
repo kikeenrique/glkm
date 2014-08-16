@@ -22,6 +22,8 @@
 #include <linux/timer.h>
 #include <linux/netlink.h>
 #include <net/sock.h>
+#include <linux/security.h>
+#include <linux/version.h>
 #include "nl_procmon.h"
 
 static struct sock *nl_glkm;
@@ -32,7 +34,7 @@ struct nl_glkm_obj {
  u32   dst_pid;
 };
 */
-#define RCV_SKB_FAIL(err) do { netlink_ack(skb, nlh, (err)); return; } while (0)
+#define RCV_SKB_FAIL(err) do { netlink_ack(skb, nlh, (err)); return err; } while (0)
 
 static struct sk_buff *nl_glkm_msg_alloc (int size,
                                           int type,
@@ -87,7 +89,7 @@ static int nl_glkm_GetAllProcesses_pro_handler (const struct nlmsghdr *nlh_reque
 
         msg_size = nla_get_u32 (cda[NLGLKM_SIZE]);
         printk ("nl_glkm_GetAllProcesses_pro_handler. %d\n", msg_size);
-        
+
         if (msg_size < 0 || msg_size > NLMSG_GOODSIZE)
                 return -E2BIG;
 
@@ -351,13 +353,21 @@ static int nl_glkm_rcv_handle (const struct nlmsghdr *nlh,
 static int nl_glkm_rcv_msg (struct sk_buff *skb, struct nlmsghdr *nlh)
 {
         int err;
-        int min_len = NLMSG_SPACE (0);      
+        int min_len = NLMSG_SPACE (0);
         struct nlattr *cda[NLGLKM_MAX+1];
+#if LINUX_VERSION_CODE <= KERNEL_VERSION(3,8,0)
         u32 pid = skb ? NETLINK_CB (skb).pid : 0;
-        
-        printk ("nl_glkm_rcv_msg. PID:%d\n", pid);
 
+        printk ("nl_glkm_rcv_msg. PID:%d\n", pid);
+#else
+        printk ("nl_glkm_rcv_msg.\n");
+#endif
+
+#if LINUX_VERSION_CODE <= KERNEL_VERSION(3,8,0)
         if (security_netlink_recv (skb, CAP_NET_ADMIN))
+#else
+        if (!capable (CAP_NET_ADMIN))
+#endif
         {
                 printk (KERN_ERR "nl_glkm_rcv_msg. security. \n");
                 RCV_SKB_FAIL (-EPERM);
@@ -383,8 +393,11 @@ static int nl_glkm_rcv_msg (struct sk_buff *skb, struct nlmsghdr *nlh)
                         return err;
                 }
         }
-
+#if LINUX_VERSION_CODE <= KERNEL_VERSION(3,8,0)
         return nl_glkm_rcv_handle (nlh, cda, pid);
+#else
+        return nl_glkm_rcv_handle (nlh, cda, 0);
+#endif
 }
 
 static void
@@ -397,12 +410,19 @@ nl_glkm_rcv (struct sk_buff *skb)
 
 static int __init nl_glkm_init (void)
 {
+#if LINUX_VERSION_CODE <= KERNEL_VERSION(3,8,0)
         nl_glkm = netlink_kernel_create (&init_net,
                                          NETLINK_GLKM,
                                          0,
                                          nl_glkm_rcv,
                                          NULL,
                                          THIS_MODULE);
+#else
+        struct netlink_kernel_cfg cfg = {
+            .input = nl_glkm_rcv,
+        };
+        nl_glkm = netlink_kernel_create(&init_net, NETLINK_GLKM, &cfg);
+#endif
 
         if (nl_glkm == NULL)
         {

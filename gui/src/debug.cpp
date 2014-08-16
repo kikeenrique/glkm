@@ -2,19 +2,19 @@
 /*
  * debug.cpp
  * Copyright (C) Enrique García Álvarez 2007 <kike @ eldemonionegro.com>
- * 
+ *
  * debug.h is free software.
- * 
+ *
  * You may redistribute it and/or modify it under the terms of the
  * GNU General Public License, as published by the Free Software
  * Foundation; either version 2 of the License, or (at your option)
  * any later version.
- * 
+ *
  * debug.h is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with main.cc.  If not, write to:
  * 		The Free Software Foundation, Inc.,
@@ -29,9 +29,11 @@
 #include <iomanip>
 #include <ctime>
 
+#include <glibmm/convert.h>
+
 #include "debug.hpp"
 
-TextViewDebug::TextViewDebug (BaseObjectType* cobject, 
+TextViewDebug::TextViewDebug (BaseObjectType* cobject,
 							  const RefPtrBuilder & refBuilder)
 	:Gtk::TextView(cobject),
 	 _refPtrBuilder(refBuilder)
@@ -86,7 +88,7 @@ class BadConversion : public std::runtime_error {
 		: std::runtime_error(s) {
 	}
 };
- 
+
 inline std::string dtostring(double x) {
 	std::ostringstream o;
 	o.precision(10);
@@ -95,7 +97,7 @@ inline std::string dtostring(double x) {
 		throw BadConversion("dtostring(double)");
 	}
 	return o.str();
-} 
+}
 */
 
 Glib::ustring TextViewDebug::get_timestamp(){
@@ -107,6 +109,6 @@ Glib::ustring TextViewDebug::get_timestamp(){
 		std::cerr << exception.what() << std::endl;
 		throw;
 	}
-		
+
 	return timestamp;
 }

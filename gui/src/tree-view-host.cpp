@@ -2,20 +2,22 @@
 /*
  * gui
  * Copyright (C) Enrique García Álvarez 2007 <kike+glkm@eldemonionegro.com>
- * 
+ *
  * gui is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the
  * Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * gui is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License along
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+#include <glibmm/fileutils.h>
 
 #include "tree-view-host.hpp"
 //#include "host.hpp"
@@ -44,7 +46,7 @@ TreeViewHost::TreeViewHost(BaseObjectType* cobject, const RefPtrBuilder & refBui
 														   &TreeViewHost::on_selected_row_callback) );
 */
 	//Connect signal handlers for the treeview "menu popup treeview host" :
-//TODO this must be fixed sometime, this is not a proper way to do this	
+//TODO this must be fixed sometime, this is not a proper way to do this
 	RefPtrBuilder _refPtrBuilder2;
 #ifdef GLIBMM_EXCEPTIONS_ENABLED
 	try {
@@ -67,7 +69,7 @@ TreeViewHost::TreeViewHost(BaseObjectType* cobject, const RefPtrBuilder & refBui
 	}
 #endif //GLIBMM_EXCEPTIONS_ENABLED
 
-	// Get a controller instance that will be used for initialize and connect 
+	// Get a controller instance that will be used for initialize and connect
 	// signals to members
 	Controller& controller = Controller::instance();
 
@@ -83,7 +85,7 @@ TreeViewHost::TreeViewHost(BaseObjectType* cobject, const RefPtrBuilder & refBui
 		_pMenuitem_Refresh->signal_activate().connect(sigc::mem_fun(controller,
 																	&Controller::action_processes_selected) );
 	}
-/*	
+/*
 	if (_pMenuitem_Refresh) {
 		_pMenuitem_Refresh->signal_activate().connect(sigc::mem_fun(*this,
 																	&TreeViewHost::on_menu_popup_refresh) );
@@ -102,15 +104,15 @@ TreeViewHost::TreeViewHost(BaseObjectType* cobject, const RefPtrBuilder & refBui
 		_pMenuitem_ContractAll->signal_activate().connect(sigc::mem_fun(*this,
 																	&TreeViewHost::on_menu_popup_contract_all) );
 	}
-	
-	
+
+
 	//Add the TreeView's view columns:
 	append_column("PID", _ModelColumns.col_PID);
 	//TODO take into account that this can be treated like a numeric column
 	//append_column_numeric("PID", _ModelColumns.col_PID);
 	append_column("Name", _ModelColumns.col_name);
 	append_column_editable("Selected", _ModelColumns.col_bool);
-	
+
 /*	//Connect signal:
 	signal_row_activated().connect(sigc::mem_fun(
 								*this,
@@ -187,7 +189,7 @@ bool TreeViewHost::find_parent_process(const Process & process,
 				found = true;
 				break;
 			}
-		}	
+		}
 	}
 	return found;
 }
@@ -215,7 +217,7 @@ bool TreeViewHost::find_process(const Process & process,
 				found = true;
 				break;
 			}
-		}	
+		}
 	}
 	return found;
 }
@@ -243,7 +245,7 @@ bool TreeViewHost::find_process_by_PID_from_here(int PID,
 				found = true;
 				break;
 			}
-		}	
+		}
 	}
 	return found;
 }
@@ -252,7 +254,7 @@ bool TreeViewHost::find_process_by_PID_from_here(int PID,
  *
  *
 void TreeViewHost::on_treeview_row_activated (const Gtk::TreeModel::Path& path,
-											  Gtk::TreeViewColumn*) 
+											  Gtk::TreeViewColumn*)
 {
 	Gtk::TreeModel::iterator iter = _refPtrTreeStore->get_iter(path);
 	if (iter) {

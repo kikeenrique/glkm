@@ -17,14 +17,16 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <string>
+
 #include <gtkmm/main.h>
+#include <glibmm/fileutils.h>
 
 #include "config.h"
 #ifdef ENABLE_NLS
 #include <libintl.h>
 #endif
 
-#include <string>
 
 #include "main-window.hpp"
 

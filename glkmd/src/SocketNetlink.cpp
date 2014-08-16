@@ -29,65 +29,88 @@
 #include "MessageNetlink.hpp"
 
 #define TASK_COMM_LEN 16
-void print_nla_to_string(struct nlattr *value)
-{
-        std::string rt;
-        switch(value->nla_type)
-        {
-                case NLA_UNSPEC:
-                        rt="UNSPEC";
-                        break;
-                case NLA_U8:
-                        rt="U8";
-                        break;
-                case NLA_U16:
-                        rt="U16";
-                        break;
-                case NLA_U32:
-                {
-                        uint res=nla_get_u32(value);
-                        rt="U32";
-                        std::cout << "print_nla_to_string attrlen:" << value->nla_len << " attrtype:"
-                                  << rt << "(" << value->nla_type << "):" << res << std::endl;
-                        break;
-                }
-                case NLA_U64:
-                        rt="U64";
-                        break;
-                case NLA_STRING:
-                {
-//                         char res[TASK_COMM_LEN];
-                        char *res=nla_get_string(value);
-                        rt="STRING";
-                        std::cout << "print_nla_to_string attrlen:" << value->nla_len << " attrtype:"
-                                  << rt << "(" << value->nla_type << "):" << std::string(res) << std::endl;
-                        
-                        break;
-                }
-                case NLA_FLAG:
-                        rt="FLAG";
-                        break;
-                        rt="";
-                case NLA_MSECS:
-                        rt="MSECS";
-                        break;
-                case NLA_NESTED:
-                        rt="NESTED";
-                        break;
-/*                case NLA_NESTED_COMPAT:
-                        rt="NESTED_COMPAT";
-                        break;
-                case NLA_NUL_STRING:
-                        rt="NUL_STRING";
-                        break;
-                case NLA_BINARY:
-                        rt="BINARY";
-                        break;*/
-                case __NLA_TYPE_MAX:
-                        rt="TYPE_MAX";
-                        break;
-        }
-}
+// void print_nla_to_string(struct nlattr *value)
+// {
+//         std::string rt;
+//         switch(value->nla_type)
+//         {
+//                 case NLA_UNSPEC:
+//                         rt="UNSPEC";
+//                         break;
+//                 case NLA_U8:
+//                         rt="U8";
+//                         break;
+//                 case NLA_U16:
+//                         rt="U16";
+//                         break;
+//                 case NLA_U32:
+//                 {
+//                         uint res=nla_get_u32(value);
+//                         rt="U32";
+//                         std::cout << "print_nla_to_string attrlen:" << value->nla_len << " attrtype:"
+//                                   << rt << "(" << value->nla_type << "):" << res << std::endl;
+//                         break;
+//                 }
+//                 case NLA_U64:
+//                         rt="U64";
+//                         break;
+//                 case NLA_STRING:
+//                 {
+// //                         char res[TASK_COMM_LEN];
+//                         char *res=nla_get_string(value);
+//                         rt="STRING";
+//                         std::cout << "print_nla_to_string attrlen:" << value->nla_len << " attrtype:"
+//                                   << rt << "(" << value->nla_type << "):" << std::string(res) << std::endl;
+//
+//                         break;
+//                 }
+//                 case NLA_FLAG:
+//                         rt="FLAG";
+//                         break;
+//                         rt="";
+//                 case NLA_MSECS:
+//                         rt="MSECS";
+//                         break;
+//                 case NLA_NESTED:
+//                         rt="NESTED";
+//                         break;
+// /*                case NLA_NESTED_COMPAT:
+//                         rt="NESTED_COMPAT";
+//                         break;
+//                 case NLA_NUL_STRING:
+//                         rt="NUL_STRING";
+//                         break;
+//                 case NLA_BINARY:
+//                         rt="BINARY";
+//                         break;*/
+//                 case __NLA_TYPE_MAX:
+//                         rt="TYPE_MAX";
+//                         break;
+//         }
+// }
+//
+// std::string parse_nla_to_string(struct nlattr *value)
+// {
+//     std::cout << "parse_nla_to_string [BEGIN]"<< std::endl;
+//     std::string rt;
+//     switch(value->nla_type)
+//     {
+//         case NLA_STRING:
+//         {
+//             //                         char res[TASK_COMM_LEN];
+//             rt=nla_get_string(value);
+// //             rt="STRING";
+//             std::cout << "parse_nla_to_string parsed:" << value->nla_len
+//                       << "(" << value->nla_type << ") "
+//                       << " :" << std::string(rt) << std::endl;
+//
+//             break;
+//         }
+//     }
+//     std::cout << "parse_nla_to_string [END]: " << rt << std::endl;
+//     return rt;
+// }
+
 
 /**
  * @brief SocketNetlink - Bind a descriptor to their sockets structures
@@ -102,7 +125,7 @@ void print_nla_to_string(struct nlattr *value)
  **/
 SocketNetlink::SocketNetlink (const unsigned int &protocol)
 {
-        std::cout << "SocketNetlink::SocketNetlink [BEGIN]" << std::endl;
+        std::cout << "SocketNetlink::SocketNetlink [BEGIN] protocol" << protocol << std::endl;
         m_valid=true;
 
         m_nlsock = nl_socket_alloc();
@@ -203,7 +226,7 @@ int SocketNetlink::recv (MessageNetlink& m)
         }
 
         unsigned char *buf = NULL;
-        struct nlmsghdr *hdr = NULL;
+//         struct nlmsghdr *hdr = NULL;
         struct sockaddr_nl peer;
         memset (&peer,0,sizeof (peer));
         int len=0;
@@ -215,33 +238,34 @@ int SocketNetlink::recv (MessageNetlink& m)
         }
         else
         {
-                len = nl_recv (m_nlsock, &peer, &buf, &creds);              
-                hdr = (struct nlmsghdr *) buf;
-                while (nlmsg_ok (hdr, len))
-                {
-                        std::cout << "SocketNetlink::recv len:" << len << std::endl;
-                        //BEGIN Process message here...
-                        struct nlattr *hdra = nlmsg_attrdata(hdr, 0);
-                        int remaining = nlmsg_attrlen(hdr, 0);
-
-                        while (nla_ok(hdra, remaining))
-                        {
-                                //BEGIN parse attribute here...
-                                print_nla_to_string(hdra);
-                                /*
-                                int attrlen=nla_len(hdra);
-                                int attrtype=nla_type(hdra);
-                                std::cout << "SocketNetlink::recv attrlen:" << attrlen << " attrtype:"
-                                          << nla_to_string(attrtype) << "(" << attrtype << ")" << std::endl;
-                                          */
-                                //END parse attribute here...
-                                hdra = nla_next(hdra, &remaining);
-                        };
-                        //END Process message here...
-
-                        hdr = nlmsg_next (hdr, &len);
-                }
-//         m.set_buf((void *)data,len);
+                len = nl_recv (m_nlsock, &peer, &buf, &creds);
+//                 hdr = (struct nlmsghdr *) buf;
+//                 while (nlmsg_ok (hdr, len))
+//                 {
+//                         std::cout << "SocketNetlink::recv len:" << len << std::endl;
+//                         //BEGIN Process message here...
+//                         struct nlattr *hdra = nlmsg_attrdata(hdr, 0);
+//                         int remaining = nlmsg_attrlen(hdr, 0);
+//
+//                         while (nla_ok(hdra, remaining))
+//                         {
+//                                 //BEGIN parse attribute here...
+//                                 print_nla_to_string(hdra);
+// //                                 std::string res = parse_nla_to_string(hdra);
+//                                 /*
+//                                 int attrlen=nla_len(hdra);
+//                                 int attrtype=nla_type(hdra);
+//                                 std::cout << "SocketNetlink::recv attrlen:" << attrlen << " attrtype:"
+//                                           << nla_to_string(attrtype) << "(" << attrtype << ")" << std::endl;
+//                                           */
+//                                 //END parse attribute here...
+//                                 hdra = nla_next(hdra, &remaining);
+//                         };
+//                         //END Process message here...
+//
+//                         hdr = nlmsg_next (hdr, &len);
+//                 }
+            m.set_buf((void *)buf,len);
         }
         std::cout << "SocketNetlink::recv [END]" << std::endl;
 

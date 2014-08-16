@@ -80,6 +80,9 @@ protected:
 
         struct nl_msg *m_message;
 
+        unsigned char *m_buf;
+        int m_len;
+
         ///Glkm Netlink API
         ///
         bool add_AttributeU32ToMsg (const nl_glkm_attr &type, const unsigned int &value);

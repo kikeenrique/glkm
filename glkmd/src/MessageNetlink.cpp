@@ -40,6 +40,90 @@
 #define NLMSG_TAIL(nlh) \
         (((void *) (nlh)) + NLMSG_ALIGN((nlh)->nlmsg_len))
 
+
+
+static void print_nla_to_string(struct nlattr *value)
+{
+        std::string rt;
+        switch(value->nla_type)
+        {
+                case NLA_UNSPEC:
+                        rt="UNSPEC";
+                        break;
+                case NLA_U8:
+                        rt="U8";
+                        break;
+                case NLA_U16:
+                        rt="U16";
+                        break;
+                case NLA_U32:
+                {
+                        uint res=nla_get_u32(value);
+                        rt="U32";
+                        std::cout << "print_nla_to_string attrlen:" << value->nla_len << " attrtype:"
+                                  << rt << "(" << value->nla_type << "):" << res << std::endl;
+                        break;
+                }
+                case NLA_U64:
+                        rt="U64";
+                        break;
+                case NLA_STRING:
+                {
+//                         char res[TASK_COMM_LEN];
+                        char *res=nla_get_string(value);
+                        rt="STRING";
+                        std::cout << "print_nla_to_string attrlen:" << value->nla_len << " attrtype:"
+                                  << rt << "(" << value->nla_type << "):" << std::string(res) << std::endl;
+
+                        break;
+                }
+                case NLA_FLAG:
+                        rt="FLAG";
+                        break;
+                        rt="";
+                case NLA_MSECS:
+                        rt="MSECS";
+                        break;
+                case NLA_NESTED:
+                        rt="NESTED";
+                        break;
+/*                case NLA_NESTED_COMPAT:
+                        rt="NESTED_COMPAT";
+                        break;
+                case NLA_NUL_STRING:
+                        rt="NUL_STRING";
+                        break;
+                case NLA_BINARY:
+                        rt="BINARY";
+                        break;*/
+                case __NLA_TYPE_MAX:
+                        rt="TYPE_MAX";
+                        break;
+        }
+}
+
+static std::string parse_nla_to_string(struct nlattr *value)
+{
+    std::cout << "parse_nla_to_string [BEGIN]"<< std::endl;
+    std::string rt;
+    switch(value->nla_type)
+    {
+        case NLA_STRING:
+        {
+            //                         char res[TASK_COMM_LEN];
+            rt=nla_get_string(value);
+//             rt="STRING";
+            std::cout << "parse_nla_to_string parsed:" << value->nla_len
+                      << "(" << value->nla_type << ") "
+                      << " :" << std::string(rt) << std::endl;
+
+            break;
+        }
+    }
+    std::cout << "parse_nla_to_string [END]: " << rt << std::endl;
+    return rt;
+}
+
 /**
  * @brief constructor
  *
@@ -77,6 +161,8 @@ MessageNetlink::MessageNetlink (const nl_msg_types_glkm &type,
 
         add_AttributeU32ToMsg (NLGLKM_SIZE, MAX_NETLINK_BUFFER);
 
+        m_buf = new unsigned char [MAX_NETLINK_BUFFER];
+        m_len = 0;
         std::cout << "MessageNetlink::MessageNetlink [END]" << std::endl;
 }
 
@@ -88,6 +174,7 @@ MessageNetlink::MessageNetlink (const nl_msg_types_glkm &type,
 MessageNetlink::~MessageNetlink()
 {
         nlmsg_free (m_message);
+        ;
 }
 
 
@@ -132,9 +219,9 @@ const nl_msg * MessageNetlink::get_nlmsg() const
  *
  * @return
  */
-// void MessageNetlink::set_buf (void *buf, const size_t &len)
-// {
-//         std::cout << "MessageNetlink::set_buf [BEGIN]" << std::endl;
+void MessageNetlink::set_buf (void *buf, const size_t &len)
+{
+        std::cout << "MessageNetlink::set_buf [BEGIN]" << std::endl;
 //
 //         if (m_header)
 //         {
@@ -164,9 +251,11 @@ const nl_msg * MessageNetlink::get_nlmsg() const
 //         */
 //         memcpy ( (void *) m_header, buf, len);
 //
-//         std::cout << "MessageNetlink::set_buf [END] copied " << len << std::endl;
-//
-// }
+        m_len = len;
+        memset(m_buf,sizeof(m_buf),0);
+        memcpy(m_buf, buf, len);
+        std::cout << "MessageNetlink::set_buf [END] copied " << len << std::endl;
+}
 
 
 /**
@@ -177,6 +266,37 @@ const nl_msg * MessageNetlink::get_nlmsg() const
  **/
 void MessageNetlink::operation_GetAllProcesses (std::vector<std::string> &processes)
 {
+    std::cout << "MessageNetlink::operation_GetAllProcesses [END] "<< std::endl;
+    struct nlmsghdr *hdr = NULL;
+    hdr = (struct nlmsghdr *) m_buf;
+    while (nlmsg_ok (hdr, m_len))
+    {
+        std::cout << "SocketNetlink::recv len:" << m_len << std::endl;
+        //BEGIN Process message here...
+        struct nlattr *hdra = nlmsg_attrdata(hdr, 0);
+        int remaining = nlmsg_attrlen(hdr, 0);
+
+        while (nla_ok(hdra, remaining))
+        {
+            //BEGIN parse attribute here...
+            print_nla_to_string(hdra);
+            std::string res = parse_nla_to_string(hdra);
+            processes.push_back(res);
+            /*
+             *                                int attrlen=nla_len(hdra);
+             *                                int attrtype=nla_type(hdra);
+             *                                std::cout << "SocketNetlink::recv attrlen:" << attrlen << " attrtype:"
+             *                                          << nla_to_string(attrtype) << "(" << attrtype << ")" << std::endl;
+             */
+            //END parse attribute here...
+            hdra = nla_next(hdra, &remaining);
+        };
+        //END Process message here...
+
+        hdr = nlmsg_next (hdr, &m_len);
+    }
+
+
 //         struct nlmsgerr *err = (struct nlmsgerr *) NLMSG_DATA (m_header);
 //         if ( (m_header->nlmsg_type == NLMSG_ERROR) &&
 //                         (err->error != 0))
@@ -191,6 +311,7 @@ void MessageNetlink::operation_GetAllProcesses (std::vector<std::string> &proces
 //         {
 //
 //         }
+    std::cout << "MessageNetlink::operation_GetAllProcesses [END]"<< std::endl;
 }
 
 
@@ -204,7 +325,7 @@ bool MessageNetlink::add_AttributeU32ToMsg (const nl_glkm_attr &type, const unsi
 {
         bool rt = true;
         std::cout << "MessageNetlink::add_AttributeU32ToMsg value:" << value << std::endl;
-        
+
         if (nla_put_u32 (m_message, type, value) < 0)
         {
                 std::cerr << errno << ":" << strerror (errno) << std::endl;

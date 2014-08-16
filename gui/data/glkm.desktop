@@ -1,0 +1,14 @@
+[Desktop Entry]
+Encoding=UTF-8
+_Name=GLKM
+_GenericName=Gnome Linux Kernel Monitor
+_Comment=Monitor and debug software
+Exec=glkm
+Icon=glkm
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Categories=GNOME;GTK;Development;
+StartupNotify=true
+MimeType=application/x-glkm;
+X-GNOME-DocPath=glkm/glkm-manual.xml

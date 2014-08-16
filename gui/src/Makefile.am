@@ -16,7 +16,6 @@ bin_PROGRAMS = \
 
 glkm_SOURCES = \
        main.cpp \
-       sigsegv.cpp \
        debug.hpp \
        debug.cpp \
        utils.hpp \

@@ -40,7 +40,7 @@ m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 AC_CONFIG_AUX_DIR([config-aux])
 AC_CONFIG_MACRO_DIR([config-aux])
 
-GTKMM_REQUIRED=3.0
+GTKMM_REQUIRED=3.4
 #LIBGLADEMM_REQUIRED=2.6
 LIBGNOME_REQUIRED=2.20
 LIBDBUSMM_REQUIRED=0.5.0
@@ -55,7 +55,8 @@ AC_SUBST([GIOMM_REQUIRED])
 ################################################################################
 #        Checks for programs.
 ################################################################################
-AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
+#AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
+AM_INIT_AUTOMAKE
 
 # Read ahead about OLD_CXXFLAGS, it also applies here
 OLD_CFLAGS=$CFLAGS
@@ -139,7 +140,7 @@ PKG_CHECK_MODULES([LIBSIGCMM], [sigc++-2.0 >= $LIBSIGCMM_REQUIRED])
 AC_SUBST([LIBSIGCMM_CFLAGS])
 AC_SUBST([LIBSIGCMM_LIBS])
 
-# Determine whether to compile or not with support for GNOME libraries 
+# Determine whether to compile or not with support for GNOME libraries
 #(i.e libgnome and libgnomeui)
 AC_ARG_ENABLE([gnome],
         [AS_HELP_STRING([--disable-gnome],[build with GNOME support (default=disabled)])],
@@ -168,6 +169,7 @@ AC_CHECK_HEADERS([libintl.h])
 ################################################################################
 AC_CONFIG_HEADERS([config.h])
 #Disable maintainer mode, see http://www.gnu.org/software/hello/manual/automake/maintainer_002dmode.html
+#or http://blogs.gnome.org/desrt/2011/09/08/am_maintainer_mode-is-not-cool/
 #AM_MAINTAINER_MODE
 LT_PREREQ([2.2.6])
 LT_INIT()
@@ -193,7 +195,7 @@ if test "x$enable_debug" = "xyes"; then
         AM_CPPFLAGS="$AM_CPPFLAGS -DDEBUG"
         AM_CXXFLAGS="$AM_CXXFLAGS -rdynamic -ggdb -g -O0"
         AM_CXXFLAGS="$AM_CXXFLAGS -Wall -Wno-uninitialized -fstack-protector-all"
-        
+
         AC_SUBST([AM_CFLAGS])
         AC_SUBST([AM_CXXFLAGS])
         AC_DEFINE([DEBUG],
@@ -241,11 +243,11 @@ if test "x$enable_gcov" = "xyes"; then
         # can get accurate line numbers
         AM_CFLAGS="[`echo "$AM_CFLAGS" | $SED -e 's/-O[0-9]*//g'`]"
         AM_CXXFLAGS="[`echo "$AM_CXXFLAGS" | $SED -e 's/-O[0-9]*//g'`]"
-        
+
         #Add our compilation settings
         AM_CPPFLAGS="$AM_CPPFLAGS -DGCOV"
         AM_CXXFLAGS="$AM_CXXFLAGS -fprofile-arcs -ftest-coverage"
-        
+
         AC_SUBST([AM_CFLAGS])
         AC_SUBST([AM_CXXFLAGS])
         AC_DEFINE([GCOV],

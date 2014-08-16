@@ -43,7 +43,7 @@ AC_CONFIG_MACRO_DIR([config-aux])
 OMNIORB_REQUIRED=4.1.3
 AC_SUBST([OMNIORB_REQUIRED])
 
-LIBNETLINK_REQUIRED=3.0
+LIBNETLINK_REQUIRED=3.2.3
 AC_SUBST([LIBNETLINK_REQUIRED])
 
 GOOGLETEST_REQUIRED=1.5.0
@@ -52,7 +52,8 @@ AC_SUBST([GOOGLETEST_REQUIRED])
 ################################################################################
 #        Checks for programs.
 ################################################################################
-AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
+#AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
+AM_INIT_AUTOMAKE
 
 # Read ahead about OLD_CXXFLAGS, it also applies here
 OLD_CFLAGS=$CFLAGS
@@ -106,11 +107,11 @@ AC_SUBST([PROGRAMNAME_LOCALEDIR])
 ################################################################################
 AC_SEARCH_LIBS([strerror],[cposix])
 
-PKG_CHECK_MODULES([LIBOMNIORB], [omniORB4 omniConnectionMgmt4 omniDynamic4])
+PKG_CHECK_MODULES([LIBOMNIORB], [omniORB4 >= OMNIORB_REQUIRED omniConnectionMgmt4 omniDynamic4])
 AC_SUBST([LIBOMNIORB_CFLAGS])
 AC_SUBST([LIBOMNIORB_LIBS])
 
-PKG_CHECK_MODULES([LIBNETLINK], [libnl-3.0])
+PKG_CHECK_MODULES([LIBNETLINK], [libnl-3.0 >= LIBNETLINK_REQUIRED])
 AC_SUBST([LIBNETLINK_CFLAGS])
 AC_SUBST([LIBNETLINK_LIBS])
 
@@ -130,6 +131,7 @@ AC_HEADER_STDBOOL
 ################################################################################
 AC_CONFIG_HEADERS([config.h])
 #Disable maintainer mode, see http://www.gnu.org/software/hello/manual/automake/maintainer_002dmode.html
+#or http://blogs.gnome.org/desrt/2011/09/08/am_maintainer_mode-is-not-cool/
 #AM_MAINTAINER_MODE
 LT_PREREQ([2.2.6])
 LT_INIT()

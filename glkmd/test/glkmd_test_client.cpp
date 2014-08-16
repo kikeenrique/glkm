@@ -2,12 +2,12 @@
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or
 // (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Library General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU General Public License
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
@@ -21,9 +21,11 @@ static CORBA::Object_ptr getObjectReference(CORBA::ORB_ptr orb);
 static void test_op_GetAllProcesses(LinuxKernelMonitor_ptr e)
 {
     LinuxKernelMonitor::StringList_var dest = e->GetAllProcesses();
+
+    std::cout << "GetAllProcesses replied length[" << dest->length() << "]" << std::endl;
     for (CORBA::ULong i=0; i<dest->length(); i++)
     {
-        //        (*process_list_rt)[i] = CORBA::string_dup(test.c_str()); 
+        //        (*process_list_rt)[i] = CORBA::string_dup(test.c_str());
         std::cout << "The object replied, [" << i << "] \"" << (char*)dest[i]
             << "\"." << std::endl;
     }
@@ -37,7 +39,7 @@ int main(int argc, char** argv)
     {
         orb = CORBA::ORB_init(argc, argv);
 /*
-         
+
         if( argc != 2 )
         {
             std::cerr << "usage:  eg2_clt <object reference>" << std::endl;
@@ -150,7 +152,7 @@ static CORBA::Object_ptr getObjectReference(CORBA::ORB_ptr orb)
     // of the object. This is to avoid conventions such as that used
     // by files (name.type -- e.g. test.ps = postscript etc.)
 
-    try 
+    try
     {
         // Resolve the name to an object reference.
         return rootContext->resolve(name);

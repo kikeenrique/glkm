@@ -1,0 +1,14 @@
+/kernel-module/modules.order
+/kernel-module/Module.symvers
+/kernel-module/nl_procmon.ko
+/kernel-module/.nl_procmon.ko.cmd
+/kernel-module/nl_procmon.mod.c
+/kernel-module/.nl_procmon.mod.o.cmd
+/kernel-module/.nl_procmon.o.cmd
+/kernel-module/.tmp_versions/nl_procmon.mod
+/*/stamp-h1
+*/*/.deps/*
+/*/autom4te.cache/*
+/gui/src/glkm
+/glkmd/src/glkm_daemon
+/glkmd/test/glkmd_test_client

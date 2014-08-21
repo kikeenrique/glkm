@@ -111,7 +111,7 @@ static std::string parse_nla_to_string(struct nlattr *value)
         case NLA_STRING:
         {
             //                         char res[TASK_COMM_LEN];
-            rt=nla_get_string(value);
+            rt=nla_strdup(value);
 //             rt="STRING";
             std::cout << "parse_nla_to_string parsed:" << value->nla_len
                       << "(" << value->nla_type << ") "
@@ -162,6 +162,7 @@ MessageNetlink::MessageNetlink (const nl_msg_types_glkm &type,
         add_AttributeU32ToMsg (NLGLKM_SIZE, MAX_NETLINK_BUFFER);
 
         m_buf = new unsigned char [MAX_NETLINK_BUFFER];
+        memset(m_buf,sizeof(m_buf),0);
         m_len = 0;
         std::cout << "MessageNetlink::MessageNetlink [END]" << std::endl;
 }
@@ -174,7 +175,7 @@ MessageNetlink::MessageNetlink (const nl_msg_types_glkm &type,
 MessageNetlink::~MessageNetlink()
 {
         nlmsg_free (m_message);
-        ;
+        delete [] m_buf;
 }
 
 
@@ -266,7 +267,7 @@ void MessageNetlink::set_buf (void *buf, const size_t &len)
  **/
 void MessageNetlink::operation_GetAllProcesses (std::vector<std::string> &processes)
 {
-    std::cout << "MessageNetlink::operation_GetAllProcesses [END] "<< std::endl;
+    std::cout << "MessageNetlink::operation_GetAllProcesses [BEGIN] "<< std::endl;
     struct nlmsghdr *hdr = NULL;
     hdr = (struct nlmsghdr *) m_buf;
     while (nlmsg_ok (hdr, m_len))
@@ -281,7 +282,9 @@ void MessageNetlink::operation_GetAllProcesses (std::vector<std::string> &proces
             //BEGIN parse attribute here...
             print_nla_to_string(hdra);
             std::string res = parse_nla_to_string(hdra);
-            processes.push_back(res);
+            if (!res.empty()) {
+                processes.push_back(res);
+            }
             /*
              *                                int attrlen=nla_len(hdra);
              *                                int attrtype=nla_type(hdra);

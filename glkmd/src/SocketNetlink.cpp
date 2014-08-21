@@ -130,6 +130,8 @@ SocketNetlink::SocketNetlink (const unsigned int &protocol)
 
         m_nlsock = nl_socket_alloc();
 
+		nl_socket_disable_auto_ack(m_nlsock);
+
         if (nl_connect (m_nlsock, protocol) < 0)
         {
                 std::cerr << errno << ":" << strerror (errno) << std::endl;

@@ -152,7 +152,8 @@ MessageNetlink::MessageNetlink (const nl_msg_types_glkm &type,
          * #define NLM_F_ACK       4   / * Reply with ack, with zero or error code * /
          * #define NLM_F_ECHO      8   / * Echo this request        * /
          */
-        int flags_used=NLM_F_REQUEST|NLM_F_ACK;
+        //        int flags_used=NLM_F_REQUEST|NLM_F_ACK;
+        int flags_used=NLM_F_REQUEST;
         if (flags!=0)
         {
                 flags_used=flags;

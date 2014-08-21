@@ -25,7 +25,7 @@
 #include <vector>
 
 #ifndef MAX_NETLINK_BUFFER
-#define MAX_NETLINK_BUFFER 1024
+#define MAX_NETLINK_BUFFER 3000
 #endif
 
 /**

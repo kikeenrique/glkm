@@ -60,8 +60,8 @@ static void print_nla_to_string(struct nlattr *value)
                 {
                         uint res=nla_get_u32(value);
                         rt="U32";
-                        std::cout << "print_nla_to_string attrlen:" << value->nla_len << " attrtype:"
-                                  << rt << "(" << value->nla_type << "):" << res << std::endl;
+//                         std::cout << "print_nla_to_string attrlen:" << value->nla_len << " attrtype:"
+//                                   << rt << "(" << value->nla_type << "):" << res << std::endl;
                         break;
                 }
                 case NLA_U64:
@@ -72,8 +72,8 @@ static void print_nla_to_string(struct nlattr *value)
 //                         char res[TASK_COMM_LEN];
                         char *res=nla_get_string(value);
                         rt="STRING";
-                        std::cout << "print_nla_to_string attrlen:" << value->nla_len << " attrtype:"
-                                  << rt << "(" << value->nla_type << "):" << std::string(res) << std::endl;
+//                         std::cout << "print_nla_to_string attrlen:" << value->nla_len << " attrtype:"
+//                                   << rt << "(" << value->nla_type << "):" << res << std::endl;
 
                         break;
                 }
@@ -104,7 +104,7 @@ static void print_nla_to_string(struct nlattr *value)
 
 static std::string parse_nla_to_string(struct nlattr *value)
 {
-    std::cout << "parse_nla_to_string [BEGIN]"<< std::endl;
+//     std::cout << "parse_nla_to_string [BEGIN]"<< std::endl;
     std::string rt;
     switch(value->nla_type)
     {
@@ -113,14 +113,24 @@ static std::string parse_nla_to_string(struct nlattr *value)
             //                         char res[TASK_COMM_LEN];
             rt=nla_strdup(value);
 //             rt="STRING";
-            std::cout << "parse_nla_to_string parsed:" << value->nla_len
-                      << "(" << value->nla_type << ") "
-                      << " :" << std::string(rt) << std::endl;
+//             std::cout << "parse_nla_to_string parsed:" << value->nla_len
+//                       << "(" << value->nla_type << ") "
+//                       << " :" << std::string(rt) << std::endl;
 
             break;
         }
+//         case NLA_U32:
+//         {
+//             uint res=nla_get_u32(value);
+//             rt="U32";
+//             std::cout << "parse_nla_to_string parsed:" << value->nla_len
+//                       << " attrtype:" << rt
+//                       << "(" << value->nla_type << "):"
+//                       << res << std::endl;
+//             break;
+//         }
     }
-    std::cout << "parse_nla_to_string [END]: " << rt << std::endl;
+//     std::cout << "parse_nla_to_string [END]: " << rt << std::endl;
     return rt;
 }
 

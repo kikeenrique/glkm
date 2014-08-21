@@ -267,7 +267,7 @@ int SocketNetlink::recv (MessageNetlink& m)
 //                 }
             m.set_buf((void *)buf,len);
         }
-        std::cout << "SocketNetlink::recv [END]" << std::endl;
+        std::cout << "SocketNetlink::recv [END] len:" << len<< std::endl;
 
         return len;
 }

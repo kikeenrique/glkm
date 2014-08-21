@@ -310,20 +310,20 @@ void MessageNetlink::operation_GetAllProcesses (std::vector<std::string> &proces
     }
 
 
-//         struct nlmsgerr *err = (struct nlmsgerr *) NLMSG_DATA (m_header);
-//         if ( (m_header->nlmsg_type == NLMSG_ERROR) &&
-//                         (err->error != 0))
-//         {
-//                 std::cerr << errno << ":" << strerror (errno) << std::endl;
-//                 //check  error
-//                 //perror("");
-//                 exit (EXIT_FAILURE);
-//                 //return NULL;
-//         }
-//         else
-//         {
-//
-//         }
+    struct nlmsgerr *err = (struct nlmsgerr *) NLMSG_DATA (hdr);
+    if ( (hdr->nlmsg_type == NLMSG_ERROR) &&
+         (err->error != 0))
+    {
+        std::cerr << errno << ":" << strerror (errno) << std::endl;
+        //check  error
+        //perror("");
+        exit (EXIT_FAILURE);
+        //return NULL;
+    }
+    else
+    {
+        std::cout << "MessageNetlink::operation_GetAllProcesses ACK"<< std::endl;
+    }
     std::cout << "MessageNetlink::operation_GetAllProcesses [END]"<< std::endl;
 }
 

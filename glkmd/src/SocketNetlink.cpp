@@ -265,7 +265,11 @@ int SocketNetlink::recv (MessageNetlink& m)
 //
 //                         hdr = nlmsg_next (hdr, &len);
 //                 }
-            m.set_buf((void *)buf,len);
+                if (len >= 0) {
+                    m.set_buf((void *)buf,len);
+                } else {
+                    std::cout << "SocketNetlink::recv [ERROR] len:" << len << std::endl;
+                }
         }
         std::cout << "SocketNetlink::recv [END] len:" << len<< std::endl;
 

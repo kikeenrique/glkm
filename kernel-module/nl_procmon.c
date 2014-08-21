@@ -88,10 +88,12 @@ static int nl_glkm_GetAllProcesses_pro_handler (const struct nlmsghdr *nlh_reque
                 return -EINVAL;
 
         msg_size = nla_get_u32 (cda[NLGLKM_SIZE]);
-        printk ("nl_glkm_GetAllProcesses_pro_handler. %d\n", msg_size);
+        printk ("nl_glkm_GetAllProcesses_pro_handler. BEGIN %d\n", msg_size);
 
-        if (msg_size < 0 || msg_size > NLMSG_GOODSIZE)
+        if (msg_size < 0 || msg_size > NLMSG_GOODSIZE) {
+                printk (KERN_ERR "nl_glkm_GetAllProcesses_pro_handler. msg_size(%d) > NLMSG_GOODSIZE(%d)\n",msg_size, NLMSG_GOODSIZE);
                 return -E2BIG;
+        }
 
         {
 
@@ -107,6 +109,7 @@ static int nl_glkm_GetAllProcesses_pro_handler (const struct nlmsghdr *nlh_reque
                         /* continue but report to user-space that we
                          * are losing message due to allocation failures,
                          * not because of netlink itself */
+                        printk (KERN_ERR "nl_glkm_GetAllProcesses_pro_handler. error ENOMEM\n");
                         ret = -ENOMEM;
                 }
 
@@ -150,6 +153,8 @@ static int nl_glkm_GetAllProcesses_pro_handler (const struct nlmsghdr *nlh_reque
 
 //    netlink_unicast(nl_glkm, skb, pid, MSG_DONTWAIT);
         }
+
+        printk ("nl_glkm_GetAllProcesses_pro_handler. END %d\n", ret);
 
         return ret;
 
@@ -358,9 +363,9 @@ static int nl_glkm_rcv_msg (struct sk_buff *skb, struct nlmsghdr *nlh)
 #if LINUX_VERSION_CODE <= KERNEL_VERSION(3,8,0)
         u32 pid = skb ? NETLINK_CB (skb).pid : 0;
 
-        printk ("nl_glkm_rcv_msg. PID:%d\n", pid);
+        printk ("nl_glkm_rcv_msg. BEGIN PID:%d\n", pid);
 #else
-        printk ("nl_glkm_rcv_msg.\n");
+        printk ("nl_glkm_rcv_msg. BEGIN\n");
 #endif
 
 #if LINUX_VERSION_CODE <= KERNEL_VERSION(3,8,0)
@@ -393,6 +398,8 @@ static int nl_glkm_rcv_msg (struct sk_buff *skb, struct nlmsghdr *nlh)
                         return err;
                 }
         }
+        printk ("nl_glkm_rcv_msg. END\n");
+
 #if LINUX_VERSION_CODE <= KERNEL_VERSION(3,8,0)
         return nl_glkm_rcv_handle (nlh, cda, pid);
 #else

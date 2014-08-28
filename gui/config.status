@@ -683,7 +683,7 @@ finish_cmds='PATH="\$PATH:/sbin" ldconfig -n $libdir'
 finish_eval=''
 hardcode_into_libs='yes'
 sys_lib_search_path_spec='/usr/lib/gcc/x86_64-linux-gnu/4.9 /usr/lib/x86_64-linux-gnu /usr/lib /lib/x86_64-linux-gnu /lib '
-sys_lib_dlsearch_path_spec='/lib /usr/lib /usr/lib/x86_64-linux-gnu/libfakeroot /lib/i386-linux-gnu /usr/lib/i386-linux-gnu /lib/i486-linux-gnu /usr/lib/i486-linux-gnu /usr/local/lib /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu '
+sys_lib_dlsearch_path_spec='/lib /usr/lib /usr/lib/x86_64-linux-gnu/libfakeroot /lib/i386-linux-gnu /usr/lib/i386-linux-gnu /lib/i586-linux-gnu /usr/lib/i586-linux-gnu /usr/local/lib /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu '
 hardcode_action='immediate'
 enable_dlopen='unknown'
 enable_dlopen_self='unknown'
@@ -917,6 +917,10 @@ S["build_vendor"]="unknown"
 S["build_cpu"]="x86_64"
 S["build"]="x86_64-unknown-linux-gnu"
 S["LIBTOOL"]="$(SHELL) $(top_builddir)/libtool"
+S["HAVE_LIBDBUSMM_FALSE"]=""
+S["HAVE_LIBDBUSMM_TRUE"]="#"
+S["LIBDBUSMM_LIBS"]=""
+S["LIBDBUSMM_CFLAGS"]=""
 S["LIBGNOME_LIBS"]=""
 S["LIBGNOME_CFLAGS"]=""
 S["LIBSIGCMM_LIBS"]="-lsigc-2.0 "
@@ -924,9 +928,6 @@ S["LIBSIGCMM_CFLAGS"]="-I/usr/include/sigc++-2.0 -I/usr/lib/x86_64-linux-gnu/sig
 S["GIOMM_LIBS"]="-lgiomm-2.4 -lgio-2.0 -lglibmm-2.4 -lgobject-2.0 -lglib-2.0 -lsigc-2.0 "
 S["GIOMM_CFLAGS"]="-pthread -I/usr/include/giomm-2.4 -I/usr/lib/x86_64-linux-gnu/giomm-2.4/include -I/usr/include/glibmm-2.4 -I/usr/lib/x86_64-linux-gnu/glibmm-2.4/inc"\
 "lude -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/sigc++-2.0 -I/usr/lib/x86_64-linux-gnu/sigc++-2.0/include "
-S["LIBDBUSMM_LIBS"]="-ldbusmm-1.0 -ldbus-1 -lglib-2.0 "
-S["LIBDBUSMM_CFLAGS"]="-DDBUS_API_SUBJECT_TO_CHANGE -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gn"\
-"u/glib-2.0/include -I/usr/include/dbusmm-1.0 -I/usr/lib/dbusmm-1.0/include "
 S["GLKM_LIBS"]="-lgtkmm-3.0 -latkmm-1.6 -lgdkmm-3.0 -lgiomm-2.4 -lpangomm-1.4 -lglibmm-2.4 -lgtk-3 -lgdk-3 -lpangocairo-1.0 -lpango-1.0 -latk-1.0 -lcairo-gobject -l"\
 "gio-2.0 -lcairomm-1.0 -lcairo -lsigc-2.0 -lgdk_pixbuf-2.0 -lgobject-2.0 -lglib-2.0 "
 S["GLKM_CFLAGS"]="-pthread -I/usr/include/gtkmm-3.0 -I/usr/lib/x86_64-linux-gnu/gtkmm-3.0/include -I/usr/include/atkmm-1.6 -I/usr/include/gtk-3.0/unix-print -I/usr/in"\

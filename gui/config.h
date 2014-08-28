@@ -35,6 +35,9 @@
 #define HAVE_LC_MESSAGES 1
 
 /* Compile with libgnome support */
+/* #undef HAVE_LIBDBUSMM */
+
+/* Compile with libgnome support */
 /* #undef HAVE_LIBGNOME */
 
 /* Define to 1 if you have the <libintl.h> header file. */

@@ -79,6 +79,18 @@ POST_UNINSTALL = :
 build_triplet = x86_64-unknown-linux-gnu
 host_triplet = x86_64-unknown-linux-gnu
 bin_PROGRAMS = glkm$(EXEEXT)
+#am__append_1 = \
+#       hal-controller.hpp \
+#       hal-controller.cpp \
+#       hal-device-proxy.cpp \
+#       hal-device-proxy.hpp \
+#       hal-manager-proxy.cpp \
+#       hal-manager-proxy.hpp \
+#       hal-parser.hpp \
+#       hal-parser.cpp \
+#       linux-kernel-monitor-client.hpp \
+#       linux-kernel-monitor-client.cpp
+
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/config-aux/depcomp
@@ -98,16 +110,36 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_glkm_OBJECTS = main.$(OBJEXT) debug.$(OBJEXT) \
-	hal-controller.$(OBJEXT) file.$(OBJEXT) about-dialog.$(OBJEXT) \
-	hal-device-proxy.$(OBJEXT) hal-manager-proxy.$(OBJEXT) \
-	main-window.$(OBJEXT) status-bar.$(OBJEXT) \
-	tree-view-host.$(OBJEXT) host.$(OBJEXT) process.$(OBJEXT) \
-	icon-view-hosts.$(OBJEXT) host-select-dialog.$(OBJEXT) \
-	hosts.$(OBJEXT) filesystem.$(OBJEXT) controller.$(OBJEXT) \
+am__glkm_SOURCES_DIST = main.cpp debug.hpp debug.cpp utils.hpp \
+	file.hpp file.cpp about-dialog.cpp about-dialog.hpp \
+	main-window.cpp main-window.hpp status-bar.cpp status-bar.hpp \
+	tree-view-host.cpp tree-view-host.hpp host.cpp host.hpp \
+	process.cpp process.hpp icon-view-hosts.hpp \
+	icon-view-hosts.cpp host-select-dialog.hpp \
+	host-select-dialog.cpp hosts.hpp hosts.cpp filesystem.hpp \
+	filesystem.cpp controller.hpp controller.cpp \
+	notebook-hosts.hpp notebook-hosts.cpp notebook-page-host.hpp \
+	notebook-page-host.cpp notebook-processes.hpp \
+	notebook-processes.cpp notebook-page-process.hpp \
+	notebook-page-process.cpp hal-controller.hpp \
+	hal-controller.cpp hal-device-proxy.cpp hal-device-proxy.hpp \
+	hal-manager-proxy.cpp hal-manager-proxy.hpp hal-parser.hpp \
+	hal-parser.cpp linux-kernel-monitor-client.hpp \
+	linux-kernel-monitor-client.cpp
+#am__objects_1 = hal-controller.$(OBJEXT) \
+#	hal-device-proxy.$(OBJEXT) \
+#	hal-manager-proxy.$(OBJEXT) \
+#	hal-parser.$(OBJEXT) \
+#	linux-kernel-monitor-client.$(OBJEXT)
+am_glkm_OBJECTS = main.$(OBJEXT) debug.$(OBJEXT) file.$(OBJEXT) \
+	about-dialog.$(OBJEXT) main-window.$(OBJEXT) \
+	status-bar.$(OBJEXT) tree-view-host.$(OBJEXT) host.$(OBJEXT) \
+	process.$(OBJEXT) icon-view-hosts.$(OBJEXT) \
+	host-select-dialog.$(OBJEXT) hosts.$(OBJEXT) \
+	filesystem.$(OBJEXT) controller.$(OBJEXT) \
 	notebook-hosts.$(OBJEXT) notebook-page-host.$(OBJEXT) \
-	hal-parser.$(OBJEXT) linux-kernel-monitor-client.$(OBJEXT) \
-	notebook-processes.$(OBJEXT) notebook-page-process.$(OBJEXT)
+	notebook-processes.$(OBJEXT) notebook-page-process.$(OBJEXT) \
+	$(am__objects_1)
 glkm_OBJECTS = $(am_glkm_OBJECTS)
 am__DEPENDENCIES_1 =
 glkm_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -170,7 +202,7 @@ am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
 SOURCES = $(glkm_SOURCES)
-DIST_SOURCES = $(glkm_SOURCES)
+DIST_SOURCES = $(am__glkm_SOURCES_DIST)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -260,8 +292,8 @@ INTLTOOL__v_MERGE_ = $(INTLTOOL__v_MERGE_$(AM_DEFAULT_VERBOSITY))
 INTLTOOL__v_MERGE_0 = @echo "  ITMRG " $@;
 LD = /usr/bin/ld -m elf_x86_64
 LDFLAGS = 
-LIBDBUSMM_CFLAGS = -DDBUS_API_SUBJECT_TO_CHANGE -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/dbusmm-1.0 -I/usr/lib/dbusmm-1.0/include 
-LIBDBUSMM_LIBS = -ldbusmm-1.0 -ldbus-1 -lglib-2.0 
+LIBDBUSMM_CFLAGS = 
+LIBDBUSMM_LIBS = 
 LIBDBUSMM_REQUIRED = 0.5.0
 LIBGNOME_CFLAGS = 
 LIBGNOME_LIBS = 
@@ -382,54 +414,18 @@ AM_CPPFLAGS = \
        -DPACKAGE_DATA_DIR='"$(datadir)"' \
        -DPACKAGE_SRC_DIR="$(srcdir)"
 
-glkm_SOURCES = \
-       main.cpp \
-       debug.hpp \
-       debug.cpp \
-       utils.hpp \
-       hal-controller.hpp \
-       hal-controller.cpp \
-       file.hpp \
-       file.cpp \
-       about-dialog.cpp \
-       about-dialog.hpp \
-       hal-device-proxy.cpp \
-       hal-device-proxy.hpp \
-       hal-manager-proxy.cpp \
-       hal-manager-proxy.hpp \
-       main-window.cpp \
-       main-window.hpp \
-       status-bar.cpp \
-       status-bar.hpp \
-       tree-view-host.cpp \
-       tree-view-host.hpp \
-       host.cpp \
-       host.hpp \
-       process.cpp \
-       process.hpp \
-       icon-view-hosts.hpp \
-       icon-view-hosts.cpp \
-       host-select-dialog.hpp \
-       host-select-dialog.cpp \
-       hosts.hpp \
-       hosts.cpp \
-       filesystem.hpp \
-       filesystem.cpp \
-       controller.hpp \
-       controller.cpp \
-       notebook-hosts.hpp \
-       notebook-hosts.cpp \
-       notebook-page-host.hpp \
-       notebook-page-host.cpp \
-       hal-parser.hpp \
-       hal-parser.cpp \
-       linux-kernel-monitor-client.hpp \
-       linux-kernel-monitor-client.cpp \
-       notebook-processes.hpp \
-       notebook-processes.cpp \
-       notebook-page-process.hpp \
-       notebook-page-process.cpp
-
+glkm_SOURCES = main.cpp debug.hpp debug.cpp utils.hpp file.hpp \
+	file.cpp about-dialog.cpp about-dialog.hpp main-window.cpp \
+	main-window.hpp status-bar.cpp status-bar.hpp \
+	tree-view-host.cpp tree-view-host.hpp host.cpp host.hpp \
+	process.cpp process.hpp icon-view-hosts.hpp \
+	icon-view-hosts.cpp host-select-dialog.hpp \
+	host-select-dialog.cpp hosts.hpp hosts.cpp filesystem.hpp \
+	filesystem.cpp controller.hpp controller.cpp \
+	notebook-hosts.hpp notebook-hosts.cpp notebook-page-host.hpp \
+	notebook-page-host.cpp notebook-processes.hpp \
+	notebook-processes.cpp notebook-page-process.hpp \
+	notebook-page-process.cpp $(am__append_1)
 glkm_CFLAGS = \
        $(GLKM_CFLAGS)        $(AM_CFLAGS)       $(LIBGNOME_CFLAGS) -fstack-protector-all
 

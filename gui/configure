@@ -664,14 +664,16 @@ build_vendor
 build_cpu
 build
 LIBTOOL
+HAVE_LIBDBUSMM_FALSE
+HAVE_LIBDBUSMM_TRUE
+LIBDBUSMM_LIBS
+LIBDBUSMM_CFLAGS
 LIBGNOME_LIBS
 LIBGNOME_CFLAGS
 LIBSIGCMM_LIBS
 LIBSIGCMM_CFLAGS
 GIOMM_LIBS
 GIOMM_CFLAGS
-LIBDBUSMM_LIBS
-LIBDBUSMM_CFLAGS
 GLKM_LIBS
 GLKM_CFLAGS
 PKG_CONFIG_LIBDIR
@@ -836,6 +838,7 @@ enable_silent_rules
 enable_dependency_tracking
 enable_nls
 enable_gnome
+enable_dbusmm
 enable_shared
 enable_static
 with_pic
@@ -865,14 +868,14 @@ PKG_CONFIG_PATH
 PKG_CONFIG_LIBDIR
 GLKM_CFLAGS
 GLKM_LIBS
-LIBDBUSMM_CFLAGS
-LIBDBUSMM_LIBS
 GIOMM_CFLAGS
 GIOMM_LIBS
 LIBSIGCMM_CFLAGS
 LIBSIGCMM_LIBS
 LIBGNOME_CFLAGS
-LIBGNOME_LIBS'
+LIBGNOME_LIBS
+LIBDBUSMM_CFLAGS
+LIBDBUSMM_LIBS'
 
 
 # Initialize some variables set by options.
@@ -1499,6 +1502,7 @@ Optional Features:
                           speeds up one-time build
   --disable-nls           do not use Native Language Support
   --disable-gnome         build with GNOME support (default=disabled)
+  --enable-dbusmm         build with DBUS support (default=disabled)
   --enable-shared[=PKGS]  build shared libraries [default=yes]
   --enable-static[=PKGS]  build static libraries [default=yes]
   --enable-fast-install[=PKGS]
@@ -1538,10 +1542,6 @@ Some influential environment variables:
               path overriding pkg-config's built-in search path
   GLKM_CFLAGS C compiler flags for GLKM, overriding pkg-config
   GLKM_LIBS   linker flags for GLKM, overriding pkg-config
-  LIBDBUSMM_CFLAGS
-              C compiler flags for LIBDBUSMM, overriding pkg-config
-  LIBDBUSMM_LIBS
-              linker flags for LIBDBUSMM, overriding pkg-config
   GIOMM_CFLAGS
               C compiler flags for GIOMM, overriding pkg-config
   GIOMM_LIBS  linker flags for GIOMM, overriding pkg-config
@@ -1553,6 +1553,10 @@ Some influential environment variables:
               C compiler flags for LIBGNOME, overriding pkg-config
   LIBGNOME_LIBS
               linker flags for LIBGNOME, overriding pkg-config
+  LIBDBUSMM_CFLAGS
+              C compiler flags for LIBDBUSMM, overriding pkg-config
+  LIBDBUSMM_LIBS
+              linker flags for LIBDBUSMM, overriding pkg-config
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -8553,100 +8557,6 @@ fi
 
 
 
-# dbusmm
-
-pkg_failed=no
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LIBDBUSMM" >&5
-$as_echo_n "checking for LIBDBUSMM... " >&6; }
-
-if test -n "$LIBDBUSMM_CFLAGS"; then
-    pkg_cv_LIBDBUSMM_CFLAGS="$LIBDBUSMM_CFLAGS"
- elif test -n "$PKG_CONFIG"; then
-    if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"dbusmm-1.0 >= \$LIBDBUSMM_REQUIRED\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "dbusmm-1.0 >= $LIBDBUSMM_REQUIRED") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; then
-  pkg_cv_LIBDBUSMM_CFLAGS=`$PKG_CONFIG --cflags "dbusmm-1.0 >= $LIBDBUSMM_REQUIRED" 2>/dev/null`
-		      test "x$?" != "x0" && pkg_failed=yes
-else
-  pkg_failed=yes
-fi
- else
-    pkg_failed=untried
-fi
-if test -n "$LIBDBUSMM_LIBS"; then
-    pkg_cv_LIBDBUSMM_LIBS="$LIBDBUSMM_LIBS"
- elif test -n "$PKG_CONFIG"; then
-    if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"dbusmm-1.0 >= \$LIBDBUSMM_REQUIRED\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "dbusmm-1.0 >= $LIBDBUSMM_REQUIRED") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; then
-  pkg_cv_LIBDBUSMM_LIBS=`$PKG_CONFIG --libs "dbusmm-1.0 >= $LIBDBUSMM_REQUIRED" 2>/dev/null`
-		      test "x$?" != "x0" && pkg_failed=yes
-else
-  pkg_failed=yes
-fi
- else
-    pkg_failed=untried
-fi
-
-
-
-if test $pkg_failed = yes; then
-   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-
-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
-        _pkg_short_errors_supported=yes
-else
-        _pkg_short_errors_supported=no
-fi
-        if test $_pkg_short_errors_supported = yes; then
-	        LIBDBUSMM_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "dbusmm-1.0 >= $LIBDBUSMM_REQUIRED" 2>&1`
-        else
-	        LIBDBUSMM_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "dbusmm-1.0 >= $LIBDBUSMM_REQUIRED" 2>&1`
-        fi
-	# Put the nasty error message in config.log where it belongs
-	echo "$LIBDBUSMM_PKG_ERRORS" >&5
-
-	as_fn_error $? "Package requirements (dbusmm-1.0 >= $LIBDBUSMM_REQUIRED) were not met:
-
-$LIBDBUSMM_PKG_ERRORS
-
-Consider adjusting the PKG_CONFIG_PATH environment variable if you
-installed software in a non-standard prefix.
-
-Alternatively, you may set the environment variables LIBDBUSMM_CFLAGS
-and LIBDBUSMM_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details." "$LINENO" 5
-elif test $pkg_failed = untried; then
-     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
-$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
-as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
-is in your PATH or set the PKG_CONFIG environment variable to the full
-path to pkg-config.
-
-Alternatively, you may set the environment variables LIBDBUSMM_CFLAGS
-and LIBDBUSMM_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details.
-
-To get pkg-config, see <http://pkg-config.freedesktop.org/>.
-See \`config.log' for more details" "$LINENO" 5; }
-else
-	LIBDBUSMM_CFLAGS=$pkg_cv_LIBDBUSMM_CFLAGS
-	LIBDBUSMM_LIBS=$pkg_cv_LIBDBUSMM_LIBS
-        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-$as_echo "yes" >&6; }
-
-fi
-
-
 
 #giomm and glibmm
 
@@ -8952,6 +8862,131 @@ else
         { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
 fi
+
+# Determine whether to compile or not with support for dbus c plus plus libraries
+# Check whether --enable-dbusmm was given.
+if test "${enable_dbusmm+set}" = set; then :
+  enableval=$enable_dbusmm; enable_dbusmm=yes
+else
+  enable_dbusmm=no
+fi
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to compile with support for DBUS libraries" >&5
+$as_echo_n "checking whether to compile with support for DBUS libraries... " >&6; }
+if test "x$enable_dbusmm" = "xyes"; then
+        # dbusmm
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LIBDBUSMM" >&5
+$as_echo_n "checking for LIBDBUSMM... " >&6; }
+
+if test -n "$LIBDBUSMM_CFLAGS"; then
+    pkg_cv_LIBDBUSMM_CFLAGS="$LIBDBUSMM_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"dbusmm-1.0 >= \$LIBDBUSMM_REQUIRED\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "dbusmm-1.0 >= $LIBDBUSMM_REQUIRED") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_LIBDBUSMM_CFLAGS=`$PKG_CONFIG --cflags "dbusmm-1.0 >= $LIBDBUSMM_REQUIRED" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$LIBDBUSMM_LIBS"; then
+    pkg_cv_LIBDBUSMM_LIBS="$LIBDBUSMM_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"dbusmm-1.0 >= \$LIBDBUSMM_REQUIRED\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "dbusmm-1.0 >= $LIBDBUSMM_REQUIRED") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_LIBDBUSMM_LIBS=`$PKG_CONFIG --libs "dbusmm-1.0 >= $LIBDBUSMM_REQUIRED" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        LIBDBUSMM_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "dbusmm-1.0 >= $LIBDBUSMM_REQUIRED" 2>&1`
+        else
+	        LIBDBUSMM_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "dbusmm-1.0 >= $LIBDBUSMM_REQUIRED" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$LIBDBUSMM_PKG_ERRORS" >&5
+
+	as_fn_error $? "Package requirements (dbusmm-1.0 >= $LIBDBUSMM_REQUIRED) were not met:
+
+$LIBDBUSMM_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables LIBDBUSMM_CFLAGS
+and LIBDBUSMM_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details." "$LINENO" 5
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables LIBDBUSMM_CFLAGS
+and LIBDBUSMM_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+See \`config.log' for more details" "$LINENO" 5; }
+else
+	LIBDBUSMM_CFLAGS=$pkg_cv_LIBDBUSMM_CFLAGS
+	LIBDBUSMM_LIBS=$pkg_cv_LIBDBUSMM_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+
+fi
+
+
+
+$as_echo "#define HAVE_LIBDBUSMM /**/" >>confdefs.h
+
+else
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+# This macro is needed to have a conditional variable inside Makefile.am
+ if test x$enable_dbusmm = xyes; then
+  HAVE_LIBDBUSMM_TRUE=
+  HAVE_LIBDBUSMM_FALSE='#'
+else
+  HAVE_LIBDBUSMM_TRUE='#'
+  HAVE_LIBDBUSMM_FALSE=
+fi
+
 
 ################################################################################
 #        Checks for header files.
@@ -20069,6 +20104,10 @@ fi
   ac_config_commands="$ac_config_commands po/stamp-it"
 
 
+if test -z "${HAVE_LIBDBUSMM_TRUE}" && test -z "${HAVE_LIBDBUSMM_FALSE}"; then
+  as_fn_error $? "conditional \"HAVE_LIBDBUSMM\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
 
 : "${CONFIG_STATUS=./config.status}"
 ac_write_fail=0

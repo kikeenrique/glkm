@@ -19,16 +19,10 @@ glkm_SOURCES = \
        debug.hpp \
        debug.cpp \
        utils.hpp \
-       hal-controller.hpp \
-       hal-controller.cpp \
        file.hpp \
        file.cpp \
        about-dialog.cpp \
        about-dialog.hpp \
-       hal-device-proxy.cpp \
-       hal-device-proxy.hpp \
-       hal-manager-proxy.cpp \
-       hal-manager-proxy.hpp \
        main-window.cpp \
        main-window.hpp \
        status-bar.cpp \
@@ -53,14 +47,24 @@ glkm_SOURCES = \
        notebook-hosts.cpp \
        notebook-page-host.hpp \
        notebook-page-host.cpp \
-       hal-parser.hpp \
-       hal-parser.cpp \
-       linux-kernel-monitor-client.hpp \
-       linux-kernel-monitor-client.cpp \
        notebook-processes.hpp \
        notebook-processes.cpp \
        notebook-page-process.hpp \
        notebook-page-process.cpp
+
+if HAVE_LIBDBUSMM
+       glkm_SOURCES += \
+       hal-controller.hpp \
+       hal-controller.cpp \
+       hal-device-proxy.cpp \
+       hal-device-proxy.hpp \
+       hal-manager-proxy.cpp \
+       hal-manager-proxy.hpp \
+       hal-parser.hpp \
+       hal-parser.cpp \
+       linux-kernel-monitor-client.hpp \
+       linux-kernel-monitor-client.cpp
+endif
 
 glkm_CFLAGS= \
        $(GLKM_CFLAGS)        $(AM_CFLAGS)       $(LIBGNOME_CFLAGS) -fstack-protector-all

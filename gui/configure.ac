@@ -125,10 +125,6 @@ PKG_CHECK_MODULES([GLKM], [gtkmm-3.0 >= $GTKMM_REQUIRED])
 AC_SUBST([GLKM_CFLAGS])
 AC_SUBST([GLKM_LIBS])
 
-# dbusmm
-PKG_CHECK_MODULES([LIBDBUSMM], [dbusmm-1.0 >= $LIBDBUSMM_REQUIRED])
-AC_SUBST([LIBDBUSMM_CFLAGS])
-AC_SUBST([LIBDBUSMM_LIBS])
 
 #giomm and glibmm
 PKG_CHECK_MODULES([GIOMM], [giomm-2.4 >= $GIOMM_REQUIRED])
@@ -156,6 +152,26 @@ if test "x$enable_gnome" = "xyes"; then
 else
         AC_MSG_RESULT(no)
 fi
+
+# Determine whether to compile or not with support for dbus c plus plus libraries
+AC_ARG_ENABLE([dbusmm],
+        [AS_HELP_STRING([--enable-dbusmm],[build with DBUS support (default=disabled)])],
+        [enable_dbusmm=yes],
+        [enable_dbusmm=no])
+AC_MSG_CHECKING(whether to compile with support for DBUS libraries)
+if test "x$enable_dbusmm" = "xyes"; then
+        # dbusmm
+        AC_MSG_RESULT(yes)
+        PKG_CHECK_MODULES([LIBDBUSMM], [dbusmm-1.0 >= $LIBDBUSMM_REQUIRED])
+        AC_SUBST([LIBDBUSMM_CFLAGS])
+        AC_SUBST([LIBDBUSMM_LIBS])
+        AC_DEFINE([HAVE_LIBDBUSMM], [], [Compile with libgnome support])
+else
+        AC_MSG_RESULT(no)
+fi
+
+# This macro is needed to have a conditional variable inside Makefile.am
+AM_CONDITIONAL([HAVE_LIBDBUSMM], [test x$enable_dbusmm = xyes])
 
 ################################################################################
 #        Checks for header files.

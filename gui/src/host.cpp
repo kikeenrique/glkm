@@ -19,8 +19,9 @@
 
 #include "host.hpp"
 #include "filesystem.hpp"
-#include "hal-controller.hpp"
-
+#ifdef HAVE_LIBDBUSMM
+    #include "hal-controller.hpp"
+#endif
 #include "config.h"
 #include "debug.hpp"
 
@@ -57,9 +58,10 @@ Host & Host::operator=(const Host & source) {
 
 void Host::connect (){
 	//connected means hal_controler != NULL
+#ifdef HAVE_LIBDBUSMM
 	if (_hal_controller==NULL){
 		PRINTD ("Host:: beginning hal connection ");
-		
+
 
 		try {
 			_hal_controller = new HalController ();
@@ -74,12 +76,14 @@ void Host::connect (){
 	} else {
 		PRINTD ("Host:: already connected " + _hostname);
 	}
+#endif
 }
 
 void Host::get_all_processes() {
 
 	PRINTD ("Host:: getting processes " + _hostname);
 
+#ifdef HAVE_LIBDBUSMM
 	if (_hal_controller) {
 		bool gotten_all = _hal_controller->get_all_processes(*this);
 		if (!gotten_all) {
@@ -88,6 +92,7 @@ void Host::get_all_processes() {
 	} else {
 		PRINTD ("Host:: nothing done, not existent hal connection to " + _hostname);
 	}
+#endif
 }
 
 void Host::add_and_synchronize_process(Process & process) {

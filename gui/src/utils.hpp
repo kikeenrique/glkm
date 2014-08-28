@@ -38,16 +38,18 @@
 
 #include <gdkmm/pixbuf.h>
 
-
+#ifdef HAVE_LIBDBUSMM
 #include <dbusmm/types.h>
-
+#endif
 /* For testing propose use the local (not installed) glade file */
 //#define GLADE_FILE  PACKAGE_DATA_DIR"/glkmbuilder.glade"
 #define GLADE_FILE  Glib::getenv ("GLKM_GLADE")
 // #define NULL 0
 
+#ifdef HAVE_LIBDBUSMM
 typedef std::vector<DBus::String> VectorString;
 typedef std::map<DBus::String, DBus::Variant> DictVariable;
+#endif
 typedef Glib::RefPtr<Gtk::Builder> RefPtrBuilder;
 typedef Glib::RefPtr<Gtk::TextBuffer> RefPtrTextBuffer;
 typedef Glib::RefPtr<Gtk::TreeSelection> RefPtrTreeSelection;

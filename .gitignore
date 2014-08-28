@@ -13,3 +13,4 @@
 /glkmd/src/glkm_daemon
 /glkmd/test/glkmd_test_client
 *.o
+*~

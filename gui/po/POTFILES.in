@@ -1,7 +1,32 @@
 # List of source files containing translatable strings.
+# Generated running next command:
+# find . -name *.cpp -o -name *.glade -o -name *desktop.in
 
-src/main.cc
-src/glkm.glade
-src/glkm_aboutdialog.cc
-src/glkm_mainwindow.cc
-glkm.desktop.in
+src/main-window.cpp
+src/icon-view-hosts.cpp
+src/host.cpp
+src/debug.cpp
+src/notebook-page-host.cpp
+src/about-dialog.cpp
+src/tree-view-host.cpp
+src/main.cpp
+src/observer.cpp
+src/hal-manager-proxy.cpp
+src/status-bar.cpp
+src/host-select-dialog.cpp
+src/hal-parser.cpp
+src/hosts.cpp
+src/sigsegv.cpp
+src/process.cpp
+src/controller.cpp
+src/notebook-hosts.cpp
+src/file.cpp
+src/hal-controller.cpp
+src/linux-kernel-monitor-client.cpp
+src/notebook-page-process.cpp
+src/hal-device-proxy.cpp
+src/notebook-processes.cpp
+src/filesystem.cpp
+data/glkm.glade
+data/glkmbuilder.glade
+data/glkm.desktop.in

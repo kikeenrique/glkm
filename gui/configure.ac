@@ -29,13 +29,13 @@ dnl Process this file with autoconf to produce a configure script.
 ################################################################################
 AC_PREREQ([2.68])
 
-m4_define([glkm_major_version],[0])
-m4_define([glkm_minor_version],[2])
-m4_define([glkm_micro_version],[3])
-m4_define([glkm_version],[glkm_major_version.glkm_minor_version.glkm_micro_version])
+GENERIC_MAJOR_VERSION=0
+GENERIC_MINOR_VERSION=2
+GENERIC_MICRO_VERSION=3
+GENERIC_VERSION=$GENERIC_MAJOR_VERSION.$GENERIC_MINOR_VERSION.$GENERIC_MICRO_VERSION]
+AC_SUBST(GENERIC_VERSION)
 
-AC_INIT([GNOME LINUX Kernel Monitor],[m4_defn([glkm_version])],[http://eldemonionegro.com/glkm/newticket],[glkm])
-m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
+AC_INIT([GNOME LINUX Kernel Monitor],[GENERIC_VERSION],[https://bitbucket.org/kikeenrique/glkm/issues],[glkm])
 
 AC_CONFIG_AUX_DIR([config-aux])
 AC_CONFIG_MACRO_DIR([config-aux])

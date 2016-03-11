@@ -1,0 +1,199 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-11 12:41+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../data/glkm.glade.h:1 ../data/glkmbuilder.glade.h:17
+#: ../data/glkm.desktop.in.h:2
+msgid "Gnome Linux Kernel Monitor"
+msgstr ""
+
+#: ../data/glkm.glade.h:2
+msgid "_Archivo"
+msgstr ""
+
+#: ../data/glkm.glade.h:3
+msgid "gtk-new"
+msgstr ""
+
+#: ../data/glkm.glade.h:4
+msgid "gtk-open"
+msgstr ""
+
+#: ../data/glkm.glade.h:5
+msgid "gtk-save"
+msgstr ""
+
+#: ../data/glkm.glade.h:6
+msgid "gtk-save-as"
+msgstr ""
+
+#: ../data/glkm.glade.h:7
+msgid "gtk-quit"
+msgstr ""
+
+#: ../data/glkm.glade.h:8
+msgid "_Editar"
+msgstr ""
+
+#: ../data/glkm.glade.h:9
+msgid "gtk-cut"
+msgstr ""
+
+#: ../data/glkm.glade.h:10
+msgid "gtk-copy"
+msgstr ""
+
+#: ../data/glkm.glade.h:11
+msgid "gtk-paste"
+msgstr ""
+
+#: ../data/glkm.glade.h:12
+msgid "gtk-delete"
+msgstr ""
+
+#: ../data/glkm.glade.h:13
+msgid "_Ver"
+msgstr ""
+
+#: ../data/glkm.glade.h:14 ../data/glkmbuilder.glade.h:21
+msgid "View toolbar"
+msgstr ""
+
+#: ../data/glkm.glade.h:15 ../data/glkmbuilder.glade.h:22
+msgid "View debug"
+msgstr ""
+
+#: ../data/glkm.glade.h:16
+msgid "Ay_uda"
+msgstr ""
+
+#: ../data/glkm.glade.h:17
+msgid "gtk-about"
+msgstr ""
+
+#: ../data/glkm.glade.h:18 ../data/glkmbuilder.glade.h:24
+msgid "select"
+msgstr ""
+
+#: ../data/glkm.glade.h:19 ../data/glkmbuilder.glade.h:25
+msgid "connect"
+msgstr ""
+
+#: ../data/glkm.glade.h:20 ../data/glkmbuilder.glade.h:26
+msgid "synchronize"
+msgstr ""
+
+#: ../data/glkm.glade.h:21 ../data/glkmbuilder.glade.h:27
+msgid "block"
+msgstr ""
+
+#: ../data/glkm.glade.h:22 ../data/glkmbuilder.glade.h:28
+msgid "Files:"
+msgstr ""
+
+#: ../data/glkm.glade.h:23 ../data/glkmbuilder.glade.h:16
+msgid "Select a host"
+msgstr ""
+
+#: ../data/glkm.glade.h:24
+msgid "gtk-cancel"
+msgstr ""
+
+#: ../data/glkm.glade.h:25
+msgid "gtk-ok"
+msgstr ""
+
+#: ../data/glkm.glade.h:26 ../data/glkmbuilder.glade.h:1
+msgid "About GLKM"
+msgstr ""
+
+#: ../data/glkm.glade.h:27 ../data/glkmbuilder.glade.h:2
+msgid "copyright (c) Enrique García"
+msgstr ""
+
+#: ../data/glkm.glade.h:28 ../data/glkmbuilder.glade.h:3
+msgid "Monitoring your proccess parameters as you never have."
+msgstr ""
+
+#: ../data/glkm.glade.h:29 ../data/glkmbuilder.glade.h:4
+msgid "glkm"
+msgstr ""
+
+#: ../data/glkm.glade.h:30 ../data/glkmbuilder.glade.h:5
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; version 2 of the License.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"this program; if not, write to the Free Software Foundation, Inc., 51 "
+"Franklin St, Fifth Floor, Boston, MA  02110-1301  USA"
+msgstr ""
+
+#: ../data/glkm.glade.h:35 ../data/glkmbuilder.glade.h:10
+msgid ""
+"Main Translators:\n"
+"-------------------------------------------------------------------------------\n"
+"        es\t  Enrique García Álvarez <kike+traduce@eldemonionegro.com>\n"
+"\n"
+msgstr ""
+
+#: ../data/glkm.glade.h:40 ../data/glkmbuilder.glade.h:15
+msgid "Debug"
+msgstr ""
+
+#: ../data/glkm.glade.h:41
+msgid "refresh"
+msgstr ""
+
+#: ../data/glkm.glade.h:42 ../data/glkmbuilder.glade.h:29
+msgid "expand all"
+msgstr ""
+
+#: ../data/glkm.glade.h:43 ../data/glkmbuilder.glade.h:30
+msgid "contract all"
+msgstr ""
+
+#: ../data/glkmbuilder.glade.h:18
+msgid "File"
+msgstr ""
+
+#: ../data/glkmbuilder.glade.h:19
+msgid "Edit"
+msgstr ""
+
+#: ../data/glkmbuilder.glade.h:20
+msgid "View"
+msgstr ""
+
+#: ../data/glkmbuilder.glade.h:23
+msgid "Help"
+msgstr ""
+
+#: ../data/glkm.desktop.in.h:1
+msgid "GLKM"
+msgstr ""
+
+#: ../data/glkm.desktop.in.h:3
+msgid "Monitor and debug software"
+msgstr ""

@@ -1,0 +1,27 @@
+# You can use a Docker image from Docker Hub or your own container
+# registry for your build environment.
+image: debian
+
+pipelines:
+  default:
+    - step:
+        script:
+          - echo "Runs on branches that don't have specific pipeline."
+  branches: # Container for all branch-specific pipelines.
+    master:
+      - step:
+          script:
+            - echo "Runs only on the master branch."
+            - apt-get update
+            - apt-get -y --no-install-recommends install libomniorb4-dev libnl-3-dev automake libtool build-essential
+            - automake --version
+            - gcc -v
+            - cd glkmd
+            - ./autogen.sh --enable-debug-mode
+            - make
+            - make check
+            - cd ../gui
+            - apt-get -y install libgtkmm-3.0-dev libsigc++-2.0-dev
+            - ./autogen.sh --enable-debug-mode
+            - make
+            - make check

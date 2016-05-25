@@ -13,7 +13,7 @@ pipelines:
           script:
             - echo "Runs only on the master branch."
             - apt-get update
-            - apt-get -y --no-install-recommends install libomniorb4-dev libnl-3-dev libglib2.0-dev intltool-debian automake libtool build-essential
+            - apt-get -y --no-install-recommends install libomniorb4-dev libnl-3-dev libglib2.0-dev intltool libtool-bin automake libtool build-essential
             - automake --version
             - gcc -v
             - cd glkmd
